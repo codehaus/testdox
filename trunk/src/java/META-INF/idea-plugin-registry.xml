@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE idea-plugin-registry PUBLIC "-//IntelliJ Technology Network//DTD Plugin Manager 0.1//EN" "http://www.intellij.org/twiki/pub/Main/PluginManager/idea-plugin-registry.dtd">
+
+<idea-plugin-registry>
+    <idea-plugin>
+        <name>@PROJECT.TITLE@</name>
+        <description>@PROJECT.DESCRIPTION@</description>
+        <version>@PROJECT.VERSION@</version>
+        <vendor>@PROJECT.VENDOR@</vendor>
+        <idea-version since-build="@IDEA.SINCE-BUILD@"/>
+        <docUrl>@PROJECT.HOMEPAGE@</docUrl>
+        <binUrl>@PROJECT.HOMEPAGE@</binUrl>
+        <srcUrl>@PROJECT.HOMEPAGE@</srcUrl>
+        <lastModified year="@YEAR@" month="@MONTH@" day="@DAY@"/>
+    </idea-plugin>
+</idea-plugin-registry>
