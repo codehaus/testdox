@@ -1,0 +1,328 @@
+<project name="TestDox" default="build" basedir=".">
+
+    <target name="check.ant.version">
+        <echo taskname="ant.version" message="${ant.version}"/>
+        <condition property="ant.version.ok">
+            <and>
+                <contains string="${ant.version}" substring="1.6."/>
+                <not>
+                    <contains string="${ant.version}" substring="1.6.0"/>
+                </not>
+                <not>
+                    <contains string="${ant.version}" substring="1.6.1"/>
+                </not>
+            </and>
+        </condition>
+    </target>
+
+    <target name="ant.version.pass" depends="check.ant.version" unless="ant.version.ok">
+        <fail>This build script requires Ant 1.6.2 or later!</fail>
+    </target>
+
+    <target name="initialise" depends="ant.version.pass">
+        <property file="project.properties"/>
+        <property name="binary.extensions" value="**/*.png, **/*.jpg, **/*.jpeg, **/*.gif"/>
+        <property name="license.file" value="LICENSE.txt"/>
+
+        <property name="compile.lib" value="lib/compile"/>
+        <property name="runtime.lib" value="lib/runtime"/>
+
+        <property name="java.src" value="src/java"/>
+        <property name="test.src" value="src/test"/>
+
+        <property name="build" value="build"/>
+        <property name="classes" value="${build}/classes"/>
+        <property name="test.classes" value="${build}/test-classes"/>
+        <property name="test.results" value="${build}/test-results"/>
+        <property name="test.reports" value="${build}/test-reports"/>
+
+        <property name="clover" value="clover"/>
+        <property name="clover.lib.dir" value="${user.home}/.ant/lib"/>
+        <property name="clover.reports" value="${build}/clover-reports"/>
+        <property name="coverage.criteria" value="70%"/>
+
+        <property name="dist" value="${build}/dist"/>
+        <property name="distfile.name" value="${project.name}-${project.version}"/>
+
+        <filterset id="project.vars">
+            <filter token="PROJECT.VERSION" value="${project.version}"/>
+            <filter token="PROJECT.TITLE" value="${project.title}"/>
+            <filter token="PROJECT.NAME" value="${project.name}"/>
+            <filter token="PROJECT.DESCRIPTION" value="${project.description}"/>
+            <filter token="PROJECT.CHANGENOTES" value="${project.change-notes}"/>
+            <filter token="PROJECT.HOMEPAGE" value="${project.homepage}"/>
+            <filter token="PROJECT.VENDOR" value="${project.vendor}"/>
+            <filter token="PROJECT.VENDOR.EMAIL" value="${project.vendor.email}"/>
+            <filter token="PROJECT.VENDOR.HOMEPAGE" value="${project.vendor.homepage}"/>
+        </filterset>
+
+        <path id="clover.classpath">
+            <pathelement location="${clover.lib.dir}/clover.jar"/>
+        </path>
+
+        <condition property="clover.available">
+            <and>
+                <available file="${clover.lib.dir}/clover.jar" type="file"/>
+                <available file="${clover.lib.dir}/clover.license" type="file"/>
+            </and>
+        </condition>
+
+        <path id="compile.classpath">
+            <fileset dir="${compile.lib}">
+                <include name="*.jar"/>
+            </fileset>
+            <fileset dir="${runtime.lib}">
+                <include name="**/*.jar"/>
+            </fileset>
+        </path>
+
+        <path id="demetra.compile.classpath">
+            <fileset dir="${demetra.home}">
+                <include name="**/*.jar"/>
+            </fileset>
+            <pathelement location="${classes}/demetra"/>
+            <path refid="compile.classpath"/>
+        </path>
+
+        <path id="demetra.test.classpath">
+            <pathelement location="${test.classes}/demetra"/>
+            <path refid="clover.classpath"/>
+            <path refid="demetra.compile.classpath"/>
+        </path>
+
+        <tstamp>
+            <format property="TODAY" pattern="d-MMMM-yyyy" locale="en"/>
+            <format property="DAY" pattern="d" locale="en"/>
+            <format property="MONTH" pattern="MM" locale="en"/>
+            <format property="YEAR" pattern="yyyy" locale="en"/>
+        </tstamp>
+
+        <filterset id="timestamp.vars">
+            <filter token="TIMESTAMP" value="${TODAY}"/>
+            <filter token="DAY" value="${DAY}"/>
+            <filter token="MONTH" value="${MONTH}"/>
+            <filter token="YEAR" value="${YEAR}"/>
+        </filterset>
+    </target>
+
+    <target name="check.demetra.available" depends="initialise">
+        <condition property="demetra.available">
+            <and>
+                <available classname="com.intellij.lang.Language"
+                           classpathref="demetra.compile.classpath"/>
+
+                <available classname="com.intellij.lexer.LexerBase"
+                           classpathref="demetra.compile.classpath"/>
+
+                <available classname="com.intellij.formatting.FormattingModelBuilder"
+                           classpathref="demetra.compile.classpath"/>
+
+                <available classname="com.intellij.psi.tree.IFileElementType"
+                           classpathref="demetra.compile.classpath"/>
+
+                <available classname="org.picocontainer.defaults.DefaultPicoContainer"
+                           classpathref="demetra.compile.classpath"/>
+
+                <available classname="gnu.trove.TIntObjectHashMap"
+                           classpathref="demetra.compile.classpath"/>
+
+                <not>
+                    <available classname="com.intellij.codeFormatting.PseudoTextBuilder"
+                               classpathref="demetra.compile.classpath"/>
+                </not>
+
+                <not>
+                    <available classname="com.intellij.cvsSupport2.cvshandlers.DirectoryPruner"
+                               classpathref="demetra.compile.classpath"/>
+                </not>
+            </and>
+        </condition>
+    </target>
+
+    <target name="demetra.available" depends="check.demetra.available" unless="demetra.available">
+        <fail>IntelliJ IDEA 6.0 is not available. Please set the demetra.home system property to the path to your
+            IntelliJ IDEA 6.0 installation.</fail>
+    </target>
+
+    <target name="clean" depends="initialise" description="Deletes all artifacts from a previous build">
+        <delete dir="${build}" failonerror="false"/>
+    </target>
+
+    <target name="compile.demetra" depends="initialise, demetra.available">
+        <mkdir dir="${classes}/demetra"/>
+        <javac srcdir="${java.src}" destdir="${classes}/demetra" debug="on">
+            <classpath refid="demetra.compile.classpath"/>
+        </javac>
+        <copy todir="${classes}/demetra" overwrite="true">
+            <fileset dir="${java.src}" excludes="**/*.java, ${binary.extensions}"/>
+            <filterset>
+                <filter token="IDEA.SINCE-BUILD" value="5755"/>
+                <filter token="IDEA.UNTIL-BUILD" value="6200"/>
+                <filter token="PROJECT.VERSION" value="${project.version} (Demetra)"/>
+            </filterset>
+            <filterset refid="project.vars"/>
+            <filterset refid="timestamp.vars"/>
+        </copy>
+        <copy todir="${classes}/demetra" overwrite="true">
+            <fileset dir="${java.src}" includes="${binary.extensions}"/>
+        </copy>
+        <copy todir="${classes}/demetra" file="${license.file}" overwrite="true">
+            <filterset refid="project.vars"/>
+            <filterset refid="timestamp.vars"/>
+        </copy>
+    </target>
+
+    <target name="compile.versions" depends="compile.demetra"
+            description="Compiles the project source files"/>
+
+    <target name="compile.tests.demetra" depends="compile.demetra">
+        <mkdir dir="${test.classes}/demetra"/>
+        <javac srcdir="${test.src}" destdir="${test.classes}/demetra" debug="on">
+            <classpath refid="demetra.test.classpath"/>
+        </javac>
+    </target>
+
+    <target name="compile.tests" depends="compile.tests.demetra"/>
+
+    <macrodef name="test-idea-plugin">
+        <attribute name="eapName"/>
+
+        <sequential>
+            <property name="eapNameInMixedCase" value=""/>
+
+            <script language="javascript">
+            <![CDATA[
+                var eapNameInMixedCase = "@{eapName}".substr(0, 1).toUpperCase() + "@{eapName}".substr(1);
+                project.setProperty("eapNameInMixedCase", eapNameInMixedCase);
+            ]]>
+            </script>
+
+            <junit fork="true" forkmode="once" errorProperty="tests.failed" failureProperty="tests.failed"
+                   haltonfailure="false" haltonerror="false" showoutput="true" printsummary="withOutAndErr"
+                   includeantruntime="true" newenvironment="false">
+
+                <classpath refid="@{eapName}.test.classpath"/>
+                <formatter type="brief" usefile="false"/>
+
+                <batchtest todir="${test.results}">
+                    <fileset dir="${test.classes}/@{eapName}">
+                        <include name="**/*${eapNameInMixedCase}*Test*.class"/>
+                    </fileset>
+                    <formatter type="xml"/>
+                </batchtest>
+            </junit>
+        </sequential>
+    </macrodef>
+
+    <target name="test.reports" depends="compile.tests" description="Runs all unit tests for this project">
+        <delete dir="${test.results}"/>
+        <mkdir dir="${test.results}"/>
+
+        <junit fork="true" forkmode="once" errorProperty="tests.failed" failureProperty="tests.failed"
+               haltonfailure="false" haltonerror="false" showoutput="true" printsummary="withOutAndErr"
+               includeantruntime="true" newenvironment="false">
+
+            <classpath refid="demetra.test.classpath"/>
+            <formatter type="brief" usefile="false"/>
+
+            <batchtest todir="${test.results}">
+                <fileset dir="${test.classes}/demetra">
+                    <include name="**/*Test.class"/>
+                    <exclude name="**/*ApiTest.class, **/*TestCase.class"/>
+                </fileset>
+                <formatter type="xml"/>
+            </batchtest>
+        </junit>
+
+        <test-idea-plugin eapName="demetra"/>
+
+        <delete dir="${test.reports}"/>
+        <mkdir dir="${test.reports}"/>
+
+        <junitreport todir="${test.results}">
+            <fileset dir="${test.results}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${test.reports}"/>
+        </junitreport>
+
+        <fail message="Tests failed! Check test reports." if="tests.failed"/>
+    </target>
+
+    <target name="with.clover" depends="initialise" if="clover.available">
+        <taskdef resource="clovertasks"/>
+
+        <mkdir dir="${clover}"/>
+        <delete failonerror="true">
+            <fileset dir="${clover}" includes="clover.db*"/>
+        </delete>
+
+        <clover-setup enabled="true" initString="${clover}/clover.db">
+            <fileset dir="${java.src}" includes="**/*.java"/>
+        </clover-setup>
+    </target>
+
+    <target name="without.clover" depends="initialise" if="clover.available">
+        <taskdef resource="clovertasks"/>
+        <clover-setup enabled="false"/>
+    </target>
+
+    <target name="coverage.reports" depends="with.clover" if="clover.available">
+        <!-- generate a history point for the current coverage -->
+        <clover-historypoint historyDir="${clover}/history"/>
+
+        <clover-report>
+            <!-- generate a current report -->
+            <current alwaysReport="true" outfile="${clover.reports}" title="Clover Report for TestDox IDEA Plug-in">
+                <format type="html"/>
+            </current>
+
+            <!-- generate a historical report -->
+            <historical outfile="${clover.reports}" historyDir="${clover}/history">
+                <format type="html"/>
+            </historical>
+        </clover-report>
+    </target>
+
+    <target name="clover.check" depends="with.clover" if="clover.available">
+        <clover-check target="${coverage.criteria}" failureProperty="clover.check.failed"/>
+    </target>
+
+    <target name="coverage.check" depends="clover.check" if="clover.check.failed">
+        <fail message="Coverage criteria not met! Check coverage reports."/>
+    </target>
+
+    <macrodef name="zip-idea-plugin">
+        <attribute name="eapName"/>
+        <sequential>
+            <jar destfile="${dist}/${distfile.name}-@{eapName}.jar" basedir="${classes}/@{eapName}" compress="true"/>
+
+            <zip destfile="${dist}/${distfile.name}-@{eapName}.zip" compress="true" followsymlinks="true">
+                <zipfileset dir="${dist}" includes="${distfile.name}-@{eapName}.jar" prefix="${project.name}/lib"/>
+                <zipfileset dir="${runtime.lib}" includes="*.jar" prefix="${project.name}/lib"/>
+            </zip>
+
+            <delete file="${dist}/${distfile.name}-@{eapName}.jar" failonerror="true"/>
+
+            <buildnumber/>
+        </sequential>
+    </macrodef>
+
+    <target name="zip.versions" depends="test.reports"
+            description="Creates deployable ZIP files for each version of IntelliJ IDEA">
+
+        <delete failonerror="true">
+            <fileset dir="${classes}" includes="**/*.class"/>
+        </delete>
+
+        <antcall inheritall="true" target="compile.versions"/>
+
+        <mkdir dir="${dist}"/>
+        <zip-idea-plugin eapName="demetra"/>
+    </target>
+
+    <target name="build" description="Runs the continuous integration build"
+            depends="clean, with.clover, test.reports, coverage.reports, coverage.check, without.clover, zip.versions"
+    />
+
+</project>

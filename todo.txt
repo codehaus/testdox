@@ -1,0 +1,25 @@
+Missing Tests:
+
+- Editor API
+- TestDox Project Component
+
+
+Known Issues:
+
+- The creation of a test class cannot be undone in IntelliJ IDEA 4.5.x and 5.x.
+
+Unverified Bugs:
+
+- In IntelliJ 4.0.3, "Do you want to create a test for this class" does not appear for abstract classes.
+
+
+Stories planned for 1.1:
+
+- Automatically add JUnit JAR to selected module
+- Ensure references to a given project are released when the project is closed!
+
+
+Stories planned for 1.5:
+
+- Go to tested method for a given test method (Alt+Shift+M)
+- Popup a list of test methods for a given method under test (Alt+Shift+M)
