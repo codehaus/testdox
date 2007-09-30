@@ -6,7 +6,7 @@ public interface ConfigurationUI {
 
     void setCustomPackageMappings(List<String> mappings);
 
-    List getCustomPackageMappings();
+    List<String> getCustomPackageMappings();
 
     void setCustomMappingStatus(boolean active);
 
