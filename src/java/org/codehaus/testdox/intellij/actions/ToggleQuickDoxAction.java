@@ -6,7 +6,7 @@ import org.codehaus.testdox.intellij.IconHelper;
 public class ToggleQuickDoxAction extends BaseAction {
 
     public ToggleQuickDoxAction() {
-        super("Show QuickDox", "Shows TestDox in a tooltip", IconHelper.getIcon(IconHelper.DOX_ICON));
+        super("Toggle QuickDox", "Shows/hides the TestDox tooltip", IconHelper.getIcon(IconHelper.DOX_ICON));
     }
 
     public void actionPerformed(AnActionEvent event) {

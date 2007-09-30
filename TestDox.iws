@@ -34,18 +34,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/MockVirtualFile.java" afterPath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/MockVirtualFile.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/compile/junit-3.8.1.jar" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/config/ConfigurationPanel.java" afterPath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/config/ConfigurationPanel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TestDox.iws" afterPath="$PROJECT_DIR$/TestDox.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/config/ConfigurationUI.java" afterPath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/config/ConfigurationUI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Plugin.iml" afterPath="$PROJECT_DIR$/Plugin.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/compile/junit-4.4.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/actions/ToggleQuickDoxAction.java" afterPath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/actions/ToggleQuickDoxAction.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TestDox.ipr" afterPath="$PROJECT_DIR$/TestDox.ipr" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/TestDoxProjectComponent.java" afterPath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/TestDoxProjectComponent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/config/PackageTableModel.java" afterPath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/config/PackageTableModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.xml" afterPath="$PROJECT_DIR$/build.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/config/PackageTableModelTest.java" afterPath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/config/PackageTableModelTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/META-INF/plugin.xml" afterPath="$PROJECT_DIR$/src/java/META-INF/plugin.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project.properties" afterPath="$PROJECT_DIR$/project.properties" />
     </list>
   </component>
   <component name="ChangeListSynchronizer" />
@@ -243,53 +236,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="project.properties" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="project.properties" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/project.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="4" selection-start="4" selection-end="4" vertical-scroll-proportion="0.0">
+            <state line="18" column="0" selection-start="589" selection-end="589" vertical-scroll-proportion="0.36610168">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DeletionShadowingManagerTest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/DeletionShadowingManagerTest.java">
+      <file leaf-file-name="ToggleQuickDoxAction.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/actions/ToggleQuickDoxAction.java">
           <provider editor-type-id="com.sixrr.codedependency.classneighborsgraph.NeighborGraphEditorProvider">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="0" selection-start="2873" selection-end="2873" vertical-scroll-proportion="0.15780142">
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="com.sixrr.codedependency.classelementsgraph.ElementGraphEditorProvider">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DeletionShadowingManager.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/DeletionShadowingManager.java">
-          <provider editor-type-id="com.sixrr.codedependency.classneighborsgraph.NeighborGraphEditorProvider">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="0" selection-start="766" selection-end="766" vertical-scroll-proportion="0.34042552">
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="com.sixrr.codedependency.classelementsgraph.ElementGraphEditorProvider">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PackageTableModelTest.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/config/PackageTableModelTest.java">
-          <provider editor-type-id="com.sixrr.codedependency.classneighborsgraph.NeighborGraphEditorProvider">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="0" selection-start="863" selection-end="863" vertical-scroll-proportion="0.39378238">
-              <folding />
+            <state line="3" column="23" selection-start="127" selection-end="127" vertical-scroll-proportion="0.062176164">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
           <provider editor-type-id="com.sixrr.codedependency.classelementsgraph.ElementGraphEditorProvider">
@@ -536,7 +501,7 @@
       <showLibraryContents />
       <hideEmptyPackages ProjectPane="true" />
       <abbreviatePackageNames />
-      <showStructure Scope="false" ProjectPane="false" PackagesPane="false" Favorites="false" />
+      <showStructure Favorites="false" ProjectPane="false" Scope="false" PackagesPane="false" />
       <autoscrollToSource />
       <autoscrollFromSource />
       <sortByType />
@@ -971,7 +936,7 @@
       <window_info id="KiwiScrap" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="11" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27190828" order="0" />
       <window_info id="TMate" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3843717" order="22" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44321766" order="1" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4423676" order="1" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25046498" order="1" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" order="6" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36448598" order="24" />
@@ -994,8 +959,8 @@
       <window_info id="Clover" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24860509" order="4" />
       <window_info id="Duplicates" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="CodeDependencyCycles" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
-      <window_info id="Lib Finder" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="16" />
       <window_info id="Tetris" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296893" order="5" />
+      <window_info id="Lib Finder" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="16" />
       <window_info id="Connect4" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="6" />
       <window_info id="Profile" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="23" />
       <window_info id="IDE talk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="11" />
@@ -1027,7 +992,7 @@
     <option name="PERFORM_COMMIT_IN_BACKGROUND" value="true" />
     <option name="PUT_FOCUS_INTO_COMMENT" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="true" />
-    <option name="LAST_COMMIT_MESSAGE" value="Housekeeping: Upgraded JUnit to version 4.4 and a little cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="TESTDOX-1: Mapped the Close QuickDox action to Alt+Esc instead of Esc" />
     <option name="SAVE_LAST_COMMIT_MESSAGE" value="true" />
     <option name="CHECKIN_DIALOG_SPLITTER_PROPORTION" value="0.8" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
@@ -1040,7 +1005,6 @@
     <option name="UPDATE_GROUP_BY_PACKAGES" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="TDX-1: Added CloseQuickDox action mapped to the ESCAPE (not escape!) key" />
     <MESSAGE value="Updated release notes" />
     <MESSAGE value="TDX-6: Updated release notes for version 1.1.7" />
     <MESSAGE value="Started introducing our good friend Jedi to tidy things up a bit...&#10;Upgraded jMock to version 1.1.0 at last!" />
@@ -1050,6 +1014,7 @@
     <MESSAGE value="Some gentle refactorings following the Jedi update..." />
     <MESSAGE value="Made available for IDEA 6.0.2 up to build #6200" />
     <MESSAGE value="Housekeeping: Upgraded JUnit to version 4.4 and a little cleanup" />
+    <MESSAGE value="TESTDOX-1: Mapped the Close QuickDox action to Alt+Esc instead of Esc" />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -1145,19 +1110,12 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="4" selection-start="4" selection-end="4" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/DeletionShadowingManagerTest.java">
       <provider editor-type-id="com.sixrr.codedependency.classneighborsgraph.NeighborGraphEditorProvider">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="0" selection-start="2873" selection-end="2873" vertical-scroll-proportion="0.15780142">
+        <state line="61" column="0" selection-start="2873" selection-end="2873" vertical-scroll-proportion="0.02247191">
           <folding />
         </state>
       </provider>
@@ -1170,7 +1128,7 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="0" selection-start="766" selection-end="766" vertical-scroll-proportion="0.34042552">
+        <state line="26" column="0" selection-start="766" selection-end="766" vertical-scroll-proportion="0.02247191">
           <folding />
         </state>
       </provider>
@@ -1183,12 +1141,93 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="863" selection-end="863" vertical-scroll-proportion="0.39378238">
+        <state line="37" column="0" selection-start="1188" selection-end="1188" vertical-scroll-proportion="0.24043716">
           <folding />
         </state>
       </provider>
       <provider editor-type-id="com.sixrr.codedependency.classelementsgraph.ElementGraphEditorProvider">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/actions/ToggleQuickDoxActionTest.java">
+      <provider editor-type-id="com.sixrr.codedependency.classneighborsgraph.NeighborGraphEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="45" selection-start="349" selection-end="349" vertical-scroll-proportion="0.15300547">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.sixrr.codedependency.classelementsgraph.ElementGraphEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/actions/ToggleTestClassAction.java">
+      <provider editor-type-id="com.sixrr.codedependency.classneighborsgraph.NeighborGraphEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="40" selection-start="288" selection-end="288" vertical-scroll-proportion="0.15730338">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.sixrr.codedependency.classelementsgraph.ElementGraphEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/actions/CloseQuickDoxActionTest.java">
+      <provider editor-type-id="com.sixrr.codedependency.classneighborsgraph.NeighborGraphEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="26" selection-start="327" selection-end="327" vertical-scroll-proportion="0.15300547">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.sixrr.codedependency.classelementsgraph.ElementGraphEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/actions/CloseQuickDoxAction.java">
+      <provider editor-type-id="com.sixrr.codedependency.classneighborsgraph.NeighborGraphEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="54" selection-start="409" selection-end="409" vertical-scroll-proportion="0.21857923">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.sixrr.codedependency.classelementsgraph.ElementGraphEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/META-INF/plugin.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="12" selection-start="1271" selection-end="1271" vertical-scroll-proportion="0.08035714">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/actions/ToggleQuickDoxAction.java">
+      <provider editor-type-id="com.sixrr.codedependency.classneighborsgraph.NeighborGraphEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="23" selection-start="127" selection-end="127" vertical-scroll-proportion="0.062176164">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="com.sixrr.codedependency.classelementsgraph.ElementGraphEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="0" selection-start="589" selection-end="589" vertical-scroll-proportion="0.36610168">
+          <folding />
+        </state>
       </provider>
     </entry>
   </component>
