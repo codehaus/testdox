@@ -6,6 +6,8 @@ import java.io.OutputStream;
 
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.vfs.VirtualFileSystem;
+import com.intellij.openapi.vfs.ex.dummy.DummyFileSystem;
+import org.jetbrains.annotations.NotNull;
 
 public class MockVirtualFile extends VirtualFile {
 
@@ -17,19 +19,26 @@ public class MockVirtualFile extends VirtualFile {
         this.isDirectory = isDirectory;
     }
 
+    @NotNull
     public VirtualFileSystem getFileSystem() {
-        return null;
+        return new DummyFileSystem();
     }
 
     public String getPath() {
         return path;
     }
 
+    @NotNull
+    public String getUrl() {
+        return "file://" + getPath();
+    }
+
+    @NotNull
     public String getName() {
         return path;
     }
 
-    public void rename(Object requestor, String newName) throws IOException {
+    public void rename(Object requestor, @NotNull String newName) throws IOException {
     }
 
     public boolean isWritable() {
@@ -57,7 +66,7 @@ public class MockVirtualFile extends VirtualFile {
         return null;
     }
 
-    public VirtualFile createChildData(Object requestor, String name)
+    public VirtualFile createChildData(Object requestor, @NotNull String name)
             throws IOException {
         return null;
     }
@@ -100,5 +109,6 @@ public class MockVirtualFile extends VirtualFile {
         return 0;
     }
 
-    public void refresh(boolean asynchronous, boolean recursive, Runnable postRunnable) {}
+    public void refresh(boolean asynchronous, boolean recursive, Runnable postRunnable) {
+    }
 }

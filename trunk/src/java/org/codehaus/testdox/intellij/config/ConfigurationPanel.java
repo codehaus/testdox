@@ -237,7 +237,7 @@ public class ConfigurationPanel extends JPanel implements ConfigurationUI {
         model.setMappings(mappings);
     }
 
-    public List getCustomPackageMappings() {
+    public List<String> getCustomPackageMappings() {
         return model.getMappings();
     }
 

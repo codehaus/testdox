@@ -16,14 +16,15 @@ class PackageTableModel implements TableModel, ListSelectionListener {
     private final List<String> mappings = new ArrayList<String>();
     private final List<TableModelListener> listeners = new ArrayList<TableModelListener>();
 
-    PackageTableModel() {}
+    PackageTableModel() {
+    }
 
     public void setMappings(List<String> mappings) {
         this.mappings.clear();
         this.mappings.addAll(mappings);
     }
 
-    public List getMappings() {
+    public List<String> getMappings() {
         return mappings;
     }
 
@@ -84,5 +85,6 @@ class PackageTableModel implements TableModel, ListSelectionListener {
         }
     }
 
-    public void valueChanged(ListSelectionEvent event) {}
+    public void valueChanged(ListSelectionEvent event) {
+    }
 }

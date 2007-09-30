@@ -1,7 +1,6 @@
 package org.codehaus.testdox.intellij;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -16,11 +15,6 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowAnchor;
 import com.intellij.openapi.wm.ToolWindowType;
-import org.picocontainer.MutablePicoContainer;
-import org.picocontainer.defaults.DefaultPicoContainer;
-
-import static jedi.functional.FunctionalPrimitives.list;
-
 import org.codehaus.testdox.intellij.actions.AutoscrollAction;
 import org.codehaus.testdox.intellij.actions.DeleteTestAction;
 import org.codehaus.testdox.intellij.actions.RefreshTestDoxPanelAction;
@@ -31,13 +25,18 @@ import org.codehaus.testdox.intellij.config.ConfigurationController;
 import org.codehaus.testdox.intellij.panel.TestDoxModel;
 import org.codehaus.testdox.intellij.panel.TestDoxToolWindowPanel;
 import org.codehaus.testdox.intellij.panel.TestDoxToolWindowUI;
+import org.jetbrains.annotations.NotNull;
+import org.picocontainer.MutablePicoContainer;
+import org.picocontainer.defaults.DefaultPicoContainer;
+
+import static jedi.functional.FunctionalPrimitives.list;
 
 public class TestDoxProjectComponent implements ProjectComponent {
 
     static final String TOOL_WINDOW_TOOLBAR_ID = "TestDoxToolbar";
     static final String TOOL_WINDOW_ID = "TestDox";
 
-    private static final Map INSTANCES = new HashMap();
+    private static final Map<Project, TestDoxProjectComponent> INSTANCES = new HashMap();
 
     private final Project project;
     private final MutablePicoContainer picoContainer;
@@ -72,13 +71,13 @@ public class TestDoxProjectComponent implements ProjectComponent {
     }
 
     public static TestDoxProjectComponent getInstance(Project project) {
-        return (TestDoxProjectComponent) INSTANCES.get(project);
+        return INSTANCES.get(project);
     }
 
     // ProjectComponent ------------------------------------------------------------------------------------------------
 
     public void projectOpened() {
-        ConfigurationController configurationController = (ConfigurationController) project.getComponent(ConfigurationController.class);
+        ConfigurationController configurationController = project.getComponent(ConfigurationController.class);
         ConfigurationBean configuration = configurationController.getConfigurationBean();
         picoContainer.registerComponentInstance(ConfigurationBean.class, configuration);
 
@@ -109,13 +108,16 @@ public class TestDoxProjectComponent implements ProjectComponent {
         INSTANCES.remove(project);
     }
 
+    @NotNull
     public String getComponentName() {
         return "TestDoxProjectComponent";
     }
 
-    public void initComponent() { }
+    public void initComponent() {
+    }
 
-    public void disposeComponent() { }
+    public void disposeComponent() {
+    }
 
     private void initToolWindow() {
         testDoxToolWindowPanel = new TestDoxToolWindowPanel(getController(), toolbar.getComponent());
@@ -158,11 +160,11 @@ public class TestDoxProjectComponent implements ProjectComponent {
         return actionManager.getAction(id);
     }
 
-    private void addToolBarActions(DefaultActionGroup toolGroup, List actions) {
+    private void addToolBarActions(DefaultActionGroup toolGroup, List<AnAction> actions) {
         toolGroup.removeAll();
 
-        for (Iterator iterator = actions.iterator(); iterator.hasNext(); ) {
-            toolGroup.add((AnAction) iterator.next());
+        for (AnAction action : actions) {
+            toolGroup.add(action);
         }
     }
 

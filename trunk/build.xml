@@ -3,15 +3,18 @@
     <target name="check.ant.version">
         <echo taskname="ant.version" message="${ant.version}"/>
         <condition property="ant.version.ok">
-            <and>
-                <contains string="${ant.version}" substring="1.6."/>
-                <not>
-                    <contains string="${ant.version}" substring="1.6.0"/>
-                </not>
-                <not>
-                    <contains string="${ant.version}" substring="1.6.1"/>
-                </not>
-            </and>
+            <or>
+                <contains string="${ant.version}" substring="1.7"/>
+                <and>
+                    <contains string="${ant.version}" substring="1.6."/>
+                    <not>
+                        <contains string="${ant.version}" substring="1.6.0"/>
+                    </not>
+                    <not>
+                        <contains string="${ant.version}" substring="1.6.1"/>
+                    </not>
+                </and>
+            </or>
         </condition>
     </target>
 
@@ -141,7 +144,8 @@
 
     <target name="demetra.available" depends="check.demetra.available" unless="demetra.available">
         <fail>IntelliJ IDEA 6.0 is not available. Please set the demetra.home system property to the path to your
-            IntelliJ IDEA 6.0 installation.</fail>
+            IntelliJ IDEA 6.0 installation.
+        </fail>
     </target>
 
     <target name="clean" depends="initialise" description="Deletes all artifacts from a previous build">
@@ -157,7 +161,7 @@
             <fileset dir="${java.src}" excludes="**/*.java, ${binary.extensions}"/>
             <filterset>
                 <filter token="IDEA.SINCE-BUILD" value="5755"/>
-                <filter token="IDEA.UNTIL-BUILD" value="6200"/>
+                <filter token="IDEA.UNTIL-BUILD" value="6500"/>
                 <filter token="PROJECT.VERSION" value="${project.version} (Demetra)"/>
             </filterset>
             <filterset refid="project.vars"/>
@@ -191,7 +195,7 @@
             <property name="eapNameInMixedCase" value=""/>
 
             <script language="javascript">
-            <![CDATA[
+                <![CDATA[
                 var eapNameInMixedCase = "@{eapName}".substr(0, 1).toUpperCase() + "@{eapName}".substr(1);
                 project.setProperty("eapNameInMixedCase", eapNameInMixedCase);
             ]]>
@@ -323,6 +327,6 @@
 
     <target name="build" description="Runs the continuous integration build"
             depends="clean, with.clover, test.reports, coverage.reports, coverage.check, without.clover, zip.versions"
-    />
+            />
 
 </project>
