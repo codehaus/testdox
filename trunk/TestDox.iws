@@ -34,12 +34,8 @@
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TestDox.iws" afterPath="$PROJECT_DIR$/TestDox.iws" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/compile/jmock-cglib-1.1.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/runtime/jedi_1.5.jar" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Plugin.iml" afterPath="$PROJECT_DIR$/Plugin.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/compile/jmock-core-1.2.0.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/compile/jmock-cglib-1.2.0.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/compile/cglib-nodep-2.1_3.jar" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/compile/jmock-1.1.0.jar" afterPath="" />
     </list>
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
@@ -282,70 +278,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DeletionShadowingManagerTest.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="DeletionShadowingManagerTest.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/DeletionShadowingManagerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="0" selection-start="3493" selection-end="3493" vertical-scroll-proportion="0.10892857">
-              <folding>
-                <marker date="1205655876000" expanded="true" signature="47:589" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VirtualFileEventBuilder.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/org/intellij/openapi/testing/VirtualFileEventBuilder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="35" selection-start="553" selection-end="553" vertical-scroll-proportion="0.33391306">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestDoxMockObjectTestCase.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/TestDoxMockObjectTestCase.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="16" selection-start="210" selection-end="210" vertical-scroll-proportion="0.1252174">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EditorApiMockBuilder.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/EditorApiMockBuilder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="32" selection-start="640" selection-end="640" vertical-scroll-proportion="0.32142857">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PsiDirectoryMockBuilder.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/com/intellij/psi/PsiDirectoryMockBuilder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="0" selection-start="338" selection-end="338" vertical-scroll-proportion="0.18782608">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ComponentManagerImpl.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/org/intellij/openapi/testing/demetra/ComponentManagerImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="0" selection-start="1216" selection-end="1216" vertical-scroll-proportion="0.6678261">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PsiPackageMockBuilder.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/com/intellij/psi/PsiPackageMockBuilder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="13" selection-start="115" selection-end="115" vertical-scroll-proportion="0.104347825">
+            <state line="96" column="11" selection-start="4308" selection-end="4308" vertical-scroll-proportion="0.6101695">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -599,58 +535,6 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/fraz/Projects/Java/testdox/src/test" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/fraz/Projects/Java/testdox/src/test/org/codehaus/testdox/intellij" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="TestDox" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Plugin" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/fraz/Projects/Java/testdox" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/fraz/Projects/Java/testdox/src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/fraz/Projects/Java/testdox/src/test" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/fraz/Projects/Java/testdox/src/test/com/intellij/psi" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="TestDox" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Plugin" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/fraz/Projects/Java/testdox" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/fraz/Projects/Java/testdox/src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
           <option name="myItemId" value="PsiDirectory:/Users/fraz/Projects/Java/testdox/src/java" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
@@ -720,10 +604,6 @@
           <option name="myItemId" value="PsiDirectory:/Users/fraz/Projects/Java/testdox/lib" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/fraz/Projects/Java/testdox/lib/compile" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
       </PATH>
     </subPane>
   </component>
@@ -755,7 +635,7 @@
       <showLibraryContents />
       <hideEmptyPackages ProjectPane="true" />
       <abbreviatePackageNames />
-      <showStructure PackagesPane="false" Scope="false" Favorites="false" ProjectPane="false" />
+      <showStructure ProjectPane="false" Scope="false" PackagesPane="false" Favorites="false" />
       <autoscrollToSource />
       <autoscrollFromSource />
       <sortByType />
@@ -821,7 +701,7 @@
     </key>
   </component>
   <component name="RestoreUpdateTree">
-    <UpdateInfo date="3/16/08 8:09 AM" ActionInfo="_Update">
+    <UpdateInfo date="3/16/08 8:22 PM" ActionInfo="_Update">
       <UpdatedFiles>
         <FILE-GROUP>
           <option name="myUpdateName" value="Updated from server" />
@@ -856,7 +736,7 @@
             <option name="mySupportsDeletion" value="false" />
             <option name="myCanBeAbsent" value="false" />
             <option name="myId" value="RESTORED" />
-            <PATH vcs="svn" revision="6">$PROJECT_DIR$/lib/runtime/jedi_1.5.jar</PATH>
+            <PATH vcs="svn" revision="8">$PROJECT_DIR$/lib/runtime/jedi_1.5.jar</PATH>
           </FILE-GROUP>
         </FILE-GROUP>
         <FILE-GROUP>
@@ -865,42 +745,7 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="MODIFIED" />
-          <PATH>$PROJECT_DIR$/build.xml</PATH>
           <PATH>$PROJECT_DIR$/Plugin.iml</PATH>
-          <PATH>$PROJECT_DIR$/project.properties</PATH>
-          <PATH>$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/actions/ActionEvents.java</PATH>
-          <PATH>$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/actions/ToggleQuickDoxAction.java</PATH>
-          <PATH>$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/config/ConfigurationBean.java</PATH>
-          <PATH>$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/config/ConfigurationController.java</PATH>
-          <PATH>$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/config/PackageTableModel.java</PATH>
-          <PATH>$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/DeletionShadowingManager.java</PATH>
-          <PATH>$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/inspections/EmptyTestClassInspection.java</PATH>
-          <PATH>$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/inspections/EmptyTestMethodInspection.java</PATH>
-          <PATH>$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/inspections/TestDoxInspectionProvider.java</PATH>
-          <PATH>$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/IntelliJApi.java</PATH>
-          <PATH>$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/NullPsiElement.java</PATH>
-          <PATH>$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/panel/ItemSelectionDialog.java</PATH>
-          <PATH>$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/panel/RenameDialog.java</PATH>
-          <PATH>$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/panel/TestDoxModel.java</PATH>
-          <PATH>$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/TestDoxControllerImpl.java</PATH>
-          <PATH>$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/TestDoxProjectComponent.java</PATH>
-          <PATH>$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/actions/ActionEventsTest.java</PATH>
-          <PATH>$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/config/ConfigurationControllerTest.java</PATH>
-          <PATH>$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/config/PackageTableModelTest.java</PATH>
-          <PATH>$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/DeletionShadowingManagerTest.java</PATH>
-          <PATH>$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/inspections/EmptyTestClassInspectionTest.java</PATH>
-          <PATH>$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/inspections/EmptyTestMethodInspectionTest.java</PATH>
-          <PATH>$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/IntelliJApiTest.java</PATH>
-          <PATH>$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/panel/QuickDoxDialogTest.java</PATH>
-          <PATH>$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/panel/TestDoxModelTest.java</PATH>
-          <PATH>$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/panel/TestDoxToolWindowPanelTest.java</PATH>
-          <PATH>$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/TestDoxProjectComponentTest.java</PATH>
-          <PATH>$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/TestLookupTest.java</PATH>
-          <PATH>$PROJECT_DIR$/src/test/org/intellij/openapi/testing/demetra/ComponentManagerImpl.java</PATH>
-          <PATH>$PROJECT_DIR$/src/test/org/intellij/openapi/testing/demetra/MockApplication.java</PATH>
-          <PATH>$PROJECT_DIR$/src/test/org/intellij/openapi/testing/demetra/MockPeerFactory.java</PATH>
-          <PATH>$PROJECT_DIR$/src/test/org/intellij/openapi/testing/MockVirtualFile.java</PATH>
-          <PATH>$PROJECT_DIR$/TestDox.ipr</PATH>
           <PATH>$PROJECT_DIR$/TestDox.iws</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
@@ -943,19 +788,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="LOCALLY_ADDED" />
-          <PATH>$PROJECT_DIR$/lib/compile/sugar.jar</PATH>
-          <PATH>$PROJECT_DIR$/lib/runtime/jedi_2.3_jdk1.5.jar</PATH>
-          <PATH>$PROJECT_DIR$/src/test/com</PATH>
-          <PATH>$PROJECT_DIR$/src/test/com/intellij</PATH>
-          <PATH>$PROJECT_DIR$/src/test/com/intellij/psi</PATH>
-          <PATH>$PROJECT_DIR$/src/test/com/intellij/psi/PsiDirectoryMockBuilder.java</PATH>
-          <PATH>$PROJECT_DIR$/src/test/com/intellij/psi/PsiPackageMockBuilder.java</PATH>
-          <PATH>$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/EditorApiMockBuilder.java</PATH>
-          <PATH>$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/TestDoxMockObjectTestCase.java</PATH>
-          <PATH>$PROJECT_DIR$/src/test/org/intellij/openapi/testing/MockIntentionManager.java</PATH>
-          <PATH>$PROJECT_DIR$/src/test/org/intellij/openapi/testing/MockObjectFactory.java</PATH>
-          <PATH>$PROJECT_DIR$/src/test/org/intellij/openapi/testing/RealObjectBuilder.java</PATH>
-          <PATH>$PROJECT_DIR$/src/test/org/intellij/openapi/testing/VirtualFileEventBuilder.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Locally removed" />
@@ -1009,11 +841,6 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
     </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
-      <module name="" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit" enabled="false" merge="false">
       <module name="Plugin" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -1036,19 +863,12 @@
         <option name="Make" value="true" />
       </method>
     </configuration>
-    <configuration default="true" type="RubyRunConfigurationType" factoryName="Ruby test">
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_CLASS_NAME" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e STDOUT.sync=true;STDERR.sync=true;load($0=ARGV.shift)" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="MODULE_NAME" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="INHERITANCE_CHECK_DISABLED" VALUE="false" />
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
       <option name="MAIN_CLASS_NAME" />
@@ -1066,12 +886,24 @@
         <option name="Make" value="true" />
       </method>
     </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+    </configuration>
+    <configuration default="true" type="RubyRunConfigurationType" factoryName="Ruby test">
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_CLASS_NAME" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e STDOUT.sync=true;STDERR.sync=true;load($0=ARGV.shift)" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="MODULE_NAME" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="INHERITANCE_CHECK_DISABLED" VALUE="false" />
     </configuration>
     <configuration default="false" name="All Tests" type="JUnit" factoryName="JUnit" enabled="false" merge="false">
       <module name="Plugin" />
@@ -1108,8 +940,8 @@
       </method>
     </configuration>
     <list size="2">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.All Tests" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.DeletionShadowingManagerTest.testAsynchronouslyDeletesOtherOccurrencesOfThePackageRepresentedByTheDirectoryBeingDeleted" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.DeletionShadowingManagerTest.testAsynchronouslyDeletesOtherOccurrencesOfThePackageRepresentedByTheDirectoryBeingDeleted" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.All Tests" />
     </list>
     <configuration default="true" type="RUBY_RUN_CONFIGURATION_TYPE" factoryName="Ruby test">
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
@@ -1391,7 +1223,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39869812" order="1" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.48557693" order="4" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="19" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34775642" order="31" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34775642" order="31" />
       <window_info id="Duplicates" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="10" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="Colour Chooser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
@@ -1425,8 +1257,8 @@
       <window_info id="CodeDependency" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="14" />
       <window_info id="Scrappy" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33415842" order="26" />
       <window_info id="Favorites" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="12" />
-      <window_info id="Tapestry Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="13" />
       <window_info id="Hibero" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="24" />
+      <window_info id="Tapestry Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="13" />
       <window_info id="TCPMON" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="5" />
       <window_info id="Sudoku" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="CVS" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="27" />
@@ -1451,7 +1283,7 @@
     <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
     <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="true" />
-    <option name="LAST_COMMIT_MESSAGE" value="TESTDOX-12: Added @State annotation to ConfigurationController and started cleaning up test + production code..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Housekeeping: Upgraded jMock" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
@@ -1473,6 +1305,7 @@
     <MESSAGE value="Housekeeping: Upgraded JUnit to version 4.4 and a little cleanup" />
     <MESSAGE value="TESTDOX-1: Mapped the Close QuickDox action to Alt+Esc instead of Esc" />
     <MESSAGE value="TESTDOX-12: Added @State annotation to ConfigurationController and started cleaning up test + production code..." />
+    <MESSAGE value="Housekeeping: Upgraded jMock" />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -1553,20 +1386,6 @@
     <option name="myLastEditedConfigurable" value="IDE Profiles" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/TestDoxProjectComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="39" selection-start="364" selection-end="364" vertical-scroll-proportion="0.32876712">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/inspections/EmptyTestMethodInspectionTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="39" selection-start="317" selection-end="317" vertical-scroll-proportion="0.30821916">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/panel/QuickDoxDialogTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="39" selection-start="152" selection-end="152" vertical-scroll-proportion="0.20547946">
@@ -1657,15 +1476,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/DeletionShadowingManagerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="0" selection-start="3493" selection-end="3493" vertical-scroll-proportion="0.10892857">
-          <folding>
-            <marker date="1205655876000" expanded="true" signature="47:589" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/org/intellij/openapi/testing/VirtualFileEventBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="35" selection-start="553" selection-end="553" vertical-scroll-proportion="0.33391306">
@@ -1705,7 +1515,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/org/intellij/openapi/testing/demetra/ComponentManagerImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="0" selection-start="1216" selection-end="1216" vertical-scroll-proportion="0.6678261">
+        <state line="14" column="0" selection-start="634" selection-end="634" vertical-scroll-proportion="0.29217392">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/org/intellij/openapi/testing/RealObjectBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="13" selection-start="52" selection-end="52" vertical-scroll-proportion="0.04308797">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/DeletionShadowingManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="14" selection-start="732" selection-end="732" vertical-scroll-proportion="-0.12730627">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/DeletionShadowingManagerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="96" column="11" selection-start="4308" selection-end="4308" vertical-scroll-proportion="0.6101695">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
