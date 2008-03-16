@@ -33,56 +33,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/VirtualFileEventBuilder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/com/intellij/psi/PsiPackageMockBuilder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/inspections/EmptyTestClassInspection.java" afterPath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/inspections/EmptyTestClassInspection.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/TestDoxControllerImpl.java" afterPath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/TestDoxControllerImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/panel/QuickDoxDialogTest.java" afterPath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/panel/QuickDoxDialogTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/TestLookupTest.java" afterPath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/TestLookupTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/IntelliJApi.java" afterPath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/IntelliJApi.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/com/intellij/psi/PsiDirectoryMockBuilder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/com/intellij/psi" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/config/ConfigurationBean.java" afterPath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/config/ConfigurationBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/inspections/EmptyTestMethodInspection.java" afterPath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/inspections/EmptyTestMethodInspection.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project.properties" afterPath="$PROJECT_DIR$/project.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/panel/TestDoxModelTest.java" afterPath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/panel/TestDoxModelTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/RealObjectBuilder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/panel/TestDoxToolWindowPanelTest.java" afterPath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/panel/TestDoxToolWindowPanelTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/TestDoxMockObjectTestCase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/MockVirtualFile.java" afterPath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/MockVirtualFile.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/DeletionShadowingManagerTest.java" afterPath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/DeletionShadowingManagerTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/runtime/jedi_2.3_jdk1.5.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/MockObjectFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/TestDoxProjectComponent.java" afterPath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/TestDoxProjectComponent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/config/ConfigurationController.java" afterPath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/config/ConfigurationController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/actions/ActionEvents.java" afterPath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/actions/ActionEvents.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/demetra/MockApplication.java" afterPath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/demetra/MockApplication.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/NullPsiElement.java" afterPath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/NullPsiElement.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/inspections/TestDoxInspectionProvider.java" afterPath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/inspections/TestDoxInspectionProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/inspections/EmptyTestMethodInspectionTest.java" afterPath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/inspections/EmptyTestMethodInspectionTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/MockIntentionManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/com/intellij" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/DeletionShadowingManager.java" afterPath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/DeletionShadowingManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/compile/sugar.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/IntelliJApiTest.java" afterPath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/IntelliJApiTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/panel/ItemSelectionDialog.java" afterPath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/panel/ItemSelectionDialog.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/EditorApiMockBuilder.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TestDox.iws" afterPath="$PROJECT_DIR$/TestDox.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/config/PackageTableModelTest.java" afterPath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/config/PackageTableModelTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.xml" afterPath="$PROJECT_DIR$/build.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/com" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/panel/RenameDialog.java" afterPath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/panel/RenameDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/demetra/MockPeerFactory.java" afterPath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/demetra/MockPeerFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/TestDoxProjectComponentTest.java" afterPath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/TestDoxProjectComponentTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/actions/ActionEventsTest.java" afterPath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/actions/ActionEventsTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/actions/ToggleQuickDoxAction.java" afterPath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/actions/ToggleQuickDoxAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/config/ConfigurationControllerTest.java" afterPath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/config/ConfigurationControllerTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/panel/TestDoxModel.java" afterPath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/panel/TestDoxModel.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/compile/jmock-cglib-1.1.0.jar" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Plugin.iml" afterPath="$PROJECT_DIR$/Plugin.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/inspections/EmptyTestClassInspectionTest.java" afterPath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/inspections/EmptyTestClassInspectionTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/demetra/ComponentManagerImpl.java" afterPath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/demetra/ComponentManagerImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TestDox.ipr" afterPath="$PROJECT_DIR$/TestDox.ipr" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/config/PackageTableModel.java" afterPath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/config/PackageTableModel.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/compile/jmock-core-1.2.0.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/compile/jmock-cglib-1.2.0.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/compile/cglib-nodep-2.1_3.jar" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/compile/jmock-1.1.0.jar" afterPath="" />
     </list>
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
@@ -207,7 +164,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/DeletionShadowingManager.java" line="77" class="org.codehaus.testdox.intellij.DeletionShadowingManager" package="org.codehaus.testdox.intellij">
+      <breakpoint url="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/DeletionShadowingManager.java" line="76" class="org.codehaus.testdox.intellij.DeletionShadowingManager" package="org.codehaus.testdox.intellij">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -328,9 +285,9 @@
       <file leaf-file-name="DeletionShadowingManagerTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/DeletionShadowingManagerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="80" column="0" selection-start="3545" selection-end="3545" vertical-scroll-proportion="0.10892857">
+            <state line="79" column="0" selection-start="3493" selection-end="3493" vertical-scroll-proportion="0.10892857">
               <folding>
-                <element signature="imports" expanded="true" />
+                <marker date="1205655876000" expanded="true" signature="47:589" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -377,7 +334,7 @@
       <file leaf-file-name="ComponentManagerImpl.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/org/intellij/openapi/testing/demetra/ComponentManagerImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="5" selection-start="1084" selection-end="1084" vertical-scroll-proportion="0.56347823">
+            <state line="32" column="0" selection-start="1216" selection-end="1216" vertical-scroll-proportion="0.6678261">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -536,7 +493,7 @@
     <OptionsSetting value="true" id="Undo Check Out" />
     <OptionsSetting value="true" id="Compare with SourceSafe Version" />
     <OptionsSetting value="true" id="Get Latest Version" />
-    <ConfirmationsSetting value="1" id="Add" />
+    <ConfirmationsSetting value="2" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectLibrariesConfigurable.UI">
@@ -1494,7 +1451,7 @@
     <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
     <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="true" />
-    <option name="LAST_COMMIT_MESSAGE" value="TESTDOX-1: Mapped the Close QuickDox action to Alt+Esc instead of Esc" />
+    <option name="LAST_COMMIT_MESSAGE" value="TESTDOX-12: Added @State annotation to ConfigurationController and started cleaning up test + production code..." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
@@ -1515,6 +1472,7 @@
     <MESSAGE value="Made available for IDEA 6.0.2 up to build #6200" />
     <MESSAGE value="Housekeeping: Upgraded JUnit to version 4.4 and a little cleanup" />
     <MESSAGE value="TESTDOX-1: Mapped the Close QuickDox action to Alt+Esc instead of Esc" />
+    <MESSAGE value="TESTDOX-12: Added @State annotation to ConfigurationController and started cleaning up test + production code..." />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -1701,9 +1659,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/DeletionShadowingManagerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="0" selection-start="3545" selection-end="3545" vertical-scroll-proportion="0.10892857">
+        <state line="79" column="0" selection-start="3493" selection-end="3493" vertical-scroll-proportion="0.10892857">
           <folding>
-            <element signature="imports" expanded="true" />
+            <marker date="1205655876000" expanded="true" signature="47:589" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1747,7 +1705,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/org/intellij/openapi/testing/demetra/ComponentManagerImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="5" selection-start="1084" selection-end="1084" vertical-scroll-proportion="0.56347823">
+        <state line="32" column="0" selection-start="1216" selection-end="1216" vertical-scroll-proportion="0.6678261">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
