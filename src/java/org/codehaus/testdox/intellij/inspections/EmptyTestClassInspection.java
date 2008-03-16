@@ -4,14 +4,12 @@ import com.intellij.codeInspection.InspectionManager;
 import com.intellij.codeInspection.ProblemDescriptor;
 import com.intellij.codeInspection.ProblemHighlightType;
 import com.intellij.psi.PsiClass;
-import org.jetbrains.annotations.NotNull;
-
-import static jedi.functional.FunctionalPrimitives.array;
-
+import static jedi.functional.Coercions.array;
 import org.codehaus.testdox.intellij.TestDoxController;
 import org.codehaus.testdox.intellij.TestDoxFile;
 import org.codehaus.testdox.intellij.TestDoxFileFactory;
 import org.codehaus.testdox.intellij.TestDoxProjectComponent;
+import org.jetbrains.annotations.NotNull;
 
 public class EmptyTestClassInspection extends AbstractTestDoxInspection {
 
@@ -31,8 +29,8 @@ public class EmptyTestClassInspection extends AbstractTestDoxInspection {
 
         if ((!file.isTestedClass()) && (file.canNavigateToTestedClass()) && (file.getTestMethods().length == 0)) {
             return array(
-                    manager.createProblemDescriptor(
-                            psiClass.getNameIdentifier(), getDisplayName(), new AddTestMethodQuickFix(), ProblemHighlightType.GENERIC_ERROR_OR_WARNING)
+                manager.createProblemDescriptor(
+                    psiClass.getNameIdentifier(), getDisplayName(), new AddTestMethodQuickFix(), ProblemHighlightType.GENERIC_ERROR_OR_WARNING)
             );
         }
 

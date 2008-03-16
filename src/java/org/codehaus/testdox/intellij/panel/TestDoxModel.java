@@ -1,20 +1,13 @@
 package org.codehaus.testdox.intellij.panel;
 
+import static jedi.functional.Coercions.asList;
+import org.codehaus.testdox.intellij.*;
+import org.codehaus.testdox.intellij.config.ConfigurationBean;
+
+import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import javax.swing.table.DefaultTableModel;
-
-import static jedi.functional.FunctionalPrimitives.asList;
-
-import org.codehaus.testdox.intellij.TestClass;
-import org.codehaus.testdox.intellij.TestDoxClass;
-import org.codehaus.testdox.intellij.TestDoxFile;
-import org.codehaus.testdox.intellij.TestDoxInterface;
-import org.codehaus.testdox.intellij.TestDoxNonJavaFile;
-import org.codehaus.testdox.intellij.TestDoxNonProjectClass;
-import org.codehaus.testdox.intellij.TestElement;
-import org.codehaus.testdox.intellij.config.ConfigurationBean;
 
 public class TestDoxModel extends DefaultTableModel {
 

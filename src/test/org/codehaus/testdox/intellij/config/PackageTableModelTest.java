@@ -1,14 +1,12 @@
 package org.codehaus.testdox.intellij.config;
 
-import javax.swing.Icon;
+import org.codehaus.testdox.intellij.IconHelper;
+import static org.junit.Assert.*;
+import org.junit.Test;
+
+import javax.swing.*;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
-
-import org.codehaus.testdox.intellij.IconHelper;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import org.junit.Test;
 
 public class PackageTableModelTest {
 
@@ -20,24 +18,20 @@ public class PackageTableModelTest {
         assertEquals(Icon.class, model.getColumnClass(1));
     }
 
-    @Test
-    public void allowsOnlyTheMappingColumnToBeEditable() throws Exception {
+    public void testAllowsOnlyTheMappingColumnToBeEditable() throws Exception {
         assertTrue(model.isCellEditable(0, 0));
         assertFalse(model.isCellEditable(0, 1));
     }
 
-    @Test
-    public void returnsBlankForRemoveColumnName() throws Exception {
+    public void testReturnsBlankForRemoveColumnName() throws Exception {
         assertEquals("", model.getColumnName(1));
     }
 
-    @Test
-    public void returnsRemoveAsValueForAllRowsInRemoveColumn() throws Exception {
+    public void testReturnsRemoveAsValueForAllRowsInRemoveColumn() throws Exception {
         assertEquals(IconHelper.getIcon(IconHelper.REMOVE_ICON), model.getValueAt(0, 1));
     }
 
-    @Test
-    public void updatesTableWhenAMappingIsAdded() throws Exception {
+    public void testUpdatesTableWhenAMappingIsAdded() throws Exception {
         final MyTableModelListener listener = new MyTableModelListener();
         model.addTableModelListener(listener);
 
@@ -48,8 +42,7 @@ public class PackageTableModelTest {
         assertTrue(listener.tableChanged);
     }
 
-    @Test
-    public void doesNotAddNewMappingIfMappingAlreadyExists() throws Exception {
+    public void testDoesNotAddNewMappingIfMappingAlreadyExists() throws Exception {
         model.addMapping("foo");
         assertEquals(1, model.getRowCount());
 
@@ -62,8 +55,7 @@ public class PackageTableModelTest {
         assertFalse(listener.tableChanged);
     }
 
-    @Test
-    public void removesRowFromTableIfNewValueIsBlank() throws Exception {
+    public void testRemovesRowFromTableIfNewValueIsBlank() throws Exception {
         model.addMapping("foo");
         assertEquals(1, model.getRowCount());
 

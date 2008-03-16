@@ -1,25 +1,22 @@
 package org.codehaus.testdox.intellij.actions;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
-
 import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.DataConstants;
+import com.intellij.openapi.actionSystem.DataKeys;
 import com.intellij.openapi.actionSystem.Presentation;
 import com.intellij.openapi.editor.Editor;
-import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
-
-import static jedi.functional.FunctionalPrimitives.array;
-
+import static jedi.functional.Coercions.array;
 import org.codehaus.testdox.intellij.NullPsiElement;
 import org.codehaus.testdox.intellij.TestDoxController;
 import org.codehaus.testdox.intellij.TestDoxNonJavaFile;
 import org.codehaus.testdox.intellij.TestDoxProjectComponent;
 import org.codehaus.testdox.intellij.panel.TestDoxToolWindowUI;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 
 class ActionEvents {
 
@@ -28,32 +25,32 @@ class ActionEvents {
     public TestDoxController getTestDoxController(AnActionEvent event) {
         TestDoxProjectComponent testDoxProjectComponent = getTestDoxProjectComponent(event);
         return (testDoxProjectComponent != null) ? testDoxProjectComponent.getController()
-                                                 : Nulls.TESTDOX_CONTROLLER;
+            : Nulls.TESTDOX_CONTROLLER;
     }
 
     public TestDoxToolWindowUI getTestDoxToolWindowUI(AnActionEvent event) {
         TestDoxProjectComponent testDoxProjectComponent = getTestDoxProjectComponent(event);
         return (testDoxProjectComponent != null) ? testDoxProjectComponent.getTestDoxToolWindowUI()
-                                                 : Nulls.TESTDOX_TOOL_WINDOW;
+            : Nulls.TESTDOX_TOOL_WINDOW;
     }
 
     private TestDoxProjectComponent getTestDoxProjectComponent(AnActionEvent event) {
-        return TestDoxProjectComponent.getInstance((Project) event.getDataContext().getData(DataConstants.PROJECT));
+        return TestDoxProjectComponent.getInstance(event.getData(DataKeys.PROJECT));
     }
 
     public boolean isJavaFile(AnActionEvent event) {
         TestDoxController testDoxController = getTestDoxController(event);
-        VirtualFile file = (VirtualFile) event.getDataContext().getData(DataConstants.VIRTUAL_FILE);
+        VirtualFile file = event.getData(DataKeys.VIRTUAL_FILE);
         return (testDoxController != null) && (file != null) && (testDoxController.getEditorApi().isJavaFile(file));
     }
 
     public PsiElement getTargetPsiElement(AnActionEvent event) {
-        Editor editor = (Editor) event.getDataContext().getData(DataConstants.EDITOR);
+        Editor editor = event.getData(DataKeys.EDITOR);
         if (editor == null) {
             return NullPsiElement.INSTANCE;
         }
 
-        final PsiFile psiFile = (PsiFile) event.getDataContext().getData("psi.File");
+        PsiFile psiFile = event.getData(DataKeys.PSI_FILE);
         if (psiFile == null) {
             return NullPsiElement.INSTANCE;
         }
@@ -92,9 +89,10 @@ class ActionEvents {
 
             Object nullObject = Proxy.newProxyInstance(classLoader, interfaces, invocationHandler);
             TESTDOX_TOOL_WINDOW = (TestDoxToolWindowUI) nullObject;
-            TESTDOX_CONTROLLER  = (TestDoxController) nullObject;
+            TESTDOX_CONTROLLER = (TestDoxController) nullObject;
         }
 
-        private Nulls() {}
+        private Nulls() {
+        }
     }
 }

@@ -1,18 +1,6 @@
 package org.codehaus.testdox.intellij.actions;
 
-import java.awt.Container;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.util.List;
-
-import com.intellij.openapi.actionSystem.ActionManager;
-import com.intellij.openapi.actionSystem.AnAction;
-import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.DataConstants;
-import com.intellij.openapi.actionSystem.DataContext;
-import com.intellij.openapi.actionSystem.Presentation;
+import com.intellij.openapi.actionSystem.*;
 import com.intellij.openapi.application.ApplicationInfo;
 import com.intellij.openapi.editor.CaretModel;
 import com.intellij.openapi.editor.Editor;
@@ -20,21 +8,20 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
+import static jedi.functional.Coercions.asList;
+import static jedi.functional.Coercions.list;
+import org.codehaus.testdox.intellij.*;
+import org.codehaus.testdox.intellij.panel.TestDoxToolWindowUI;
 import org.intellij.openapi.testing.MockApplicationManager;
 import org.jmock.Mock;
 import org.jmock.cglib.MockObjectTestCase;
 
-import static jedi.functional.FunctionalPrimitives.asList;
-import static jedi.functional.FunctionalPrimitives.list;
-
-import org.codehaus.testdox.intellij.EditorApi;
-import org.codehaus.testdox.intellij.Mocks;
-import org.codehaus.testdox.intellij.NullPsiElement;
-import org.codehaus.testdox.intellij.Stubs;
-import org.codehaus.testdox.intellij.TestDoxActionPresentationUpdater;
-import org.codehaus.testdox.intellij.TestDoxController;
-import org.codehaus.testdox.intellij.TestDoxProjectComponent;
-import org.codehaus.testdox.intellij.panel.TestDoxToolWindowUI;
+import java.awt.*;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 public class ActionEventsTest extends MockObjectTestCase {
 
@@ -54,7 +41,8 @@ public class ActionEventsTest extends MockObjectTestCase {
         mockTestDoxProjectComponent = Mocks.createAndRegisterTestDoxProjectComponentMock(this);
 
         AnAction action = new AnAction() {
-            public void actionPerformed(AnActionEvent event) { }
+            public void actionPerformed(AnActionEvent event) {
+            }
         };
         anActionEvent = createAnActionEvent(action, (DataContext) mockDataContext.proxy());
     }
@@ -97,7 +85,7 @@ public class ActionEventsTest extends MockObjectTestCase {
         Mock mockVirtualFile = Mocks.createAndRegisterVirtualFileMock(this);
         Mock mockEditorApi = mock(EditorApi.class);
 
-        mockDataContext.expects(once()).method("getData").with(eq(DataConstants.VIRTUAL_FILE)).will(returnValue(mockVirtualFile.proxy()));
+        mockDataContext.expects(once()).method("getData").with(eq(DataKeys.VIRTUAL_FILE.getName())).will(returnValue(mockVirtualFile.proxy()));
         mockTestDoxProjectComponent.expects(once()).method("getController").will(returnValue(mockTestDoxController.proxy()));
         mockTestDoxController.expects(once()).method("getEditorApi").will(returnValue(mockEditorApi.proxy()));
         mockEditorApi.expects(once()).method("isJavaFile").with(isA(VirtualFile.class)).will(returnValue(true));
@@ -113,7 +101,7 @@ public class ActionEventsTest extends MockObjectTestCase {
         setExpectationsForProjectBeingAvailable();
 
         PsiElement psiElementMock = (PsiElement) mock(PsiElement.class).proxy();
-        mockDataContext.expects(once()).method("getData").with(eq(DataConstants.EDITOR)).will(returnValue(mockEditor.proxy()));
+        mockDataContext.expects(once()).method("getData").with(eq(DataKeys.EDITOR.getName())).will(returnValue(mockEditor.proxy()));
         mockDataContext.expects(once()).method("getData").with(eq("psi.File")).will(returnValue(mockPsiFile.proxy()));
         mockEditor.expects(once()).method("getCaretModel").will(returnValue(mockCaretModel.proxy()));
         mockCaretModel.expects(once()).method("getOffset").will(returnValue(0));
@@ -136,22 +124,22 @@ public class ActionEventsTest extends MockObjectTestCase {
 
     private void setExpectationsForProjectRetrieval(Project project, TestDoxProjectComponent testDoxProjectComponent) {
         TestDoxProjectComponent.setInstance(project, testDoxProjectComponent);
-        mockDataContext.stubs().method("getData").with(eq(DataConstants.PROJECT)).will(returnValue(project));
+        mockDataContext.stubs().method("getData").with(eq(DataKeys.PROJECT.getName())).will(returnValue(project));
     }
 
     public void testReturnsANullPsiElementWhenActionEventDidNotOriginateFromACodeEditor() {
-        mockDataContext.expects(once()).method("getData").with(eq(DataConstants.EDITOR));
+        mockDataContext.expects(once()).method("getData").with(eq(DataKeys.EDITOR.getName()));
         assertSame(NullPsiElement.INSTANCE, actionEvents.getTargetPsiElement(anActionEvent));
     }
 
     public void testReturnsANullPsiElementWhenActionEventDidNotOriginateFromAFile() {
-        mockDataContext.expects(once()).method("getData").with(eq(DataConstants.EDITOR)).will(returnValue(mockEditor.proxy()));
-        mockDataContext.expects(once()).method("getData").with(eq("psi.File"));
+        mockDataContext.expects(once()).method("getData").with(eq(DataKeys.EDITOR.getName())).will(returnValue(mockEditor.proxy()));
+        mockDataContext.expects(once()).method("getData").with(eq(DataKeys.PSI_FILE.getName()));
         assertSame(NullPsiElement.INSTANCE, actionEvents.getTargetPsiElement(anActionEvent));
     }
 
     static AnActionEvent createAnActionEvent(AnAction action, DataContext dataContext) {
-        List<Class> parameterTypes = asList(new Class[] { InputEvent.class, DataContext.class, String.class, Presentation.class, int.class });
+        List<Class> parameterTypes = asList(new Class[]{InputEvent.class, DataContext.class, String.class, Presentation.class, int.class});
         List<?> parameterValues = list(NULL_KEY_EVENT, dataContext, "", action.getTemplatePresentation(), -1);
 
         int index = parameterTypes.indexOf(Presentation.class) + 1;
@@ -159,7 +147,7 @@ public class ActionEventsTest extends MockObjectTestCase {
         parameterValues.add(index, null);
 
         try {
-            Constructor constructor = AnActionEvent.class.getConstructor((Class[]) parameterTypes.toArray(new Class[0]));
+            Constructor constructor = AnActionEvent.class.getConstructor((Class[]) parameterTypes.toArray(new Class[parameterTypes.size()]));
             return (AnActionEvent) constructor.newInstance(parameterValues.toArray());
         } catch (NoSuchMethodException unexpected) {
             throw new RuntimeException(unexpected);

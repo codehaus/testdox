@@ -4,13 +4,11 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiJavaFile;
 import com.intellij.psi.PsiMethod;
+import static jedi.functional.Coercions.array;
+import org.codehaus.testdox.intellij.config.ConfigurationBean;
 import org.intellij.openapi.testing.MockApplicationManager;
 import org.jmock.Mock;
 import org.jmock.cglib.MockObjectTestCase;
-
-import static jedi.functional.FunctionalPrimitives.array;
-
-import org.codehaus.testdox.intellij.config.ConfigurationBean;
 
 public class TestLookupTest extends MockObjectTestCase {
 

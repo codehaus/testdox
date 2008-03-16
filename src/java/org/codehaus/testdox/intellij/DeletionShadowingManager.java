@@ -1,16 +1,15 @@
 package org.codehaus.testdox.intellij;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.intellij.openapi.vfs.VirtualFileAdapter;
 import com.intellij.openapi.vfs.VirtualFileEvent;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiDirectory;
 import com.intellij.psi.PsiJavaFile;
 import com.intellij.psi.PsiManager;
-
 import org.codehaus.testdox.intellij.config.ConfigurationBean;
+
+import java.util.ArrayList;
+import java.util.List;
 
 class DeletionShadowingManager extends VirtualFileAdapter {
 
@@ -33,7 +32,7 @@ class DeletionShadowingManager extends VirtualFileAdapter {
 
     public void beforeFileDeletion(VirtualFileEvent event) {
         if (event.getRequestor() instanceof PsiManager) {
-            if (event.isDirectory()) {
+            if (event.getFile().isDirectory()) {
                 if (config.isDeletePackageOccurrences()) {
                     deleteOtherPackageOccurrences(editorApi.getPsiDirectory(event.getFile()));
                 }
@@ -49,7 +48,7 @@ class DeletionShadowingManager extends VirtualFileAdapter {
             if (deletableDirectories.length > 0) {
                 String packageName = deletedDirectory.getPackage().getQualifiedName();
                 editorApi.deleteAsynchronously(deletableDirectories, buildQuestion(packageName, deletableDirectories),
-                                               "Delete Other Package Occurrences", taskCompletionMarker);
+                    "Delete Other Package Occurrences", taskCompletionMarker);
                 deleting = true;
             }
         }

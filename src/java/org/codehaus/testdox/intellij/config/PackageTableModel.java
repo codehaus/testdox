@@ -1,15 +1,15 @@
 package org.codehaus.testdox.intellij.config;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.Icon;
+import org.codehaus.testdox.intellij.IconHelper;
+
+import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
-
-import org.codehaus.testdox.intellij.IconHelper;
+import java.util.ArrayList;
+import java.util.List;
 
 class PackageTableModel implements TableModel, ListSelectionListener {
 

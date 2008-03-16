@@ -79,18 +79,18 @@
             </fileset>
         </path>
 
-        <path id="demetra.compile.classpath">
-            <fileset dir="${demetra.home}">
+        <path id="selena.compile.classpath">
+            <fileset dir="${idea.home}">
                 <include name="**/*.jar"/>
             </fileset>
-            <pathelement location="${classes}/demetra"/>
+            <pathelement location="${classes}/selena"/>
             <path refid="compile.classpath"/>
         </path>
 
-        <path id="demetra.test.classpath">
-            <pathelement location="${test.classes}/demetra"/>
+        <path id="selena.test.classpath">
+            <pathelement location="${test.classes}/selena"/>
             <path refid="clover.classpath"/>
-            <path refid="demetra.compile.classpath"/>
+            <path refid="selena.compile.classpath"/>
         </path>
 
         <tstamp>
@@ -108,43 +108,46 @@
         </filterset>
     </target>
 
-    <target name="check.demetra.available" depends="initialise">
-        <condition property="demetra.available">
+    <target name="check.selena.available" depends="initialise">
+        <condition property="selena.available">
             <and>
+                <available classname="com.intellij.openapi.components.PersistentStateComponent"
+                           classpathref="selena.compile.classpath"/>
+
                 <available classname="com.intellij.lang.Language"
-                           classpathref="demetra.compile.classpath"/>
+                           classpathref="selena.compile.classpath"/>
 
                 <available classname="com.intellij.lexer.LexerBase"
-                           classpathref="demetra.compile.classpath"/>
+                           classpathref="selena.compile.classpath"/>
 
                 <available classname="com.intellij.formatting.FormattingModelBuilder"
-                           classpathref="demetra.compile.classpath"/>
+                           classpathref="selena.compile.classpath"/>
 
                 <available classname="com.intellij.psi.tree.IFileElementType"
-                           classpathref="demetra.compile.classpath"/>
+                           classpathref="selena.compile.classpath"/>
 
                 <available classname="org.picocontainer.defaults.DefaultPicoContainer"
-                           classpathref="demetra.compile.classpath"/>
+                           classpathref="selena.compile.classpath"/>
 
                 <available classname="gnu.trove.TIntObjectHashMap"
-                           classpathref="demetra.compile.classpath"/>
+                           classpathref="selena.compile.classpath"/>
 
                 <not>
                     <available classname="com.intellij.codeFormatting.PseudoTextBuilder"
-                               classpathref="demetra.compile.classpath"/>
+                               classpathref="selena.compile.classpath"/>
                 </not>
 
                 <not>
                     <available classname="com.intellij.cvsSupport2.cvshandlers.DirectoryPruner"
-                               classpathref="demetra.compile.classpath"/>
+                               classpathref="selena.compile.classpath"/>
                 </not>
             </and>
         </condition>
     </target>
 
-    <target name="demetra.available" depends="check.demetra.available" unless="demetra.available">
-        <fail>IntelliJ IDEA 6.0 is not available. Please set the demetra.home system property to the path to your
-            IntelliJ IDEA 6.0 installation.
+    <target name="selena.available" depends="check.selena.available" unless="selena.available">
+        <fail>IntelliJ IDEA 7.0 is not available. Please set the idea.home system property to the path to your
+            IntelliJ IDEA 7.0 installation.
         </fail>
     </target>
 
@@ -152,71 +155,41 @@
         <delete dir="${build}" failonerror="false"/>
     </target>
 
-    <target name="compile.demetra" depends="initialise, demetra.available">
-        <mkdir dir="${classes}/demetra"/>
-        <javac srcdir="${java.src}" destdir="${classes}/demetra" debug="on">
-            <classpath refid="demetra.compile.classpath"/>
+    <target name="compile.selena" depends="initialise, selena.available">
+        <mkdir dir="${classes}/selena"/>
+        <javac srcdir="${java.src}" destdir="${classes}/selena" debug="on">
+            <classpath refid="selena.compile.classpath"/>
         </javac>
-        <copy todir="${classes}/demetra" overwrite="true">
+        <copy todir="${classes}/selena" overwrite="true">
             <fileset dir="${java.src}" excludes="**/*.java, ${binary.extensions}"/>
             <filterset>
-                <filter token="IDEA.SINCE-BUILD" value="5755"/>
-                <filter token="IDEA.UNTIL-BUILD" value="6500"/>
-                <filter token="PROJECT.VERSION" value="${project.version} (Demetra)"/>
+                <filter token="IDEA.SINCE-BUILD" value="7361"/>
+                <filter token="IDEA.UNTIL-BUILD" value="7800"/>
+                <filter token="PROJECT.VERSION" value="${project.version} (Selena)"/>
             </filterset>
             <filterset refid="project.vars"/>
             <filterset refid="timestamp.vars"/>
         </copy>
-        <copy todir="${classes}/demetra" overwrite="true">
+        <copy todir="${classes}/selena" overwrite="true">
             <fileset dir="${java.src}" includes="${binary.extensions}"/>
         </copy>
-        <copy todir="${classes}/demetra" file="${license.file}" overwrite="true">
+        <copy todir="${classes}/selena" file="${license.file}" overwrite="true">
             <filterset refid="project.vars"/>
             <filterset refid="timestamp.vars"/>
         </copy>
     </target>
 
-    <target name="compile.versions" depends="compile.demetra"
+    <target name="compile.versions" depends="compile.selena"
             description="Compiles the project source files"/>
 
-    <target name="compile.tests.demetra" depends="compile.demetra">
-        <mkdir dir="${test.classes}/demetra"/>
-        <javac srcdir="${test.src}" destdir="${test.classes}/demetra" debug="on">
-            <classpath refid="demetra.test.classpath"/>
+    <target name="compile.tests.selena" depends="compile.selena">
+        <mkdir dir="${test.classes}/selena"/>
+        <javac srcdir="${test.src}" destdir="${test.classes}/selena" debug="on">
+            <classpath refid="selena.test.classpath"/>
         </javac>
     </target>
 
-    <target name="compile.tests" depends="compile.tests.demetra"/>
-
-    <macrodef name="test-idea-plugin">
-        <attribute name="eapName"/>
-
-        <sequential>
-            <property name="eapNameInMixedCase" value=""/>
-
-            <script language="javascript">
-                <![CDATA[
-                var eapNameInMixedCase = "@{eapName}".substr(0, 1).toUpperCase() + "@{eapName}".substr(1);
-                project.setProperty("eapNameInMixedCase", eapNameInMixedCase);
-            ]]>
-            </script>
-
-            <junit fork="true" forkmode="once" errorProperty="tests.failed" failureProperty="tests.failed"
-                   haltonfailure="false" haltonerror="false" showoutput="true" printsummary="withOutAndErr"
-                   includeantruntime="true" newenvironment="false">
-
-                <classpath refid="@{eapName}.test.classpath"/>
-                <formatter type="brief" usefile="false"/>
-
-                <batchtest todir="${test.results}">
-                    <fileset dir="${test.classes}/@{eapName}">
-                        <include name="**/*${eapNameInMixedCase}*Test*.class"/>
-                    </fileset>
-                    <formatter type="xml"/>
-                </batchtest>
-            </junit>
-        </sequential>
-    </macrodef>
+    <target name="compile.tests" depends="compile.tests.selena"/>
 
     <target name="test.reports" depends="compile.tests" description="Runs all unit tests for this project">
         <delete dir="${test.results}"/>
@@ -226,11 +199,11 @@
                haltonfailure="false" haltonerror="false" showoutput="true" printsummary="withOutAndErr"
                includeantruntime="true" newenvironment="false">
 
-            <classpath refid="demetra.test.classpath"/>
+            <classpath refid="selena.test.classpath"/>
             <formatter type="brief" usefile="false"/>
 
             <batchtest todir="${test.results}">
-                <fileset dir="${test.classes}/demetra">
+                <fileset dir="${test.classes}/selena">
                     <include name="**/*Test.class"/>
                     <exclude name="**/*ApiTest.class, **/*TestCase.class"/>
                 </fileset>
@@ -238,7 +211,7 @@
             </batchtest>
         </junit>
 
-        <test-idea-plugin eapName="demetra"/>
+        <test-idea-plugin eapName="selena"/>
 
         <delete dir="${test.reports}"/>
         <mkdir dir="${test.reports}"/>
@@ -296,6 +269,53 @@
         <fail message="Coverage criteria not met! Check coverage reports."/>
     </target>
 
+    <target name="zip.versions" depends="compile.selena"
+            description="Creates deployable ZIP files for each version of IntelliJ IDEA">
+
+        <delete failonerror="true">
+            <fileset dir="${classes}" includes="**/*.class"/>
+        </delete>
+
+        <antcall inheritall="true" target="compile.versions"/>
+
+        <mkdir dir="${dist}"/>
+        <zip-idea-plugin eapName="selena"/>
+    </target>
+
+    <target name="build" description="Runs the continuous integration build"
+            depends="clean, with.clover, test.reports, coverage.reports, coverage.check, without.clover, zip.versions"
+        />
+
+    <macrodef name="test-idea-plugin">
+        <attribute name="eapName"/>
+
+        <sequential>
+            <property name="eapNameInMixedCase" value=""/>
+
+            <script language="javascript">
+                <![CDATA[
+                var eapNameInMixedCase = "@{eapName}".substr(0, 1).toUpperCase() + "@{eapName}".substr(1);
+                project.setProperty("eapNameInMixedCase", eapNameInMixedCase);
+            ]]>
+            </script>
+
+            <junit fork="true" forkmode="once" errorProperty="tests.failed" failureProperty="tests.failed"
+                   haltonfailure="false" haltonerror="false" showoutput="true" printsummary="withOutAndErr"
+                   includeantruntime="true" newenvironment="false">
+
+                <classpath refid="@{eapName}.test.classpath"/>
+                <formatter type="brief" usefile="false"/>
+
+                <batchtest todir="${test.results}">
+                    <fileset dir="${test.classes}/@{eapName}">
+                        <include name="**/*${eapNameInMixedCase}*Test*.class"/>
+                    </fileset>
+                    <formatter type="xml"/>
+                </batchtest>
+            </junit>
+        </sequential>
+    </macrodef>
+
     <macrodef name="zip-idea-plugin">
         <attribute name="eapName"/>
         <sequential>
@@ -311,22 +331,5 @@
             <buildnumber/>
         </sequential>
     </macrodef>
-
-    <target name="zip.versions" depends="test.reports"
-            description="Creates deployable ZIP files for each version of IntelliJ IDEA">
-
-        <delete failonerror="true">
-            <fileset dir="${classes}" includes="**/*.class"/>
-        </delete>
-
-        <antcall inheritall="true" target="compile.versions"/>
-
-        <mkdir dir="${dist}"/>
-        <zip-idea-plugin eapName="demetra"/>
-    </target>
-
-    <target name="build" description="Runs the continuous integration build"
-            depends="clean, with.clover, test.reports, coverage.reports, coverage.check, without.clover, zip.versions"
-            />
 
 </project>

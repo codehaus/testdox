@@ -2,9 +2,8 @@ package org.codehaus.testdox.intellij.inspections;
 
 import com.intellij.codeInspection.InspectionToolProvider;
 import com.intellij.openapi.components.ApplicationComponent;
+import static jedi.functional.Coercions.array;
 import org.jetbrains.annotations.NotNull;
-
-import static jedi.functional.FunctionalPrimitives.array;
 
 public class TestDoxInspectionProvider implements ApplicationComponent, InspectionToolProvider {
 
@@ -15,9 +14,11 @@ public class TestDoxInspectionProvider implements ApplicationComponent, Inspecti
         return "TestDoxInspectionProvider";
     }
 
-    public void initComponent() { }
+    public void initComponent() {
+    }
 
-    public void disposeComponent() { }
+    public void disposeComponent() {
+    }
 
     // InspectionToolProvider ------------------------------------------------------------------------------------------
 

@@ -1,25 +1,13 @@
 package org.codehaus.testdox.intellij;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import com.intellij.openapi.actionSystem.ActionGroup;
-import com.intellij.openapi.actionSystem.ActionManager;
-import com.intellij.openapi.actionSystem.ActionToolbar;
-import com.intellij.openapi.actionSystem.AnAction;
-import com.intellij.openapi.actionSystem.DefaultActionGroup;
-import com.intellij.openapi.actionSystem.Separator;
+import com.intellij.openapi.actionSystem.*;
 import com.intellij.openapi.components.ProjectComponent;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowAnchor;
 import com.intellij.openapi.wm.ToolWindowType;
-import org.codehaus.testdox.intellij.actions.AutoscrollAction;
-import org.codehaus.testdox.intellij.actions.DeleteTestAction;
-import org.codehaus.testdox.intellij.actions.RefreshTestDoxPanelAction;
-import org.codehaus.testdox.intellij.actions.RenameTestAction;
-import org.codehaus.testdox.intellij.actions.SortTestDoxAction;
+import static jedi.functional.Coercions.list;
+import org.codehaus.testdox.intellij.actions.*;
 import org.codehaus.testdox.intellij.config.ConfigurationBean;
 import org.codehaus.testdox.intellij.config.ConfigurationController;
 import org.codehaus.testdox.intellij.panel.TestDoxModel;
@@ -29,7 +17,9 @@ import org.jetbrains.annotations.NotNull;
 import org.picocontainer.MutablePicoContainer;
 import org.picocontainer.defaults.DefaultPicoContainer;
 
-import static jedi.functional.FunctionalPrimitives.list;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class TestDoxProjectComponent implements ProjectComponent {
 
@@ -78,7 +68,7 @@ public class TestDoxProjectComponent implements ProjectComponent {
 
     public void projectOpened() {
         ConfigurationController configurationController = project.getComponent(ConfigurationController.class);
-        ConfigurationBean configuration = configurationController.getConfigurationBean();
+        ConfigurationBean configuration = configurationController.getState();
         picoContainer.registerComponentInstance(ConfigurationBean.class, configuration);
 
         // move container setup somewhere else...
@@ -136,13 +126,13 @@ public class TestDoxProjectComponent implements ProjectComponent {
         ActionGroup toolGroup = (ActionGroup) registerAction(actionManager, rootActionGroup, TOOL_WINDOW_TOOLBAR_ID);
 
         addToolBarActions((DefaultActionGroup) toolGroup, list(
-                registerAction(actionManager, new SortTestDoxAction(config.isAlphabeticalSorting(), useFromTestDoxToolWindow), SortTestDoxAction.ID),
-                registerAction(actionManager, new AutoscrollAction(config.isAutoscrolling(), useFromTestDoxToolWindow), AutoscrollAction.ID),
-                Separator.getInstance(),
-                registerAction(actionManager, new RenameTestAction(useFromTestDoxToolWindow), RenameTestAction.ID),
-                registerAction(actionManager, new DeleteTestAction(useFromTestDoxToolWindow), DeleteTestAction.ID),
-                Separator.getInstance(),
-                registerAction(actionManager, new RefreshTestDoxPanelAction(useFromTestDoxToolWindow), RefreshTestDoxPanelAction.ID)
+            registerAction(actionManager, new SortTestDoxAction(config.isAlphabeticalSorting(), useFromTestDoxToolWindow), SortTestDoxAction.ID),
+            registerAction(actionManager, new AutoscrollAction(config.isAutoscrolling(), useFromTestDoxToolWindow), AutoscrollAction.ID),
+            Separator.getInstance(),
+            registerAction(actionManager, new RenameTestAction(useFromTestDoxToolWindow), RenameTestAction.ID),
+            registerAction(actionManager, new DeleteTestAction(useFromTestDoxToolWindow), DeleteTestAction.ID),
+            Separator.getInstance(),
+            registerAction(actionManager, new RefreshTestDoxPanelAction(useFromTestDoxToolWindow), RefreshTestDoxPanelAction.ID)
 
         ));
 
@@ -150,7 +140,7 @@ public class TestDoxProjectComponent implements ProjectComponent {
     }
 
     private AnAction registerAction(ActionManager actionManager, AnAction action, String id) {
-        id = project.getProjectFile().getNameWithoutExtension() + "." + id;
+        id = project.getName() + "." + id;
 
         if (actionManager.getAction(id) == null) {
             actionManager.registerAction(id, action);

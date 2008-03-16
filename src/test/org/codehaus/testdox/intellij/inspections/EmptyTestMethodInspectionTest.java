@@ -1,13 +1,8 @@
 package org.codehaus.testdox.intellij.inspections;
 
-import com.intellij.psi.PsiCodeBlock;
-import com.intellij.psi.PsiEmptyStatement;
-import com.intellij.psi.PsiExpressionStatement;
-import com.intellij.psi.PsiMethod;
-import com.intellij.psi.PsiStatement;
+import com.intellij.psi.*;
+import static jedi.functional.Coercions.array;
 import org.jmock.Mock;
-
-import static jedi.functional.FunctionalPrimitives.array;
 
 public class EmptyTestMethodInspectionTest extends AbstractTestDoxInspectionTest {
 
@@ -48,9 +43,9 @@ public class EmptyTestMethodInspectionTest extends AbstractTestDoxInspectionTest
         mockPsiMethod.expects(once()).method("getBody").will(returnValue(mockPsiCodeBlock.proxy()));
 
         PsiStatement[] statements = array(
-                (PsiStatement) mock(PsiEmptyStatement.class).proxy(),
-                (PsiStatement) mock(PsiExpressionStatement.class).proxy(),
-                (PsiStatement) mock(PsiEmptyStatement.class).proxy()
+            (PsiStatement) mock(PsiEmptyStatement.class).proxy(),
+            (PsiStatement) mock(PsiExpressionStatement.class).proxy(),
+            (PsiStatement) mock(PsiEmptyStatement.class).proxy()
         );
 
         mockPsiCodeBlock.expects(once()).method("getStatements").will(returnValue(statements));
@@ -80,9 +75,9 @@ public class EmptyTestMethodInspectionTest extends AbstractTestDoxInspectionTest
         mockPsiMethod.expects(once()).method("getBody").will(returnValue(mockPsiCodeBlock.proxy()));
 
         PsiStatement[] statements = array(
-                (PsiStatement) mock(PsiEmptyStatement.class).proxy(),
-                (PsiStatement) mock(PsiEmptyStatement.class).proxy(),
-                (PsiStatement) mock(PsiEmptyStatement.class).proxy()
+            (PsiStatement) mock(PsiEmptyStatement.class).proxy(),
+            (PsiStatement) mock(PsiEmptyStatement.class).proxy(),
+            (PsiStatement) mock(PsiEmptyStatement.class).proxy()
         );
         mockPsiCodeBlock.expects(once()).method("getStatements").will(returnValue(statements));
 

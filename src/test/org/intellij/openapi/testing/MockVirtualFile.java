@@ -1,13 +1,13 @@
 package org.intellij.openapi.testing;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.vfs.VirtualFileSystem;
 import com.intellij.openapi.vfs.ex.dummy.DummyFileSystem;
 import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 public class MockVirtualFile extends VirtualFile {
 
@@ -62,12 +62,12 @@ public class MockVirtualFile extends VirtualFile {
     }
 
     public VirtualFile createChildDirectory(Object requestor, String name)
-            throws IOException {
+        throws IOException {
         return null;
     }
 
     public VirtualFile createChildData(Object requestor, @NotNull String name)
-            throws IOException {
+        throws IOException {
         return null;
     }
 
