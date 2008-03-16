@@ -12,21 +12,12 @@ import com.intellij.openapi.vfs.VirtualFileListener;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowType;
 import com.intellij.openapi.wm.WindowManager;
-import com.intellij.psi.PsiClass;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiTreeChangeAdapter;
-import com.intellij.psi.PsiTreeChangeEvent;
-import com.intellij.psi.PsiTreeChangeListener;
+import com.intellij.psi.*;
 import com.intellij.refactoring.listeners.RefactoringElementListener;
-
 import org.codehaus.testdox.intellij.actions.DeleteTestAction;
 import org.codehaus.testdox.intellij.actions.RenameTestAction;
 import org.codehaus.testdox.intellij.config.ConfigurationBean;
-import org.codehaus.testdox.intellij.panel.AddTestDialog;
-import org.codehaus.testdox.intellij.panel.QuickDoxDialog;
-import org.codehaus.testdox.intellij.panel.RenameDialog;
-import org.codehaus.testdox.intellij.panel.RenameUI;
-import org.codehaus.testdox.intellij.panel.TestDoxModel;
+import org.codehaus.testdox.intellij.panel.*;
 
 public class TestDoxControllerImpl implements TestDoxController {
 
@@ -66,7 +57,7 @@ public class TestDoxControllerImpl implements TestDoxController {
     }
 
     void initIntentions() {
-        IntentionManager intentionManager = IntentionManager.getInstance(project);
+        IntentionManager intentionManager = IntentionManager.getInstance();
         intentionManager.addAction(new RenameTestAction());
         intentionManager.addAction(new DeleteTestAction());
     }
@@ -201,7 +192,8 @@ public class TestDoxControllerImpl implements TestDoxController {
         if (testDoxFile.isTestedClass()) {
             if (testDoxFile.canNavigateToTestClass()) {
                 jumpToTestElement(testDoxFile.getTestClass(), false);
-            } else if (testDoxFile.canBeUnitTested() && configuration.isCreateTestIfMissing() && shouldCreateTestClass()) {
+            } else
+            if (testDoxFile.canBeUnitTested() && configuration.isCreateTestIfMissing() && shouldCreateTestClass()) {
                 editorApi.createTestClass(testDoxFile);
             }
         } else if (testDoxFile.canNavigateToTestedClass()) {
@@ -262,9 +254,11 @@ public class TestDoxControllerImpl implements TestDoxController {
 
     // FileEditorManagerListener ---------------------------------------------------------------------------------------
 
-    public void fileOpened(FileEditorManager fileEditorManager, VirtualFile file) { }
+    public void fileOpened(FileEditorManager fileEditorManager, VirtualFile file) {
+    }
 
-    public void fileClosed(FileEditorManager fileEditorManager, VirtualFile file) { }
+    public void fileClosed(FileEditorManager fileEditorManager, VirtualFile file) {
+    }
 
     public void selectionChanged(FileEditorManagerEvent event) {
         selectedFileChanged(event.getNewFile());

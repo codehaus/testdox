@@ -1,24 +1,15 @@
 package org.codehaus.testdox.intellij.panel;
 
+import static jedi.functional.Coercions.array;
+import org.codehaus.testdox.intellij.*;
+import org.codehaus.testdox.intellij.config.ConfigurationBean;
 import org.jmock.Mock;
 import org.jmock.cglib.MockObjectTestCase;
-
-import static jedi.functional.FunctionalPrimitives.array;
-
-import org.codehaus.testdox.intellij.Mocks;
-import org.codehaus.testdox.intellij.TestClass;
-import org.codehaus.testdox.intellij.TestDoxClass;
-import org.codehaus.testdox.intellij.TestDoxInterface;
-import org.codehaus.testdox.intellij.TestDoxNonJavaFile;
-import org.codehaus.testdox.intellij.TestDoxNonProjectClass;
-import org.codehaus.testdox.intellij.TestElement;
-import org.codehaus.testdox.intellij.TestMethod;
-import org.codehaus.testdox.intellij.config.ConfigurationBean;
 
 public class TestDoxModelTest extends MockObjectTestCase {
 
     private static final TestMethod[] TEST_METHODS = array(
-            Mocks.createTestMethod("blarg"), Mocks.createTestMethod("zarg"), Mocks.createTestMethod("blerg")
+        Mocks.createTestMethod("blarg"), Mocks.createTestMethod("zarg"), Mocks.createTestMethod("blerg")
     );
 
     private final Mock mockTestClass = Mocks.createAndRegisterTestClassMock(this);
@@ -113,8 +104,8 @@ public class TestDoxModelTest extends MockObjectTestCase {
         model.sortInAlphabeticalOrder();
 
         assertOrder(
-                array("foo", TEST_METHODS[0].getDisplayString(), TEST_METHODS[2].getDisplayString(), TEST_METHODS[1].getDisplayString()),
-                model
+            array("foo", TEST_METHODS[0].getDisplayString(), TEST_METHODS[2].getDisplayString(), TEST_METHODS[1].getDisplayString()),
+            model
         );
     }
 
@@ -127,8 +118,8 @@ public class TestDoxModelTest extends MockObjectTestCase {
         model.sortInDefinitionOrder();
 
         assertOrder(
-                array("foo", TEST_METHODS[0].getDisplayString(), TEST_METHODS[1].getDisplayString(), TEST_METHODS[2].getDisplayString()),
-                model
+            array("foo", TEST_METHODS[0].getDisplayString(), TEST_METHODS[1].getDisplayString(), TEST_METHODS[2].getDisplayString()),
+            model
         );
     }
 
@@ -142,8 +133,8 @@ public class TestDoxModelTest extends MockObjectTestCase {
         mockTestClass.expects(once()).method("getDisplayString").will(returnValue("foo"));
 
         assertOrder(
-                array("foo", TEST_METHODS[0].getDisplayString(), TEST_METHODS[2].getDisplayString(), TEST_METHODS[1].getDisplayString()),
-                testDoxModel
+            array("foo", TEST_METHODS[0].getDisplayString(), TEST_METHODS[2].getDisplayString(), TEST_METHODS[1].getDisplayString()),
+            testDoxModel
         );
     }
 

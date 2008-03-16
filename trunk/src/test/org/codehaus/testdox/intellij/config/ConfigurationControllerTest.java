@@ -1,16 +1,13 @@
 package org.codehaus.testdox.intellij.config;
 
-import java.util.Collections;
-import java.util.List;
-
-import org.jdom.Element;
+import static jedi.functional.Coercions.list;
+import org.codehaus.testdox.intellij.IconHelper;
+import org.codehaus.testdox.intellij.TemplateNameResolver;
 import org.jmock.Mock;
 import org.jmock.MockObjectTestCase;
 
-import static jedi.functional.FunctionalPrimitives.array;
-
-import org.codehaus.testdox.intellij.IconHelper;
-import org.codehaus.testdox.intellij.TemplateNameResolver;
+import java.util.Collections;
+import java.util.List;
 
 public class ConfigurationControllerTest extends MockObjectTestCase {
 
@@ -37,7 +34,7 @@ public class ConfigurationControllerTest extends MockObjectTestCase {
             }
         };
 
-        bean = controller.getConfigurationBean();
+        bean = controller.getState();
     }
 
     public void testSetsDefaultValuesOnBeanWhenConstructed() throws Exception {
@@ -45,7 +42,7 @@ public class ConfigurationControllerTest extends MockObjectTestCase {
     }
 
     public void testDefinesItsComponentName() {
-        assertEquals("project component name", "TestDox.ConfigurationController", controller.getComponentName());
+        assertEquals("component name", "TestDoxConfiguration", controller.getComponentName());
     }
 
     public void testDoesNothingWhenInitialisedByIntellijIdea() {
@@ -190,54 +187,15 @@ public class ConfigurationControllerTest extends MockObjectTestCase {
         assertTrue(controller.isModified());
     }
 
-    public void testConstructsValidElementContainingAllInformationWhenWritingConfigurationData() throws Exception {
-        bean.setCustomPackages(PACKAGES);
-        Element root = new Element("root");
-        controller.writeExternal(root);
-
-        Element packaging = root.getChild("custom-packaging");
-        assertNotNull(packaging);
-        List children = packaging.getChildren("package");
-        assertEquals(PACKAGES.size(), children.size());
-        for (int i = 0; i < PACKAGES.size(); i++) {
-            String aPackage = PACKAGES.get(i);
-            assertEquals(aPackage, ((Element) children.get(i)).getText());
-        }
-    }
-
-    public void testSetsDefaultValuesOnBeanForMissingConfigurationInformation() throws Exception {
-        controller.readExternal(new Element("root"));
+    public void testSetsDefaultValuesOnBeanForMissingConfigurationInformation() {
         assertDefaults(bean);
     }
 
     public void testSetsValuesFromElementOnBeanWhenReadingValidConfigurationData() throws Exception {
-        final String[] packages = array("FOO", "BAR");
-        Element root = createConfigurationData(createPackagingConfig(packages));
-
-        controller.readExternal(root);
-        List customPackages = bean.getCustomPackages();
-        assertEquals(packages.length, customPackages.size());
-        for (int i = 0; i < packages.length; i++) {
-            assertEquals(packages[i], customPackages.get(i));
-        }
-    }
-
-    private Element createPackagingConfig(String[] customPackages) {
-        Element packaging = new Element("custom-packaging");
-        if (customPackages != null) {
-            for (String customPackage : customPackages) {
-                Element custom = new Element("package");
-                custom.addContent(customPackage);
-                packaging.addContent(custom);
-            }
-        }
-        return packaging;
-    }
-
-    private Element createConfigurationData(Element packagingElement) {
-        Element root = new Element("root");
-        root.addContent(packagingElement);
-        return root;
+        ConfigurationBean configuration = new ConfigurationBean();
+        configuration.setCustomPackages(list("FOO", "BAR"));
+        controller.loadState(configuration);
+        assertEquals("custom packages", configuration.getCustomPackages(), bean.getCustomPackages());
     }
 
     private void assertDefaults(ConfigurationBean bean) {

@@ -1,24 +1,32 @@
 package org.codehaus.testdox.intellij.config;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import javax.swing.Icon;
-import javax.swing.JComponent;
-
+import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.ProjectComponent;
+import com.intellij.openapi.components.State;
+import com.intellij.openapi.components.Storage;
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
-import com.intellij.openapi.util.DefaultJDOMExternalizer;
-import com.intellij.openapi.util.InvalidDataException;
-import com.intellij.openapi.util.JDOMExternalizable;
-import com.intellij.openapi.util.WriteExternalException;
+import com.intellij.util.xmlb.XmlSerializerUtil;
 import org.codehaus.testdox.intellij.IconHelper;
 import org.codehaus.testdox.intellij.TemplateNameResolver;
-import org.jdom.Element;
+import org.jetbrains.annotations.NotNull;
 
-public class ConfigurationController implements ProjectComponent, Configurable, JDOMExternalizable {
+import javax.swing.*;
+import java.util.Collections;
+import java.util.List;
+
+@State(
+    name = ConfigurationController.COMPONENT_NAME,
+    storages = {
+    @Storage(
+        id = ConfigurationController.COMPONENT_NAME,
+        file = "$PROJECT_FILE$"
+    )}
+)
+
+public class ConfigurationController implements ProjectComponent, Configurable, PersistentStateComponent<ConfigurationBean> {
+
+    static final String COMPONENT_NAME = "TestDoxConfiguration";
 
     protected ConfigurationUI panel;
 
@@ -30,21 +38,26 @@ public class ConfigurationController implements ProjectComponent, Configurable, 
 
     // BaseComponent ---------------------------------------------------------------------------------------------------
 
-    public void initComponent() { }
+    public void initComponent() {
+    }
 
-    public void projectOpened() { }
+    public void projectOpened() {
+    }
 
-    public void projectClosed() { }
+    public void projectClosed() {
+    }
 
-    public void disposeComponent() { }
+    public void disposeComponent() {
+    }
 
+    @NotNull
     public String getComponentName() {
-        return "TestDox.ConfigurationController";
+        return COMPONENT_NAME;
     }
 
     private void setDefaults() {
         if (bean.getCustomPackages() == null) {
-            bean.setCustomPackages(Collections.EMPTY_LIST);
+            bean.setCustomPackages(Collections.<String>emptyList());
         }
         if (bean.getTestNameTemplate() == null) {
             bean.setTestNameTemplate(TemplateNameResolver.DEFAULT_TEMPLATE);
@@ -104,14 +117,14 @@ public class ConfigurationController implements ProjectComponent, Configurable, 
 
     public boolean isModified() {
         return bean.isAllowCustomPackages() != panel.getCustomMappingStatus()
-               || !equals(bean.getCustomPackages(), panel.getCustomPackageMappings())
-               || !bean.getTestNameTemplate().equals(panel.getTestNameTemplate())
-               || !bean.getTestMethodIndicator().equals(panel.getTestMethodPrefix())
-               || bean.isCreateTestIfMissing() != panel.getCreateTestIfMissing()
-               || bean.isUnderscoreMode() != panel.getUseUnderscore()
-               || bean.isShowFullyQualifiedClassName() != panel.getShowFullyQualifiedClassName()
-               || bean.isAutoApplyChangesToTest() != panel.getAutoApplyChangesToTest()
-               || bean.isDeletePackageOccurrences() != panel.getDeletePackageOccurrences();
+            || !equals(bean.getCustomPackages(), panel.getCustomPackageMappings())
+            || !bean.getTestNameTemplate().equals(panel.getTestNameTemplate())
+            || !bean.getTestMethodIndicator().equals(panel.getTestMethodPrefix())
+            || bean.isCreateTestIfMissing() != panel.getCreateTestIfMissing()
+            || bean.isUnderscoreMode() != panel.getUseUnderscore()
+            || bean.isShowFullyQualifiedClassName() != panel.getShowFullyQualifiedClassName()
+            || bean.isAutoApplyChangesToTest() != panel.getAutoApplyChangesToTest()
+            || bean.isDeletePackageOccurrences() != panel.getDeletePackageOccurrences();
     }
 
     private boolean equals(List strings1, List strings2) {
@@ -138,47 +151,11 @@ public class ConfigurationController implements ProjectComponent, Configurable, 
         panel.setDeletePackageOccurrences(bean.isDeletePackageOccurrences());
     }
 
-    public ConfigurationBean getConfigurationBean() {
+    public ConfigurationBean getState() {
         return bean;
     }
 
-    public void readExternal(Element element) throws InvalidDataException {
-        DefaultJDOMExternalizer.readExternal(bean, element);
-        readPackagingData(bean, element);
-    }
-
-    public void writeExternal(Element element) throws WriteExternalException {
-        DefaultJDOMExternalizer.writeExternal(bean, element);
-        writePackagingData(bean, element);
-    }
-
-    private void writePackagingData(ConfigurationBean bean, Element root) {
-        Element packaging = new Element("custom-packaging");
-        packaging.setAttribute("allow", String.valueOf(bean.isAllowCustomPackages()));
-        List customPackages = bean.getCustomPackages();
-        if (customPackages != null) {
-            for (Iterator iterator = customPackages.iterator(); iterator.hasNext();) {
-                String customPackage = (String) iterator.next();
-                Element custom = new Element("package");
-                custom.addContent(customPackage);
-                packaging.addContent(custom);
-            }
-        }
-        root.addContent(packaging);
-    }
-
-    private void readPackagingData(ConfigurationBean bean, Element root) {
-        List<String> packages = new ArrayList<String>();
-        Element packaging = root.getChild("custom-packaging");
-        if (packaging != null) {
-            String allowValue = packaging.getAttributeValue("allow");
-            boolean allowCustomPackages = (allowValue != null) && Boolean.valueOf(allowValue);
-            bean.setAllowCustomPackages(allowCustomPackages);
-            for (Iterator iterator = packaging.getChildren().iterator(); iterator.hasNext();) {
-                Element child = (Element) iterator.next();
-                packages.add(child.getTextTrim());
-            }
-        }
-        bean.setCustomPackages(packages);
+    public void loadState(ConfigurationBean configuration) {
+        XmlSerializerUtil.copyBean(configuration, bean);
     }
 }

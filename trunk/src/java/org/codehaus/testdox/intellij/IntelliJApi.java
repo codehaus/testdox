@@ -1,17 +1,5 @@
 package org.codehaus.testdox.intellij;
 
-import java.awt.Component;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.StringTokenizer;
-import javax.swing.DefaultListCellRenderer;
-import javax.swing.JList;
-import javax.swing.SwingUtilities;
-
 import com.intellij.ide.util.DeleteHandler;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.command.CommandListener;
@@ -23,31 +11,14 @@ import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.fileEditor.FileEditorManagerListener;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.roots.ContentEntry;
-import com.intellij.openapi.roots.ModuleRootManager;
-import com.intellij.openapi.roots.ProjectFileIndex;
-import com.intellij.openapi.roots.ProjectRootManager;
-import com.intellij.openapi.roots.SourceFolder;
+import com.intellij.openapi.roots.*;
 import com.intellij.openapi.ui.DialogWrapper;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.vfs.VirtualFileListener;
 import com.intellij.openapi.vfs.VirtualFileManager;
 import com.intellij.openapi.wm.ToolWindowManager;
-import com.intellij.psi.PsiAnnotation;
-import com.intellij.psi.PsiClass;
-import com.intellij.psi.PsiDirectory;
-import com.intellij.psi.PsiDocumentManager;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiElementFactory;
-import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiJavaFile;
-import com.intellij.psi.PsiJavaToken;
-import com.intellij.psi.PsiManager;
-import com.intellij.psi.PsiMethod;
-import com.intellij.psi.PsiReferenceList;
-import com.intellij.psi.PsiTreeChangeListener;
-import com.intellij.psi.PsiWhiteSpace;
+import com.intellij.psi.*;
 import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.refactoring.listeners.RefactoringElementListener;
@@ -56,14 +27,15 @@ import com.intellij.refactoring.listeners.RefactoringListenerManager;
 import com.intellij.refactoring.rename.RenameUtil;
 import com.intellij.usageView.UsageInfo;
 import com.intellij.util.IncorrectOperationException;
-
-import static jedi.functional.FunctionalPrimitives.array;
-import static jedi.functional.FunctionalPrimitives.asArray;
-import static jedi.functional.FunctionalPrimitives.asList;
-
+import static jedi.functional.Coercions.*;
 import org.codehaus.testdox.intellij.config.ConfigurationBean;
 import org.codehaus.testdox.intellij.panel.ItemSelectionDialog;
 import org.codehaus.testdox.intellij.panel.ItemSelectionUI;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.*;
+import java.util.List;
 
 public abstract class IntelliJApi implements EditorApi {
 
@@ -71,9 +43,11 @@ public abstract class IntelliJApi implements EditorApi {
     protected static final UsageInfo[] EMPTY_USAGE_INFO = new UsageInfo[0];
 
     protected static final RefactoringElementListener REFACTORING_ELEMENT_ADAPTER = new RefactoringElementListener() {
-        public void elementMoved(PsiElement psiElement) { }
+        public void elementMoved(PsiElement psiElement) {
+        }
 
-        public void elementRenamed(PsiElement psiElement) { }
+        public void elementRenamed(PsiElement psiElement) {
+        }
     };
 
     protected static final Logger LOGGER = Logger.getInstance(IntelliJApi.class.getName());
@@ -384,7 +358,7 @@ public abstract class IntelliJApi implements EditorApi {
 
     protected ItemSelectionUI createItemSelectionDialog(String[] packages) {
         return new ItemSelectionDialog(project, packages,
-                                       "Please select the destination package for the test", "Select package", null);
+            "Please select the destination package for the test", "Select package", null);
     }
 
     protected ItemSelectionUI createVirtualFileSelectionDialog(VirtualFile[] items) {
@@ -521,7 +495,7 @@ public abstract class IntelliJApi implements EditorApi {
             String packageElement = tokenizer.nextToken();
             PsiDirectory subdirectory = currentDirectory.findSubdirectory(packageElement);
             currentDirectory = (subdirectory != null) ? subdirectory
-                                                      : currentDirectory.createSubdirectory(packageElement);
+                : currentDirectory.createSubdirectory(packageElement);
         }
 
         return currentDirectory;

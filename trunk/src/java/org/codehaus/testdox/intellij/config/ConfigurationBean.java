@@ -1,12 +1,12 @@
 package org.codehaus.testdox.intellij.config;
 
+import org.codehaus.testdox.intellij.TemplateNameResolver;
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.codehaus.testdox.intellij.TemplateNameResolver;
 
 public class ConfigurationBean implements Serializable {
 
@@ -15,19 +15,19 @@ public class ConfigurationBean implements Serializable {
     public static final String TEST_NAME_TEMPLATE = "testNameTemplate";
     public static final String SHOW_FULLY_QUALIFIED_CLASS_NAME = "showFullyQualifiedClassName";
 
-    public boolean allowCustomPackages;
-    public List<String> customPackages = new ArrayList<String>();
-    public String testNameTemplate = TemplateNameResolver.DEFAULT_TEMPLATE;
-    public boolean alphabeticalSorting;
-    public boolean createTestIfMissing;
-    public boolean underscoreMode;
-    public boolean showFullyQualifiedClassName;
-    public boolean autoscrolling;
-    public boolean autoApplyChangesToTests;
-    public boolean deletePackageOccurrences;
-    public String testMethodPrefix = TemplateNameResolver.DEFAULT_PREFIX;
-    public String testMethodAnnotation;
-    public boolean usingAnnotations;
+    private boolean allowCustomPackages;
+    private List<String> customPackages = new ArrayList<String>();
+    private String testNameTemplate = TemplateNameResolver.DEFAULT_TEMPLATE;
+    private boolean alphabeticalSorting;
+    private boolean createTestIfMissing;
+    private boolean underscoreMode;
+    private boolean showFullyQualifiedClassName;
+    private boolean autoscrolling;
+    private boolean autoApplyChangesToTests;
+    private boolean deletePackageOccurrences;
+    private String testMethodPrefix = TemplateNameResolver.DEFAULT_PREFIX;
+    private String testMethodAnnotation;
+    private boolean usingAnnotations;
 
     private transient PropertyChangeSupport support = new PropertyChangeSupport(this);
 

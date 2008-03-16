@@ -1,16 +1,10 @@
 package org.codehaus.testdox.intellij.panel;
 
+import static jedi.functional.Coercions.array;
+import org.codehaus.testdox.intellij.*;
+import org.codehaus.testdox.intellij.config.ConfigurationBean;
 import org.jmock.Mock;
 import org.jmock.cglib.MockObjectTestCase;
-
-import static jedi.functional.FunctionalPrimitives.array;
-
-import org.codehaus.testdox.intellij.EditorApi;
-import org.codehaus.testdox.intellij.Mocks;
-import org.codehaus.testdox.intellij.TestClass;
-import org.codehaus.testdox.intellij.TestDoxClass;
-import org.codehaus.testdox.intellij.TestDoxFile;
-import org.codehaus.testdox.intellij.config.ConfigurationBean;
 
 public class QuickDoxDialogTest extends MockObjectTestCase {
 
@@ -40,9 +34,9 @@ public class QuickDoxDialogTest extends MockObjectTestCase {
 
     private TestDoxClass createTestDoxFileRepresentingAProjectClass(TestClass testClass) {
         return new TestDoxClass(null, "blarg", true, testClass, null, array(
-                Mocks.createTestMethod("foo"),
-                Mocks.createTestMethod("bar"),
-                Mocks.createTestMethod("baz")
+            Mocks.createTestMethod("foo"),
+            Mocks.createTestMethod("bar"),
+            Mocks.createTestMethod("baz")
         ));
     }
 }

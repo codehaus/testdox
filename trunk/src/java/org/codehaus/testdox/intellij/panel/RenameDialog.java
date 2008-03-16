@@ -1,22 +1,15 @@
 package org.codehaus.testdox.intellij.panel;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.text.CharacterIterator;
-import java.text.StringCharacterIterator;
-import javax.swing.Action;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.DialogWrapper;
+import static jedi.functional.Coercions.array;
 
-import static jedi.functional.FunctionalPrimitives.array;
+import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import java.awt.*;
+import java.text.CharacterIterator;
+import java.text.StringCharacterIterator;
 
 public class RenameDialog extends DialogWrapper implements RenameUI {
 
@@ -108,7 +101,8 @@ public class RenameDialog extends DialogWrapper implements RenameUI {
                 handleRename(sentenceField.getText());
             }
 
-            public void changedUpdate(DocumentEvent event) {}
+            public void changedUpdate(DocumentEvent event) {
+            }
         });
     }
 

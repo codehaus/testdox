@@ -1,9 +1,7 @@
 package org.codehaus.testdox.intellij.inspections;
 
 import com.intellij.psi.PsiMethod;
-
-import static jedi.functional.FunctionalPrimitives.array;
-
+import static jedi.functional.Coercions.array;
 import org.codehaus.testdox.intellij.TestMethod;
 
 public class EmptyTestClassInspectionTest extends AbstractTestDoxInspectionTest {
@@ -24,7 +22,7 @@ public class EmptyTestClassInspectionTest extends AbstractTestDoxInspectionTest 
         mockPsiFile.expects(once()).method("getName").will(returnValue("~/src/java/com/acme/foo/bar/FooBar.java"));
 
         mockPsiClass.expects(once()).method("findMethodsByName").with(eq("suite"), eq(true))
-                .will(returnValue(array((PsiMethod) mockPsiMethod.proxy())));
+            .will(returnValue(array((PsiMethod) mockPsiMethod.proxy())));
 
         assertNumberOfClassRelatedProblemsFoundByInspection(inspection, 0);
     }

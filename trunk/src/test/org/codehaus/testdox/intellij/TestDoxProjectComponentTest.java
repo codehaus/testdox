@@ -1,9 +1,5 @@
 package org.codehaus.testdox.intellij;
 
-import javax.swing.JToolBar;
-
-import org.intellij.openapi.testing.MockApplicationManager;
-
 import com.intellij.codeInsight.intention.IntentionManager;
 import com.intellij.openapi.actionSystem.ActionManager;
 import com.intellij.openapi.actionSystem.ActionToolbar;
@@ -16,18 +12,16 @@ import com.intellij.openapi.wm.ToolWindowAnchor;
 import com.intellij.openapi.wm.ToolWindowManager;
 import com.intellij.openapi.wm.ToolWindowType;
 import com.intellij.psi.PsiTreeChangeListener;
-
-import org.codehaus.testdox.intellij.actions.AutoscrollAction;
-import org.codehaus.testdox.intellij.actions.DeleteTestAction;
-import org.codehaus.testdox.intellij.actions.RefreshTestDoxPanelAction;
-import org.codehaus.testdox.intellij.actions.RenameTestAction;
-import org.codehaus.testdox.intellij.actions.SortTestDoxAction;
+import org.codehaus.testdox.intellij.actions.*;
 import org.codehaus.testdox.intellij.config.ConfigurationController;
 import org.codehaus.testdox.intellij.panel.TestDoxToolWindowUI;
+import org.intellij.openapi.testing.MockApplicationManager;
 import org.jmock.Mock;
 import org.jmock.cglib.MockObjectTestCase;
 import org.picocontainer.MutablePicoContainer;
 import org.picocontainer.defaults.DefaultPicoContainer;
+
+import javax.swing.*;
 
 public class TestDoxProjectComponentTest extends MockObjectTestCase {
 
@@ -72,21 +66,21 @@ public class TestDoxProjectComponentTest extends MockObjectTestCase {
         mockProject.expects(once()).method("getComponent").with(eq(ConfigurationController.class)).will(returnValue(configurationController));
         mockEditorApiFactory.expects(once()).method("createEditorApi").will(returnValue(mockEditorApi.proxy()));
 
-        Mock mockVirtualFile = Mocks.createAndRegisterVirtualFileMock(this);
-        mockProject.expects(exactly(expectedNumberOfActionsIncludingActionGroup)).method("getProjectFile").will(returnValue(mockVirtualFile.proxy()));
-        mockVirtualFile.expects(exactly(expectedNumberOfActionsIncludingActionGroup)).method("getNameWithoutExtension")
-                .will(returnValue(expectedProjectNameWithoutExtension));
+        mockProject.expects(exactly(expectedNumberOfActionsIncludingActionGroup)).method("getName").will(returnValue(expectedProjectNameWithoutExtension));
 
         MockApplicationManager.reset();
         Mock mockActionManager = mock(ActionManager.class);
         MockApplicationManager.getMockApplication().registerComponent(ActionManager.class, mockActionManager.proxy());
 
-        String actionKeyForAutoscrollAction     = expectedProjectNameWithoutExtension + '.' + AutoscrollAction.ID;
-        String actionKeyForDeleteTestAction     = expectedProjectNameWithoutExtension + '.' + DeleteTestAction.ID;
+        Mock mockIntentionManager = mock(IntentionManager.class);
+        MockApplicationManager.getMockApplication().registerComponent(IntentionManager.class, mockIntentionManager.proxy());
+
+        String actionKeyForAutoscrollAction = expectedProjectNameWithoutExtension + '.' + AutoscrollAction.ID;
+        String actionKeyForDeleteTestAction = expectedProjectNameWithoutExtension + '.' + DeleteTestAction.ID;
         String actionKeyForRefreshTestDoxAction = expectedProjectNameWithoutExtension + '.' + RefreshTestDoxPanelAction.ID;
-        String actionKeyForRenameTestAction     = expectedProjectNameWithoutExtension + '.' + RenameTestAction.ID;
-        String actionKeyForSortTestDoxAction    = expectedProjectNameWithoutExtension + '.' + SortTestDoxAction.ID;
-        String actionKeyForToolbarActionGroup   = expectedProjectNameWithoutExtension + '.' + TestDoxProjectComponent.TOOL_WINDOW_TOOLBAR_ID;
+        String actionKeyForRenameTestAction = expectedProjectNameWithoutExtension + '.' + RenameTestAction.ID;
+        String actionKeyForSortTestDoxAction = expectedProjectNameWithoutExtension + '.' + SortTestDoxAction.ID;
+        String actionKeyForToolbarActionGroup = expectedProjectNameWithoutExtension + '.' + TestDoxProjectComponent.TOOL_WINDOW_TOOLBAR_ID;
 
         mockActionManager.expects(once()).method("getAction").with(eq(actionKeyForAutoscrollAction));
         mockActionManager.expects(once()).method("getAction").with(eq(actionKeyForDeleteTestAction));
@@ -104,16 +98,14 @@ public class TestDoxProjectComponentTest extends MockObjectTestCase {
 
         Mock mockActionToolbar = mock(ActionToolbar.class);
         mockActionManager.expects(once()).method("createActionToolbar")
-                .with(eq(TestDoxProjectComponent.TOOL_WINDOW_TOOLBAR_ID), isA(DefaultActionGroup.class), eq(true))
-                .will(returnValue(mockActionToolbar.proxy()));
+            .with(eq(TestDoxProjectComponent.TOOL_WINDOW_TOOLBAR_ID), isA(DefaultActionGroup.class), eq(true))
+            .will(returnValue(mockActionToolbar.proxy()));
 
         mockEditorApi.expects(once()).method("addFileEditorManagerListener").with(isA(TestDoxController.class));
         mockEditorApi.expects(once()).method("addRefactoringElementListenerProvider").with(isA(TestDoxController.class));
         mockEditorApi.expects(once()).method("addPsiTreeChangeListener").with(isA(PsiTreeChangeListener.class));
         mockEditorApi.expects(once()).method("addVirtualFileListener").with(isA(VirtualFileListener.class));
 
-        Mock mockIntentionManager = mock(IntentionManager.class);
-        mockProject.expects(once()).method("getComponent").with(eq(IntentionManager.class)).will(returnValue(mockIntentionManager.proxy()));
         mockIntentionManager.expects(once()).method("addAction").with(isA(RenameTestAction.class));
         mockIntentionManager.expects(once()).method("addAction").with(isA(DeleteTestAction.class));
 
@@ -124,8 +116,8 @@ public class TestDoxProjectComponentTest extends MockObjectTestCase {
 
         Mock mockToolWindow = mock(ToolWindow.class);
         mockToolWindowManager.expects(once()).method("registerToolWindow")
-                .with(eq(TestDoxProjectComponent.TOOL_WINDOW_ID), isA(TestDoxToolWindowUI.class), same(ToolWindowAnchor.RIGHT))
-                .will(returnValue(mockToolWindow.proxy()));
+            .with(eq(TestDoxProjectComponent.TOOL_WINDOW_ID), isA(TestDoxToolWindowUI.class), same(ToolWindowAnchor.RIGHT))
+            .will(returnValue(mockToolWindow.proxy()));
 
         mockToolWindow.expects(once()).method("setType").with(same(ToolWindowType.DOCKED), NULL);
         mockToolWindow.expects(once()).method("setIcon").with(same(IconHelper.getIcon(IconHelper.TESTDOX_ICON)));

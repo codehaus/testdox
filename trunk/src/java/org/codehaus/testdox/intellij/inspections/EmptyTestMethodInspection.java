@@ -8,15 +8,9 @@ import com.intellij.psi.PsiCodeBlock;
 import com.intellij.psi.PsiEmptyStatement;
 import com.intellij.psi.PsiMethod;
 import com.intellij.psi.PsiStatement;
+import static jedi.functional.Coercions.array;
+import org.codehaus.testdox.intellij.*;
 import org.jetbrains.annotations.NotNull;
-
-import static jedi.functional.FunctionalPrimitives.array;
-
-import org.codehaus.testdox.intellij.EditorApi;
-import org.codehaus.testdox.intellij.TestDoxController;
-import org.codehaus.testdox.intellij.TestDoxFile;
-import org.codehaus.testdox.intellij.TestDoxFileFactory;
-import org.codehaus.testdox.intellij.TestDoxProjectComponent;
 
 public class EmptyTestMethodInspection extends AbstractTestDoxInspection {
 
@@ -52,9 +46,9 @@ public class EmptyTestMethodInspection extends AbstractTestDoxInspection {
 
     private ProblemDescriptor[] createProblemDescriptor(InspectionManager manager, PsiMethod psiMethod) {
         return array(
-                manager.createProblemDescriptor(
-                        psiMethod.getNameIdentifier(), getDisplayName(), (LocalQuickFix) null,
-                        ProblemHighlightType.GENERIC_ERROR_OR_WARNING)
+            manager.createProblemDescriptor(
+                psiMethod.getNameIdentifier(), getDisplayName(), (LocalQuickFix) null,
+                ProblemHighlightType.GENERIC_ERROR_OR_WARNING)
         );
     }
 }

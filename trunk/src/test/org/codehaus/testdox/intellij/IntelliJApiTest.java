@@ -1,42 +1,28 @@
 package org.codehaus.testdox.intellij;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import com.intellij.openapi.command.CommandProcessor;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.fileEditor.FileEditorManagerAdapter;
 import com.intellij.openapi.fileEditor.FileEditorManagerListener;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.roots.ContentEntry;
-import com.intellij.openapi.roots.ModuleRootManager;
-import com.intellij.openapi.roots.ProjectFileIndex;
-import com.intellij.openapi.roots.ProjectRootManager;
-import com.intellij.openapi.roots.SourceFolder;
+import com.intellij.openapi.roots.*;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.psi.PsiAnnotation;
-import com.intellij.psi.PsiClass;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiJavaFile;
-import com.intellij.psi.PsiManager;
-import com.intellij.psi.PsiMethod;
-import com.intellij.psi.PsiModifierList;
-import com.intellij.psi.PsiTreeChangeAdapter;
-import com.intellij.psi.PsiTreeChangeListener;
+import com.intellij.psi.*;
 import com.intellij.refactoring.listeners.RefactoringElementListener;
 import com.intellij.refactoring.listeners.RefactoringElementListenerProvider;
 import com.intellij.refactoring.listeners.RefactoringListenerManager;
+import static jedi.functional.Coercions.array;
+import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.panel.ItemSelectionUI;
 import org.intellij.openapi.testing.MockApplication;
 import org.intellij.openapi.testing.MockApplicationManager;
 import org.intellij.openapi.testing.MockVirtualFile;
 import org.jmock.Mock;
 import org.jmock.cglib.MockObjectTestCase;
 
-import static jedi.functional.FunctionalPrimitives.array;
-
-import org.codehaus.testdox.intellij.config.ConfigurationBean;
-import org.codehaus.testdox.intellij.panel.ItemSelectionUI;
+import java.util.LinkedList;
+import java.util.List;
 
 public class IntelliJApiTest extends MockObjectTestCase {
 
@@ -68,11 +54,14 @@ public class IntelliJApiTest extends MockObjectTestCase {
 
         intelliJApi = new IntelliJApi((Project) mockProject.proxy(), new TemplateNameResolver(config), config) {
 
-            protected void invokeLater(Runnable task) { }
+            protected void invokeLater(Runnable task) {
+            }
 
-            public void rename(PsiElement element) { }
+            public void rename(PsiElement element) {
+            }
 
-            public void rename(PsiElement element, String newName) { }
+            public void rename(PsiElement element, String newName) {
+            }
 
             public boolean jumpToPsiElement(PsiElement psiElement) {
                 return false;
@@ -108,6 +97,8 @@ public class IntelliJApiTest extends MockObjectTestCase {
         applicationMock.registerComponent(FileEditorManager.class, mockFileEditorManager.proxy());
         applicationMock.registerComponent(RefactoringListenerManager.class, mockRefactoringListenerManager.proxy());
         applicationMock.registerComponent(CommandProcessor.class, mockCommandProcessor.proxy());
+
+        mockProject.stubs().method("getPicoContainer").will(returnValue(applicationMock.getPicoContainer()));
     }
 
     protected void tearDown() throws Exception {
@@ -144,7 +135,7 @@ public class IntelliJApiTest extends MockObjectTestCase {
         Mock mockPsiAnnotation2 = mock(PsiAnnotation.class);
         mockPsiMethod.expects(once()).method("getModifierList").will(returnValue(mockPsiModifierList.proxy()));
         mockPsiModifierList.expects(once()).method("getAnnotations")
-                .will(returnValue(array((PsiAnnotation) mockPsiAnnotation1.proxy(), (PsiAnnotation) mockPsiAnnotation2.proxy())));
+            .will(returnValue(array((PsiAnnotation) mockPsiAnnotation1.proxy(), (PsiAnnotation) mockPsiAnnotation2.proxy())));
         mockPsiAnnotation1.expects(once()).method("getText").will(returnValue("@Norbert"));
         mockPsiAnnotation2.expects(once()).method("getText").will(returnValue("@Giraffe"));
 
@@ -180,7 +171,8 @@ public class IntelliJApiTest extends MockObjectTestCase {
     }
 
     public void testRegistersFileEditorManagerListeners() {
-        FileEditorManagerListener listener = new FileEditorManagerAdapter() {};
+        FileEditorManagerListener listener = new FileEditorManagerAdapter() {
+        };
 
         mockFileEditorManager.expects(once()).method("addFileEditorManagerListener").with(same(listener));
         intelliJApi.addFileEditorManagerListener(listener);
@@ -204,7 +196,8 @@ public class IntelliJApiTest extends MockObjectTestCase {
     }
 
     public void testRegistersPsiTreeChangeListeners() {
-        PsiTreeChangeListener listener = new PsiTreeChangeAdapter() {};
+        PsiTreeChangeListener listener = new PsiTreeChangeAdapter() {
+        };
 
         mockPsiManager.expects(once()).method("addPsiTreeChangeListener").with(same(listener));
         intelliJApi.addPsiTreeChangeListener(listener);
@@ -248,7 +241,7 @@ public class IntelliJApiTest extends MockObjectTestCase {
         assertEquals("foo/test/craphead", folders.get(1).getName());
         assertEquals("blah/foo", folders.get(2).getName());
     }
-    
+
     public void testChoosesBestMatchingFolderWithShortestPathForTestDestination() {
         List<VirtualFile> folders = new LinkedList<VirtualFile>();
         folders.add(new MockVirtualFile("blah/test-acceptance", true));
