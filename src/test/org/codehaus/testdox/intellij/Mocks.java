@@ -1,20 +1,20 @@
 package org.codehaus.testdox.intellij;
 
-import javax.swing.Icon;
-
-import com.intellij.openapi.vfs.VirtualFile;
+import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.panel.TestDoxModel;
+import org.intellij.openapi.testing.MockVirtualFile;
 import org.jmock.Mock;
 import org.jmock.MockObjectTestCase;
 
-import org.codehaus.testdox.intellij.config.ConfigurationBean;
-import org.codehaus.testdox.intellij.panel.TestDoxModel;
+import javax.swing.*;
 
 public final class Mocks {
 
     /**
      * Sole constructor hidden to enfore non-instantiability.
      */
-    private Mocks() { }
+    private Mocks() {
+    }
 
     // Factory methods for obtaining verified mocks --------------------------------------------------------------------
 
@@ -70,60 +70,62 @@ public final class Mocks {
 
     // Mockable classes ------------------------------------------------------------------------------------------------
 
-    private static class MockableTestLookup extends TestLookup {
+    public static class MockableTestLookup extends TestLookup {
 
         public MockableTestLookup() {
             super(null, null);
         }
     }
 
-    private static class MockableTestDoxProjectComponent extends TestDoxProjectComponent {
+    public static class MockableTestDoxProjectComponent extends TestDoxProjectComponent {
 
         public MockableTestDoxProjectComponent() {
             super(null);
         }
     }
 
-    private static class MockableTestDoxModel extends TestDoxModel {
+    public static class MockableTestDoxModel extends TestDoxModel {
 
         public MockableTestDoxModel() {
             super(null);
         }
     }
 
-    private static abstract class MockableVirtualFile extends VirtualFile {
+    public static class MockableVirtualFile extends MockVirtualFile {
 
         public MockableVirtualFile() {
-            super();
+            super("", false);
         }
     }
 
-    private static class MockableTestDoxFileFactory extends TestDoxFileFactory {
+    public static class MockableTestDoxFileFactory extends TestDoxFileFactory {
 
         public MockableTestDoxFileFactory() {
             super(null, null, null);
         }
     }
 
-    private static class MockableTestDoxFile extends TestDoxFile {
+    public static class MockableTestDoxFile extends TestDoxFile {
 
         public MockableTestDoxFile() {
             super(null, null, null, null, null);
         }
 
-        public void updateModel(TestDoxModel model) { }
+        public void updateModel(TestDoxModel model) {
+        }
     }
 
-    private static class MockableTestDoxClass extends TestDoxClass {
+    public static class MockableTestDoxClass extends TestDoxClass {
 
         public MockableTestDoxClass() {
             super(null, null, true, null, null, null);
         }
 
-        public void updateModel(TestDoxModel model) { }
+        public void updateModel(TestDoxModel model) {
+        }
     }
 
-    private static class MockableTestClass extends TestClass {
+    public static class MockableTestClass extends TestClass {
 
         public MockableTestClass() {
             super(null, null, null, null);
@@ -138,7 +140,7 @@ public final class Mocks {
         }
     }
 
-    private static class MockableTestMethod extends TestMethod {
+    public static class MockableTestMethod extends TestMethod {
 
         private String name;
 
@@ -156,7 +158,7 @@ public final class Mocks {
         }
     }
 
-    private static class MockableSentenceManager extends SentenceManager {
+    public static class MockableSentenceManager extends SentenceManager {
 
         public MockableSentenceManager() {
             super(null);
