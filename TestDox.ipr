@@ -128,7 +128,7 @@
       <list>
         <IssueNavigationLink>
           <option name="issueRegexp" value="[A-Z]+\-\d+" />
-          <option name="linkRegexp" value="http://jira.codehaus.org/browse/TESTDOX/browse/$0" />
+          <option name="linkRegexp" value="http://jira.codehaus.org/browse/$0" />
         </IssueNavigationLink>
       </list>
     </option>
