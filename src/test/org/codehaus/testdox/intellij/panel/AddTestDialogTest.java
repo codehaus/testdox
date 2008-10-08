@@ -1,21 +1,18 @@
 package org.codehaus.testdox.intellij.panel;
 
-import junitx.framework.Assert;
+import org.intellij.openapi.testing.DialogCreator;
 
 public class AddTestDialogTest extends RenameDialogTest {
 
-    public void testHasADifferentTitleThanTheRenameDialog() {
-        String addTestDialogTitle = this.createDialog().getTitle();
-        String renameDialogTitle = super.createDialog().getTitle();
-
-        assertEquals("Add Test", addTestDialogTitle);
-        assertEquals("Rename Test", renameDialogTitle);
-        Assert.assertNotEquals("AddTestDialog title", renameDialogTitle, addTestDialogTitle);
+    public void testHasADifferentTitleThanTheRenameDialog() throws Exception {
+        assertEquals("Add Test", createDialog().getTitle());
     }
 
-    protected RenameDialog createDialog() {
-        AddTestDialog addTestDialog = new AddTestDialog(projectMock);
-        addTestDialog.createCenterPanel();
-        return addTestDialog;
+    protected DialogCreator<AddTestDialog> dialogCreator() {
+        return new DialogCreator<AddTestDialog>() {
+            protected AddTestDialog create() {
+                return new AddTestDialog(projectMock);
+            }
+        };
     }
 }

@@ -1,5 +1,6 @@
 package org.intellij.openapi.testing;
 
+import com.intellij.psi.JavaDirectoryServiceMockBuilder;
 import com.intellij.psi.PsiDirectoryMockBuilder;
 import com.intellij.psi.PsiPackageMockBuilder;
 import org.codehaus.testdox.intellij.EditorApiMockBuilder;
@@ -23,5 +24,9 @@ public class MockObjectFactory {
 
     public PsiPackageMockBuilder psiPackage() {
         return new PsiPackageMockBuilder(testCase);
+    }
+
+    public JavaDirectoryServiceMockBuilder javaDirectoryService() {
+        return new JavaDirectoryServiceMockBuilder(testCase);
     }
 }

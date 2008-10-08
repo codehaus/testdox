@@ -1,7 +1,6 @@
-package org.intellij.openapi.testing.demetra;
+package org.intellij.openapi.testing.diana;
 
 import com.intellij.execution.runners.ProcessProxyFactory;
-import com.intellij.ide.structureView.StructureViewFactory;
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.Language;
 import com.intellij.lang.PsiBuilder;
@@ -9,16 +8,19 @@ import com.intellij.lexer.Lexer;
 import com.intellij.openapi.diff.DiffRequestFactory;
 import com.intellij.openapi.editor.colors.ColorKey;
 import com.intellij.openapi.editor.colors.EditorColorsScheme;
-import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.editor.highlighter.EditorHighlighter;
 import com.intellij.openapi.fileChooser.FileSystemTreeFactory;
 import com.intellij.openapi.fileTypes.SyntaxHighlighter;
+import com.intellij.openapi.module.ModuleConfigurationEditor;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.projectRoots.Sdk;
+import com.intellij.openapi.projectRoots.SdkType;
+import com.intellij.openapi.roots.ModifiableRootModel;
+import com.intellij.openapi.roots.ui.configuration.ModulesProvider;
 import com.intellij.openapi.ui.DialogWrapperPeerFactory;
 import com.intellij.openapi.vcs.FileStatus;
 import com.intellij.openapi.vcs.FileStatusFactory;
 import com.intellij.openapi.vcs.actions.VcsContextFactory;
-import com.intellij.openapi.vcs.checkin.DifferenceType;
 import com.intellij.peer.PeerFactory;
 import com.intellij.psi.search.scope.packageSet.PackageSetFactory;
 import com.intellij.ui.UIHelper;
@@ -52,31 +54,6 @@ public class MockPeerFactory extends PeerFactory {
                         return null;
                     }
                 };
-            }
-
-            public DifferenceType createDifferenceTypeInserted() {
-                return null;
-            }
-
-            public DifferenceType createDifferenceTypeDeleted() {
-                return null;
-            }
-
-            public DifferenceType createDifferenceTypeNotChanged() {
-                return null;
-            }
-
-            public DifferenceType createDifferenceTypeModified() {
-                return null;
-            }
-
-            public DifferenceType createDifferenceType(String id,
-                                                       FileStatus fileStatus,
-                                                       TextAttributesKey mainTextColorKey,
-                                                       TextAttributesKey leftTextColorKey,
-                                                       TextAttributesKey rightTextColorKey,
-                                                       Color background, Color activeBgColor) {
-                return null;
             }
 
             public FileStatus[] getAllFileStatuses() {
@@ -121,10 +98,6 @@ public class MockPeerFactory extends PeerFactory {
         return null;
     }
 
-    public StructureViewFactory getStructureViewFactory() {
-        return null;
-    }
-
     public PsiBuilder createBuilder(ASTNode tree, Language language, CharSequence sequence, Project project) {
         return null;
     }
@@ -142,6 +115,14 @@ public class MockPeerFactory extends PeerFactory {
     }
 
     public EditorHighlighter createEditorHighlighter(SyntaxHighlighter syntaxHighlighter, EditorColorsScheme colors) {
+        return null;
+    }
+
+    public Sdk createProjectJdk(String name, String version, String homePath, SdkType sdkType) {
+        return null;
+    }
+
+    public ModuleConfigurationEditor createModuleConfigurationEditor(Project project, String moduleName, ModifiableRootModel model, ModulesProvider modulesProvider) {
         return null;
     }
 }

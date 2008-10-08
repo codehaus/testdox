@@ -1,4 +1,4 @@
-package org.intellij.openapi.testing.demetra;
+package org.intellij.openapi.testing.diana;
 
 import com.intellij.openapi.util.Key;
 import com.intellij.openapi.util.UserDataHolder;

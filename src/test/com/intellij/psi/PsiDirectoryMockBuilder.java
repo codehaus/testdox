@@ -20,6 +20,7 @@ public class PsiDirectoryMockBuilder extends MockBuilder<PsiDirectory> {
         return this;
     }
 
+    @Deprecated
     public PsiDirectoryMockBuilder expectGetPackageAtLeastOnceReturns(PsiPackage value) {
         expects(atLeastOnce()).method("getPackage").will(returnValue(value));
         return this;

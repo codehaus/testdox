@@ -3,23 +3,12 @@
     <target name="check.ant.version">
         <echo taskname="ant.version" message="${ant.version}"/>
         <condition property="ant.version.ok">
-            <or>
-                <contains string="${ant.version}" substring="1.7"/>
-                <and>
-                    <contains string="${ant.version}" substring="1.6."/>
-                    <not>
-                        <contains string="${ant.version}" substring="1.6.0"/>
-                    </not>
-                    <not>
-                        <contains string="${ant.version}" substring="1.6.1"/>
-                    </not>
-                </and>
-            </or>
+            <contains string="${ant.version}" substring="1.7"/>
         </condition>
     </target>
 
     <target name="ant.version.pass" depends="check.ant.version" unless="ant.version.ok">
-        <fail>This build script requires Ant 1.6.2 or later!</fail>
+        <fail>This build script requires Ant 1.7 or later!</fail>
     </target>
 
     <target name="initialise" depends="ant.version.pass">
@@ -79,18 +68,18 @@
             </fileset>
         </path>
 
-        <path id="selena.compile.classpath">
+        <path id="diana.compile.classpath">
             <fileset dir="${idea.home}">
                 <include name="**/*.jar"/>
             </fileset>
-            <pathelement location="${classes}/selena"/>
+            <pathelement location="${classes}/diana"/>
             <path refid="compile.classpath"/>
         </path>
 
-        <path id="selena.test.classpath">
-            <pathelement location="${test.classes}/selena"/>
+        <path id="diana.test.classpath">
+            <pathelement location="${test.classes}/diana"/>
             <path refid="clover.classpath"/>
-            <path refid="selena.compile.classpath"/>
+            <path refid="diana.compile.classpath"/>
         </path>
 
         <tstamp>
@@ -108,46 +97,18 @@
         </filterset>
     </target>
 
-    <target name="check.selena.available" depends="initialise">
-        <condition property="selena.available">
+    <target name="check.diana.available" depends="initialise">
+        <condition property="diana.available">
             <and>
-                <available classname="com.intellij.openapi.components.PersistentStateComponent"
-                           classpathref="selena.compile.classpath"/>
-
-                <available classname="com.intellij.lang.Language"
-                           classpathref="selena.compile.classpath"/>
-
-                <available classname="com.intellij.lexer.LexerBase"
-                           classpathref="selena.compile.classpath"/>
-
-                <available classname="com.intellij.formatting.FormattingModelBuilder"
-                           classpathref="selena.compile.classpath"/>
-
-                <available classname="com.intellij.psi.tree.IFileElementType"
-                           classpathref="selena.compile.classpath"/>
-
-                <available classname="org.picocontainer.defaults.DefaultPicoContainer"
-                           classpathref="selena.compile.classpath"/>
-
-                <available classname="gnu.trove.TIntObjectHashMap"
-                           classpathref="selena.compile.classpath"/>
-
-                <not>
-                    <available classname="com.intellij.codeFormatting.PseudoTextBuilder"
-                               classpathref="selena.compile.classpath"/>
-                </not>
-
-                <not>
-                    <available classname="com.intellij.cvsSupport2.cvshandlers.DirectoryPruner"
-                               classpathref="selena.compile.classpath"/>
-                </not>
+                <available classname="com.intellij.psi.JavaDirectoryService" classpathref="diana.compile.classpath"/>
+                <available classname="com.intellij.psi.JavaPsiFacade" classpathref="diana.compile.classpath"/>
             </and>
         </condition>
     </target>
 
-    <target name="selena.available" depends="check.selena.available" unless="selena.available">
-        <fail>IntelliJ IDEA 7.0 is not available. Please set the idea.home system property to the path to your
-            IntelliJ IDEA 7.0 installation.
+    <target name="diana.available" depends="check.diana.available" unless="diana.available">
+        <fail>IntelliJ IDEA 8.0 is not available. Please set the idea.home system property to the path to your
+            IntelliJ IDEA 8.0 installation.
         </fail>
     </target>
 
@@ -155,41 +116,41 @@
         <delete dir="${build}" failonerror="false"/>
     </target>
 
-    <target name="compile.selena" depends="initialise, selena.available">
-        <mkdir dir="${classes}/selena"/>
-        <javac srcdir="${java.src}" destdir="${classes}/selena" debug="on">
-            <classpath refid="selena.compile.classpath"/>
+    <target name="compile.diana" depends="initialise, diana.available">
+        <mkdir dir="${classes}/diana"/>
+        <javac srcdir="${java.src}" destdir="${classes}/diana" debug="on">
+            <classpath refid="diana.compile.classpath"/>
         </javac>
-        <copy todir="${classes}/selena" overwrite="true">
+        <copy todir="${classes}/diana" overwrite="true">
             <fileset dir="${java.src}" excludes="**/*.java, ${binary.extensions}"/>
             <filterset>
-                <filter token="IDEA.SINCE-BUILD" value="7361"/>
-                <filter token="IDEA.UNTIL-BUILD" value="7999"/>
-                <filter token="PROJECT.VERSION" value="${project.version} (Selena)"/>
+                <filter token="IDEA.SINCE-BUILD" value="8823"/>
+                <filter token="IDEA.UNTIL-BUILD" value="8999"/>
+                <filter token="PROJECT.VERSION" value="${project.version} (Diana)"/>
             </filterset>
             <filterset refid="project.vars"/>
             <filterset refid="timestamp.vars"/>
         </copy>
-        <copy todir="${classes}/selena" overwrite="true">
+        <copy todir="${classes}/diana" overwrite="true">
             <fileset dir="${java.src}" includes="${binary.extensions}"/>
         </copy>
-        <copy todir="${classes}/selena" file="${license.file}" overwrite="true">
+        <copy todir="${classes}/diana" file="${license.file}" overwrite="true">
             <filterset refid="project.vars"/>
             <filterset refid="timestamp.vars"/>
         </copy>
     </target>
 
-    <target name="compile.versions" depends="compile.selena"
+    <target name="compile.versions" depends="compile.diana"
             description="Compiles the project source files"/>
 
-    <target name="compile.tests.selena" depends="compile.selena">
-        <mkdir dir="${test.classes}/selena"/>
-        <javac srcdir="${test.src}" destdir="${test.classes}/selena" debug="on">
-            <classpath refid="selena.test.classpath"/>
+    <target name="compile.tests.diana" depends="compile.diana">
+        <mkdir dir="${test.classes}/diana"/>
+        <javac srcdir="${test.src}" destdir="${test.classes}/diana" debug="on">
+            <classpath refid="diana.test.classpath"/>
         </javac>
     </target>
 
-    <target name="compile.tests" depends="compile.tests.selena"/>
+    <target name="compile.tests" depends="compile.tests.diana"/>
 
     <target name="test.reports" depends="compile.tests" description="Runs all unit tests for this project">
         <delete dir="${test.results}"/>
@@ -199,11 +160,11 @@
                haltonfailure="false" haltonerror="false" showoutput="true" printsummary="withOutAndErr"
                includeantruntime="true" newenvironment="false">
 
-            <classpath refid="selena.test.classpath"/>
+            <classpath refid="diana.test.classpath"/>
             <formatter type="brief" usefile="false"/>
 
             <batchtest todir="${test.results}">
-                <fileset dir="${test.classes}/selena">
+                <fileset dir="${test.classes}/diana">
                     <include name="**/*Test.class"/>
                     <exclude name="**/*ApiTest.class, **/*TestCase.class"/>
                 </fileset>
@@ -211,7 +172,7 @@
             </batchtest>
         </junit>
 
-        <test-idea-plugin eapName="selena"/>
+        <test-idea-plugin eapName="diana"/>
 
         <delete dir="${test.reports}"/>
         <mkdir dir="${test.reports}"/>
@@ -269,7 +230,7 @@
         <fail message="Coverage criteria not met! Check coverage reports."/>
     </target>
 
-    <target name="zip.versions" depends="compile.selena"
+    <target name="zip.versions" depends="compile.diana"
             description="Creates deployable ZIP files for each version of IntelliJ IDEA">
 
         <delete failonerror="true">
@@ -279,12 +240,12 @@
         <antcall inheritall="true" target="compile.versions"/>
 
         <mkdir dir="${dist}"/>
-        <zip-idea-plugin eapName="selena"/>
+        <zip-idea-plugin eapName="diana"/>
     </target>
 
     <target name="build" description="Runs the continuous integration build"
             depends="clean, with.clover, test.reports, coverage.reports, coverage.check, without.clover, zip.versions"
-        />
+            />
 
     <macrodef name="test-idea-plugin">
         <attribute name="eapName"/>

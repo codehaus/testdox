@@ -31,6 +31,7 @@ import static jedi.functional.Coercions.*;
 import org.codehaus.testdox.intellij.config.ConfigurationBean;
 import org.codehaus.testdox.intellij.panel.ItemSelectionDialog;
 import org.codehaus.testdox.intellij.panel.ItemSelectionUI;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,10 +44,10 @@ public abstract class IntelliJApi implements EditorApi {
     protected static final UsageInfo[] EMPTY_USAGE_INFO = new UsageInfo[0];
 
     protected static final RefactoringElementListener REFACTORING_ELEMENT_ADAPTER = new RefactoringElementListener() {
-        public void elementMoved(PsiElement psiElement) {
+        public void elementMoved(@NotNull PsiElement psiElement) {
         }
 
-        public void elementRenamed(PsiElement psiElement) {
+        public void elementRenamed(@NotNull PsiElement psiElement) {
         }
     };
 
@@ -102,7 +103,7 @@ public abstract class IntelliJApi implements EditorApi {
     }
 
     public PsiClass getPsiClass(String className) {
-        return getPsiManager().findClass(className, GlobalSearchScope.projectScope(project));
+        return javaPsiFacade().findClass(className, GlobalSearchScope.projectScope(project));
     }
 
     public PsiMethod[] getMethods(PsiClass testClass) {
@@ -114,7 +115,7 @@ public abstract class IntelliJApi implements EditorApi {
     }
 
     public boolean isInterface(String className) {
-        PsiClass psiClass = getPsiManager().findClass(className, GlobalSearchScope.allScope(project));
+        PsiClass psiClass = javaPsiFacade().findClass(className, GlobalSearchScope.allScope(project));
         return ((psiClass != null) && (psiClass.isInterface()));
     }
 
@@ -358,7 +359,7 @@ public abstract class IntelliJApi implements EditorApi {
 
     protected ItemSelectionUI createItemSelectionDialog(String[] packages) {
         return new ItemSelectionDialog(project, packages,
-            "Please select the destination package for the test", "Select package", null);
+                "Please select the destination package for the test", "Select package", null);
     }
 
     protected ItemSelectionUI createVirtualFileSelectionDialog(VirtualFile[] items) {
@@ -476,7 +477,7 @@ public abstract class IntelliJApi implements EditorApi {
                     try {
                         PsiDirectory targetPsiDirectory = getPsiManager().findDirectory(directory);
                         targetPsiDirectory = createOrMoveToCorrectDirectory(targetPsiDirectory, targetPackage);
-                        PsiClass createdClass = targetPsiDirectory.createClass(className);
+                        PsiClass createdClass = JavaDirectoryService.getInstance().createClass(targetPsiDirectory, className);
                         decorateClassWithTestTemplate(createdClass, getPsiManager());
                         jumpToPsiElement(createdClass);
                     } catch (IncorrectOperationException e) {
@@ -495,18 +496,26 @@ public abstract class IntelliJApi implements EditorApi {
             String packageElement = tokenizer.nextToken();
             PsiDirectory subdirectory = currentDirectory.findSubdirectory(packageElement);
             currentDirectory = (subdirectory != null) ? subdirectory
-                : currentDirectory.createSubdirectory(packageElement);
+                    : currentDirectory.createSubdirectory(packageElement);
         }
 
         return currentDirectory;
     }
 
     public void decorateClassWithTestTemplate(PsiClass aClass, PsiManager psiManager) throws IncorrectOperationException {
-        PsiElementFactory elementFactory = psiManager.getElementFactory();
+        PsiElementFactory elementFactory = elementFactory();
 
         PsiReferenceList extendsList = aClass.getExtendsList();
         extendsList.add(elementFactory.createKeyword("extends"));
         extendsList.add(elementFactory.createReferenceElementByFQClassName("junit.framework.TestCase", GlobalSearchScope.allScope(project)));
+    }
+
+    private PsiElementFactory elementFactory() {
+        return javaPsiFacade().getElementFactory();
+    }
+
+    private JavaPsiFacade javaPsiFacade() {
+        return JavaPsiFacade.getInstance(project);
     }
 
     private class AddMethodCommand implements Runnable {
@@ -524,7 +533,7 @@ public abstract class IntelliJApi implements EditorApi {
                 public void run() {
                     try {
                         PsiManager psiManager = getPsiManager();
-                        PsiMethod newMethod = psiManager.getElementFactory().createMethodFromText(methodSignatureAndBody, psiClass);
+                        PsiMethod newMethod = elementFactory().createMethodFromText(methodSignatureAndBody, psiClass);
 
                         PsiMethod methodAnchor = findNearestMethodAnchorInSelectedFile();
                         if (methodAnchor != null) {

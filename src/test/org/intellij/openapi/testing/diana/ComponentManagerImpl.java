@@ -1,4 +1,4 @@
-package org.intellij.openapi.testing.demetra;
+package org.intellij.openapi.testing.diana;
 
 import com.intellij.openapi.components.BaseComponent;
 import com.intellij.openapi.components.ComponentConfig;
