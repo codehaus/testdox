@@ -1,4 +1,4 @@
-package org.intellij.openapi.testing.demetra;
+package org.intellij.openapi.testing.diana;
 
 import com.intellij.ide.plugins.IdeaPluginDescriptor;
 import com.intellij.openapi.application.ApplicationListener;
@@ -13,6 +13,8 @@ import com.intellij.openapi.util.Computable;
 import com.intellij.openapi.util.Condition;
 import com.intellij.peer.PeerFactory;
 import com.intellij.psi.EmptySubstitutor;
+import com.intellij.psi.JavaDirectoryService;
+import com.intellij.psi.impl.file.JavaDirectoryServiceImpl;
 import com.intellij.util.messages.MessageBus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -28,11 +30,13 @@ public class MockApplication extends MockUserDataHolder implements org.intellij.
     private ComponentManagerImpl createComponentManager() {
         ComponentManagerImpl componentManager = new ComponentManagerImpl();
         componentManager.registerComponent(PeerFactory.class, new MockPeerFactory());
+        componentManager.registerComponent(JavaDirectoryService.class, new JavaDirectoryServiceImpl());
         componentManager.removeComponent(EmptySubstitutor.class);
         return componentManager;
     }
 
     public <T> void registerComponent(Class<T> componentClass, Object component) {
+        manager.removeComponent(componentClass);
         manager.registerComponent(componentClass, component);
     }
 
@@ -141,6 +145,7 @@ public class MockApplication extends MockUserDataHolder implements org.intellij.
     }
 
     public void invokeAndWait(Runnable runnable, @NotNull ModalityState modalityState) {
+        runnable.run();
     }
 
     public ModalityState getCurrentModalityState() {

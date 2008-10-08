@@ -4,8 +4,8 @@ import com.intellij.history.LocalHistory;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.vfs.VirtualFileEvent;
 import com.intellij.openapi.vfs.newvfs.impl.NullVirtualFile;
+import com.intellij.psi.JavaDirectoryService;
 import com.intellij.psi.PsiDirectory;
-import com.intellij.psi.PsiDirectoryMockBuilder;
 import com.intellij.psi.PsiManager;
 import com.intellij.psi.PsiPackage;
 import static jedi.functional.Coercions.array;
@@ -32,7 +32,7 @@ public class DeletionShadowingManagerTest extends TestDoxMockObjectTestCase {
 
     public void testDoesNotShadowDirectoryDeletionIfTestdoxIsNotConfiguredToDeletePackageOccurrences() {
         DeletionShadowingManager deletionShadowingManager = new DeletionShadowingManager(
-            createdEditorApi(), config, createNameResolver());
+                createdEditorApi(), config, createNameResolver());
 
         config.setDeletePackageOccurrences(false);
         deletionShadowingManager.beforeFileDeletion(createDirectoryDeletedEvent());
@@ -48,7 +48,7 @@ public class DeletionShadowingManagerTest extends TestDoxMockObjectTestCase {
 
     public void testDoesNotShadowDirectoryDeletionWhenTriggedByCancelledDeletion() {
         DeletionShadowingManager deletionShadowingManager = new DeletionShadowingManager(
-            createdEditorApi(), config, createNameResolver());
+                createdEditorApi(), config, createNameResolver());
 
         VirtualFileEvent event = createVcsDirectoryPruningEvent();
         config.setDeletePackageOccurrences(false);
@@ -58,7 +58,7 @@ public class DeletionShadowingManagerTest extends TestDoxMockObjectTestCase {
 
     public void testDoesNotShadowDirectoryDeletionWhenTriggedByLocalVcsOperation() {
         DeletionShadowingManager deletionShadowingManager = new DeletionShadowingManager(
-            createdEditorApi(), config, createNameResolver());
+                createdEditorApi(), config, createNameResolver());
 
         VirtualFileEvent event = new VirtualFileEvent(mock(LocalHistory.class).proxy(), (VirtualFile) mock(VirtualFile.class).proxy(), PACKAGE_PATH, null);
         config.setDeletePackageOccurrences(false);
@@ -67,7 +67,7 @@ public class DeletionShadowingManagerTest extends TestDoxMockObjectTestCase {
 
     public void testDoesNotShadowDirectoryDeletionWhenTriggedByCvsDirectoryPrunner() {
         DeletionShadowingManager deletionShadowingManager = new DeletionShadowingManager(
-            createdEditorApi(), config, createNameResolver());
+                createdEditorApi(), config, createNameResolver());
 
         VirtualFileEvent event = createVcsDirectoryPruningEvent();
         config.setDeletePackageOccurrences(false);
@@ -79,51 +79,56 @@ public class DeletionShadowingManagerTest extends TestDoxMockObjectTestCase {
     }
 
     public void testDoesNotShadowDirectoryDeletionIfTheDirectoryBeingDeletedDoesNotRepresentAPackage() {
+        PsiDirectory deletedDirectory = mock().psiDirectory().build();
+
         EditorApi editorApi = mock().editorApi()
-            .expectGetPsiDirectoryReturns(mock().psiDirectory()
-                .expectGetPackageAtLeastOnceReturns(null)
-                .build())
-            .build();
+                .expectGetPsiDirectoryReturns(deletedDirectory)
+                .build();
+
+        MockApplicationManager.getMockApplication().registerComponent(JavaDirectoryService.class, mock().javaDirectoryService()
+                .expectGetPackageAtLeastOnceReturns(deletedDirectory, null)
+                .build());
 
         config.setDeletePackageOccurrences(true);
         new DeletionShadowingManager(editorApi, config, createNameResolver())
-            .beforeFileDeletion(createDirectoryDeletedEvent());
+                .beforeFileDeletion(createDirectoryDeletedEvent());
     }
 
     public void testDoesNotShadowDirectoryDeletionIfTheDirectoryBeingDeletedIsTheOnlyOccurrenceOfThePackageItRepresents() {
-        PsiDirectoryMockBuilder psiDirectoryMockBuilder = mock().psiDirectory();
-        PsiDirectory deletedDirectory = psiDirectoryMockBuilder.build();
-
-        psiDirectoryMockBuilder
-            .expectGetPackageAtLeastOnceReturns(mock().psiPackage()
-                .expectGetDirectories(array(deletedDirectory))
-                .build())
-            .build();
+        PsiDirectory deletedDirectory = mock().psiDirectory().build();
 
         EditorApi editorApi = mock().editorApi()
-            .expectGetPsiDirectoryReturns(deletedDirectory)
-            .build();
+                .expectGetPsiDirectoryReturns(deletedDirectory)
+                .build();
+
+        MockApplicationManager.getMockApplication().registerComponent(JavaDirectoryService.class, mock().javaDirectoryService()
+                .expectGetPackageAtLeastOnceReturns(deletedDirectory, mock().psiPackage()
+                        .expectGetDirectories(array(deletedDirectory))
+                        .build())
+                .build());
 
         config.setDeletePackageOccurrences(true);
 
         new DeletionShadowingManager(editorApi, config, createNameResolver())
-            .beforeFileDeletion(createDirectoryDeletedEvent());
+                .beforeFileDeletion(createDirectoryDeletedEvent());
     }
 
     public void testDoesNotShadowDirectoryDeletionIfTheOtherOccurrencesOfThePackageRepresentedByTheDirectoryBeingDeletedAreFlaggedAsReadOnly() {
-        PsiDirectory deletedDirectory = mock().psiDirectory()
-            .expectGetPackageAtLeastOnceReturns(mock().psiPackage()
-                .expectGetDirectories(array(mock().psiDirectory().withWritable(false).build()))
-                .build())
-            .build();
+        PsiDirectory deletedDirectory = mock().psiDirectory().build();
 
         EditorApi editorApi = mock().editorApi()
-            .expectGetPsiDirectoryReturns(deletedDirectory)
-            .build();
+                .expectGetPsiDirectoryReturns(deletedDirectory)
+                .build();
+
+        MockApplicationManager.getMockApplication().registerComponent(JavaDirectoryService.class, mock().javaDirectoryService()
+                .expectGetPackageAtLeastOnceReturns(deletedDirectory, mock().psiPackage()
+                        .expectGetDirectories(array(mock().psiDirectory().withWritable(false).build()))
+                        .build())
+                .build());
 
         config.setDeletePackageOccurrences(true);
         new DeletionShadowingManager(editorApi, config, createNameResolver())
-            .beforeFileDeletion(createDirectoryDeletedEvent());
+                .beforeFileDeletion(createDirectoryDeletedEvent());
     }
 
     public void testAsynchronouslyDeletesOtherOccurrencesOfThePackageRepresentedByTheDirectoryBeingDeleted() {
@@ -131,32 +136,34 @@ public class DeletionShadowingManagerTest extends TestDoxMockObjectTestCase {
         mockAnotherVirtualFile.expects(once()).method("getPath").will(returnValue("src/test/com/acme"));
 
         PsiPackage psiPackage = mock().psiPackage()
-            .withQualifiedName(PACKAGE_NAME)
-            .expectGetDirectories(array(mock().psiDirectory()
-                .withWritable(true)
-                .withVirtualFile((VirtualFile) mockAnotherVirtualFile.proxy())
-                .build()))
-            .build();
+                .withQualifiedName(PACKAGE_NAME)
+                .expectGetDirectories(array(mock().psiDirectory()
+                        .withWritable(true)
+                        .withVirtualFile((VirtualFile) mockAnotherVirtualFile.proxy())
+                        .build()))
+                .build();
 
-        PsiDirectory deletedDirectory = mock().psiDirectory()
-            .expectGetPackageAtLeastOnceReturns(psiPackage)
-            .build();
+        PsiDirectory deletedDirectory = mock().psiDirectory().build();
 
         EditorApi editorApi = mock().editorApi()
-            .expectGetPsiDirectoryReturns(deletedDirectory)
-            .expectDeleteAsynchronously()
-            .build();
+                .expectGetPsiDirectoryReturns(deletedDirectory)
+                .expectDeleteAsynchronously()
+                .build();
+
+        MockApplicationManager.getMockApplication().registerComponent(JavaDirectoryService.class, mock().javaDirectoryService()
+                .expectGetPackageAtLeastOnceReturns(deletedDirectory, psiPackage)
+                .build());
 
         config.setDeletePackageOccurrences(true);
         new DeletionShadowingManager(editorApi, config, createNameResolver())
-            .beforeFileDeletion(createDirectoryDeletedEvent());
+                .beforeFileDeletion(createDirectoryDeletedEvent());
     }
 
     // Class deletion shadowing ----------------------------------------------------------------------------------------
 
     public void testDoesNotShadowClassDeletionIfTestdoxIsNotConfiguredToAutomaticallyApplyChangesToTests() {
         DeletionShadowingManager deletionShadowingManager = new DeletionShadowingManager(
-            createdEditorApi(), config, createNameResolver());
+                createdEditorApi(), config, createNameResolver());
 
         config.setAutoApplyChangesToTests(false);
         deletionShadowingManager.beforeFileDeletion(createFileDeletedEvent());
@@ -164,7 +171,7 @@ public class DeletionShadowingManagerTest extends TestDoxMockObjectTestCase {
 
     public void testDoesNotShadowClassDeletionWhenTriggedByCancelledDeletion() {
         DeletionShadowingManager deletionShadowingManager = new DeletionShadowingManager(
-            createdEditorApi(), config, createNameResolver());
+                createdEditorApi(), config, createNameResolver());
 
         VirtualFileEvent event = new VirtualFileEvent(new Object(), NullVirtualFile.INSTANCE, CLASS_NAME + ".java", null);
         config.setAutoApplyChangesToTests(true);
@@ -173,7 +180,7 @@ public class DeletionShadowingManagerTest extends TestDoxMockObjectTestCase {
 
     public void testDoesNotShadowClassDeletionWhenTriggedByLocalVcsOperation() {
         DeletionShadowingManager deletionShadowingManager = new DeletionShadowingManager(
-            createdEditorApi(), config, createNameResolver());
+                createdEditorApi(), config, createNameResolver());
 
         VirtualFileEvent event = createVcsDirectoryPruningEvent();
         config.setAutoApplyChangesToTests(true);
@@ -182,7 +189,7 @@ public class DeletionShadowingManagerTest extends TestDoxMockObjectTestCase {
 
     public void testDoesNotShadowClassDeletionWhenTriggedByCvsDirectoryPruner() {
         DeletionShadowingManager deletionShadowingManager = new DeletionShadowingManager(
-            createdEditorApi(), config, createNameResolver());
+                createdEditorApi(), config, createNameResolver());
 
         VirtualFileEvent event = createVcsDirectoryPruningEvent();
         config.setAutoApplyChangesToTests(true);
@@ -192,7 +199,7 @@ public class DeletionShadowingManagerTest extends TestDoxMockObjectTestCase {
     public void testDoesNotShadowClassDeletionIfTheFileBeingDeletedIsNotAProjectClass() {
 //        mockEditorApi.expects(once()).method("getPsiJavaFile").with(isA(VirtualFile.class));
         DeletionShadowingManager deletionShadowingManager = new DeletionShadowingManager(
-            createdEditorApi(), config, createNameResolver());
+                createdEditorApi(), config, createNameResolver());
 
 
         config.setAutoApplyChangesToTests(true);
@@ -208,7 +215,7 @@ public class DeletionShadowingManagerTest extends TestDoxMockObjectTestCase {
         mockNameResolver.expects(once()).method("isRealClass").with(eq(FULLY_QUALIFIED_TEST_CLASS_NAME)).will(returnValue(false));
 */
         DeletionShadowingManager deletionShadowingManager = new DeletionShadowingManager(
-            createdEditorApi(), config, createNameResolver());
+                createdEditorApi(), config, createNameResolver());
 
 
         config.setAutoApplyChangesToTests(true);
@@ -226,7 +233,7 @@ public class DeletionShadowingManagerTest extends TestDoxMockObjectTestCase {
         mockEditorApi.expects(once()).method("getPsiClass").with(eq(FULLY_QUALIFIED_TEST_CLASS_NAME));
 */
         DeletionShadowingManager deletionShadowingManager = new DeletionShadowingManager(
-            createdEditorApi(), config, createNameResolver());
+                createdEditorApi(), config, createNameResolver());
 
 
         config.setAutoApplyChangesToTests(true);
@@ -246,7 +253,7 @@ public class DeletionShadowingManagerTest extends TestDoxMockObjectTestCase {
 */
 
         DeletionShadowingManager deletionShadowingManager = new DeletionShadowingManager(
-            createdEditorApi(), config, createNameResolver());
+                createdEditorApi(), config, createNameResolver());
 
         config.setAutoApplyChangesToTests(true);
         deletionShadowingManager.beforeFileDeletion(createFileDeletedEvent());
@@ -254,15 +261,15 @@ public class DeletionShadowingManagerTest extends TestDoxMockObjectTestCase {
 
     private VirtualFileEvent createDirectoryDeletedEvent() {
         return real().virtualFileEvent()
-            .withRequestor(mock(PsiManager.class).proxy())
-            .withFileName(PACKAGE_PATH)
-            .withIsDirectory(true)
-            .build();
+                .withRequestor(mock(PsiManager.class).proxy())
+                .withFileName(PACKAGE_PATH)
+                .withIsDirectory(true)
+                .build();
     }
 
     private VirtualFileEvent createFileDeletedEvent() {
         return real().virtualFileEvent()
-            .withFileDeleted()
-            .build();
+                .withFileDeleted()
+                .build();
     }
 }

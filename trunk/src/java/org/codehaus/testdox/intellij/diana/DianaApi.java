@@ -1,4 +1,4 @@
-package org.codehaus.testdox.intellij.demetra;
+package org.codehaus.testdox.intellij.diana;
 
 import com.intellij.ide.util.EditSourceUtil;
 import com.intellij.openapi.application.ApplicationManager;
@@ -19,9 +19,9 @@ import org.codehaus.testdox.intellij.IntelliJApi;
 import org.codehaus.testdox.intellij.NameResolver;
 import org.codehaus.testdox.intellij.config.ConfigurationBean;
 
-public class DemetraApi extends IntelliJApi {
+public class DianaApi extends IntelliJApi {
 
-    public DemetraApi(Project project, NameResolver nameResolver, ConfigurationBean config) {
+    public DianaApi(Project project, NameResolver nameResolver, ConfigurationBean config) {
         super(project, nameResolver, config);
     }
 
@@ -44,7 +44,7 @@ public class DemetraApi extends IntelliJApi {
 
     protected boolean jumpToPsiClass(VirtualFile containtingFile, PsiClass psiClass, int offset) {
         Navigatable descriptor = (offset > 0) ? new OpenFileDescriptor(project, containtingFile, offset)
-                                              : EditSourceUtil.getDescriptor(psiClass);
+                : EditSourceUtil.getDescriptor(psiClass);
         return openInAssociatedTextEditor(descriptor);
     }
 

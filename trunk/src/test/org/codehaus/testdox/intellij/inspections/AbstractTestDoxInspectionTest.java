@@ -1,7 +1,6 @@
 package org.codehaus.testdox.intellij.inspections;
 
-import org.intellij.openapi.testing.MockApplicationManager;
-
+import com.intellij.codeInspection.BaseJavaLocalInspectionTool;
 import com.intellij.codeInspection.InspectionManager;
 import com.intellij.codeInspection.LocalInspectionTool;
 import com.intellij.codeInspection.ProblemDescriptor;
@@ -11,12 +10,8 @@ import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiField;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiMethod;
-
-import org.codehaus.testdox.intellij.EditorApi;
-import org.codehaus.testdox.intellij.Mocks;
-import org.codehaus.testdox.intellij.Stubs;
-import org.codehaus.testdox.intellij.TestDoxController;
-import org.codehaus.testdox.intellij.TestDoxProjectComponent;
+import org.codehaus.testdox.intellij.*;
+import org.intellij.openapi.testing.MockApplicationManager;
 import org.jmock.Mock;
 import org.jmock.cglib.MockObjectTestCase;
 
@@ -74,13 +69,13 @@ public class AbstractTestDoxInspectionTest extends MockObjectTestCase {
         mockTestDoxFileFactory.expects(once()).method("getTestDoxFile").with(NULL).will(returnValue(mockTestDoxClass.proxy()));
     }
 
-    protected void assertNumberOfClassRelatedProblemsFoundByInspection(LocalInspectionTool inspectionTool, int problemCount) {
+    protected void assertNumberOfClassRelatedProblemsFoundByInspection(BaseJavaLocalInspectionTool inspectionTool, int problemCount) {
         ProblemDescriptor[] problems = inspectionTool.checkClass((PsiClass) mockPsiClass.proxy(), (InspectionManager) mockInspectionManager.proxy(), true);
         assertNotNull(problems);
         assertEquals(problemCount, problems.length);
     }
 
-    protected void assertNumberOfMethodRelatedProblemsFoundByInspection(LocalInspectionTool inspectionTool, int problemCount) {
+    protected void assertNumberOfMethodRelatedProblemsFoundByInspection(BaseJavaLocalInspectionTool inspectionTool, int problemCount) {
         ProblemDescriptor[] problems = inspectionTool.checkMethod((PsiMethod) mockPsiMethod.proxy(), (InspectionManager) mockInspectionManager.proxy(), true);
         assertNotNull(problems);
         assertEquals(problemCount, problems.length);

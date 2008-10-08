@@ -1,15 +1,19 @@
 package org.intellij.openapi.testing;
 
+import com.intellij.openapi.application.ApplicationManager;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-import com.intellij.openapi.application.ApplicationManager;
-
 public class MockApplicationManager extends ApplicationManager {
 
-    private static final String DEMETRA = "org.intellij.openapi.testing.demetra.MockApplication";
+    private static final String APPLICATION_CLASS_NAME = "org.intellij.openapi.testing.diana.MockApplication";
 
     private static MockApplication applicationMock = createMockApplication();
+
+    public static void clear() {
+        ourApplication = null;
+    }
 
     public static void reset() {
         stubInternalApplication();
@@ -28,7 +32,7 @@ public class MockApplicationManager extends ApplicationManager {
 
     private static MockApplication createMockApplication() {
         try {
-            Class clazz = Class.forName(DEMETRA);
+            Class clazz = Class.forName(APPLICATION_CLASS_NAME);
             Constructor constructor = clazz.getConstructor();
             return (MockApplication) constructor.newInstance();
         } catch (NumberFormatException e) {

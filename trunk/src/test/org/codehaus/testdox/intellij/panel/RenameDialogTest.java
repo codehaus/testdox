@@ -1,12 +1,13 @@
 package org.codehaus.testdox.intellij.panel;
 
-import javax.swing.JComponent;
-import javax.swing.JTextField;
-
 import com.intellij.openapi.project.Project;
 import junitx.framework.ObjectAssert;
+import org.intellij.openapi.testing.DialogCreator;
 import org.intellij.openapi.testing.MockApplicationManager;
 import org.jmock.MockObjectTestCase;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class RenameDialogTest extends MockObjectTestCase {
 
@@ -14,8 +15,8 @@ public class RenameDialogTest extends MockObjectTestCase {
 
     protected RenameDialog dialog;
 
-    protected void setUp() {
-        MockApplicationManager.reset();
+    protected void setUp() throws Exception {
+        MockApplicationManager.clear();
         dialog = createDialog();
     }
 
@@ -61,7 +62,11 @@ public class RenameDialogTest extends MockObjectTestCase {
     public void testDisposesAndReturnsOriginalSentenceOnCancel() throws Exception {
         String sentence = "foo";
         dialog.setSentence(sentence);
-        dialog.doCancelAction();
+        EventQueue.invokeAndWait(new Runnable() {
+            public void run() {
+                dialog.doCancelAction();
+            }
+        });
         assertEquals(sentence, dialog.getSentence());
     }
 
@@ -69,13 +74,27 @@ public class RenameDialogTest extends MockObjectTestCase {
         String newName = "bar";
         dialog.setSentence("foo");
         dialog.handleRename(newName);
-        dialog.doOKAction();
+        EventQueue.invokeAndWait(new Runnable() {
+            public void run() {
+                dialog.doOKAction();
+            }
+        });
         assertEquals(newName, dialog.getSentence());
     }
 
-    protected RenameDialog createDialog() {
-        RenameDialog renameDialog = new RenameDialog(projectMock, "");
+    protected final RenameDialog createDialog() throws Exception {
+        DialogCreator<RenameDialog> dialogCreator = dialogCreator();
+        EventQueue.invokeAndWait(dialogCreator);
+        RenameDialog renameDialog = dialogCreator.getDialog();
         renameDialog.createCenterPanel();
         return renameDialog;
+    }
+
+    protected <T extends RenameDialog> DialogCreator<T> dialogCreator() {
+        return new DialogCreator<T>() {
+            protected T create() {
+                return (T) new RenameDialog(projectMock, "");
+            }
+        };
     }
 }

@@ -2,10 +2,7 @@ package org.codehaus.testdox.intellij;
 
 import com.intellij.openapi.vfs.VirtualFileAdapter;
 import com.intellij.openapi.vfs.VirtualFileEvent;
-import com.intellij.psi.PsiClass;
-import com.intellij.psi.PsiDirectory;
-import com.intellij.psi.PsiJavaFile;
-import com.intellij.psi.PsiManager;
+import com.intellij.psi.*;
 import org.codehaus.testdox.intellij.config.ConfigurationBean;
 
 import java.util.ArrayList;
@@ -43,12 +40,13 @@ class DeletionShadowingManager extends VirtualFileAdapter {
     }
 
     private void deleteOtherPackageOccurrences(PsiDirectory deletedDirectory) {
-        if ((!deleting) && (deletedDirectory != null) && (deletedDirectory.getPackage() != null)) {
+        PsiPackage deletedPackage = getPackage(deletedDirectory);
+        if (!deleting && deletedDirectory != null && deletedPackage != null) {
             PsiDirectory[] deletableDirectories = retrieveOtherDeletablePackageOccurrences(deletedDirectory);
             if (deletableDirectories.length > 0) {
-                String packageName = deletedDirectory.getPackage().getQualifiedName();
+                String packageName = deletedPackage.getQualifiedName();
                 editorApi.deleteAsynchronously(deletableDirectories, buildQuestion(packageName, deletableDirectories),
-                    "Delete Other Package Occurrences", taskCompletionMarker);
+                        "Delete Other Package Occurrences", taskCompletionMarker);
                 deleting = true;
             }
         }
@@ -56,12 +54,16 @@ class DeletionShadowingManager extends VirtualFileAdapter {
 
     private PsiDirectory[] retrieveOtherDeletablePackageOccurrences(PsiDirectory deletedDirectory) {
         List<PsiDirectory> deletablePackageOccurrences = new ArrayList<PsiDirectory>();
-        for (PsiDirectory directory : deletedDirectory.getPackage().getDirectories()) {
+        for (PsiDirectory directory : getPackage(deletedDirectory).getDirectories()) {
             if ((!directory.equals(deletedDirectory)) && (directory.isWritable())) {
                 deletablePackageOccurrences.add(directory);
             }
         }
         return deletablePackageOccurrences.toArray(PsiDirectory.EMPTY_ARRAY);
+    }
+
+    private static PsiPackage getPackage(PsiDirectory deletedDirectory) {
+        return JavaDirectoryService.getInstance().getPackage(deletedDirectory);
     }
 
     private String buildQuestion(String packageName, PsiDirectory[] deletableDirectories) {

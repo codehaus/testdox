@@ -5,7 +5,7 @@ import org.picocontainer.MutablePicoContainer;
 
 public class IntelliJApiFactory implements EditorApiFactory {
 
-    private static final String DEMETRA  = "org.codehaus.testdox.intellij.demetra.DemetraApi";
+    private static final String DIANA_API_CLASS_NAME = "org.codehaus.testdox.intellij.diana.DianaApi";
 
     private final MutablePicoContainer picoContainer;
 
@@ -41,8 +41,8 @@ public class IntelliJApiFactory implements EditorApiFactory {
     }
 
     private String getClassForIDEA(String ideaName, int buildNumber) {
-        if (ideaName.toLowerCase().matches(".*demetra.*") || buildNumber >= 5755) {
-            return DEMETRA;
+        if (ideaName.toLowerCase().matches(".*diana.*") || buildNumber >= 8823) {
+            return DIANA_API_CLASS_NAME;
         }
         throw newFactoryRuntimeException(ideaName, String.valueOf(buildNumber));
     }
