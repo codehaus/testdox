@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.List;
 
 class MockDialogWrapperPeer extends DialogWrapperPeer {
 
@@ -116,5 +117,11 @@ class MockDialogWrapperPeer extends DialogWrapperPeer {
     }
 
     public void pack() {
+    }
+
+    public void setIconImages(List<Image> image) {
+    }
+
+    public void setAppIcons() {
     }
 }

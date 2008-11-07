@@ -325,11 +325,7 @@
   <component name="ProjectDetails">
     <option name="projectName" value="TestDox" />
   </component>
-  <component name="ProjectFileVersion" converted="true">
-    <converter id="javaee-modules" />
-    <converter id="ror-modules" />
-    <converter id="SelenaRunConfToDiana" />
-  </component>
+  <component name="ProjectFileVersion" converted="true" />
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Plugin.iml" filepath="$PROJECT_DIR$/Plugin.iml" />
@@ -355,6 +351,23 @@
     <imports />
   </component>
   <component name="SvnBranchConfigurationManager">
+    <option name="myConfigurationMap">
+      <map>
+        <entry key="$PROJECT_DIR$">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="branchUrls">
+                <list>
+                  <option value="https://svn.codehaus.org/testdox/branches" />
+                  <option value="https://svn.codehaus.org/testdox/tags" />
+                </list>
+              </option>
+              <option name="trunkUrl" value="https://svn.codehaus.org/testdox/trunk" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="myVersion" value="124" />
   </component>
   <component name="TeamCityRootDirectoryHolder">
