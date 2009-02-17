@@ -125,7 +125,7 @@
             <fileset dir="${java.src}" excludes="**/*.java, ${binary.extensions}"/>
             <filterset>
                 <filter token="IDEA.SINCE-BUILD" value="8823"/>
-                <filter token="IDEA.UNTIL-BUILD" value="9500"/>
+                <filter token="IDEA.UNTIL-BUILD" value="9999"/>
                 <filter token="PROJECT.VERSION" value="${project.version} (Diana)"/>
             </filterset>
             <filterset refid="project.vars"/>

@@ -22,6 +22,9 @@ public class MockIntentionManager extends IntentionManager {
     public void registerIntentionAndMetaData(IntentionAction action, String[] category, String descriptionDirectoryName) {
     }
 
+    public void registerIntentionAndMetaData(IntentionAction action, String[] category, String description, String exampleFileExtension, String[] exampleTextBefore, String[] exampleTextAfter) {
+    }
+
     public java.util.List<IntentionAction> getStandardIntentionOptions(HighlightDisplayKey displayKey, PsiElement context) {
         return null;
     }
