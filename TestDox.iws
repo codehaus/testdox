@@ -40,12 +40,13 @@
     <option name="USER" value="" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" readonly="true" name="Default" comment="">
+    <list default="true" readonly="true" name="Default" comment="TESTDOX-15: Added support for IDEA 8.0">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TestDox.iws" afterPath="$PROJECT_DIR$/TestDox.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/MockIntentionManager.java" afterPath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/MockIntentionManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project.properties" afterPath="$PROJECT_DIR$/project.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.xml" afterPath="$PROJECT_DIR$/build.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Plugin.iml" afterPath="$PROJECT_DIR$/Plugin.iml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/buildfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/diana/MockDialogWrapperPeer.java" afterPath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/diana/MockDialogWrapperPeer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/diana/MockApplication.java" afterPath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/diana/MockApplication.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TestDox.ipr" afterPath="$PROJECT_DIR$/TestDox.ipr" />
     </list>
   </component>
@@ -95,7 +96,6 @@
     <splitter proportion="0.5" />
   </component>
   <component name="CompilerWorkspaceConfiguration">
-    <option name="COMPILE_IN_BACKGROUND" value="true" />
     <option name="COMPILE_DEPENDENT_FILES" value="true" />
     <option name="CLEAR_OUTPUT_DIRECTORY" value="true" />
   </component>
@@ -172,19 +172,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
       <breakpoint url="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/DeletionShadowingManager.java" line="78" class="org.codehaus.testdox.intellij.DeletionShadowingManager" package="org.codehaus.testdox.intellij">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="jar://$APPLICATION_HOME_DIR$/lib/src/src_openapi.zip!/com/intellij/openapi/ui/DialogWrapper.java" line="125" class="com.intellij.openapi.ui.DialogWrapper" package="com.intellij.openapi.ui">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -302,32 +289,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MockDialogWrapperPeer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/org/intellij/openapi/testing/diana/MockDialogWrapperPeer.java">
+      <file leaf-file-name="build.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/build.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="25" selection-start="481" selection-end="481" vertical-scroll-proportion="0.0">
-              <folding>
-                <marker date="1226036344000" expanded="false" signature="52:251" placeholder="..." />
-                <marker date="1226036344000" expanded="true" signature="889:924" placeholder="{...}" />
-                <marker date="1226036344000" expanded="true" signature="955:983" placeholder="{...}" />
-                <marker date="1226036344000" expanded="true" signature="1015:1043" placeholder="{...}" />
-                <marker date="1226036344000" expanded="true" signature="1080:1112" placeholder="{...}" />
-                <marker date="1226036344000" expanded="true" signature="1145:1173" placeholder="{...}" />
-                <marker date="1226036344000" expanded="true" signature="1204:1233" placeholder="{...}" />
-                <marker date="1226036344000" expanded="true" signature="1275:1303" placeholder="{...}" />
-                <marker date="1226036344000" expanded="true" signature="1436:1465" placeholder="{...}" />
-                <marker date="1226036344000" expanded="true" signature="1498:1527" placeholder="{...}" />
-                <marker date="1226036344000" expanded="true" signature="1624:1659" placeholder="{...}" />
-                <marker date="1226036344000" expanded="true" signature="1788:1816" placeholder="{...}" />
-              </folding>
+            <state line="141" column="0" selection-start="6129" selection-end="6129" vertical-scroll-proportion="0.42773208">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/build.xml">
+      <file leaf-file-name="project.properties" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/project.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="98" column="0" selection-start="4140" selection-end="4140" vertical-scroll-proportion="0.6614173">
+            <state line="6" column="0" selection-start="251" selection-end="251" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MockIntentionManager.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/org/intellij/openapi/testing/MockIntentionManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="21" column="33" selection-start="672" selection-end="672" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MockApplication.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/org/intellij/openapi/testing/diana/MockApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="206" column="0" selection-start="5618" selection-end="5618" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -658,18 +650,21 @@
     <property name="cvs_file_history_flatOrder2" value="2" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth4" value="912" />
+    <property name="options.lastSelected" value="preferences.pluginManager" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder4" value="4" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder2" value="2" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder3" value="3" />
     <property name="MemberChooser.sorted" value="false" />
+    <property name="options.searchVisible" value="true" />
     <property name="RunManagerConfig.compileBeforeRunning" value="true" />
     <property name="cvs_file_history_flatOrder0" value="0" />
     <property name="cvs_file_history_treeOrder3" value="3" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder3" value="3" />
     <property name="last_opened_file_path" value="C:\Documents and Settings\Franck\My Documents\dev\jakarta-tomcat-5.0.28\webapps\tmate\.config" />
     <property name="cvs_file_history_treeWidth3" value="433" />
-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder1" value="1" />
+    <property name="dynamic.classpath" value="false" />
     <property name="cvs_file_history_flatWidth3" value="433" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder1" value="1" />
     <property name="ExternalAnnotations" value="true" />
     <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
@@ -791,6 +786,17 @@
       <option name="BASE_DIRECTORY_NAME" value="" />
       <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
     </configuration>
+    <configuration default="true" type="RubyRunConfigurationType" factoryName="Ruby script">
+      <module name="" />
+      <RUBY_RUN_CONFIG NAME="RUBY_ARGS" VALUE="-e STDOUT.sync=true;STDERR.sync=true;load($0=ARGV.shift)" />
+      <RUBY_RUN_CONFIG NAME="WORK DIR" VALUE="" />
+      <RUBY_RUN_CONFIG NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RUBY_RUN_CONFIG NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RUBY_RUN_CONFIG NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="" />
+      <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="" />
+    </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
       <module name="" />
       <option name="MAIN_CLASS_NAME" />
@@ -851,6 +857,22 @@
         <option name="Make" value="true" />
       </method>
     </configuration>
+    <configuration default="true" type="TestUnitRunConfigurationType" factoryName="Ruby test">
+      <module name="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e STDOUT.sync=true;STDERR.sync=true;load($0=ARGV.shift)" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="false" />
+      <envs />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_CLASS_NAME" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="INHERITANCE_CHECK_DISABLED" VALUE="false" />
+    </configuration>
     <configuration default="false" name="All Tests" type="JUnit" factoryName="JUnit" enabled="false" merge="false" runner="emma">
       <module name="Plugin" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -889,33 +911,6 @@
       <item index="0" class="java.lang.String" itemvalue="JUnit.ItemSelectionDialogTest" />
       <item index="1" class="java.lang.String" itemvalue="JUnit.All Tests" />
     </list>
-    <configuration default="true" type="RubyRunConfigurationType" factoryName="Ruby script">
-      <module name="" />
-      <RUBY_RUN_CONFIG NAME="RUBY_ARGS" VALUE="-e STDOUT.sync=true;STDERR.sync=true;load($0=ARGV.shift)" />
-      <RUBY_RUN_CONFIG NAME="WORK DIR" VALUE="" />
-      <RUBY_RUN_CONFIG NAME="SHOULD_USE_SDK" VALUE="false" />
-      <RUBY_RUN_CONFIG NAME="ALTERN_SDK_NAME" VALUE="" />
-      <RUBY_RUN_CONFIG NAME="myPassParentEnvs" VALUE="true" />
-      <envs />
-      <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="" />
-      <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="" />
-    </configuration>
-    <configuration default="true" type="TestUnitRunConfigurationType" factoryName="Ruby test">
-      <module name="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e STDOUT.sync=true;STDERR.sync=true;load($0=ARGV.shift)" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="false" />
-      <envs />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_CLASS_NAME" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="INHERITANCE_CHECK_DISABLED" VALUE="false" />
-    </configuration>
     <configuration default="true" type="WebLogic Instance" factoryName="Local">
       <option name="WORKING_DIRECTORY" />
       <option name="HOST" value="localhost" />
@@ -1111,6 +1106,7 @@
     <option name="MERGE_DRY_RUN" value="false" />
     <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
     <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
     <configuration useDefault="true">$PROJECT_DIR$/../../../.subversion</configuration>
     <remoteStatus />
     <upgradeMode>none</upgradeMode>
@@ -1137,39 +1133,38 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="143" y="22" width="1376" height="992" extended-state="0" />
+    <frame x="149" y="45" width="1376" height="992" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Dataflow to this" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" />
+      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22230595" sideWeight="0.6342857" order="16" side_tool="false" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33142856" sideWeight="0.5" order="36" side_tool="false" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28485304" sideWeight="0.63474387" order="0" side_tool="false" x="436" y="80" width="404" height="634" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28937453" sideWeight="0.66703784" order="0" side_tool="false" x="436" y="80" width="404" height="634" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44" sideWeight="0.5" order="1" side_tool="false" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2469537" sideWeight="0.5" order="1" side_tool="false" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35746104" sideWeight="0.5" order="35" side_tool="false" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35746104" sideWeight="0.5" order="35" side_tool="false" />
+      <window_info id="TestDox" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27728286" sideWeight="0.5" order="32" side_tool="false" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="30" side_tool="false" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15975885" sideWeight="0.63474387" order="0" side_tool="false" x="727" y="80" width="206" height="837" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24189901" sideWeight="0.5" order="3" side_tool="false" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15975885" sideWeight="0.7149221" order="0" side_tool="false" x="727" y="80" width="206" height="837" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32516703" sideWeight="0.5" order="18" side_tool="false" />
-      <window_info id="Buildr" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14770158" sideWeight="0.6628571" order="1" side_tool="false" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32739422" sideWeight="0.5" order="2" side_tool="false" />
-      <window_info id="Buildr Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32850778" sideWeight="0.5" order="37" side_tool="false" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39869812" sideWeight="0.5" order="2" side_tool="false" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.48457143" sideWeight="0.5" order="4" side_tool="false" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="19" side_tool="false" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24498886" sideWeight="0.5" order="31" side_tool="false" />
-      <window_info id="Colour Chooser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
+      <window_info id="Colour Chooser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="IG Telemetry" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="20" side_tool="false" />
       <window_info id="TMate - Local Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" />
       <window_info id="Scratchpad" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22607723" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="RDoc" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="34" side_tool="false" />
-      <window_info id="TestDox" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27728286" sideWeight="0.5" order="32" side_tool="false" />
       <window_info id="IdeaSpring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="15" side_tool="false" />
       <window_info id="ScratchPad" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="System Properties" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297414" sideWeight="0.5" order="9" side_tool="false" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24189901" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="IntelliJad Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329653" sideWeight="0.5" order="11" side_tool="false" />
       <window_info id="Dilbert" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="16" side_tool="false" />
       <window_info id="IDEtalk History" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="21" side_tool="false" />
@@ -1185,6 +1180,7 @@
       <window_info id="Profile" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="29" side_tool="false" />
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" />
       <window_info id="IDE talk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" />
+      <window_info id="Buildr Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32850778" sideWeight="0.5" order="37" side_tool="false" />
       <window_info id="Dynamic properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32949308" sideWeight="0.5" order="4" side_tool="false" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24939074" sideWeight="0.5" order="5" side_tool="false" />
       <window_info id="UI Defaults" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296027" sideWeight="0.5" order="12" side_tool="false" />
@@ -1201,6 +1197,7 @@
       <window_info id="Favorites" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" />
       <window_info id="Tapestry Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="15" side_tool="false" />
       <window_info id="Hibero" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="24" side_tool="false" />
+      <window_info id="Buildr" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14770158" sideWeight="0.6628571" order="1" side_tool="false" />
       <window_info id="TCPMON" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="Sudoku" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="CVS" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="27" side_tool="false" />
@@ -1220,7 +1217,7 @@
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="PERFORM_UPDATE_IN_BACKGROUND" value="true" />
     <option name="PERFORM_COMMIT_IN_BACKGROUND" value="true" />
@@ -1228,7 +1225,7 @@
     <option name="PERFORM_CHECKOUT_IN_BACKGROUND" value="true" />
     <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="true" />
-    <option name="LAST_COMMIT_MESSAGE" value="TESTDOX-15: Added support for IDEA 8.0 (build #8823 or greater)" />
+    <option name="LAST_COMMIT_MESSAGE" value="TESTDOX-15: Added support for IDEA 8.0" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
@@ -1255,6 +1252,7 @@
     <MESSAGE value="TESTDOX-17 / TESTDOX-18: Recompiled using JDK 1.5 for IDEA 7.0.4 on OS X" />
     <MESSAGE value="Housekeeping: Updated IDEA 7.0.4 project/workspace files" />
     <MESSAGE value="TESTDOX-15: Added support for IDEA 8.0 (build #8823 or greater)" />
+    <MESSAGE value="TESTDOX-15: Added support for IDEA 8.0" />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -1342,160 +1340,149 @@
     <option name="myLastEditedConfigurable" value="IDE Profiles" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/Stubs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="824" selection-end="824" vertical-scroll-proportion="0.2364532">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.number">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="82" selection-end="82" vertical-scroll-proportion="0.065099455">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/TestDoxProjectComponentTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="22" selection-start="3158" selection-end="3158" vertical-scroll-proportion="0.49394348">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/buildfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="43" selection-end="43" vertical-scroll-proportion="0.04245283" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/panel/AddTestDialogTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="13" selection-start="111" selection-end="111" vertical-scroll-proportion="0.057692308">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/panel/TestDoxToolWindowPanelTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="13" selection-start="516" selection-end="516" vertical-scroll-proportion="0.05875153">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/IntelliJApiFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="13" selection-start="158" selection-end="158" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/NameResolver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="316" selection-end="316" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/PackageManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="13" selection-start="53" selection-end="53" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/TestClass.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="13" selection-start="205" selection-end="205" vertical-scroll-proportion="0.0">
+        <state line="43" column="18" selection-start="1327" selection-end="1327" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/TestInterface.java">
+    <entry file="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/panel/TestDoxToolWindowPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="0" selection-start="687" selection-end="687" vertical-scroll-proportion="0.0">
+        <state line="141" column="33" selection-start="5217" selection-end="5217" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/ClassShadowingManagerTest.java">
+    <entry file="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/actions/RenameTestAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="5" selection-start="3797" selection-end="3797" vertical-scroll-proportion="0.0">
+        <state line="24" column="26" selection-start="849" selection-end="849" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/inspections/AbstractTestDoxInspectionTest.java">
+    <entry file="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/actions/BaseTestMethodIntentionAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="13" selection-start="698" selection-end="698" vertical-scroll-proportion="0.0">
+        <state line="24" column="12" selection-start="1024" selection-end="1024" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/actions/ActivateTestDoxPanelActionTest.java">
+    <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/actions/BaseTestMethodIntentionActionTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="13" selection-start="61" selection-end="61" vertical-scroll-proportion="0.0">
+        <state line="51" column="40" selection-start="2448" selection-end="2448" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/TestElement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="9" selection-start="394" selection-end="394" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/TestDoxControllerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="155" column="27" selection-start="5903" selection-end="5903" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/IntelliJApi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="630" column="33" selection-start="25865" selection-end="25865" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/src/src_openapi.zip!/com/intellij/openapi/command/CommandProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="23" selection-start="1329" selection-end="1329" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/src/src_openapi.zip!/com/intellij/refactoring/MoveClassesOrPackagesRefactoring.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="66" selection-start="786" selection-end="786" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/src/src_openapi.zip!/com/intellij/refactoring/Refactoring.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="97" column="7" selection-start="3447" selection-end="3447" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/idea.jar!/com/intellij/refactoring/openapi/impl/RenameRefactoringImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="178" selection-start="340" selection-end="340" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/src/src_openapi.zip!/com/intellij/refactoring/RenameRefactoring.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="57" selection-start="804" selection-end="804" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/src/src_openapi.zip!/com/intellij/refactoring/RefactoringFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="32" selection-start="809" selection-end="827" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/panel/RenameDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="11" selection-start="196" selection-end="196" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/org/intellij/openapi/testing/MockIntentionManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="33" selection-start="672" selection-end="672" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/diana/DianaApi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="0" selection-start="1211" selection-end="1211" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/TestClassTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="13" selection-start="403" selection-end="403" vertical-scroll-proportion="0.0">
+        <state line="53" column="0" selection-start="2295" selection-end="2295" vertical-scroll-proportion="0.17368421">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/PackageManagerTest.java">
+    <entry file="file://$PROJECT_DIR$/src/test/org/intellij/openapi/testing/diana/MockApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="13" selection-start="87" selection-end="87" vertical-scroll-proportion="0.0">
+        <state line="206" column="0" selection-start="5618" selection-end="5618" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/IntelliJApiFactoryTest.java">
+    <entry file="file://$PROJECT_DIR$/project.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="13" selection-start="489" selection-end="489" vertical-scroll-proportion="0.0">
+        <state line="6" column="0" selection-start="251" selection-end="251" vertical-scroll-proportion="0.0">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/actions/ActionEventsNullsTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="65" selection-start="943" selection-end="943" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/inspectionDescriptions/EmptyTestMethod.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="444" selection-end="444" vertical-scroll-proportion="0.2418136">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/org/intellij/openapi/testing/diana/MockDialogWrapperPeer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="25" selection-start="481" selection-end="481" vertical-scroll-proportion="0.0">
-          <folding>
-            <marker date="1226036344000" expanded="false" signature="52:251" placeholder="..." />
-            <marker date="1226036344000" expanded="true" signature="889:924" placeholder="{...}" />
-            <marker date="1226036344000" expanded="true" signature="955:983" placeholder="{...}" />
-            <marker date="1226036344000" expanded="true" signature="1015:1043" placeholder="{...}" />
-            <marker date="1226036344000" expanded="true" signature="1080:1112" placeholder="{...}" />
-            <marker date="1226036344000" expanded="true" signature="1145:1173" placeholder="{...}" />
-            <marker date="1226036344000" expanded="true" signature="1204:1233" placeholder="{...}" />
-            <marker date="1226036344000" expanded="true" signature="1275:1303" placeholder="{...}" />
-            <marker date="1226036344000" expanded="true" signature="1436:1465" placeholder="{...}" />
-            <marker date="1226036344000" expanded="true" signature="1498:1527" placeholder="{...}" />
-            <marker date="1226036344000" expanded="true" signature="1624:1659" placeholder="{...}" />
-            <marker date="1226036344000" expanded="true" signature="1788:1816" placeholder="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="0" selection-start="4140" selection-end="4140" vertical-scroll-proportion="0.6614173">
+        <state line="141" column="0" selection-start="6129" selection-end="6129" vertical-scroll-proportion="0.42773208">
           <folding />
         </state>
       </provider>
@@ -1547,6 +1534,15 @@
   <component name="masterDetails">
     <option name="states">
       <map>
+        <entry key="Copyright.UI">
+          <value>
+            <UIState>
+              <option name="proportions">
+                <SplitterProportionsDataImpl />
+              </option>
+            </UIState>
+          </value>
+        </entry>
         <entry key="Errors.UI">
           <value>
             <UIState>
@@ -1568,6 +1564,7 @@
                   </option>
                 </SplitterProportionsDataImpl>
               </option>
+              <option name="lastEditedConfigurable" value="IntelliJ IDEA" />
               <option name="order">
                 <list>
                   <option value="IntelliJ IDEA" />
@@ -1580,6 +1577,15 @@
     </option>
     <option name="myStates">
       <map>
+        <entry key="Copyright.UI">
+          <value>
+            <UIState>
+              <option name="proportions">
+                <SplitterProportionsDataImpl />
+              </option>
+            </UIState>
+          </value>
+        </entry>
         <entry key="Errors.UI">
           <value>
             <UIState>
@@ -1601,6 +1607,7 @@
                   </option>
                 </SplitterProportionsDataImpl>
               </option>
+              <option name="lastEditedConfigurable" value="IntelliJ IDEA" />
               <option name="order">
                 <list>
                   <option value="IntelliJ IDEA" />
