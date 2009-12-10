@@ -102,7 +102,7 @@ public class TestDoxModel extends DefaultTableModel {
     }
 
     private void prependTestClassAndNotify(TestDoxFile file) {
-        TestClass testClass = file.getTestClass();
+        TestElement testClass = file.getTestClass();
         definitionOrderData.add(0, testClass);
         alphaOrderData.add(0, testClass);
         fireDataChange();

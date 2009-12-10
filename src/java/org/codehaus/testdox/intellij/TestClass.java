@@ -20,7 +20,7 @@ public class TestClass extends AbstractTestElement {
         this.nameResolver = resolver;
     }
 
-    public String getDisplayString() {
+    public String displayString() {
         return new StringBuffer("<b>").append(nameResolver.getRealClassNameForDisplay(className)).append(":</b>").toString();
     }
 
@@ -32,7 +32,7 @@ public class TestClass extends AbstractTestElement {
         return editorApi.jumpToPsiClass(psiClass);
     }
 
-    public Icon getIcon() {
+    public Icon icon() {
         return (psiClass != null) ? IconHelper.getIcon(IconHelper.CLASS_ICON)
                                   : IconHelper.getLockedIcon(IconHelper.CLASS_ICON);
     }
@@ -50,21 +50,18 @@ public class TestClass extends AbstractTestElement {
     }
 
     public boolean isTestClass() {
-        if (psiClass == null) {
-            return false;
-        }
-        return nameResolver.isTestClass(psiClass.getName());
+        return psiClass != null && nameResolver.isTestClass(psiClass.getName());
     }
 
-    public int compareTo(Object object) {
+    public int compareTo(TestElement object) {
         if (object instanceof TestClass) {
-            return getDisplayString().compareTo(((TestClass) object).getDisplayString());
+            return displayString().compareTo(object.displayString());
         }
         return 1;
     }
 
     public boolean equals(Object object) {
-        return ((object instanceof TestClass) && (compareTo(object) == 0));
+        return ((object instanceof TestClass) && (compareTo((TestElement) object) == 0));
     }
 
     private PsiClass getTestedClass() {

@@ -253,7 +253,7 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
         mockTestDoxFileFactory.expects(once()).method("getTestDoxFile").withAnyArguments().will(returnValue(mockTestDoxFile.proxy()));
         mockTestDoxFile.expects(once()).method("getFile");
         mockEditorApi.expects(once()).method("getCurrentTestMethod").with(eq(mockPsiIdentifier.proxy()), isA(SentenceManager.class), NULL).will(returnValue(mockTestMethod.proxy()));
-        mockTestMethod.expects(once()).method("getDisplayString").will(returnValue("does something useful"));
+        mockTestMethod.expects(once()).method("displayString").will(returnValue("does something useful"));
 
         mockRenameDialog.expects(once()).method("show");
         mockRenameDialog.expects(once()).method("isOK").will(returnValue(false));

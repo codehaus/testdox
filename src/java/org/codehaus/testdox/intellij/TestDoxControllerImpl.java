@@ -150,7 +150,7 @@ public class TestDoxControllerImpl implements TestDoxController {
 
     public void startRename(TestMethod testMethod) {
         if (testMethod != null) {
-            RenameUI renameDialog = createRenameDialog(testMethod.getDisplayString());
+            RenameUI renameDialog = createRenameDialog(testMethod.displayString());
             renameDialog.show();
             if (renameDialog.isOK()) {
                 editorApi.rename(testMethod.getPsiElement(), sentenceManager.buildMethodName(renameDialog.getSentence()));

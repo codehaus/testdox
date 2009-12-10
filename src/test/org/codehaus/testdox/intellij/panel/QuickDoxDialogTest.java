@@ -10,7 +10,7 @@ public class QuickDoxDialogTest extends MockObjectTestCase {
 
     public void testIsOnlyVisibleWhenExplicitlyShown() {
         Mock mockTestClass = Mocks.createAndRegisterTestClassMock(this);
-        mockTestClass.expects(once()).method("getDisplayString").will(returnValue("FooClass"));
+        mockTestClass.expects(once()).method("displayString").will(returnValue("FooClass"));
 
         Mock mockEditorApi = mock(EditorApi.class);
         mockEditorApi.expects(exactly(2)).method("activateSelectedTextEditor");

@@ -60,13 +60,13 @@ public class TestDoxModelTest extends MockObjectTestCase {
 
     public void testPopulatesDoxListAndReportsHasDoxIfDoxSet() {
         TestMethod methodMock = Mocks.createTestMethod("blarg");
-        mockTestClass.expects(once()).method("getDisplayString").will(returnValue("foo"));
+        mockTestClass.expects(once()).method("displayString").will(returnValue("foo"));
         createTestDoxClass(methodMock).updateModel(model);
 
         assertTrue(model.hasDox());
         assertEquals(2, model.getRowCount());
-        assertEquals("foo", ((TestElement) model.getValueAt(0, 1)).getDisplayString());
-        assertEquals(methodMock.getDisplayString(), ((TestElement) model.getValueAt(1, 1)).getDisplayString());
+        assertEquals("foo", ((TestElement) model.getValueAt(0, 1)).displayString());
+        assertEquals(methodMock.displayString(), ((TestElement) model.getValueAt(1, 1)).displayString());
     }
 
     public void testClearsPreviousDoxListWhenNoDoxSet() {
@@ -99,12 +99,12 @@ public class TestDoxModelTest extends MockObjectTestCase {
     public void testCanSortEntriesAlphabetically() {
         createTestDoxClass(TEST_METHODS).updateModel(model);
 
-        mockTestClass.expects(once()).method("getDisplayString").will(returnValue("foo"));
+        mockTestClass.expects(once()).method("displayString").will(returnValue("foo"));
 
         model.sortInAlphabeticalOrder();
 
         assertOrder(
-            array("foo", TEST_METHODS[0].getDisplayString(), TEST_METHODS[2].getDisplayString(), TEST_METHODS[1].getDisplayString()),
+            array("foo", TEST_METHODS[0].displayString(), TEST_METHODS[2].displayString(), TEST_METHODS[1].displayString()),
             model
         );
     }
@@ -112,13 +112,13 @@ public class TestDoxModelTest extends MockObjectTestCase {
     public void testCanRevertSortToDefinitionOrderFromAlphabeticalOrder() {
         createTestDoxClass(TEST_METHODS).updateModel(model);
 
-        mockTestClass.expects(once()).method("getDisplayString").will(returnValue("foo"));
+        mockTestClass.expects(once()).method("displayString").will(returnValue("foo"));
 
         model.sortInAlphabeticalOrder();
         model.sortInDefinitionOrder();
 
         assertOrder(
-            array("foo", TEST_METHODS[0].getDisplayString(), TEST_METHODS[1].getDisplayString(), TEST_METHODS[2].getDisplayString()),
+            array("foo", TEST_METHODS[0].displayString(), TEST_METHODS[1].displayString(), TEST_METHODS[2].displayString()),
             model
         );
     }
@@ -130,10 +130,10 @@ public class TestDoxModelTest extends MockObjectTestCase {
         TestDoxModel testDoxModel = new TestDoxModel(config);
         createTestDoxClass(TEST_METHODS).updateModel(testDoxModel);
 
-        mockTestClass.expects(once()).method("getDisplayString").will(returnValue("foo"));
+        mockTestClass.expects(once()).method("displayString").will(returnValue("foo"));
 
         assertOrder(
-            array("foo", TEST_METHODS[0].getDisplayString(), TEST_METHODS[2].getDisplayString(), TEST_METHODS[1].getDisplayString()),
+            array("foo", TEST_METHODS[0].displayString(), TEST_METHODS[2].displayString(), TEST_METHODS[1].displayString()),
             testDoxModel
         );
     }
@@ -149,7 +149,7 @@ public class TestDoxModelTest extends MockObjectTestCase {
         assertEquals(values.length, model.getRowCount());
         for (int i = 0; i < values.length; i++) {
             TestElement testElement = (TestElement) model.getValueAt(i, 1);
-            assertEquals(values[i], testElement.getDisplayString());
+            assertEquals(values[i], testElement.displayString());
         }
     }
 

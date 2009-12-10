@@ -106,7 +106,7 @@ public class QuickDoxDialog implements TableModelListener, PropertyChangeListene
 
     private String createHTML(TestDoxModel model) {
         StringBuffer html = new StringBuffer("<html><body bgcolor=\"" + TOOLTIP_YELLOW_WEB + "\">");
-        html.append(((TestElement) model.getValueAt(0, 0)).getDisplayString());
+        html.append(((TestElement) model.getValueAt(0, 0)).displayString());
         if (model.getRowCount() > 1) {
             for (int i = 1; i < model.getRowCount(); i++) {
                 renderTestElement(html, (TestElement) model.getValueAt(i, 0));
@@ -121,7 +121,7 @@ public class QuickDoxDialog implements TableModelListener, PropertyChangeListene
         if (testElement instanceof TestMethod) {
             html.append("&nbsp;&#10004;&nbsp;");
         }
-        html.append(testElement.getDisplayString());
+        html.append(testElement.displayString());
     }
 
     private class QuickDoxWindow extends JWindow {

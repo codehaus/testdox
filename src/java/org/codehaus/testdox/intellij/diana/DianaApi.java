@@ -7,6 +7,7 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.pom.Navigatable;
 import com.intellij.psi.PsiClass;
+import com.intellij.psi.PsiDirectory;
 import com.intellij.psi.PsiElement;
 import com.intellij.refactoring.MoveDestination;
 import com.intellij.refactoring.PackageWrapper;
@@ -57,21 +58,19 @@ public class DianaApi extends IntelliJApi {
         return false;
     }
 
-    protected MoveClassCommand createMoveClassCommand(PsiClass psiClass, String destinationPackageName) {
-        return new DemetraMoveClassCommand(psiClass, destinationPackageName);
+    protected MoveClassCommand createMoveClassCommand(PsiClass psiClass, PsiDirectory destinationPackage) {
+        return new DemetraMoveClassCommand(psiClass, destinationPackage);
     }
 
     protected class DemetraMoveClassCommand extends MoveClassCommand {
 
-        public DemetraMoveClassCommand(PsiClass psiClass, String destinationPackageName) {
-            super(psiClass, destinationPackageName);
+        public DemetraMoveClassCommand(PsiClass psiClass, PsiDirectory destinationPackage) {
+            super(psiClass, destinationPackage);
         }
 
         protected void move() {
             try {
-                PackageWrapper packageWrapper = new PackageWrapper(getPsiManager(), destinationPackageName);
-                MoveDestination moveDestination = new AutocreatingSingleSourceRootMoveDestination(packageWrapper, findSourceFolder());
-                MoveClassesOrPackagesUtil.doMoveClass(psiClass, moveDestination);
+                MoveClassesOrPackagesUtil.doMoveClass(psiClass, destinationPackage);
             } catch (IncorrectOperationException e) {
                 LOGGER.error(e);
                 showErrorMessage("Could not add method: " + e.getMessage(), "Warning");

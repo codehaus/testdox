@@ -39,7 +39,7 @@ public class TestClassTest extends MockObjectTestCase {
         TestClass testClass = new TestClass(className, psiClassMock, editorApiMock, nameResolverMock);
         mockNameResolver.expects(once()).method("getRealClassNameForDisplay").with(eq(className)).will(returnValue(realClassName));
 
-        assertEquals("<b>" + realClassName + ":</b>", testClass.getDisplayString());
+        assertEquals("<b>" + realClassName + ":</b>", testClass.displayString());
     }
 
     public void testShowsRealClassNameWithColonSuffixAsDisplayStringForAnInterface() throws Exception {
@@ -64,12 +64,12 @@ public class TestClassTest extends MockObjectTestCase {
 
     public void testReturnsAClassIconIfTheUnderlyingClassBelongsToTheCurrentProject() {
         TestClass testClass = new TestClass("", psiClassMock, editorApiMock, null);
-        assertSame("class icon for project class", IconHelper.getIcon(IconHelper.CLASS_ICON), testClass.getIcon());
+        assertSame("class icon for project class", IconHelper.getIcon(IconHelper.CLASS_ICON), testClass.icon());
     }
 
     public void testReturnsALockedClassIconIfTheUnderlyingClassDoesNotBelongToTheCurrentProject() {
         TestClass testClass = new TestClass("", null, editorApiMock, null);
-        assertSame("locked class icon for non-project class", IconHelper.getLockedIcon(IconHelper.CLASS_ICON), testClass.getIcon());
+        assertSame("locked class icon for non-project class", IconHelper.getLockedIcon(IconHelper.CLASS_ICON), testClass.icon());
     }
 
     public void testReturnsAnInterfaceIconIfTheUnderlyingInterfaceBelongsToTheCurrentProject() {
@@ -100,7 +100,7 @@ public class TestClassTest extends MockObjectTestCase {
         TestClass testClass = new TestClass(className, null, editorApiMock, nameResolverMock);
         TestMethod testMethod = Mocks.createTestMethod("aMethod");
 
-        mockNameResolver.stubs().method("getRealClassName").with(eq(className)).will(returnValue(className));
+        mockNameResolver.stubs().method("getRealClassNameForDisplay").with(eq(className)).will(returnValue(className));
 
         ComparableAssert.assertLesser("test method", testClass, testMethod);
     }
@@ -124,7 +124,7 @@ public class TestClassTest extends MockObjectTestCase {
 
         mockNameResolver.expects(atLeastOnce()).method("getRealClassNameForDisplay").with(eq(className)).will(returnValue(className));
 
-        assertEquals(testClass.getDisplayString(), testClass.toString());
+        assertEquals(testClass.displayString(), testClass.toString());
     }
 
     public void testAlwaysEnablesTheRepresentationOfAnActionWhenAskedToUpdateIt() {

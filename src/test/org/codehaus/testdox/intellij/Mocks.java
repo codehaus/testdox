@@ -131,11 +131,11 @@ public final class Mocks {
             super(null, null, null, null);
         }
 
-        public String getDisplayString() {
+        public String displayString() {
             return null;
         }
 
-        public Icon getIcon() {
+        public Icon icon() {
             return null;
         }
     }

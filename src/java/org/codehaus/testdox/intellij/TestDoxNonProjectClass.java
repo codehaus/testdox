@@ -9,11 +9,11 @@ import org.codehaus.testdox.intellij.panel.TestDoxModel;
 public class TestDoxNonProjectClass extends TestDoxFile {
 
     public static final TestElement TEST_ELEMENT = new AbstractTestElement() {
-        public String getDisplayString() {
+        public String displayString() {
             return "<font color=\"gray\">Not in current project</font>";
         }
 
-        public Icon getIcon() {
+        public Icon icon() {
             return IconHelper.getIcon(IconHelper.WARNING_ICON);
         }
     };

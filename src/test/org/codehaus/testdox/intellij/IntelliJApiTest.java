@@ -39,7 +39,6 @@ public class IntelliJApiTest extends MockObjectTestCase {
     protected final Mock mockModule = mock(Module.class);
     protected final Mock mockPsiJavaFile = mock(PsiJavaFile.class);
     protected final Mock mockVirtualFile = Mocks.createAndRegisterVirtualFileMock(this);
-    protected final Mock mockPsiClass = mock(PsiClass.class);
     protected final Mock mockCommandProcessor = mock(CommandProcessor.class);
     protected final Mock mockItemSelectionUI = mock(ItemSelectionUI.class);
     protected final Mock mockVirtualFileSelectionUI = mock(ItemSelectionUI.class);
@@ -79,7 +78,7 @@ public class IntelliJApiTest extends MockObjectTestCase {
                 return (ItemSelectionUI) mockVirtualFileSelectionUI.proxy();
             }
 
-            protected MoveClassCommand createMoveClassCommand(PsiClass psiClass, String destinationPackageName) {
+            protected MoveClassCommand createMoveClassCommand(PsiClass psiClass, PsiDirectory destinationPackage) {
                 return null;
             }
         };

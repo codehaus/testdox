@@ -163,8 +163,8 @@ public abstract class IntelliJApi implements EditorApi {
         runCommand(project, new AddMethodCommand(psiClass, methodSignatureAndBody), "Add Method", "TestDox");
     }
 
-    public void move(PsiClass psiClass, String destinationPackageName) {
-        runCommand(project, createMoveClassCommand(psiClass, destinationPackageName), "Move Class", "TestDox");
+    public void move(PsiClass psiClass, PsiDirectory destinationPackage) {
+        runCommand(project, createMoveClassCommand(psiClass, destinationPackage), "Move Class", "TestDox");
     }
 
     public void renameTest(String className, TestDoxFileFactory testDoxFileFactory) {
@@ -579,16 +579,16 @@ public abstract class IntelliJApi implements EditorApi {
         return (PsiMethod) nearestMethod;
     }
 
-    protected abstract MoveClassCommand createMoveClassCommand(PsiClass psiClass, String destinationPackageName);
+    protected abstract MoveClassCommand createMoveClassCommand(PsiClass psiClass, PsiDirectory destinationPackage);
 
     protected abstract class MoveClassCommand implements Runnable {
 
-        protected final String destinationPackageName;
+        protected final PsiDirectory destinationPackage;
         protected PsiClass psiClass;
 
-        public MoveClassCommand(PsiClass psiClass, String destinationPackageName) {
+        public MoveClassCommand(PsiClass psiClass, PsiDirectory destinationPackage) {
             this.psiClass = psiClass;
-            this.destinationPackageName = destinationPackageName;
+            this.destinationPackage = destinationPackage;
         }
 
         public void run() {

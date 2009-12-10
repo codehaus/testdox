@@ -129,12 +129,12 @@ public class TestDoxToolWindowPanelTest extends MockObjectTestCase {
         table.changeSelection(1, -1, false, false);
     }
 
-    private void assertDox(TestElement[] dox, JTable table) {
+    private void assertDox(TestMethod[] dox, JTable table) {
         assertTrue(table.isEnabled());
         TableModel tableModel = table.getModel();
         assertEquals(dox.length + 1, tableModel.getRowCount());
         for (int i = 1; i < tableModel.getRowCount(); i++) {
-            assertEquals(dox[i - 1].getDisplayString(), ((TestElement) tableModel.getValueAt(i, 1)).getDisplayString());
+            assertEquals(dox[i - 1].displayString(), ((TestElement) tableModel.getValueAt(i, 1)).displayString());
         }
     }
 

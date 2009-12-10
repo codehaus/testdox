@@ -10,7 +10,7 @@ public abstract class TestDoxFile {
     private String className;
     private TestClass testClass;
     private TestClass testedClass;
-    private TestElement[] testMethods;
+    private TestMethod[] testMethods;
 
     public TestDoxFile(VirtualFile file, String className, TestClass testClass, TestClass testedClass,
                        TestMethod[] testMethods) {
@@ -39,7 +39,7 @@ public abstract class TestDoxFile {
         return testedClass;
     }
 
-    public TestElement[] getTestMethods() {
+    public TestMethod[] getTestMethods() {
         return testMethods;
     }
 
