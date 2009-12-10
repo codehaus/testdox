@@ -11,7 +11,7 @@ public class TestInterface extends TestClass {
     }
 
     public String getDisplayString() {
-        return new StringBuffer("<i>").append(super.getDisplayString()).append("</i>").toString();
+        return new StringBuffer("<i>").append(super.displayString()).append("</i>").toString();
     }
 
     public Icon getIcon() {

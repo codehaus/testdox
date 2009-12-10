@@ -216,6 +216,10 @@ public class MockApplication extends MockUserDataHolder implements org.intellij.
     public void restart() {
     }
 
+    public boolean isActive() {
+        return false;
+    }
+
     @Nullable
     public Object getComponent(final ComponentConfig componentConfig) {
         return null;

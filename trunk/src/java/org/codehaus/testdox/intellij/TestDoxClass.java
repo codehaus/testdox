@@ -9,11 +9,11 @@ import org.codehaus.testdox.intellij.panel.TestDoxModel;
 public class TestDoxClass extends TestDoxFile {
 
     public static final TestElement NO_DOX_ELEMENT = new AbstractTestElement() {
-        public String getDisplayString() {
+        public String displayString() {
             return "<font color=\"red\">No tests found for current class!</font>";
         }
 
-        public Icon getIcon() {
+        public Icon icon() {
             return IconHelper.getIcon(IconHelper.NO_TESTS_ICON);
         }
     };

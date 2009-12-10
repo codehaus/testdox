@@ -12,6 +12,8 @@ import org.codehaus.testdox.intellij.config.ConfigurationBean;
 import org.jmock.Mock;
 import org.jmock.MockObjectTestCase;
 
+import javax.swing.*;
+
 public class TestMethodTest extends MockObjectTestCase {
 
     static {
@@ -55,7 +57,14 @@ public class TestMethodTest extends MockObjectTestCase {
     }
 
     public void testReturnsZeroWhenComparedToAnObjectThatIsNotATestMethod() {
-        assertEquals("comparison result", 0, new TestMethod(null, null, null).compareTo(""));
+        assertEquals("comparison result", 0, new TestMethod(null, null, null).compareTo(new AbstractTestElement() {
+            public String displayString() {
+                return null;
+            }
+            public Icon icon() {
+                return null;
+            }
+        }));
     }
 
     public void testUsesItsDisplayStringAsItsTextualRepresentation() {
@@ -63,6 +72,6 @@ public class TestMethodTest extends MockObjectTestCase {
         TestMethod testMethod = new TestMethod((PsiMethod) mockPsiMethod.proxy(), editorApiMock, sentenceManager);
 
         mockPsiMethod.expects(atLeastOnce()).method("getName").will(returnValue("someMethod"));
-        assertEquals(testMethod.getDisplayString(), testMethod.toString());
+        assertEquals(testMethod.displayString(), testMethod.toString());
     }
 }

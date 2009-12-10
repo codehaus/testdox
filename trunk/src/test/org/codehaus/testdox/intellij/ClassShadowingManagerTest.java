@@ -1,5 +1,6 @@
 package org.codehaus.testdox.intellij;
 
+import com.intellij.psi.PsiDirectory;
 import org.intellij.openapi.testing.MockApplicationManager;
 
 import com.intellij.openapi.vfs.VirtualFile;
@@ -64,8 +65,8 @@ public class ClassShadowingManagerTest extends MockObjectTestCase {
     public void testDelegatesMoveOperationToIdea() throws Exception {
         setExpectationsForChangedTestedClass();
 
-        mockPsiJavaFile.expects(once()).method("getPackageName").will(returnValue("path.to.moved.class"));
-        mockEditorApi.expects(once()).method("move").with(isA(PsiClass.class), isA(String.class));
+        mockPsiJavaFile.expects(once()).method("getContainingDirectory").will(returnValue(newDummy(PsiDirectory.class)));
+        mockEditorApi.expects(once()).method("move").with(isA(PsiClass.class), isA(PsiDirectory.class));
 
         classShadowingManager.elementMoved(psiClassMock);
     }

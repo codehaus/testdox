@@ -13,18 +13,18 @@ import org.codehaus.testdox.intellij.actions.RenameTestAction;
 public class AbstractTestElementTest extends TestCase {
 
     private AbstractTestElement abstractTestElement = new AbstractTestElement() {
-        public String getDisplayString() {
+        public String displayString() {
             throw new UnsupportedOperationException();
         }
 
-        public Icon getIcon() {
+        public Icon icon() {
             throw new UnsupportedOperationException();
         }
     };
 
     public void testIsAssociatedToANullPsiElementByDefault() {
         MockApplicationManager.reset();
-        assertSame(NullPsiElement.INSTANCE, abstractTestElement.getPsiElement());
+        assertSame(NullPsiElement.INSTANCE, abstractTestElement.psiElement());
     }
 
     public void testDoesNotJumpToPsiElementByDefault() {
@@ -32,14 +32,12 @@ public class AbstractTestElementTest extends TestCase {
     }
 
     public void testUsesReferenceEqualityToDefineTheDefaultNaturalOrder() {
-        assertEquals(-1, abstractTestElement.compareTo(""));
-
         assertEquals(-1, abstractTestElement.compareTo(new AbstractTestElement() {
-                         public String getDisplayString() {
+                         public String displayString() {
                              throw new UnsupportedOperationException();
                          }
 
-                         public Icon getIcon() {
+                         public Icon icon() {
                              throw new UnsupportedOperationException();
                          }
                      }));

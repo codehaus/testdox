@@ -32,11 +32,11 @@ public class TestMethod extends AbstractTestElement {
         return editorApi.jumpToPsiElement(getPsiElement());
     }
 
-    public String getDisplayString() {
+    public String displayString() {
         return sentenceManager.buildSentence(getMethodName());
     }
 
-    public Icon getIcon() {
+    public Icon icon() {
         return IconHelper.getIcon(IconHelper.DOX_ICON);
     }
 
@@ -52,9 +52,9 @@ public class TestMethod extends AbstractTestElement {
         editorApi.delete(getPsiElement());
     }
 
-    public int compareTo(Object object) {
+    public int compareTo(TestElement object) {
         if (object instanceof TestMethod) {
-            return getDisplayString().compareTo(((TestMethod) object).getDisplayString());
+            return displayString().compareTo(object.displayString());
         }
         return 0;
     }
