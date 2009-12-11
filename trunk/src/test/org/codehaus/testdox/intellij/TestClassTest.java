@@ -49,7 +49,7 @@ public class TestClassTest extends MockObjectTestCase {
         mockNameResolver.expects(once()).method("getRealClassNameForDisplay").with(eq(className)).will(returnValue(realClassName));
 
         TestInterface testInterface = new TestInterface(className, psiClassMock, editorApiMock, nameResolverMock);
-        assertEquals("<i><b>" + realClassName + ":</b></i>", testInterface.getDisplayString());
+        assertEquals("<i><b>" + realClassName + ":</b></i>", testInterface.displayString());
     }
 
     public void testCanBeIdentifiedAsATestClassIfItsFullyQualifiedClassNameResolvesAsSuch() {
@@ -74,12 +74,12 @@ public class TestClassTest extends MockObjectTestCase {
 
     public void testReturnsAnInterfaceIconIfTheUnderlyingInterfaceBelongsToTheCurrentProject() {
         TestInterface testInterface = new TestInterface("", psiClassMock, editorApiMock, null);
-        assertSame("interface icon for project interface", IconHelper.getIcon(IconHelper.INTERFACE_ICON), testInterface.getIcon());
+        assertSame("interface icon for project interface", IconHelper.getIcon(IconHelper.INTERFACE_ICON), testInterface.icon());
     }
 
     public void testReturnsALockedInterfaceIconIfTheUnderlyingInterfaceDoesNotBelongToTheCurrentProject() {
         TestInterface testInterface = new TestInterface("", null, editorApiMock, null);
-        assertSame("locked interface icon for non-project interface", IconHelper.getLockedIcon(IconHelper.INTERFACE_ICON), testInterface.getIcon());
+        assertSame("locked interface icon for non-project interface", IconHelper.getLockedIcon(IconHelper.INTERFACE_ICON), testInterface.icon());
     }
 
     public void testUsesItsDisplayStringToDefineNaturalOrderForComparison() {
