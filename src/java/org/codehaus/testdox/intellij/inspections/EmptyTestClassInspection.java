@@ -27,7 +27,7 @@ public class EmptyTestClassInspection extends AbstractTestDoxInspection {
         TestDoxFileFactory factory = testDoxController.getTestDoxFileFactory();
         TestDoxFile file = factory.getTestDoxFile(psiClass.getContainingFile().getVirtualFile());
 
-        if ((!file.isTestedClass()) && (file.canNavigateToTestedClass()) && (file.getTestMethods().length == 0)) {
+        if ((!file.isTestedClass()) && (file.canNavigateToTestedClass()) && (file.testMethods().length == 0)) {
             return array(
                 manager.createProblemDescriptor(
                     psiClass.getNameIdentifier(), getDisplayName(), new AddTestMethodQuickFix(), ProblemHighlightType.GENERIC_ERROR_OR_WARNING)

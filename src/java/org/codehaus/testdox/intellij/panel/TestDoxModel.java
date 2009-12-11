@@ -86,7 +86,7 @@ public class TestDoxModel extends DefaultTableModel {
     public void setTestDoxForClass(TestDoxFile file) {
         clearLists();
 
-        TestElement[] testMethods = file.getTestMethods();
+        TestElement[] testMethods = file.testMethods();
         if (testMethods.length == 0) {
             hasDox = false;
             definitionOrderData.add(TestDoxClass.NO_DOX_ELEMENT);
@@ -102,7 +102,7 @@ public class TestDoxModel extends DefaultTableModel {
     }
 
     private void prependTestClassAndNotify(TestDoxFile file) {
-        TestElement testClass = file.getTestClass();
+        TestElement testClass = file.testClass();
         definitionOrderData.add(0, testClass);
         alphaOrderData.add(0, testClass);
         fireDataChange();

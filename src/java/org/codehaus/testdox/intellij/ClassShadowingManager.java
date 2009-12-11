@@ -26,14 +26,14 @@ class ClassShadowingManager implements RefactoringElementListener {
     public void elementMoved(PsiElement psiElement) {
         if (isValidShadowing(psiElement)) {
             PsiDirectory newPackage = psiElement.getContainingFile().getContainingDirectory();
-            editorApi.move((PsiClass) originalFile.getTestClass().psiElement(), newPackage);
+            editorApi.move((PsiClass) originalFile.testClass().psiElement(), newPackage);
         }
     }
 
     public void elementRenamed(PsiElement psiElement) {
         if (isValidShadowing(psiElement)) {
             String newTestClassName = nameResolver.getTestClassName(((PsiClass) psiElement).getName());
-            editorApi.rename(originalFile.getTestClass().psiElement(), newTestClassName);
+            editorApi.rename(originalFile.testClass().psiElement(), newTestClassName);
         }
     }
 

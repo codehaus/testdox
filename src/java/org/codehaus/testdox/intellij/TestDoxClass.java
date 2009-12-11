@@ -38,10 +38,10 @@ public class TestDoxClass extends TestDoxFile {
     }
 
     public boolean canNavigateToTestClass() {
-        return (getTestClass() != null) && (getTestClass().isTestClass());
+        return (testClass() != null) && (testClass().isTestClass());
     }
 
     public boolean canNavigateToTestedClass() {
-        return (getTestedClass() != null) && (!getTestedClass().isTestClass());
+        return (testedClass() != null) && (!testedClass().isTestClass());
     }
 }
