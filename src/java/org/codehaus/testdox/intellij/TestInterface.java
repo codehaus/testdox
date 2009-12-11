@@ -15,7 +15,7 @@ public class TestInterface extends TestClass {
     }
 
     public Icon getIcon() {
-        return (getPsiElement() != null) ? IconHelper.getIcon(IconHelper.INTERFACE_ICON)
-                                         : IconHelper.getLockedIcon(IconHelper.INTERFACE_ICON);
+        return (psiElement() != null) ? IconHelper.getIcon(IconHelper.INTERFACE_ICON)
+                                      : IconHelper.getLockedIcon(IconHelper.INTERFACE_ICON);
     }
 }
