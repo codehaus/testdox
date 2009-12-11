@@ -32,5 +32,6 @@ class TestMethod(method: PsiMethod, editorApi: EditorApi, sentenceManager: Sente
 }
 
 object TestMethod {
+
   val EMPTY_ARRAY = new Array[TestMethod](0)
 }
