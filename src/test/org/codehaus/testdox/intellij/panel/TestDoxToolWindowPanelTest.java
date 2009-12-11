@@ -56,17 +56,17 @@ public class TestDoxToolWindowPanelTest extends MockObjectTestCase {
 
     public void testClearsPreviousDoxListWhenSettingNewDox() {
         updateTestDoxModelUsingTestDoxFile(new TestDoxNonJavaFile(null));
-        assertNoDox(table, TestDoxNonJavaFile.TEST_ELEMENT);
+        assertNoDox(table, TestDoxNonJavaFile.TEST_ELEMENT());
     }
 
     public void testShowsNoClassMessageAndDisablesDoxListWhenSettingNoFile() {
         model.setNotJava();
-        assertNoDox(table, TestDoxNonJavaFile.TEST_ELEMENT);
+        assertNoDox(table, TestDoxNonJavaFile.TEST_ELEMENT());
     }
 
     public void testShowsNoDoxMessageAtStartup() {
         model.setNotJava();
-        assertNoDox(table, TestDoxNonJavaFile.TEST_ELEMENT);
+        assertNoDox(table, TestDoxNonJavaFile.TEST_ELEMENT());
     }
 
     public void testShowsMethodBasedDoxEvenIfTestDoxFileHasNoClassReferences() {

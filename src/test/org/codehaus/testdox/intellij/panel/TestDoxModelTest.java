@@ -27,15 +27,15 @@ public class TestDoxModelTest extends MockObjectTestCase {
     }
 
     public void testHasNoDoxOutsideModelBoundaries() {
-        assertSame(TestDoxNonJavaFile.TEST_ELEMENT, model.getValueAt(-1, 0));
-        assertSame(TestDoxNonJavaFile.TEST_ELEMENT, model.getValueAt(model.getRowCount() + 1, 0));
+        assertSame(TestDoxNonJavaFile.TEST_ELEMENT(), model.getValueAt(-1, 0));
+        assertSame(TestDoxNonJavaFile.TEST_ELEMENT(), model.getValueAt(model.getRowCount() + 1, 0));
     }
 
     public void testPopulatesDoxListButReportsHasNoDoxIfNoDoxSet() {
         model.setNotJava();
         assertFalse(model.hasDox());
         assertEquals(1, model.getRowCount());
-        assertSame(TestDoxNonJavaFile.TEST_ELEMENT, model.getValueAt(0, 0));
+        assertSame(TestDoxNonJavaFile.TEST_ELEMENT(), model.getValueAt(0, 0));
     }
 
     public void testPopulatesDoxListButReportsHasNoDoxIfTestdoxFileIsAnInterface() {
@@ -142,7 +142,7 @@ public class TestDoxModelTest extends MockObjectTestCase {
         model.setNotJava();
         model.sortInAlphabeticalOrder();
 
-        assertOrder(array(TestDoxNonJavaFile.NO_CLASS_MESSAGE), model);
+        assertOrder(array(TestDoxNonJavaFile.NO_CLASS_MESSAGE()), model);
     }
 
     private void assertOrder(Object[] values, TestDoxModel model) {
