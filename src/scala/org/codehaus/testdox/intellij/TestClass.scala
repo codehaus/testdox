@@ -1,6 +1,5 @@
 package org.codehaus.testdox.intellij
 
-import javax.swing.Icon
 import com.intellij.openapi.actionSystem.Presentation
 import com.intellij.psi.PsiClass
 
@@ -13,7 +12,9 @@ class TestClass(className: String, psiClass: PsiClass, editorApi: EditorApi, nam
 
   override def jumpToPsiElement(): Boolean = editorApi.jumpToPsiClass(psiClass)
 
-  def icon: Icon = {
+  def isTestClass = psiClass != null && nameResolver.isTestClass(psiClass.getName())
+
+  val icon = {
     if (psiClass != null)
       IconHelper.getIcon(IconHelper.CLASS_ICON)
     else
@@ -31,8 +32,6 @@ class TestClass(className: String, psiClass: PsiClass, editorApi: EditorApi, nam
   override def delete(controller: TestDoxController) {
     editorApi.delete(testedClass);
   }
-
-  def isTestClass() = psiClass != null && nameResolver.isTestClass(psiClass.getName())
 
   override def compareTo(o: TestElement): Int = {
     if (o.isInstanceOf[TestClass])
