@@ -89,8 +89,8 @@ public class TestDoxModel extends DefaultTableModel {
         TestElement[] testMethods = file.testMethods();
         if (testMethods.length == 0) {
             hasDox = false;
-            definitionOrderData.add(TestDoxClass.NO_DOX_ELEMENT);
-            alphaOrderData.add(TestDoxClass.NO_DOX_ELEMENT);
+            definitionOrderData.add(TestDoxClass.NO_DOX_ELEMENT());
+            alphaOrderData.add(TestDoxClass.NO_DOX_ELEMENT());
         } else {
             hasDox = true;
             definitionOrderData.addAll(asList(testMethods));
