@@ -69,7 +69,7 @@ public class TestDoxFileFactoryTest extends MockObjectTestCase {
 
         assertEquals(REAL_CLASS_NAME, doxFile.getClassName());
         assertNotNull(doxFile.getTestClass());
-        assertNotNull(doxFile.getTestClass().getPsiElement());
+        assertNotNull(doxFile.getTestClass().psiElement());
         assertEquals(TEST_METHODS, doxFile.getTestMethods());
     }
 
@@ -80,7 +80,7 @@ public class TestDoxFileFactoryTest extends MockObjectTestCase {
 
         assertEquals(FQN_CLASS_NAME, doxFile.getClassName());
         assertNotNull(doxFile.getTestClass());
-        assertNotNull(doxFile.getTestClass().getPsiElement());
+        assertNotNull(doxFile.getTestClass().psiElement());
         assertEquals(TEST_METHODS, doxFile.getTestMethods());
     }
 
@@ -95,7 +95,7 @@ public class TestDoxFileFactoryTest extends MockObjectTestCase {
 
         assertEquals(FQN_CLASS_NAME, doxFile.getClassName());
         assertNotNull(doxFile.getTestClass());
-        assertNotNull(doxFile.getTestClass().getPsiElement());
+        assertNotNull(doxFile.getTestClass().psiElement());
         assertEquals(TEST_METHODS, doxFile.getTestMethods());
     }
 
@@ -110,7 +110,7 @@ public class TestDoxFileFactoryTest extends MockObjectTestCase {
 
         assertEquals(FQN_CLASS_NAME, doxFile.getClassName());
         assertNotNull(doxFile.getTestClass());
-        assertNotNull(doxFile.getTestClass().getPsiElement());
+        assertNotNull(doxFile.getTestClass().psiElement());
         assertEquals(TEST_METHODS, doxFile.getTestMethods());
     }
 

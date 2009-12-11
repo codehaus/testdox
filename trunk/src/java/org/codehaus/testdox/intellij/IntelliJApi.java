@@ -177,7 +177,7 @@ public abstract class IntelliJApi implements EditorApi {
             if (renamedClass != null) {
                 TestDoxFile testDoxFile = testDoxFileFactory.getTestDoxFile(getVirtualFile(renamedClass));
                 if (testDoxFile.canNavigateToTestClass()) {
-                    rename(testDoxFile.getTestClass().getPsiElement(), newName);
+                    rename(testDoxFile.getTestClass().psiElement(), newName);
                 }
             }
         }
