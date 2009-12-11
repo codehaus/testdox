@@ -115,7 +115,7 @@ public class ClassShadowingManagerTest extends MockObjectTestCase {
         mockConfigurationBean.expects(once()).method("isAutoApplyChangesToTest").will(returnValue(true));
         mockNameResolver.expects(once()).method("isRealClass").with(eq(CLASS_NAME)).will(returnValue(true));
         mockTestDoxClass.expects(once()).method("canNavigateToTestClass").will(returnValue(true));
-        mockTestDoxClass.expects(once()).method("getTestClass").will(returnValue(mockTestClass.proxy()));
+        mockTestDoxClass.expects(once()).method("testClass").will(returnValue(mockTestClass.proxy()));
         mockTestClass.expects(once()).method("psiElement").will(returnValue(mockPsiClass.proxy()));
     }
 }

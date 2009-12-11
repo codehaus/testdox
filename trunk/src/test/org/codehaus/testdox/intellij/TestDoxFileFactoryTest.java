@@ -36,10 +36,10 @@ public class TestDoxFileFactoryTest extends MockObjectTestCase {
         TestDoxFileFactory factory = new TestDoxFileFactory((TestLookup) mockTestLookup.proxy(), null, null);
         TestDoxFile doxFile = factory.getTestDoxFile((VirtualFile) mockVirtualFile.proxy());
 
-        assertNull(doxFile.getClassName());
-        assertNull(doxFile.getTestClass());
-        assertNotNull(doxFile.getTestMethods());
-        assertEquals(0, doxFile.getTestMethods().length);
+        assertNull(doxFile.className());
+        assertNull(doxFile.testClass());
+        assertNotNull(doxFile.testMethods());
+        assertEquals(0, doxFile.testMethods().length);
     }
 
     public void testReturnsFileWithSourceClassForJavaFileWhereTestClassIsNotFound() throws Exception {
@@ -54,10 +54,10 @@ public class TestDoxFileFactoryTest extends MockObjectTestCase {
         TestDoxFileFactory factory = new TestDoxFileFactory((TestLookup) mockTestLookup.proxy(), null, null);
         TestDoxFile doxFile = factory.getTestDoxFile((VirtualFile) mockVirtualFile.proxy());
 
-        assertEquals(expectedClassName, doxFile.getClassName());
-        assertNotNull(doxFile.getTestClass());
-        assertNotNull(doxFile.getTestMethods());
-        assertEquals(0, doxFile.getTestMethods().length);
+        assertEquals(expectedClassName, doxFile.className());
+        assertNotNull(doxFile.testClass());
+        assertNotNull(doxFile.testMethods());
+        assertEquals(0, doxFile.testMethods().length);
     }
 
     // TODO: add test for non-project classes
@@ -67,10 +67,10 @@ public class TestDoxFileFactoryTest extends MockObjectTestCase {
         TestDoxFileFactory factory = new TestDoxFileFactory((TestLookup) mockTestLookup.proxy(), null, (NameResolver) mockNameResolver.proxy());
         TestDoxFile doxFile = factory.getTestDoxFile((VirtualFile) mockVirtualFile.proxy());
 
-        assertEquals(REAL_CLASS_NAME, doxFile.getClassName());
-        assertNotNull(doxFile.getTestClass());
-        assertNotNull(doxFile.getTestClass().psiElement());
-        assertEquals(TEST_METHODS, doxFile.getTestMethods());
+        assertEquals(REAL_CLASS_NAME, doxFile.className());
+        assertNotNull(doxFile.testClass());
+        assertNotNull(doxFile.testClass().psiElement());
+        assertEquals(TEST_METHODS, doxFile.testMethods());
     }
 
     public void testReturnsFullyPopulatedFileForRealSourceFile() throws Exception {
@@ -78,10 +78,10 @@ public class TestDoxFileFactoryTest extends MockObjectTestCase {
         TestDoxFileFactory factory = new TestDoxFileFactory((TestLookup) mockTestLookup.proxy(), null, (NameResolver) mockNameResolver.proxy());
         TestDoxFile doxFile = factory.getTestDoxFile((VirtualFile) mockVirtualFile.proxy());
 
-        assertEquals(FQN_CLASS_NAME, doxFile.getClassName());
-        assertNotNull(doxFile.getTestClass());
-        assertNotNull(doxFile.getTestClass().psiElement());
-        assertEquals(TEST_METHODS, doxFile.getTestMethods());
+        assertEquals(FQN_CLASS_NAME, doxFile.className());
+        assertNotNull(doxFile.testClass());
+        assertNotNull(doxFile.testClass().psiElement());
+        assertEquals(TEST_METHODS, doxFile.testMethods());
     }
 
     public void testDoesNotAttemptCustomPackageLookupIfTurnedOffInConfiguration() throws Exception {
@@ -93,10 +93,10 @@ public class TestDoxFileFactoryTest extends MockObjectTestCase {
         TestDoxFileFactory factory = new TestDoxFileFactory((TestLookup) mockTestLookup.proxy(), config, (NameResolver) mockNameResolver.proxy());
         TestDoxFile doxFile = factory.getTestDoxFile((VirtualFile) mockVirtualFile.proxy());
 
-        assertEquals(FQN_CLASS_NAME, doxFile.getClassName());
-        assertNotNull(doxFile.getTestClass());
-        assertNotNull(doxFile.getTestClass().psiElement());
-        assertEquals(TEST_METHODS, doxFile.getTestMethods());
+        assertEquals(FQN_CLASS_NAME, doxFile.className());
+        assertNotNull(doxFile.testClass());
+        assertNotNull(doxFile.testClass().psiElement());
+        assertEquals(TEST_METHODS, doxFile.testMethods());
     }
 
     public void testAttemptsToFindTestClassesInAlternatePackagesIfTurnedOnInConfiguration() throws Exception {
@@ -108,10 +108,10 @@ public class TestDoxFileFactoryTest extends MockObjectTestCase {
         TestDoxFileFactory factory = new TestDoxFileFactory((TestLookup) mockTestLookup.proxy(), config, (NameResolver) mockNameResolver.proxy());
         TestDoxFile doxFile = factory.getTestDoxFile((VirtualFile) mockVirtualFile.proxy());
 
-        assertEquals(FQN_CLASS_NAME, doxFile.getClassName());
-        assertNotNull(doxFile.getTestClass());
-        assertNotNull(doxFile.getTestClass().psiElement());
-        assertEquals(TEST_METHODS, doxFile.getTestMethods());
+        assertEquals(FQN_CLASS_NAME, doxFile.className());
+        assertNotNull(doxFile.testClass());
+        assertNotNull(doxFile.testClass().psiElement());
+        assertEquals(TEST_METHODS, doxFile.testMethods());
     }
 
     private void setLookupExpectationsForSourceFile(boolean isRealClass, boolean lookInAlternatePackage) {

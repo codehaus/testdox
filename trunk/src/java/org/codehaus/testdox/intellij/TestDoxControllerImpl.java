@@ -129,7 +129,7 @@ public class TestDoxControllerImpl implements TestDoxController {
                 methodSignatureAndBody.append(configuration.getTestMethodAnnotation()).append("\n");
             }
             methodSignatureAndBody.append("public void ").append(sentenceManager.buildMethodName(addTestDialog.getSentence())).append("() {\n}");
-            editorApi.addMethod((PsiClass) getCurrentTestDoxFile().getTestClass().psiElement(), methodSignatureAndBody.toString());
+            editorApi.addMethod((PsiClass) getCurrentTestDoxFile().testClass().psiElement(), methodSignatureAndBody.toString());
         }
     }
 
@@ -191,13 +191,13 @@ public class TestDoxControllerImpl implements TestDoxController {
         TestDoxFile testDoxFile = getCurrentTestDoxFile();
         if (testDoxFile.isTestedClass()) {
             if (testDoxFile.canNavigateToTestClass()) {
-                jumpToTestElement(testDoxFile.getTestClass(), false);
+                jumpToTestElement(testDoxFile.testClass(), false);
             } else
             if (testDoxFile.canBeUnitTested() && configuration.isCreateTestIfMissing() && shouldCreateTestClass()) {
                 editorApi.createTestClass(testDoxFile);
             }
         } else if (testDoxFile.canNavigateToTestedClass()) {
-            jumpToTestElement(testDoxFile.getTestedClass(), false);
+            jumpToTestElement(testDoxFile.testedClass(), false);
         }
     }
 
@@ -249,7 +249,7 @@ public class TestDoxControllerImpl implements TestDoxController {
     }
 
     private TestMethod getCurrentTestMethod(PsiElement element) {
-        return editorApi.getCurrentTestMethod(element, sentenceManager, getCurrentTestDoxFile().getFile());
+        return editorApi.getCurrentTestMethod(element, sentenceManager, getCurrentTestDoxFile().file());
     }
 
     // FileEditorManagerListener ---------------------------------------------------------------------------------------

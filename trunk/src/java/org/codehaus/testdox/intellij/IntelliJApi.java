@@ -149,7 +149,7 @@ public abstract class IntelliJApi implements EditorApi {
 
     public void createTestClass(TestDoxFile testDoxFile) {
         ProjectFileIndex index = ProjectRootManager.getInstance(project).getFileIndex();
-        Module module = index.getModuleForFile(testDoxFile.getFile());
+        Module module = index.getModuleForFile(testDoxFile.file());
         String testClassName = getTestClassName(testDoxFile);
         String testPackage = getTestPackage(testDoxFile);
         VirtualFile targetDirectory = getTestDirectory(module);
@@ -177,7 +177,7 @@ public abstract class IntelliJApi implements EditorApi {
             if (renamedClass != null) {
                 TestDoxFile testDoxFile = testDoxFileFactory.getTestDoxFile(getVirtualFile(renamedClass));
                 if (testDoxFile.canNavigateToTestClass()) {
-                    rename(testDoxFile.getTestClass().psiElement(), newName);
+                    rename(testDoxFile.testClass().psiElement(), newName);
                 }
             }
         }
@@ -207,7 +207,7 @@ public abstract class IntelliJApi implements EditorApi {
     }
 
     private String getTestPackage(TestDoxFile testDoxFile) {
-        String sourcePackage = getPsiJavaFile(testDoxFile.getFile()).getPackageName();
+        String sourcePackage = getPsiJavaFile(testDoxFile.file()).getPackageName();
         List<String> customPackages = config.getCustomPackages();
         PackageManager packageManager = new PackageManager(sourcePackage);
 
@@ -231,7 +231,7 @@ public abstract class IntelliJApi implements EditorApi {
     }
 
     private String getTestClassName(TestDoxFile testDoxFile) {
-        String testClassName = testDoxFile.getClassName();
+        String testClassName = testDoxFile.className();
         int lastDot = testClassName.lastIndexOf(".");
 
         if ((lastDot > 0) && (lastDot < testClassName.length() - 1)) {
