@@ -6,10 +6,10 @@ public class TestDoxNonProjectClassTest extends TestCase {
 
     public void testHasATextualRepresentation() {
         String displayString = "<font color=\"gray\">Not in current project</font>";
-        assertEquals("TestDoxNonProject's text representation", displayString, TestDoxNonProjectClass.TEST_ELEMENT.displayString());
+        assertEquals("TestDoxNonProject's text representation", displayString, TestDoxNonProjectClass.TEST_ELEMENT().displayString());
     }
 
     public void testUsesTheWarningIconAsItsGraphicalRepresentation() {
-        assertSame("should have the the Warning icon", IconHelper.getIcon(IconHelper.WARNING_ICON), TestDoxNonProjectClass.TEST_ELEMENT.icon());
+        assertSame("should have the the Warning icon", IconHelper.getIcon(IconHelper.WARNING_ICON), TestDoxNonProjectClass.TEST_ELEMENT().icon());
     }
 }

@@ -67,8 +67,8 @@ public class TestDoxModel extends DefaultTableModel {
         clearLists();
 
         hasDox = false;
-        definitionOrderData.add(TestDoxNonProjectClass.TEST_ELEMENT);
-        alphaOrderData.add(TestDoxNonProjectClass.TEST_ELEMENT);
+        definitionOrderData.add(TestDoxNonProjectClass.TEST_ELEMENT());
+        alphaOrderData.add(TestDoxNonProjectClass.TEST_ELEMENT());
 
         prependTestClassAndNotify(file);
     }
