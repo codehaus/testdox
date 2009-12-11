@@ -97,6 +97,6 @@ public class TestLookupTest extends MockObjectTestCase {
 
         TestMethod[] testMethods = testLookup.getTestMethods(psiClassMock);
         assertEquals(1, testMethods.length);
-        assertEquals("pantsMethod", testMethods[0].getMethodName());
+        assertEquals("pantsMethod", testMethods[0].methodName());
     }
 }

@@ -140,7 +140,7 @@ public class TestDoxControllerImpl implements TestDoxController {
     public void delete(PsiElement element) {
         TestMethod testMethod = getCurrentTestMethod(element);
         if (testMethod != null) {
-            editorApi.delete(testMethod.getPsiElement());
+            editorApi.delete(testMethod.psiElement());
         }
     }
 
@@ -153,7 +153,7 @@ public class TestDoxControllerImpl implements TestDoxController {
             RenameUI renameDialog = createRenameDialog(testMethod.displayString());
             renameDialog.show();
             if (renameDialog.isOK()) {
-                editorApi.rename(testMethod.getPsiElement(), sentenceManager.buildMethodName(renameDialog.getSentence()));
+                editorApi.rename(testMethod.psiElement(), sentenceManager.buildMethodName(renameDialog.getSentence()));
             }
         }
     }

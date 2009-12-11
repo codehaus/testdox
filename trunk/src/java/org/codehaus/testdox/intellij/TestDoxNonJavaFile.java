@@ -21,7 +21,7 @@ public class TestDoxNonJavaFile extends TestDoxFile {
     };
 
     public TestDoxNonJavaFile(VirtualFile file) {
-        super(file, null, null, null, TestMethod.EMPTY_ARRAY);
+        super(file, null, null, null, TestMethod.EMPTY_ARRAY());
     }
 
     public void updateModel(TestDoxModel model) {
