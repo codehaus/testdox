@@ -19,7 +19,7 @@ public class TestDoxNonProjectClass extends TestDoxFile {
     };
 
     public TestDoxNonProjectClass(VirtualFile file, String className, TestClass testClass, TestClass testedClass) {
-        super(file, className, testClass, testedClass, TestMethod.EMPTY_ARRAY);
+        super(file, className, testClass, testedClass, TestMethod.EMPTY_ARRAY());
     }
 
     public void updateModel(TestDoxModel model) {

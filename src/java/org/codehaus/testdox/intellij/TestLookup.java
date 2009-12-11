@@ -49,7 +49,7 @@ public class TestLookup {
 
     public TestMethod[] getTestMethods(PsiClass testClass) {
         if (testClass == null) {
-            return TestMethod.EMPTY_ARRAY;
+            return TestMethod.EMPTY_ARRAY();
         }
 
         List<TestMethod> testMethods = new ArrayList<TestMethod>();
@@ -58,6 +58,6 @@ public class TestLookup {
                 testMethods.add(new TestMethod(method, editorApi, sentenceManager));
             }
         }
-        return testMethods.toArray(TestMethod.EMPTY_ARRAY);
+        return testMethods.toArray(TestMethod.EMPTY_ARRAY());
     }
 }

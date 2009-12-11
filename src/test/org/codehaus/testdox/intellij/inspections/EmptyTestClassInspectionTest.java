@@ -65,7 +65,7 @@ public class EmptyTestClassInspectionTest extends AbstractTestDoxInspectionTest 
 
         mockTestDoxClass.expects(once()).method("isTestedClass").will(returnValue(false));
         mockTestDoxClass.expects(once()).method("canNavigateToTestedClass").will(returnValue(true));
-        mockTestDoxClass.expects(once()).method("getTestMethods").will(returnValue(TestMethod.EMPTY_ARRAY));
+        mockTestDoxClass.expects(once()).method("getTestMethods").will(returnValue(TestMethod.EMPTY_ARRAY()));
 
         mockPsiClass.expects(once()).method("getNameIdentifier");
         mockInspectionManager.expects(once()).method("createProblemDescriptor");

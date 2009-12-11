@@ -153,7 +153,7 @@ public final class Mocks {
             this.name = name;
         }
 
-        public String getMethodName() {
+        public String methodName() {
             return name;
         }
     }

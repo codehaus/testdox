@@ -160,7 +160,7 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
     }
 
     public void testCanCurrentFileBeUnitTestedReturnsTrueWhenTheCurrentFileIsATestableProjectClass() {
-        TestDoxClass testableClass = new TestDoxClass(new LightVirtualFile(), null, true, null, null, TestMethod.EMPTY_ARRAY);
+        TestDoxClass testableClass = new TestDoxClass(new LightVirtualFile(), null, true, null, null, TestMethod.EMPTY_ARRAY());
         mockEditorApi.expects(once()).method("getCurrentFile").will(returnValue(testableClass.getFile()));
         mockTestDoxFileFactory.expects(once()).method("getTestDoxFile").with(same(testableClass.getFile())).will(returnValue(testableClass));
         assertTrue(controller.canCurrentFileBeUnitTested());
@@ -325,7 +325,7 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
         mockSentenceManager.expects(once()).method("buildMethodName").will(returnValue("testHasAnUndefinedBehaviour"));
         mockEditorApi.expects(once()).method("getCurrentFile");
 
-        TestDoxClass testDoxClass = new TestDoxClass(null, null, false, Mocks.createTestClass(), null, TestMethod.EMPTY_ARRAY);
+        TestDoxClass testDoxClass = new TestDoxClass(null, null, false, Mocks.createTestClass(), null, TestMethod.EMPTY_ARRAY());
         mockTestDoxFileFactory.expects(once()).method("getTestDoxFile").with(NULL).will(returnValue(testDoxClass));
         mockEditorApi.expects(once()).method("addMethod").with(NULL, eq("public void testHasAnUndefinedBehaviour() {\n}"));
 
@@ -342,7 +342,7 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
         mockSentenceManager.expects(once()).method("buildMethodName").will(returnValue("hasAnUndefinedBehaviour"));
         mockEditorApi.expects(once()).method("getCurrentFile");
 
-        TestDoxClass testDoxClass = new TestDoxClass(null, null, false, Mocks.createTestClass(), null, TestMethod.EMPTY_ARRAY);
+        TestDoxClass testDoxClass = new TestDoxClass(null, null, false, Mocks.createTestClass(), null, TestMethod.EMPTY_ARRAY());
         mockTestDoxFileFactory.expects(once()).method("getTestDoxFile").with(NULL).will(returnValue(testDoxClass));
         mockEditorApi.expects(once()).method("addMethod").with(NULL, eq("@Zebra\npublic void hasAnUndefinedBehaviour() {\n}"));
 

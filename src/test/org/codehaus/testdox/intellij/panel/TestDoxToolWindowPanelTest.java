@@ -49,7 +49,7 @@ public class TestDoxToolWindowPanelTest extends MockObjectTestCase {
     }
 
     public void testShowsNoDoxMessageAndDisablesDoxListWhenSettingJavaFileWhichHasNoDox() {
-        updateTestDoxModelUsingTestDoxFile(new TestDoxClass(null, "foo", true, Mocks.createTestClass(), null, TestMethod.EMPTY_ARRAY));
+        updateTestDoxModelUsingTestDoxFile(new TestDoxClass(null, "foo", true, Mocks.createTestClass(), null, TestMethod.EMPTY_ARRAY()));
         assertFalse(table.isEnabled());
         assertEquals(2, table.getModel().getRowCount());
     }
