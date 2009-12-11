@@ -45,7 +45,7 @@ public class TestDoxModelTest extends MockObjectTestCase {
         assertFalse(model.hasDox());
         assertEquals(2, model.getRowCount());
         assertEquals(mockTestClass.proxy(), model.getValueAt(0, 0));
-        assertSame(TestDoxInterface.TEST_ELEMENT, model.getValueAt(1, 0));
+        assertSame(TestDoxInterface.TEST_ELEMENT(), model.getValueAt(1, 0));
     }
 
     public void testPopulatesDoxListButReportsHasNoDoxIfTestdoxFileIsANonProjectClass() {

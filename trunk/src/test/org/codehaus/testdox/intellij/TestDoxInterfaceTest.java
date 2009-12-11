@@ -23,15 +23,15 @@ public class TestDoxInterfaceTest extends MockObjectTestCase {
 
         assertFalse("interfaces should not have TestDox data", testDoxModel.hasDox());
         assertEquals(testInterface, testDoxModel.getValueAt(0, 0));
-        assertEquals(TestDoxInterface.TEST_ELEMENT, testDoxModel.getValueAt(1, 0));
+        assertEquals(TestDoxInterface.TEST_ELEMENT(), testDoxModel.getValueAt(1, 0));
     }
 
     public void testHasATextualRepresentation() {
         String displayString = "<font color=\"gray\">Interfaces do not have unit tests.</font>";
-        assertEquals("TestDoxInterface's text representation", displayString, TestDoxInterface.TEST_ELEMENT.displayString());
+        assertEquals("TestDoxInterface's text representation", displayString, TestDoxInterface.TEST_ELEMENT().displayString());
     }
 
     public void testUsesTheWarningIconAsItsGraphicalRepresentation() {
-        assertSame("should have the the Warning icon", IconHelper.getIcon(IconHelper.WARNING_ICON), TestDoxInterface.TEST_ELEMENT.icon());
+        assertSame("should have the the Warning icon", IconHelper.getIcon(IconHelper.WARNING_ICON), TestDoxInterface.TEST_ELEMENT().icon());
     }
 }
