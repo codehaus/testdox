@@ -84,7 +84,7 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
     public void testSetsNotJavaOnModelIfFileIsNull() throws Exception {
         mockToolWindow.expects(once()).method("setTitle").with(eq(""));
         controller.selectedFileChanged((VirtualFile) null);
-        assertEquals(TestDoxNonJavaFile.TEST_ELEMENT, testDoxModel.getValueAt(0, 0));
+        assertEquals(TestDoxNonJavaFile.TEST_ELEMENT(), testDoxModel.getValueAt(0, 0));
     }
 
     public void testUpdatesModelWithDoxFileFromFactoryWhenFileSelected() throws Exception {
@@ -98,7 +98,7 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
 
         controller.selectedFileChanged(virtualFileMock);
         assertEquals(1, testDoxModel.getRowCount());
-        assertEquals(TestDoxNonJavaFile.TEST_ELEMENT, testDoxModel.getValueAt(0, 0));
+        assertEquals(TestDoxNonJavaFile.TEST_ELEMENT(), testDoxModel.getValueAt(0, 0));
     }
 
     public void testClosesToolWindowOnNavigationIfInSlidingMode() throws Exception {

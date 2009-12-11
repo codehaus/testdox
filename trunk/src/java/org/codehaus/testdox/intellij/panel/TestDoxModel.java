@@ -31,7 +31,7 @@ public class TestDoxModel extends DefaultTableModel {
 
     private Object getDox(int index) {
         if (index < 0 || index >= definitionOrderData.size()) {
-            return TestDoxNonJavaFile.TEST_ELEMENT;
+            return TestDoxNonJavaFile.TEST_ELEMENT();
         }
 
         return configuration.isAlphabeticalSorting() ? alphaOrderData.get(index) : definitionOrderData.get(index);
@@ -56,8 +56,8 @@ public class TestDoxModel extends DefaultTableModel {
     public void setNotJava() {
         clearLists();
 
-        definitionOrderData.add(TestDoxNonJavaFile.TEST_ELEMENT);
-        alphaOrderData.add(TestDoxNonJavaFile.TEST_ELEMENT);
+        definitionOrderData.add(TestDoxNonJavaFile.TEST_ELEMENT());
+        alphaOrderData.add(TestDoxNonJavaFile.TEST_ELEMENT());
         hasDox = false;
 
         fireDataChange();
