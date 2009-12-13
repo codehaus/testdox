@@ -27,7 +27,7 @@ public class TestDoxFileFactory {
 
         String className = testLookup.getClassName(file);
         PsiClass psiClass = testLookup.getClass(file);
-        TestClass testClass = createTestClass(className, psiClass, testLookup.getEditorApi());
+        TestClass testClass = createTestClass(className, psiClass, testLookup.editorApi());
         TestClass testedClass = null;
 
         if (psiClass == null) {
@@ -40,12 +40,12 @@ public class TestDoxFileFactory {
             isTestedClass = true;
         } else {
             className = nameResolver.getRealClassName(className);
-            testedClass = createTestClass(className, testLookup.getClass(className), testLookup.getEditorApi());
+            testedClass = createTestClass(className, testLookup.getClass(className), testLookup.editorApi());
             isTestedClass = false;
         }
 
         if (psiClass != null) {
-            testClass = createTestClass(className, psiClass, testLookup.getEditorApi());
+            testClass = createTestClass(className, psiClass, testLookup.editorApi());
         }
 
         if ((testClass != null) && (testClass instanceof TestInterface)) {

@@ -48,7 +48,7 @@ public class TestDoxFileFactoryTest extends MockObjectTestCase {
         mockTestLookup.expects(once()).method("isJavaFile").with(isA(VirtualFile.class)).will(returnValue(true));
         mockTestLookup.expects(once()).method("getClassName").with(isA(VirtualFile.class)).will(returnValue(expectedClassName));
         mockTestLookup.expects(once()).method("getClass").with(isA(VirtualFile.class));
-        mockTestLookup.expects(once()).method("getEditorApi").will(returnValue(mockEditorApi.proxy()));
+        mockTestLookup.expects(once()).method("editorApi").will(returnValue(mockEditorApi.proxy()));
         mockEditorApi.expects(once()).method("isInterface").with(eq(expectedClassName)).will(returnValue(false));
 
         TestDoxFileFactory factory = new TestDoxFileFactory((TestLookup) mockTestLookup.proxy(), null, null);
@@ -135,7 +135,7 @@ public class TestDoxFileFactoryTest extends MockObjectTestCase {
             mockTestLookup.expects(once()).method("getClass").with(eq(ALTERNATIVE_PACKAGE + '.' + CLASS_NAME)).will(returnValue(psiClassMock));
         }
         mockTestLookup.expects(once()).method("getTestMethods").with(eq(psiClassMock)).will(returnValue(TEST_METHODS));
-        mockTestLookup.expects(atLeastOnce()).method("getEditorApi").will(returnValue(mockEditorApi.proxy()));
+        mockTestLookup.expects(atLeastOnce()).method("editorApi").will(returnValue(mockEditorApi.proxy()));
         if (!isRealClass) {
             mockEditorApi.expects(once()).method("isInterface").with(eq(FQN_CLASS_NAME)).will(returnValue(false));
         }
