@@ -6,116 +6,116 @@ import org.codehaus.testdox.intellij.config.ConfigurationBean;
 
 public class SentenceManagerTest extends TestCase {
 
-    private SentenceManager builder;
-
-    protected void setUp() {
-        ConfigurationBean config = new ConfigurationBean();
-        config.setUnderscoreMode(true);
-        config.setTestMethodPrefix("test");
-        builder = new SentenceManager(config);
+    public void testReturnsBlankForNullString() {
+        assertEquals("", converter().buildSentence(null));
     }
 
-    public void testReturnsBlankForNullString() throws Exception {
-        assertEquals("", builder.buildSentence(null));
+    public void testReturnsBlankForEmptyString() {
+        assertEquals("", converter().buildSentence(""));
     }
 
-    public void testReturnsBlankForEmptyString() throws Exception {
-        assertEquals("", builder.buildSentence(""));
+    public void testReturnsWordForSingleWord() {
+        assertEquals("foo", converter().buildSentence("Foo"));
     }
 
-    public void testReturnsWordForSingleWord() throws Exception {
-        assertEquals("foo", builder.buildSentence("Foo"));
+    public void testLowercasesFirstWordOfSentence() {
+        assertEquals("foo", converter().buildSentence("Foo"));
     }
 
-    public void testLowercasesFirstWordOfSentence() throws Exception {
-        assertEquals("foo", builder.buildSentence("Foo"));
+    public void testCreatesWordsWhereACaseChangeOccurs() {
+        assertEquals("foo bar", converter().buildSentence("fooBar"));
     }
 
-    public void testCreatesWordsWhereACaseChangeOccurs() throws Exception {
-        assertEquals("foo bar", builder.buildSentence("fooBar"));
+    public void testCreatesNewWordOnAnUnderscore() {
+        assertEquals("foo bar", converter().buildSentence("foo_bar"));
     }
 
-    public void testCreatesNewWordOnAnUnderscore() throws Exception {
-        assertEquals("foo bar", builder.buildSentence("foo_bar"));
+    public void testTrimsMultipleSpacesToASingleSpace() {
+        assertEquals("foo bar", converter().buildSentence("foo    Bar"));
     }
 
-    public void testTrimsMultipleSpacesToASingleSpace() throws Exception {
-        assertEquals("foo bar", builder.buildSentence("foo    Bar"));
+    public void testTrimsMethodNamePrefixFromSentenceIfPresent() {
+        assertEquals("foo", converter().buildSentence("testFoo"));
     }
 
-    public void testTrimsMethodNamePrefixFromSentenceIfPresent() throws Exception {
-        assertEquals("foo", builder.buildSentence("testFoo"));
+    public void testReturnsBlankForMethodPrefix() {
+        assertEquals("", converter().buildSentence("test"));
     }
 
-    public void testReturnsBlankForMethodPrefix() throws Exception {
-        assertEquals("", builder.buildSentence("test"));
-    }
-
-    public void testWorksForAnyMethodPrefix() throws Exception {
+    public void testWorksForAnyMethodPrefix() {
         String prefix = "slartibartfast";
-        ConfigurationBean config = new ConfigurationBean();
-        config.setUnderscoreMode(false);
-        config.setTestMethodPrefix(prefix);
-        builder = new SentenceManager(config);
-        assertEquals("", builder.buildSentence(prefix));
-        assertEquals("foo", builder.buildSentence(prefix + "Foo"));
+
+        ConfigurationBean configuration = new ConfigurationBean();
+        configuration.setUnderscoreMode(false);
+        configuration.setTestMethodPrefix(prefix);
+
+        assertEquals("", converter(configuration).buildSentence(prefix));
+        assertEquals("foo", converter(configuration).buildSentence(prefix + "Foo"));
     }
 
-    public void testGroupsNumbersIntoSingleWords() throws Exception {
-        assertEquals("has 1024 foos but only 56 bars", builder.buildSentence("has1024FoosButOnly56Bars"));
+    public void testGroupsNumbersIntoSingleWords() {
+        assertEquals("has 1024 foos but only 56 bars", converter().buildSentence("has1024FoosButOnly56Bars"));
     }
 
-    public void testCapitalisesAnyCharacterSequenceEnclosedInUnderscores() throws Exception {
-        assertEquals("this should leave my TLA TLA as a TLA", builder.buildSentence("thisShouldLeaveMy_TLA__TLA_AsA_TLA_"));
+    public void testCapitalisesAnyCharacterSequenceEnclosedInUnderscores() {
+        assertEquals("this should leave my TLA TLA as a TLA", converter().buildSentence("thisShouldLeaveMy_TLA__TLA_AsA_TLA_"));
     }
 
-    public void testIgnoresUnderscoresIfNotInUnderscoreMode() throws Exception {
-        ConfigurationBean config = new ConfigurationBean();
-        config.setUnderscoreMode(false);
-        builder = new SentenceManager(config);
-        assertEquals("this should leave my t l a t l a as a t l a", builder.buildSentence("thisShouldLeaveMy_TLA__TLA_AsA_TLA_"));
+    public void testIgnoresUnderscoresIfNotInUnderscoreMode() {
+        ConfigurationBean configuration = new ConfigurationBean();
+        configuration.setUnderscoreMode(false);
+        assertEquals("this should leave my TLA TLA as a TLA", converter(configuration).buildSentence("thisShouldLeaveMy_TLA__TLA_AsA_TLA_"));
     }
 
-    public void testGeneratesDefaultTestNameForNull() throws Exception {
-        assertEquals(SentenceManager.DEFAULT_TEST_METHOD_NAME, builder.buildMethodName(null));
+    public void testGeneratesDefaultTestNameForNull() {
+        assertEquals(SentenceManager.DEFAULT_TEST_METHOD_NAME(), converter().buildMethodName(null));
     }
 
-    public void testGeneratesDefaultTestNameForEmptyString() throws Exception {
-        assertEquals(SentenceManager.DEFAULT_TEST_METHOD_NAME, builder.buildMethodName(""));
+    public void testGeneratesDefaultTestNameForEmptyString() {
+        assertEquals(SentenceManager.DEFAULT_TEST_METHOD_NAME(), converter().buildMethodName(""));
     }
 
-    public void testGeneratesTestWordForSingleWord() throws Exception {
-        assertEquals("testFoo", builder.buildMethodName("Foo"));
+    public void testGeneratesTestWordForSingleWord() {
+        assertEquals("testFoo", converter().buildMethodName("Foo"));
     }
 
-    public void testGeneratesMethodNamesInCamelCase() throws Exception {
-        assertEquals("testFoo", builder.buildMethodName("foo"));
+    public void testGeneratesMethodNamesInCamelCase() {
+        assertEquals("testFoo", converter().buildMethodName("foo"));
     }
 
-    public void testGeneratesMethodNamesByConcatenatingWordsInSentenceWithNoWhitespace() throws Exception {
-        assertEquals("testFooBarBaz", builder.buildMethodName("foo bar baz"));
+    public void testGeneratesMethodNamesByConcatenatingWordsInSentenceWithNoWhitespace() {
+        assertEquals("testFooBarBaz", converter().buildMethodName("foo bar baz"));
     }
 
-    public void testKeepsNumbersAsASingleTokenInMethodNames() throws Exception {
-        assertEquals("testFoo1245Baz", builder.buildMethodName("foo 1245 baz"));
+    public void testKeepsNumbersAsASingleTokenInMethodNames() {
+        assertEquals("testFoo1245Baz", converter().buildMethodName("foo 1245 baz"));
     }
 
-    public void testKeepsAcronymsInUpperCaseInMethodNames() throws Exception {
-        assertEquals("testFoo_FKHKGHDS__IOC_Foo", builder.buildMethodName("foo FKHKGHDS IOC Foo"));
+    public void testKeepsAcronymsInUpperCaseInMethodNames() {
+        assertEquals("testFoo_FKHKGHDS__IOC_Foo", converter().buildMethodName("foo FKHKGHDS IOC Foo"));
     }
 
-    public void testIgnoresAcronymsIfNotInUnderscoreMode() throws Exception {
-        ConfigurationBean config = new ConfigurationBean();
-        config.setUnderscoreMode(false);
-        builder = new SentenceManager(config);
-        assertEquals("testFooFKHKGHDSIOCFoo", builder.buildMethodName("foo FKHKGHDS IOC Foo"));
+    public void testIgnoresAcronymsIfNotInUnderscoreMode() {
+        ConfigurationBean configuration = new ConfigurationBean();
+        configuration.setUnderscoreMode(false);
+        assertEquals("testFooFKHKGHDSIOCFoo", converter(configuration).buildMethodName("foo FKHKGHDS IOC Foo"));
     }
 
-    public void testDoesNotCapitaliseFirstLetterIfUsingAnnotations() throws Exception {
-        ConfigurationBean config = new ConfigurationBean();
-        config.setTestMethodAnnotation("@Foo");
-        config.setUsingAnnotations(true);
-        builder = new SentenceManager(config);
-        assertEquals("fooFKHKGHDSIOCFoo", builder.buildMethodName("Foo FKHKGHDS IOC Foo"));
+    public void testDoesNotCapitaliseFirstLetterIfUsingAnnotations() {
+        ConfigurationBean configuration = new ConfigurationBean();
+        configuration.setTestMethodAnnotation("@Foo");
+        configuration.setUsingAnnotations(true);
+        assertEquals("fooFKHKGHDSIOCFoo", converter(configuration).buildMethodName("Foo FKHKGHDS IOC Foo"));
+    }
+
+    private static SentenceManager converter() {
+        ConfigurationBean configuration = new ConfigurationBean();
+        configuration.setUnderscoreMode(true);
+        configuration.setTestMethodPrefix("test");
+        return converter(configuration);
+    }
+
+    private static SentenceManager converter(ConfigurationBean configuration) {
+        return new SentenceManager(configuration);
     }
 }
