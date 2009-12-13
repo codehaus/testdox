@@ -24,7 +24,7 @@ public class AbstractTestElementTest extends TestCase {
 
     public void testIsAssociatedToANullPsiElementByDefault() {
         MockApplicationManager.reset();
-        assertSame(NullPsiElement.INSTANCE, abstractTestElement.psiElement());
+        assertSame(NullPsiElement.INSTANCE(), abstractTestElement.psiElement());
     }
 
     public void testDoesNotJumpToPsiElementByDefault() {

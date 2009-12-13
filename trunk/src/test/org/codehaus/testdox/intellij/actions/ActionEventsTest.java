@@ -129,13 +129,13 @@ public class ActionEventsTest extends MockObjectTestCase {
 
     public void testReturnsANullPsiElementWhenActionEventDidNotOriginateFromACodeEditor() {
         mockDataContext.expects(once()).method("getData").with(eq(DataKeys.EDITOR.getName()));
-        assertSame(NullPsiElement.INSTANCE, actionEvents.getTargetPsiElement(anActionEvent));
+        assertSame(NullPsiElement.INSTANCE(), actionEvents.getTargetPsiElement(anActionEvent));
     }
 
     public void testReturnsANullPsiElementWhenActionEventDidNotOriginateFromAFile() {
         mockDataContext.expects(once()).method("getData").with(eq(DataKeys.EDITOR.getName())).will(returnValue(mockEditor.proxy()));
         mockDataContext.expects(once()).method("getData").with(eq(DataKeys.PSI_FILE.getName()));
-        assertSame(NullPsiElement.INSTANCE, actionEvents.getTargetPsiElement(anActionEvent));
+        assertSame(NullPsiElement.INSTANCE(), actionEvents.getTargetPsiElement(anActionEvent));
     }
 
     static AnActionEvent createAnActionEvent(AnAction action, DataContext dataContext) {

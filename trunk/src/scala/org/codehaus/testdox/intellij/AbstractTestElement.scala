@@ -1,11 +1,10 @@
 package org.codehaus.testdox.intellij
 
 import com.intellij.openapi.actionSystem.Presentation
-import com.intellij.psi.PsiElement
 
 abstract class AbstractTestElement extends TestElement {
 
-  def psiElement: PsiElement = NullPsiElement.INSTANCE
+  val psiElement = NullPsiElement.INSTANCE
 
   def jumpToPsiElement() = false
 

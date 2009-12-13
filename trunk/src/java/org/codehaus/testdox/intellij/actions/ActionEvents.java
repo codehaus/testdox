@@ -47,12 +47,12 @@ public class ActionEvents {
     public PsiElement getTargetPsiElement(AnActionEvent event) {
         Editor editor = event.getData(DataKeys.EDITOR);
         if (editor == null) {
-            return NullPsiElement.INSTANCE;
+            return NullPsiElement.INSTANCE();
         }
 
         PsiFile psiFile = event.getData(DataKeys.PSI_FILE);
         if (psiFile == null) {
-            return NullPsiElement.INSTANCE;
+            return NullPsiElement.INSTANCE();
         }
 
         return psiFile.findElementAt(editor.getCaretModel().getOffset());
