@@ -8,7 +8,7 @@ class TestClass(className: String, psiClass: PsiClass, editorApi: EditorApi, nam
 
   def displayString: String = "<b>" + nameResolver.getRealClassNameForDisplay(className) + ":</b>"
 
-  override def psiElement = psiClass
+  override val psiElement = psiClass
 
   override def jumpToPsiElement(): Boolean = editorApi.jumpToPsiClass(psiClass)
 
