@@ -4,7 +4,7 @@ import com.intellij.openapi.actionSystem.Presentation
 
 abstract class AbstractTestElement extends TestElement {
 
-  val psiElement = NullPsiElement.INSTANCE
+  override val psiElement = NullPsiElement.INSTANCE
 
   def jumpToPsiElement() = false
 

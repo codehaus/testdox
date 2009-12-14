@@ -1,15 +1,15 @@
 package org.codehaus.testdox.intellij
 
 import com.intellij.openapi.actionSystem.Presentation
-import com.intellij.psi.{PsiElement, PsiMethod}
+import com.intellij.psi.PsiMethod
 import javax.swing.Icon
 
-class TestMethod(method: PsiMethod, editorApi: EditorApi, sentenceManager: SentenceManager)
+class TestMethod(psiMethod: PsiMethod, editorApi: EditorApi, sentenceManager: SentenceManager)
     extends AbstractTestElement {
 
-  def methodName: String = method.getName()
+  def methodName: String = psiMethod.getName()
 
-  override def psiElement: PsiElement = method
+  override val psiElement = psiMethod
 
   override def jumpToPsiElement(): Boolean = editorApi.jumpToPsiElement(psiElement)
 
