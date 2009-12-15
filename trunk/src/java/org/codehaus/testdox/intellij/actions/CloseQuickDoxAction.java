@@ -10,6 +10,6 @@ public class CloseQuickDoxAction extends BaseAction {
     }
 
     public void actionPerformed(AnActionEvent event) {
-        actionEvents.getTestDoxController(event).closeQuickDox();
+        actionEvents().getTestDoxController(event).closeQuickDox();
     }
 }

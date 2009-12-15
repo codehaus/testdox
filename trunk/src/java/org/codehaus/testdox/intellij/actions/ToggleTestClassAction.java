@@ -10,10 +10,10 @@ public class ToggleTestClassAction extends BaseAction {
     }
 
     public void actionPerformed(AnActionEvent event) {
-        actionEvents.getTestDoxController(event).toggleTestClassAndTestedClass();
+        actionEvents().getTestDoxController(event).toggleTestClassAndTestedClass();
     }
 
     public void update(AnActionEvent event) {
-        event.getPresentation().setEnabled(actionEvents.getTestDoxController(event).canCurrentFileBeUnitTested());
+        event.getPresentation().setEnabled(actionEvents().getTestDoxController(event).canCurrentFileBeUnitTested());
     }
 }

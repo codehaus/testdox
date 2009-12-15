@@ -11,6 +11,6 @@ public class ActivateTestDoxPanelAction extends BaseAction {
     }
 
     public void actionPerformed(AnActionEvent event) {
-        actionEvents.getTestDoxController(event).toggleToolWindow();
+        actionEvents().getTestDoxController(event).toggleToolWindow();
     }
 }

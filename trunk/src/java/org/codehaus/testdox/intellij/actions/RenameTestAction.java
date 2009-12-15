@@ -11,7 +11,7 @@ public class RenameTestAction extends BaseTestMethodIntentionAction {
     public static final String ID = "TestDox.RenameTest";
 
     public RenameTestAction() {
-        this(DO_NOT_USE_FROM_TESTDOX_TOOL_WINDOW);
+        this(BaseAction.DO_NOT_USE_FROM_TESTDOX_TOOL_WINDOW());
     }
 
     public RenameTestAction(boolean useFromTestDoxToolWindow) {

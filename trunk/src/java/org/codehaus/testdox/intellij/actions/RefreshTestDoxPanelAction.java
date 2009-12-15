@@ -9,7 +9,7 @@ public class RefreshTestDoxPanelAction extends BaseTestElementAction {
     public static final String ID = "TestDox.RefreshTestDoxPanel";
 
     public RefreshTestDoxPanelAction() {
-        this(BaseAction.DO_NOT_USE_FROM_TESTDOX_TOOL_WINDOW);
+        this(BaseAction.DO_NOT_USE_FROM_TESTDOX_TOOL_WINDOW());
     }
 
     public RefreshTestDoxPanelAction(boolean useFromTestDoxToolWindow) {
@@ -17,6 +17,6 @@ public class RefreshTestDoxPanelAction extends BaseTestElementAction {
     }
 
     public void actionPerformed(AnActionEvent event) {
-        actionEvents.getTestDoxController(event).refreshToolWindow();
+        actionEvents().getTestDoxController(event).refreshToolWindow();
     }
 }

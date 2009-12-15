@@ -15,9 +15,9 @@ abstract class BaseTestElementAction extends BaseAction {
 
     public void update(AnActionEvent event) {
         if (useFromTestDoxToolWindow) {
-            actionEvents.getTestDoxToolWindowUI(event).updatePresentation(event.getPresentation());
+            actionEvents().getTestDoxToolWindowUI(event).updatePresentation(event.getPresentation());
         } else {
-            actionEvents.getTestDoxController(event).updatePresentation(event.getPresentation());
+            actionEvents().getTestDoxController(event).updatePresentation(event.getPresentation());
         }
     }
 }
