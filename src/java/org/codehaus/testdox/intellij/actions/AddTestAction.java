@@ -12,11 +12,11 @@ public class AddTestAction extends BaseAction {
     }
 
     public void actionPerformed(AnActionEvent event) {
-        actionEvents.getTestDoxController(event).addTest();
+        actionEvents().getTestDoxController(event).addTest();
     }
 
     public void update(AnActionEvent event) {
-        TestDoxFile testDoxFile = actionEvents.getTestDoxController(event).getCurrentTestDoxFile();
+        TestDoxFile testDoxFile = actionEvents().getTestDoxController(event).getCurrentTestDoxFile();
         event.getPresentation().setEnabled((testDoxFile != null) && (testDoxFile.canNavigateToTestedClass()));
     }
 }

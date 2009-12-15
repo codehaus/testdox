@@ -10,6 +10,6 @@ public class ToggleQuickDoxAction extends BaseAction {
     }
 
     public void actionPerformed(AnActionEvent event) {
-        actionEvents.getTestDoxController(event).toggleQuickDox();
+        actionEvents().getTestDoxController(event).toggleQuickDox();
     }
 }

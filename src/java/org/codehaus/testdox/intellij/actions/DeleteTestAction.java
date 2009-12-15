@@ -11,7 +11,7 @@ public class DeleteTestAction extends BaseTestMethodIntentionAction {
     public static final String ID = "TestDox.DeleteTest";
 
     public DeleteTestAction() {
-        this(DO_NOT_USE_FROM_TESTDOX_TOOL_WINDOW);
+        this(BaseAction.DO_NOT_USE_FROM_TESTDOX_TOOL_WINDOW());
     }
 
     public DeleteTestAction(boolean useFromTestDoxToolWindow) {
