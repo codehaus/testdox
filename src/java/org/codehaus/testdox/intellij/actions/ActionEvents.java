@@ -74,7 +74,7 @@ public class ActionEvents {
                     if ("canCurrentFileBeUnitTested".equals(method.getName())) {
                         return false;
                     }
-                    if (("updatePresentation".equals(method.getName())) && (args[0] instanceof Presentation)) {
+                    if (("update".equals(method.getName())) && (args[0] instanceof Presentation)) {
                         ((Presentation) args[0]).setEnabled(false);
                     }
                     if ("getCurrentTestDoxFile".equals(method.getName())) {

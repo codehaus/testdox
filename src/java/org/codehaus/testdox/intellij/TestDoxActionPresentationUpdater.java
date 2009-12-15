@@ -4,5 +4,5 @@ import com.intellij.openapi.actionSystem.Presentation;
 
 public interface TestDoxActionPresentationUpdater {
 
-    void updatePresentation(Presentation presentation);
+    void update(Presentation presentation);
 }

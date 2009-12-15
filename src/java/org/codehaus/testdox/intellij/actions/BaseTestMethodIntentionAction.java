@@ -21,7 +21,7 @@ abstract class BaseTestMethodIntentionAction extends BaseTestElementAction imple
     }
 
     public void actionPerformed(AnActionEvent event) {
-        if (useFromTestDoxToolWindow) {
+        if (useFromTestDoxToolWindow()) {
             executeUsingTestDoxToolWindow(actionEvents().getTestDoxToolWindowUI(event));
         } else {
             execute(actionEvents().getTestDoxController(event), actionEvents().getTargetPsiElement(event));
@@ -38,8 +38,8 @@ abstract class BaseTestMethodIntentionAction extends BaseTestElementAction imple
     abstract void executeUsingTestDoxToolWindow(TestDoxToolWindowUI testDoxToolWindow);
 
     public void update(AnActionEvent event) {
-        if (useFromTestDoxToolWindow) {
-            actionEvents().getTestDoxToolWindowUI(event).updatePresentation(event.getPresentation());
+        if (useFromTestDoxToolWindow()) {
+            actionEvents().getTestDoxToolWindowUI(event).update(event.getPresentation());
         } else {
             TestDoxController testDoxController = actionEvents().getTestDoxController(event);
             testDoxController.updatePresentation(event.getPresentation(), actionEvents().getTargetPsiElement(event));
