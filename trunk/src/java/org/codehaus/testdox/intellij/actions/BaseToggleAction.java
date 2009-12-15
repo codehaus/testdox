@@ -20,9 +20,9 @@ abstract class BaseToggleAction extends ToggleAction {
         super.update(event);
 
         if (useFromTestDoxToolWindow) {
-            actionEvents.getTestDoxToolWindowUI(event).updatePresentation(event.getPresentation());
+            actionEvents.getTestDoxToolWindowUI(event).update(event.getPresentation());
         } else {
-            actionEvents.getTestDoxController(event).updatePresentation(event.getPresentation());
+            actionEvents.getTestDoxController(event).update(event.getPresentation());
         }
     }
 }

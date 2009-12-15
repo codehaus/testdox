@@ -13,7 +13,7 @@ public class ActionEventsNullsTest extends TestCase {
     }
 
     public void testANullTestdoxControllerDisablesThePresentationOfAnAction() {
-        ActionEvents.Nulls.TESTDOX_CONTROLLER.updatePresentation(actionPresentation);
+        ActionEvents.Nulls.TESTDOX_CONTROLLER.update(actionPresentation);
         assertFalse("action presentation should be disabled", actionPresentation.isEnabled());
     }
 
@@ -23,7 +23,7 @@ public class ActionEventsNullsTest extends TestCase {
     }
 
     public void testANullTestdoxToolWindowDisablesThePresentationOfAnAction() {
-        ActionEvents.Nulls.TESTDOX_TOOL_WINDOW.updatePresentation(actionPresentation);
+        ActionEvents.Nulls.TESTDOX_TOOL_WINDOW.update(actionPresentation);
         assertFalse("action presentation should be disabled", actionPresentation.isEnabled());
     }
 

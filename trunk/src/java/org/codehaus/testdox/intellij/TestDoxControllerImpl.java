@@ -239,7 +239,7 @@ public class TestDoxControllerImpl implements TestDoxController {
         configuration.setAutoscrolling(autoscrolling);
     }
 
-    public void updatePresentation(Presentation presentation) {
+    public void update(Presentation presentation) {
         TestDoxFile testDoxFile = getCurrentTestDoxFile();
         presentation.setEnabled(testDoxFile.canNavigateToTestedClass() || testDoxFile.canNavigateToTestClass());
     }

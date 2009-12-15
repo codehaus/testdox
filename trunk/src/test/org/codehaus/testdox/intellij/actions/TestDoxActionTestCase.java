@@ -47,7 +47,7 @@ public abstract class TestDoxActionTestCase extends MockObjectTestCase {
         Presentation presentation = actionEvent.getPresentation();
 
         if (expectTestDoxControllerUpdatePresentation) {
-            mockTestDoxController.expects(once()).method("updatePresentation").with(same(presentation));
+            mockTestDoxController.expects(once()).method("update").with(same(presentation));
         }
         action.update(actionEvent);
     }
@@ -68,7 +68,7 @@ public abstract class TestDoxActionTestCase extends MockObjectTestCase {
 
     protected void assertActionEnabledInTestDoxToolWindow(AnAction action, final boolean enabled) {
         TestDoxToolWindowUI testDoxToolWindow = new TestDoxToolWindowUI() {
-            public void updatePresentation(Presentation presentation) {
+            public void update(Presentation presentation) {
                 presentation.setEnabled(enabled);
             }
 

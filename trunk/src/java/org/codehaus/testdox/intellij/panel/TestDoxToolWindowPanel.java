@@ -135,7 +135,7 @@ public class TestDoxToolWindowPanel extends JPanel implements TableModelListener
         }
     }
 
-    public void updatePresentation(Presentation presentation) {
+    public void update(Presentation presentation) {
         getSelectedTestElement().updatePresentation(presentation);
     }
 
