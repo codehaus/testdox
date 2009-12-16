@@ -129,8 +129,8 @@ public class TestDoxProjectComponent implements ProjectComponent {
             registerAction(actionManager, new SortTestDoxAction(config.isAlphabeticalSorting(), useFromTestDoxToolWindow), SortTestDoxAction.ID()),
             registerAction(actionManager, new AutoscrollAction(config.isAutoscrolling(), useFromTestDoxToolWindow), AutoscrollAction.ID()),
             Separator.getInstance(),
-            registerAction(actionManager, new RenameTestAction(useFromTestDoxToolWindow), RenameTestAction.ID),
-            registerAction(actionManager, new DeleteTestAction(useFromTestDoxToolWindow), DeleteTestAction.ID),
+            registerAction(actionManager, new RenameTestAction(useFromTestDoxToolWindow), RenameTestAction.ID()),
+            registerAction(actionManager, new DeleteTestAction(useFromTestDoxToolWindow), DeleteTestAction.ID()),
             Separator.getInstance(),
             registerAction(actionManager, new RefreshTestDoxPanelAction(useFromTestDoxToolWindow), RefreshTestDoxPanelAction.ID)
 

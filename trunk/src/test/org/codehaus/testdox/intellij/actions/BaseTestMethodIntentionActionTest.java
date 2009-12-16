@@ -104,9 +104,9 @@ public class BaseTestMethodIntentionActionTest extends TestDoxActionTestCase {
 
     private BaseTestMethodIntentionAction createTestMethodIntentionAction(boolean useFromToolWindow) {
         return new BaseTestMethodIntentionAction("short description", "description", null, useFromToolWindow) {
-            void execute(TestDoxController testDoxController, PsiElement targetPsiElement) { }
+            public void execute(TestDoxController testDoxController, PsiElement targetPsiElement) { }
 
-            void executeUsingTestDoxToolWindow(TestDoxToolWindowUI testDoxToolWindow) { }
+            public void executeUsingTestDoxToolWindow(TestDoxToolWindowUI testDoxToolWindow) { }
         };
     }
 }
