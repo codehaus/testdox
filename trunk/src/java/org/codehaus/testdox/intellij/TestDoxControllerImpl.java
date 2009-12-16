@@ -18,6 +18,7 @@ import org.codehaus.testdox.intellij.actions.DeleteTestAction;
 import org.codehaus.testdox.intellij.actions.RenameTestAction;
 import org.codehaus.testdox.intellij.config.ConfigurationBean;
 import org.codehaus.testdox.intellij.panel.*;
+import org.codehaus.testdox.intellij.ui.RenameUI;
 
 public class TestDoxControllerImpl implements TestDoxController {
 
@@ -128,7 +129,7 @@ public class TestDoxControllerImpl implements TestDoxController {
             if (configuration.isUsingAnnotations()) {
                 methodSignatureAndBody.append(configuration.getTestMethodAnnotation()).append("\n");
             }
-            methodSignatureAndBody.append("public void ").append(sentenceManager.buildMethodName(addTestDialog.getSentence())).append("() {\n}");
+            methodSignatureAndBody.append("public void ").append(sentenceManager.buildMethodName(addTestDialog.sentence())).append("() {\n}");
             editorApi.addMethod((PsiClass) getCurrentTestDoxFile().testClass().psiElement(), methodSignatureAndBody.toString());
         }
     }
@@ -153,7 +154,7 @@ public class TestDoxControllerImpl implements TestDoxController {
             RenameUI renameDialog = createRenameDialog(testMethod.displayString());
             renameDialog.show();
             if (renameDialog.isOK()) {
-                editorApi.rename(testMethod.psiElement(), sentenceManager.buildMethodName(renameDialog.getSentence()));
+                editorApi.rename(testMethod.psiElement(), sentenceManager.buildMethodName(renameDialog.sentence()));
             }
         }
     }

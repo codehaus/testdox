@@ -10,8 +10,8 @@ import com.intellij.psi.PsiIdentifier;
 import com.intellij.psi.PsiMethod;
 import com.intellij.testFramework.LightVirtualFile;
 import org.codehaus.testdox.intellij.config.ConfigurationBean;
-import org.codehaus.testdox.intellij.panel.RenameUI;
 import org.codehaus.testdox.intellij.panel.TestDoxModel;
+import org.codehaus.testdox.intellij.ui.RenameUI;
 import org.intellij.openapi.testing.MockApplicationManager;
 import org.jmock.Mock;
 import org.jmock.cglib.MockObjectTestCase;
@@ -272,7 +272,7 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
     public void testFiresRenameCommandThatDelegatesRenamingToIdeaIfOkPressedInRenameDialog() throws Exception {
         mockRenameDialog.expects(once()).method("show");
         mockRenameDialog.expects(once()).method("isOK").will(returnValue(true));
-        mockRenameDialog.expects(once()).method("getSentence").will(returnValue("whatever works"));
+        mockRenameDialog.expects(once()).method("sentence").will(returnValue("whatever works"));
         mockSentenceManager.expects(once()).method("buildMethodName").will(returnValue("testWhateverWorks"));
         mockEditorApi.expects(once()).method("rename").with(NULL, eq("testWhateverWorks"));
 
@@ -320,7 +320,7 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
     public void testFiresAddMethodCommandThatDelegatesToIdeaIfOkPressedInAddTestDialog() throws Exception {
         mockAddTestDialog.expects(once()).method("show");
         mockAddTestDialog.expects(once()).method("isOK").will(returnValue(true));
-        mockAddTestDialog.expects(once()).method("getSentence").will(returnValue("has an undefined behaviour"));
+        mockAddTestDialog.expects(once()).method("sentence").will(returnValue("has an undefined behaviour"));
 
         mockSentenceManager.expects(once()).method("buildMethodName").will(returnValue("testHasAnUndefinedBehaviour"));
         mockEditorApi.expects(once()).method("getCurrentFile");
@@ -337,7 +337,7 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
         configuration.setUsingAnnotations(true);
         mockAddTestDialog.expects(once()).method("show");
         mockAddTestDialog.expects(once()).method("isOK").will(returnValue(true));
-        mockAddTestDialog.expects(once()).method("getSentence").will(returnValue("has an undefined behaviour"));
+        mockAddTestDialog.expects(once()).method("sentence").will(returnValue("has an undefined behaviour"));
 
         mockSentenceManager.expects(once()).method("buildMethodName").will(returnValue("hasAnUndefinedBehaviour"));
         mockEditorApi.expects(once()).method("getCurrentFile");

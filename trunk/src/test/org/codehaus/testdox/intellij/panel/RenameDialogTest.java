@@ -67,7 +67,7 @@ public class RenameDialogTest extends MockObjectTestCase {
                 dialog.doCancelAction();
             }
         });
-        assertEquals(sentence, dialog.getSentence());
+        assertEquals(sentence, dialog.sentence());
     }
 
     public void testDisposesAndReturnsTypedSentenceOnOk() throws Exception {
@@ -79,7 +79,7 @@ public class RenameDialogTest extends MockObjectTestCase {
                 dialog.doOKAction();
             }
         });
-        assertEquals(newName, dialog.getSentence());
+        assertEquals(newName, dialog.sentence());
     }
 
     protected final RenameDialog createDialog() throws Exception {
