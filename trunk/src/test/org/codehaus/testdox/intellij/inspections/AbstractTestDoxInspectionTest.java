@@ -32,7 +32,7 @@ public class AbstractTestDoxInspectionTest extends MockObjectTestCase {
     protected final Mock mockPsiFile = mock(PsiFile.class);
     protected final Mock mockTestDoxClass = Mocks.createAndRegisterTestDoxClassMock(this);
 
-    private final LocalInspectionTool inspectionTool = new AbstractTestDoxInspection() {
+    private final LocalInspectionTool inspectionTool = new Inspection() {
         public String getDisplayName() {
             return "N/A";
         }
