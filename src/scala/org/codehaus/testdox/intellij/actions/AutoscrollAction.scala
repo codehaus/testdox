@@ -8,7 +8,7 @@ import org.codehaus.testdox.intellij.IconHelper._
 class AutoscrollAction(private var selected: Boolean, useFromTestDoxToolWindow: Boolean)
     extends BaseToggleAction("Autoscroll To Source", "Toggle autoscrolling", getIcon(IconHelper.AUTOSCROLL_ICON), useFromTestDoxToolWindow) {
 
-  def this() = this (false, false)
+  def this() = this(false, false)
 
   def isSelected(event: AnActionEvent) = selected
 

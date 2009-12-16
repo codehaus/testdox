@@ -132,7 +132,7 @@ public class TestDoxProjectComponent implements ProjectComponent {
             registerAction(actionManager, new RenameTestAction(useFromTestDoxToolWindow), RenameTestAction.ID()),
             registerAction(actionManager, new DeleteTestAction(useFromTestDoxToolWindow), DeleteTestAction.ID()),
             Separator.getInstance(),
-            registerAction(actionManager, new RefreshTestDoxPanelAction(useFromTestDoxToolWindow), RefreshTestDoxPanelAction.ID)
+            registerAction(actionManager, new RefreshTestDoxPanelAction(useFromTestDoxToolWindow), RefreshTestDoxPanelAction.ID())
 
         ));
 

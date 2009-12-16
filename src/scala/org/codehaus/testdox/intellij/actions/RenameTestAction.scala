@@ -10,14 +10,14 @@ import org.codehaus.testdox.intellij.panel.TestDoxToolWindowUI
 class RenameTestAction(useFromTestDoxToolWindow: Boolean)
     extends BaseTestMethodIntentionAction("Rename Test", "Renames the current test", getIcon(IconHelper.RENAME_ICON), useFromTestDoxToolWindow) {
 
-  def this() = this (BaseAction.DO_NOT_USE_FROM_TESTDOX_TOOL_WINDOW)
+  def this() = this(BaseAction.DO_NOT_USE_FROM_TESTDOX_TOOL_WINDOW)
 
   protected def execute(controller: TestDoxController, targetPsiElement: PsiElement) {
     controller.startRename(targetPsiElement)
   }
 
-  protected def executeUsingTestDoxToolWindow(testDoxToolWindow: TestDoxToolWindowUI) {
-    testDoxToolWindow.renameSelectedTestElement()
+  protected def executeUsingTestDoxToolWindow(toolWindow: TestDoxToolWindowUI) {
+    toolWindow.renameSelectedTestElement()
   }
 }
 
