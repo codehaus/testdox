@@ -6,9 +6,9 @@ import java.util.List;
 import junit.framework.TestCase;
 import junitx.framework.ListAssert;
 
-public class TestDoxInspectionProviderTest extends TestCase {
+public class InspectionProviderTest extends TestCase {
 
-    private final TestDoxInspectionProvider inspectionProvider = new TestDoxInspectionProvider();
+    private final InspectionProvider inspectionProvider = new InspectionProvider();
 
     public void testDefinesItsComponentName() {
         assertEquals("TestDoxInspectionProvider", inspectionProvider.getComponentName());
