@@ -26,7 +26,7 @@ abstract class BaseTestMethodIntentionAction(text: String, description: String, 
 
   protected def execute(controller: TestDoxController, targetPsiElement: PsiElement)
 
-  protected def executeUsingTestDoxToolWindow(testDoxToolWindow: TestDoxToolWindowUI)
+  protected def executeUsingTestDoxToolWindow(toolWindow: TestDoxToolWindowUI)
 
   override def update(event: AnActionEvent) {
     if (useFromTestDoxToolWindow) {

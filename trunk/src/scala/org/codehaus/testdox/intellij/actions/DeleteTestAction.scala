@@ -10,14 +10,14 @@ import org.codehaus.testdox.intellij.panel.TestDoxToolWindowUI
 class DeleteTestAction(useFromTestDoxToolWindow: Boolean)
     extends BaseTestMethodIntentionAction("Delete Test", "Deletes the current test", getIcon(IconHelper.DELETE_ICON), useFromTestDoxToolWindow) {
 
-  def this() = this (BaseAction.DO_NOT_USE_FROM_TESTDOX_TOOL_WINDOW)
+  def this() = this(BaseAction.DO_NOT_USE_FROM_TESTDOX_TOOL_WINDOW)
 
   protected def execute(controller: TestDoxController, targetPsiElement: PsiElement) {
     controller.delete(targetPsiElement)
   }
 
-  protected def executeUsingTestDoxToolWindow(testDoxToolWindow: TestDoxToolWindowUI) {
-    testDoxToolWindow.deleteSelectedTestElement()
+  protected def executeUsingTestDoxToolWindow(toolWindow: TestDoxToolWindowUI) {
+    toolWindow.deleteSelectedTestElement()
   }
 }
 

@@ -19,7 +19,7 @@ class TestMethod(psiMethod: PsiMethod, editorApi: EditorApi, sentenceManager: Se
 
   override def updatePresentation(presentation: Presentation) = presentation.setEnabled(true)
 
-  override def rename(testDoxController: TestDoxController) = testDoxController.startRename(this)
+  override def rename(controller: TestDoxController) = controller.startRename(this)
 
   override def delete(controller: TestDoxController) = editorApi.delete(psiElement)
 
