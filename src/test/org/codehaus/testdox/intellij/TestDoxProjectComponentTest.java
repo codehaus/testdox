@@ -76,9 +76,9 @@ public class TestDoxProjectComponentTest extends MockObjectTestCase {
         MockApplicationManager.getMockApplication().registerComponent(IntentionManager.class, mockIntentionManager.proxy());
 
         String actionKeyForAutoscrollAction = expectedProjectNameWithoutExtension + '.' + AutoscrollAction.ID();
-        String actionKeyForDeleteTestAction = expectedProjectNameWithoutExtension + '.' + DeleteTestAction.ID;
+        String actionKeyForDeleteTestAction = expectedProjectNameWithoutExtension + '.' + DeleteTestAction.ID();
         String actionKeyForRefreshTestDoxAction = expectedProjectNameWithoutExtension + '.' + RefreshTestDoxPanelAction.ID;
-        String actionKeyForRenameTestAction = expectedProjectNameWithoutExtension + '.' + RenameTestAction.ID;
+        String actionKeyForRenameTestAction = expectedProjectNameWithoutExtension + '.' + RenameTestAction.ID();
         String actionKeyForSortTestDoxAction = expectedProjectNameWithoutExtension + '.' + SortTestDoxAction.ID();
         String actionKeyForToolbarActionGroup = expectedProjectNameWithoutExtension + '.' + TestDoxProjectComponent.TOOL_WINDOW_TOOLBAR_ID;
 
