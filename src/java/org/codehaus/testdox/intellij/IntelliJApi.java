@@ -30,7 +30,7 @@ import com.intellij.util.IncorrectOperationException;
 import static jedi.functional.Coercions.*;
 import org.codehaus.testdox.intellij.config.ConfigurationBean;
 import org.codehaus.testdox.intellij.panel.ItemSelectionDialog;
-import org.codehaus.testdox.intellij.panel.ItemSelectionUI;
+import org.codehaus.testdox.intellij.ui.ItemSelectionUI;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;

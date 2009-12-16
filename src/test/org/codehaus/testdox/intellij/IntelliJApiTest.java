@@ -14,7 +14,7 @@ import com.intellij.refactoring.listeners.RefactoringElementListenerProvider;
 import com.intellij.refactoring.listeners.RefactoringListenerManager;
 import static jedi.functional.Coercions.array;
 import org.codehaus.testdox.intellij.config.ConfigurationBean;
-import org.codehaus.testdox.intellij.panel.ItemSelectionUI;
+import org.codehaus.testdox.intellij.ui.ItemSelectionUI;
 import org.intellij.openapi.testing.MockApplication;
 import org.intellij.openapi.testing.MockApplicationManager;
 import org.intellij.openapi.testing.MockVirtualFile;

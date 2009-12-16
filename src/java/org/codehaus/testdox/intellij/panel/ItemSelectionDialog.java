@@ -2,6 +2,8 @@ package org.codehaus.testdox.intellij.panel;
 
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.DialogWrapper;
+import org.codehaus.testdox.intellij.ui.ItemSelectionUI;
+
 import static jedi.functional.Coercions.array;
 
 import javax.swing.*;
