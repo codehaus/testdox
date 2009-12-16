@@ -12,7 +12,7 @@ import static jedi.functional.Coercions.array;
 import org.codehaus.testdox.intellij.*;
 import org.jetbrains.annotations.NotNull;
 
-public class EmptyTestMethodInspection extends AbstractTestDoxInspection {
+public class EmptyTestMethodInspection extends Inspection {
 
     @NotNull
     public String getDisplayName() {
@@ -26,17 +26,17 @@ public class EmptyTestMethodInspection extends AbstractTestDoxInspection {
 
         EditorApi editorApi = testDoxController.getEditorApi();
         if ((file.isTestedClass()) || (!file.canNavigateToTestedClass()) || (!editorApi.isTestMethod(psiMethod))) {
-            return NO_PROBLEMS;
+            return NO_PROBLEMS();
         }
 
         PsiCodeBlock codeBlock = psiMethod.getBody();
         if (codeBlock == null) {
-            return NO_PROBLEMS;
+            return NO_PROBLEMS();
         }
 
         for (PsiStatement statement : codeBlock.getStatements()) {
             if (!PsiEmptyStatement.class.isInstance(statement)) {
-                return NO_PROBLEMS;
+                return NO_PROBLEMS();
             }
         }
 

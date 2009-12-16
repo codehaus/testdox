@@ -11,7 +11,7 @@ import org.codehaus.testdox.intellij.TestDoxFileFactory;
 import org.codehaus.testdox.intellij.TestDoxProjectComponent;
 import org.jetbrains.annotations.NotNull;
 
-public class EmptyTestClassInspection extends AbstractTestDoxInspection {
+public class EmptyTestClassInspection extends Inspection {
 
     @NotNull
     public String getDisplayName() {
@@ -20,7 +20,7 @@ public class EmptyTestClassInspection extends AbstractTestDoxInspection {
 
     public ProblemDescriptor[] checkClass(@NotNull PsiClass psiClass, @NotNull InspectionManager manager, boolean isOnTheFly) {
         if (isInnerClass(psiClass) || isSuite(psiClass)) {
-            return NO_PROBLEMS;
+            return NO_PROBLEMS();
         }
 
         TestDoxController testDoxController = TestDoxProjectComponent.getInstance(manager.getProject()).getController();
@@ -34,7 +34,7 @@ public class EmptyTestClassInspection extends AbstractTestDoxInspection {
             );
         }
 
-        return NO_PROBLEMS;
+        return NO_PROBLEMS();
     }
 
     private boolean isSuite(PsiClass psiClass) {
