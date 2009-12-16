@@ -3,6 +3,7 @@ package org.codehaus.testdox.intellij.panel;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.DialogWrapper;
 import static jedi.functional.Coercions.array;
+import org.codehaus.testdox.intellij.ui.RenameUI;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -27,6 +28,10 @@ public class RenameDialog extends DialogWrapper implements RenameUI {
         setSentence(sentence);
         setModal(true);
         init();
+    }
+
+    public String sentence() {
+        return cancelled ? originalSentence : currentSentence;
     }
 
     public void setSentence(String sentence) {
@@ -74,10 +79,6 @@ public class RenameDialog extends DialogWrapper implements RenameUI {
     public void doOKAction() {
         super.doOKAction();
         cancelled = false;
-    }
-
-    public String getSentence() {
-        return cancelled ? originalSentence : currentSentence;
     }
 
     protected JComponent createCenterPanel() {
