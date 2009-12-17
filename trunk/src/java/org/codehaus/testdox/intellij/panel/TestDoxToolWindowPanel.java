@@ -28,6 +28,7 @@ import com.intellij.openapi.actionSystem.Presentation;
 import org.codehaus.testdox.intellij.TestDoxController;
 import org.codehaus.testdox.intellij.TestElement;
 import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.ui.TestElementCellRenderer;
 import org.codehaus.testdox.intellij.ui.ToolWindowUI;
 
 public class TestDoxToolWindowPanel extends JPanel implements TableModelListener, ToolWindowUI, PropertyChangeListener {
