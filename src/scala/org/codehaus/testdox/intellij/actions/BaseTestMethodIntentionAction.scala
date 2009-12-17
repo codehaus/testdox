@@ -11,7 +11,7 @@ import com.intellij.psi.PsiFile
 import com.intellij.util.IncorrectOperationException
 import org.codehaus.testdox.intellij.TestDoxController
 import org.codehaus.testdox.intellij.TestDoxProjectComponent
-import org.codehaus.testdox.intellij.panel.TestDoxToolWindowUI
+import org.codehaus.testdox.intellij.ui.ToolWindowUI
 import org.jetbrains.annotations.NotNull
 
 abstract class BaseTestMethodIntentionAction(text: String, description: String, icon: Icon, useFromTestDoxToolWindow: Boolean)
@@ -19,18 +19,18 @@ abstract class BaseTestMethodIntentionAction(text: String, description: String, 
 
   override def actionPerformed(event: AnActionEvent) {
     if (useFromTestDoxToolWindow)
-      executeUsingTestDoxToolWindow(actionEvents.getTestDoxToolWindowUI(event))
+      executeUsingTestDoxToolWindow(actionEvents.getToolWindowUI(event))
     else
       execute(actionEvents.getTestDoxController(event), actionEvents.getTargetPsiElement(event))
   }
 
   protected def execute(controller: TestDoxController, targetPsiElement: PsiElement)
 
-  protected def executeUsingTestDoxToolWindow(toolWindow: TestDoxToolWindowUI)
+  protected def executeUsingTestDoxToolWindow(toolWindow: ToolWindowUI)
 
   override def update(event: AnActionEvent) {
     if (useFromTestDoxToolWindow) {
-      actionEvents.getTestDoxToolWindowUI(event).update(event.getPresentation())
+      actionEvents.getToolWindowUI(event).update(event.getPresentation())
     } else {
       val controller = actionEvents.getTestDoxController(event)
       controller.updatePresentation(event.getPresentation(), actionEvents.getTargetPsiElement(event))

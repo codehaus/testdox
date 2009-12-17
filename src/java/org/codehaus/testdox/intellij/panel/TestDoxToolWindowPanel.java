@@ -28,8 +28,9 @@ import com.intellij.openapi.actionSystem.Presentation;
 import org.codehaus.testdox.intellij.TestDoxController;
 import org.codehaus.testdox.intellij.TestElement;
 import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.ui.ToolWindowUI;
 
-public class TestDoxToolWindowPanel extends JPanel implements TableModelListener, TestDoxToolWindowUI, PropertyChangeListener {
+public class TestDoxToolWindowPanel extends JPanel implements TableModelListener, ToolWindowUI, PropertyChangeListener {
 
     private static final int ROW_HEIGHT = 18;
     private static final int ROW_MARGIN = 2;
@@ -136,7 +137,7 @@ public class TestDoxToolWindowPanel extends JPanel implements TableModelListener
     }
 
     public void update(Presentation presentation) {
-        getSelectedTestElement().updatePresentation(presentation);
+        getSelectedTestElement().update(presentation);
     }
 
     public void renameSelectedTestElement() {

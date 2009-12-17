@@ -12,7 +12,7 @@ import org.codehaus.testdox.intellij.NullPsiElement;
 import org.codehaus.testdox.intellij.TestDoxController;
 import org.codehaus.testdox.intellij.TestDoxNonJavaFile;
 import org.codehaus.testdox.intellij.TestDoxProjectComponent;
-import org.codehaus.testdox.intellij.panel.TestDoxToolWindowUI;
+import org.codehaus.testdox.intellij.ui.ToolWindowUI;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -28,9 +28,9 @@ public class ActionEvents {
             : Nulls.TESTDOX_CONTROLLER;
     }
 
-    public TestDoxToolWindowUI getTestDoxToolWindowUI(AnActionEvent event) {
+    public ToolWindowUI getToolWindowUI(AnActionEvent event) {
         TestDoxProjectComponent testDoxProjectComponent = getTestDoxProjectComponent(event);
-        return (testDoxProjectComponent != null) ? testDoxProjectComponent.getTestDoxToolWindowUI()
+        return (testDoxProjectComponent != null) ? testDoxProjectComponent.getToolWindowUI()
             : Nulls.TESTDOX_TOOL_WINDOW;
     }
 
@@ -60,7 +60,7 @@ public class ActionEvents {
 
     static class Nulls {
 
-        static final TestDoxToolWindowUI TESTDOX_TOOL_WINDOW;
+        static final ToolWindowUI TESTDOX_TOOL_WINDOW;
         static final TestDoxController TESTDOX_CONTROLLER;
 
         private static final TestDoxNonJavaFile NON_JAVA_TEST_DOX_FILE = new TestDoxNonJavaFile(null);
@@ -85,10 +85,10 @@ public class ActionEvents {
             };
 
             ClassLoader classLoader = invocationHandler.getClass().getClassLoader();
-            Class[] interfaces = array(TestDoxToolWindowUI.class, TestDoxController.class);
+            Class[] interfaces = array(ToolWindowUI.class, TestDoxController.class);
 
             Object nullObject = Proxy.newProxyInstance(classLoader, interfaces, invocationHandler);
-            TESTDOX_TOOL_WINDOW = (TestDoxToolWindowUI) nullObject;
+            TESTDOX_TOOL_WINDOW = (ToolWindowUI) nullObject;
             TESTDOX_CONTROLLER = (TestDoxController) nullObject;
         }
 

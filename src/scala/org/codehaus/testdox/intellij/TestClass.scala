@@ -21,7 +21,7 @@ class TestClass(className: String, psiClass: PsiClass, editorApi: EditorApi, nam
       IconHelper.getLockedIcon(IconHelper.CLASS_ICON)
   }
 
-  override def updatePresentation(presentation: Presentation) {
+  override def update(presentation: Presentation) {
     presentation.setEnabled(true);
   }
 

@@ -35,7 +35,7 @@ public class TestMethodTest extends MockObjectTestCase {
         presentation.setEnabled(false);
 
         TestMethod testMethod = new TestMethod(null, null, null);
-        testMethod.updatePresentation(presentation);
+        testMethod.update(presentation);
 
         assertTrue("action representation should have been enabled", presentation.isEnabled());
     }

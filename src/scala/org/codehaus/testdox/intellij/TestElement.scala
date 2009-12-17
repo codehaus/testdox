@@ -15,7 +15,7 @@ trait TestElement extends Comparable[TestElement] {
 
   def icon: Icon
 
-  def updatePresentation(presentation: Presentation): Unit
+  def update(presentation: Presentation): Unit
 
   def rename(controller: TestDoxController): Unit
 

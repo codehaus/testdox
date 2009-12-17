@@ -9,7 +9,7 @@ import com.intellij.psi.PsiElement;
 import org.codehaus.testdox.intellij.Stubs;
 import org.codehaus.testdox.intellij.TestDoxController;
 import org.codehaus.testdox.intellij.TestDoxControllerImpl;
-import org.codehaus.testdox.intellij.panel.TestDoxToolWindowUI;
+import org.codehaus.testdox.intellij.ui.ToolWindowUI;
 import org.intellij.openapi.testing.MockApplicationManager;
 import org.jmock.Mock;
 import org.jmock.cglib.MockObjectTestCase;
@@ -18,7 +18,7 @@ public abstract class TestDoxActionTestCase extends MockObjectTestCase {
 
     protected final Mock mockActionEvents = mock(ActionEvents.class);
     protected final Mock mockTestDoxController = mock(TestDoxController.class);
-    protected final Mock mockTestDoxToolWindowUI = mock(TestDoxToolWindowUI.class);
+    protected final Mock mockTestDoxToolWindowUI = mock(ToolWindowUI.class);
     protected final Mock mockDataContext = mock(DataContext.class);
 
     protected void setUp() {
@@ -58,7 +58,7 @@ public abstract class TestDoxActionTestCase extends MockObjectTestCase {
     }
 
     protected void useMockTestDoxToolWindowUI() {
-        mockActionEvents.expects(once()).method("getTestDoxToolWindowUI").with(isA(AnActionEvent.class))
+        mockActionEvents.expects(once()).method("getToolWindowUI").with(isA(AnActionEvent.class))
                 .will(returnValue(mockTestDoxToolWindowUI.proxy()));
     }
 
@@ -67,7 +67,7 @@ public abstract class TestDoxActionTestCase extends MockObjectTestCase {
     }
 
     protected void assertActionEnabledInTestDoxToolWindow(AnAction action, final boolean enabled) {
-        TestDoxToolWindowUI testDoxToolWindow = new TestDoxToolWindowUI() {
+        ToolWindowUI testDoxToolWindow = new ToolWindowUI() {
             public void update(Presentation presentation) {
                 presentation.setEnabled(enabled);
             }
@@ -77,7 +77,7 @@ public abstract class TestDoxActionTestCase extends MockObjectTestCase {
             public void deleteSelectedTestElement() {}
         };
 
-        mockActionEvents.expects(once()).method("getTestDoxToolWindowUI").with(isA(AnActionEvent.class))
+        mockActionEvents.expects(once()).method("getToolWindowUI").with(isA(AnActionEvent.class))
                 .will(returnValue(testDoxToolWindow));
 
         assertActionEnabledInsideOrOutsideOfTheToolWindow(action, enabled);

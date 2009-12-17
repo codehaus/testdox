@@ -6,12 +6,13 @@ import com.intellij.openapi.fileEditor.FileEditorManagerListener;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiElement;
 import com.intellij.refactoring.listeners.RefactoringElementListenerProvider;
+import org.codehaus.testdox.intellij.actions.PresentationUpdater;
 import org.codehaus.testdox.intellij.config.ConfigurationBean;
 import org.codehaus.testdox.intellij.panel.TestDoxModel;
 
 public interface TestDoxController extends FileEditorManagerListener,
                                            RefactoringElementListenerProvider,
-                                           TestDoxActionPresentationUpdater {
+                                           PresentationUpdater {
     EditorApi getEditorApi();
 
     TestDoxFileFactory getTestDoxFileFactory();

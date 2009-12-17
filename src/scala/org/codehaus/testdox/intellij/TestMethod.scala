@@ -17,7 +17,7 @@ class TestMethod(psiMethod: PsiMethod, editorApi: EditorApi, sentenceManager: Se
 
   override def icon: Icon = IconHelper.getIcon(IconHelper.DOX_ICON)
 
-  override def updatePresentation(presentation: Presentation) = presentation.setEnabled(true)
+  override def update(presentation: Presentation) = presentation.setEnabled(true)
 
   override def rename(controller: TestDoxController) = controller.startRename(this)
 
