@@ -130,7 +130,7 @@ public class TestDoxControllerImpl implements TestDoxController {
                 methodSignatureAndBody.append(configuration.getTestMethodAnnotation()).append("\n");
             }
             methodSignatureAndBody.append("public void ").append(sentenceManager.buildMethodName(addTestDialog.sentence())).append("() {\n}");
-            editorApi.addMethod((PsiClass) getCurrentTestDoxFile().testClass().psiElement(), methodSignatureAndBody.toString());
+            editorApi.addMethod(getCurrentTestDoxFile().testClass().psiElement(), methodSignatureAndBody.toString());
         }
     }
 

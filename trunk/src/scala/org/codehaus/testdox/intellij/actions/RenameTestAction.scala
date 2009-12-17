@@ -5,7 +5,7 @@ import com.intellij.psi.PsiElement
 import org.codehaus.testdox.intellij.IconHelper
 import org.codehaus.testdox.intellij.IconHelper._
 import org.codehaus.testdox.intellij.TestDoxController
-import org.codehaus.testdox.intellij.panel.TestDoxToolWindowUI
+import org.codehaus.testdox.intellij.ui.ToolWindowUI
 
 class RenameTestAction(useFromTestDoxToolWindow: Boolean)
     extends BaseTestMethodIntentionAction("Rename Test", "Renames the current test", getIcon(IconHelper.RENAME_ICON), useFromTestDoxToolWindow) {
@@ -16,7 +16,7 @@ class RenameTestAction(useFromTestDoxToolWindow: Boolean)
     controller.startRename(targetPsiElement)
   }
 
-  protected def executeUsingTestDoxToolWindow(toolWindow: TestDoxToolWindowUI) {
+  protected def executeUsingTestDoxToolWindow(toolWindow: ToolWindowUI) {
     toolWindow.renameSelectedTestElement()
   }
 }

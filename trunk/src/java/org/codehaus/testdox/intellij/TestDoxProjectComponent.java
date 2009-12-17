@@ -12,7 +12,7 @@ import org.codehaus.testdox.intellij.config.ConfigurationBean;
 import org.codehaus.testdox.intellij.config.ConfigurationController;
 import org.codehaus.testdox.intellij.panel.TestDoxModel;
 import org.codehaus.testdox.intellij.panel.TestDoxToolWindowPanel;
-import org.codehaus.testdox.intellij.panel.TestDoxToolWindowUI;
+import org.codehaus.testdox.intellij.ui.ToolWindowUI;
 import org.jetbrains.annotations.NotNull;
 import org.picocontainer.MutablePicoContainer;
 import org.picocontainer.defaults.DefaultPicoContainer;
@@ -162,7 +162,7 @@ public class TestDoxProjectComponent implements ProjectComponent {
         return controller;
     }
 
-    public TestDoxToolWindowUI getTestDoxToolWindowUI() {
+    public ToolWindowUI getToolWindowUI() {
         return testDoxToolWindowPanel;
     }
 }

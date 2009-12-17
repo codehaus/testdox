@@ -14,7 +14,7 @@ import com.intellij.openapi.wm.ToolWindowType;
 import com.intellij.psi.PsiTreeChangeListener;
 import org.codehaus.testdox.intellij.actions.*;
 import org.codehaus.testdox.intellij.config.ConfigurationController;
-import org.codehaus.testdox.intellij.panel.TestDoxToolWindowUI;
+import org.codehaus.testdox.intellij.ui.ToolWindowUI;
 import org.intellij.openapi.testing.MockApplicationManager;
 import org.jmock.Mock;
 import org.jmock.cglib.MockObjectTestCase;
@@ -116,7 +116,7 @@ public class TestDoxProjectComponentTest extends MockObjectTestCase {
 
         Mock mockToolWindow = mock(ToolWindow.class);
         mockToolWindowManager.expects(once()).method("registerToolWindow")
-            .with(eq(TestDoxProjectComponent.TOOL_WINDOW_ID), isA(TestDoxToolWindowUI.class), same(ToolWindowAnchor.RIGHT))
+            .with(eq(TestDoxProjectComponent.TOOL_WINDOW_ID), isA(ToolWindowUI.class), same(ToolWindowAnchor.RIGHT))
             .will(returnValue(mockToolWindow.proxy()));
 
         mockToolWindow.expects(once()).method("setType").with(same(ToolWindowType.DOCKED), NULL);

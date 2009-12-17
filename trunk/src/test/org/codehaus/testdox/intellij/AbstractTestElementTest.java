@@ -49,7 +49,7 @@ public class AbstractTestElementTest extends TestCase {
         Presentation presentation = new RenameTestAction().getTemplatePresentation();
         presentation.setEnabled(true);
 
-        abstractTestElement.updatePresentation(presentation);
+        abstractTestElement.update(presentation);
         assertFalse("action representation should have been disabled", presentation.isEnabled());
     }
 

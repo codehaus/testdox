@@ -13,7 +13,7 @@ abstract class BaseTestElementAction(text: String, description: String, icon: Ic
 
   private def selectController(event: AnActionEvent) = {
     if (useFromTestDoxToolWindow)
-      actionEvents.getTestDoxToolWindowUI(event)
+      actionEvents.getToolWindowUI(event)
     else
       actionEvents.getTestDoxController(event)
   }

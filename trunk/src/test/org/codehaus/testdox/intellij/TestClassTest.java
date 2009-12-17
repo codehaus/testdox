@@ -132,7 +132,7 @@ public class TestClassTest extends MockObjectTestCase {
         presentation.setEnabled(false);
 
         TestClass testClass = new TestClass(null, null, null, null);
-        testClass.updatePresentation(presentation);
+        testClass.update(presentation);
 
         assertTrue("action representation should have been enabled", presentation.isEnabled());
     }

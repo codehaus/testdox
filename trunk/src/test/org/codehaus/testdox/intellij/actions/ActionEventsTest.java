@@ -11,7 +11,7 @@ import com.intellij.psi.PsiFile;
 import static jedi.functional.Coercions.asList;
 import static jedi.functional.Coercions.list;
 import org.codehaus.testdox.intellij.*;
-import org.codehaus.testdox.intellij.panel.TestDoxToolWindowUI;
+import org.codehaus.testdox.intellij.ui.ToolWindowUI;
 import org.intellij.openapi.testing.MockApplicationManager;
 import org.jmock.Mock;
 import org.jmock.cglib.MockObjectTestCase;
@@ -53,7 +53,7 @@ public class ActionEventsTest extends MockObjectTestCase {
 
     public void testReturnsANullTestdoxToolWindowWhenAProjectIsNotAvailable() {
         setExpectationsForProjectNotBeingAvailable();
-        assertSame(ActionEvents.Nulls.TESTDOX_TOOL_WINDOW, actionEvents.getTestDoxToolWindowUI(anActionEvent));
+        assertSame(ActionEvents.Nulls.TESTDOX_TOOL_WINDOW, actionEvents.getToolWindowUI(anActionEvent));
     }
 
     public void testReturnsANullTestdoxControllerWhenAProjectIsNotAvailable() {
@@ -64,10 +64,10 @@ public class ActionEventsTest extends MockObjectTestCase {
     public void testReturnsANonNullTestdoxToolWindowWhenAProjectIsNotAvailable() {
         setExpectationsForProjectBeingAvailable();
 
-        TestDoxActionPresentationUpdater testDoxToolWindowMock = (TestDoxActionPresentationUpdater) mock(TestDoxToolWindowUI.class).proxy();
-        mockTestDoxProjectComponent.expects(once()).method("getTestDoxToolWindowUI").will(returnValue(testDoxToolWindowMock));
+        PresentationUpdater testDoxToolWindowMock = (PresentationUpdater) mock(ToolWindowUI.class).proxy();
+        mockTestDoxProjectComponent.expects(once()).method("getToolWindowUI").will(returnValue(testDoxToolWindowMock));
 
-        assertSame(testDoxToolWindowMock, actionEvents.getTestDoxToolWindowUI(anActionEvent));
+        assertSame(testDoxToolWindowMock, actionEvents.getToolWindowUI(anActionEvent));
     }
 
     public void testReturnsANonNullTestdoxControllerWhenAProjectIsNotAvailable() {

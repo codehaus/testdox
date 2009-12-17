@@ -17,7 +17,7 @@ abstract class BaseToggleAction(text: String, description: String, icon: Icon, u
 
   private def selectController(event: AnActionEvent) = {
     if (useFromTestDoxToolWindow)
-      actionEvents.getTestDoxToolWindowUI(event)
+      actionEvents.getToolWindowUI(event)
     else
       actionEvents.getTestDoxController(event)
   }
