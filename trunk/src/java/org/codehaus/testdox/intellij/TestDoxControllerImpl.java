@@ -18,6 +18,7 @@ import org.codehaus.testdox.intellij.actions.DeleteTestAction;
 import org.codehaus.testdox.intellij.actions.RenameTestAction;
 import org.codehaus.testdox.intellij.config.ConfigurationBean;
 import org.codehaus.testdox.intellij.panel.*;
+import org.codehaus.testdox.intellij.ui.AddTestDialog;
 import org.codehaus.testdox.intellij.ui.RenameUI;
 
 public class TestDoxControllerImpl implements TestDoxController {
