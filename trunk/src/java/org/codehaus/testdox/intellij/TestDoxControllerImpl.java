@@ -20,12 +20,13 @@ import org.codehaus.testdox.intellij.config.ConfigurationBean;
 import org.codehaus.testdox.intellij.panel.*;
 import org.codehaus.testdox.intellij.ui.AddTestDialog;
 import org.codehaus.testdox.intellij.ui.RenameUI;
+import org.codehaus.testdox.intellij.ui.TestDoxTableModel;
 
 public class TestDoxControllerImpl implements TestDoxController {
 
     private final Project project;
     private final EditorApi editorApi;
-    private final TestDoxModel model;
+    private final TestDoxTableModel model;
     private final NameResolver nameResolver;
     private final SentenceManager sentenceManager;
     private final TestDoxFileFactory testDoxFileFactory;
@@ -39,7 +40,7 @@ public class TestDoxControllerImpl implements TestDoxController {
     private ConfigurationBean configuration;
     private QuickDoxDialog dialog;
 
-    public TestDoxControllerImpl(Project project, EditorApi editorApi, TestDoxModel model,
+    public TestDoxControllerImpl(Project project, EditorApi editorApi, TestDoxTableModel model,
                                  ConfigurationBean configuration, NameResolver nameResolver,
                                  SentenceManager sentenceManager, TestDoxFileFactory testDoxFileFactory) {
         this.project = project;
@@ -86,7 +87,7 @@ public class TestDoxControllerImpl implements TestDoxController {
         return testDoxFileFactory;
     }
 
-    public TestDoxModel getModel() {
+    public TestDoxTableModel getModel() {
         return model;
     }
 

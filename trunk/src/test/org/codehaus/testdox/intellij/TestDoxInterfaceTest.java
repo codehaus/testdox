@@ -1,7 +1,7 @@
 package org.codehaus.testdox.intellij;
 
 import org.codehaus.testdox.intellij.config.ConfigurationBean;
-import org.codehaus.testdox.intellij.panel.TestDoxModel;
+import org.codehaus.testdox.intellij.ui.TestDoxTableModel;
 import org.jmock.Mock;
 import org.jmock.MockObjectTestCase;
 
@@ -18,7 +18,7 @@ public class TestDoxInterfaceTest extends MockObjectTestCase {
         TestInterface testInterface = new TestInterface(className, null, editorApiMock, new TemplateNameResolver(configuration));
 
         TestDoxInterface testDoxInterface = new TestDoxInterface(null, className, testInterface, null);
-        TestDoxModel testDoxModel = new TestDoxModel(configuration);
+        TestDoxTableModel testDoxModel = new TestDoxTableModel(configuration);
         testDoxInterface.updateModel(testDoxModel);
 
         assertFalse("interfaces should not have TestDox data", testDoxModel.hasDox());

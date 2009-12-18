@@ -4,6 +4,7 @@ import com.intellij.psi.PsiMethod;
 import static jedi.functional.Coercions.array;
 import org.codehaus.testdox.intellij.*;
 import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.ui.TestDoxTableModel;
 import org.intellij.openapi.testing.MockApplicationManager;
 import org.jmock.Mock;
 import org.jmock.cglib.MockObjectTestCase;
@@ -24,7 +25,7 @@ public class TestDoxToolWindowPanelTest extends MockObjectTestCase {
 
     private Component actionToolbarComponent = new JPanel();
     private ConfigurationBean configuration = new ConfigurationBean();
-    private TestDoxModel model = new TestDoxModel(configuration);
+    private TestDoxTableModel model = new TestDoxTableModel(configuration);
     private JTable table = new JTable();
     private TestDoxToolWindowPanel window;
 

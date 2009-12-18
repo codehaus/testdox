@@ -33,9 +33,9 @@ class TestClass(className: String, psiClass: PsiClass, editorApi: EditorApi, nam
     editorApi.delete(testedClass);
   }
 
-  override def compareTo(o: TestElement): Int = {
-    if (o.isInstanceOf[TestClass])
-      displayString.compareTo(o.displayString)
+  override def compare(that: TestElement): Int = {
+    if (that.isInstanceOf[TestClass])
+      this.displayString.compareTo(that.displayString)
     else
       1
   }

@@ -1,12 +1,11 @@
 package org.codehaus.testdox.intellij
 
 import com.intellij.openapi.vfs.VirtualFile
-
-import org.codehaus.testdox.intellij.panel.TestDoxModel
+import org.codehaus.testdox.intellij.ui.TestDoxTableModel
 
 class TestDoxNonJavaFile(file: VirtualFile) extends TestDoxFile(file, null, null, null, TestMethod.EMPTY_ARRAY) {
 
-  def updateModel(model: TestDoxModel) {
+  def updateModel(model: TestDoxTableModel) {
     model.setNotJava()
   }
 }

@@ -12,15 +12,7 @@ import org.codehaus.testdox.intellij.actions.RenameTestAction;
 
 public class AbstractTestElementTest extends TestCase {
 
-    private AbstractTestElement abstractTestElement = new AbstractTestElement() {
-        public String displayString() {
-            throw new UnsupportedOperationException();
-        }
-
-        public Icon icon() {
-            throw new UnsupportedOperationException();
-        }
-    };
+    private AbstractTestElement abstractTestElement = new TestInterface(null, null, null, null);
 
     public void testIsAssociatedToANullPsiElementByDefault() {
         MockApplicationManager.reset();
@@ -32,15 +24,7 @@ public class AbstractTestElementTest extends TestCase {
     }
 
     public void testUsesReferenceEqualityToDefineTheDefaultNaturalOrder() {
-        assertEquals(-1, abstractTestElement.compareTo(new AbstractTestElement() {
-                         public String displayString() {
-                             throw new UnsupportedOperationException();
-                         }
-
-                         public Icon icon() {
-                             throw new UnsupportedOperationException();
-                         }
-                     }));
+        assertEquals(-1, abstractTestElement.compareTo(new TestInterface(null, null, null, null)));
 
         assertEquals(0, abstractTestElement.compareTo(abstractTestElement));
     }

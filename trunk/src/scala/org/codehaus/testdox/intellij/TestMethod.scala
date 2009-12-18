@@ -23,9 +23,9 @@ class TestMethod(psiMethod: PsiMethod, editorApi: EditorApi, sentenceManager: Se
 
   override def delete(controller: TestDoxController) = editorApi.delete(psiElement)
 
-  override def compareTo(o: TestElement): Int = {
-    if (o.isInstanceOf[TestMethod])
-      displayString.compareTo(o.displayString)
+  override def compare(that: TestElement): Int = {
+    if (that.isInstanceOf[TestMethod])
+      this.displayString.compareTo(that.displayString)
     else
       0
   }

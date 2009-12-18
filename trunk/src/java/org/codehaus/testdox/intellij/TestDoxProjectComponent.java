@@ -10,8 +10,8 @@ import static jedi.functional.Coercions.list;
 import org.codehaus.testdox.intellij.actions.*;
 import org.codehaus.testdox.intellij.config.ConfigurationBean;
 import org.codehaus.testdox.intellij.config.ConfigurationController;
-import org.codehaus.testdox.intellij.panel.TestDoxModel;
 import org.codehaus.testdox.intellij.panel.TestDoxToolWindowPanel;
+import org.codehaus.testdox.intellij.ui.TestDoxTableModel;
 import org.codehaus.testdox.intellij.ui.ToolWindowUI;
 import org.jetbrains.annotations.NotNull;
 import org.picocontainer.MutablePicoContainer;
@@ -34,7 +34,7 @@ public class TestDoxProjectComponent implements ProjectComponent {
     protected EditorApiFactory editorApiFactory;
     protected ToolWindow toolWindow;
     protected TestDoxToolWindowPanel testDoxToolWindowPanel;
-    protected TestDoxModel model;
+    protected TestDoxTableModel model;
     protected EditorApi editorApi;
     protected TestDoxControllerImpl controller;
 
@@ -72,14 +72,14 @@ public class TestDoxProjectComponent implements ProjectComponent {
         picoContainer.registerComponentInstance(ConfigurationBean.class, configuration);
 
         // move container setup somewhere else...
-        picoContainer.registerComponentImplementation(TestDoxModel.class);
+        picoContainer.registerComponentImplementation(TestDoxTableModel.class);
         picoContainer.registerComponentImplementation(NameResolver.class, TemplateNameResolver.class);
         picoContainer.registerComponentImplementation(SentenceManager.class);
         picoContainer.registerComponentImplementation(TestLookup.class);
         picoContainer.registerComponentImplementation(TestDoxFileFactory.class);
         picoContainer.registerComponentImplementation(TestDoxController.class, TestDoxControllerImpl.class);
 
-        model = (TestDoxModel) picoContainer.getComponentInstance(TestDoxModel.class);
+        model = (TestDoxTableModel) picoContainer.getComponentInstance(TestDoxTableModel.class);
         model.setNotJava();
 
         editorApi = editorApiFactory.createEditorApi();

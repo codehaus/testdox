@@ -5,7 +5,7 @@ import javax.swing.Icon;
 import com.intellij.openapi.actionSystem.Presentation
 import com.intellij.psi.PsiElement
 
-trait TestElement extends Comparable[TestElement] {
+trait TestElement extends Ordered[TestElement] {
 
   def psiElement: PsiElement
 

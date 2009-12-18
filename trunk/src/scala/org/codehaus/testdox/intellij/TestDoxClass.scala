@@ -2,7 +2,7 @@ package org.codehaus.testdox.intellij
 
 import com.intellij.openapi.vfs.VirtualFile;
 
-import org.codehaus.testdox.intellij.panel.TestDoxModel;
+import org.codehaus.testdox.intellij.ui.TestDoxTableModel;
 
 class TestDoxClass(override val file: VirtualFile,
                    override val className: String,
@@ -19,7 +19,7 @@ class TestDoxClass(override val file: VirtualFile,
 
   override def canNavigateToTestedClass = testedClass != null && !testedClass.isTestClass
 
-  def updateModel(model: TestDoxModel) {
+  def updateModel(model: TestDoxTableModel) {
     model.setTestDoxForClass(this)
   }
 }
