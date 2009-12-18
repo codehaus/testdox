@@ -30,6 +30,7 @@ import org.codehaus.testdox.intellij.IconHelper;
 import org.codehaus.testdox.intellij.TestElement;
 import org.codehaus.testdox.intellij.TestMethod;
 import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.ui.TestDoxTableModel;
 
 public class QuickDoxDialog implements TableModelListener, PropertyChangeListener {
 
@@ -43,13 +44,13 @@ public class QuickDoxDialog implements TableModelListener, PropertyChangeListene
     }
 
     private final EditorApi editorApi;
-    private final TestDoxModel model;
+    private final TestDoxTableModel model;
     private final QuickDoxWindow window;
 
     private Point currentPosition;
     private boolean visible;
 
-    public QuickDoxDialog(Window owner, EditorApi editorApi, TestDoxModel model, ConfigurationBean configuration) {
+    public QuickDoxDialog(Window owner, EditorApi editorApi, TestDoxTableModel model, ConfigurationBean configuration) {
         this.editorApi = editorApi;
         this.model = model;
 
@@ -104,7 +105,7 @@ public class QuickDoxDialog implements TableModelListener, PropertyChangeListene
         }
     }
 
-    private String createHTML(TestDoxModel model) {
+    private String createHTML(TestDoxTableModel model) {
         StringBuffer html = new StringBuffer("<html><body bgcolor=\"" + TOOLTIP_YELLOW_WEB + "\">");
         html.append(((TestElement) model.getValueAt(0, 0)).displayString());
         if (model.getRowCount() > 1) {
@@ -129,13 +130,13 @@ public class QuickDoxDialog implements TableModelListener, PropertyChangeListene
         private static final int BOUNDS_CONSTANT = 12;
         private final JLabel contents = new JLabel();
 
-        private QuickDoxWindow(Window owner, TestDoxModel model) {
+        private QuickDoxWindow(Window owner, TestDoxTableModel model) {
             super(owner);
             initContents(model);
             initListeners();
         }
 
-        private void initContents(TestDoxModel model) {
+        private void initContents(TestDoxTableModel model) {
             JPanel mainPanel = createMainPanel();
             JButton closeButton = createCloseButton();
 
@@ -205,7 +206,7 @@ public class QuickDoxDialog implements TableModelListener, PropertyChangeListene
             });
         }
 
-        private void setContents(TestDoxModel model) {
+        private void setContents(TestDoxTableModel model) {
             contents.setText(createHTML(model));
             Dimension dimension = contents.getPreferredSize();
             contents.setBounds(BOUNDS_CONSTANT, BOUNDS_CONSTANT, dimension.width, dimension.height);

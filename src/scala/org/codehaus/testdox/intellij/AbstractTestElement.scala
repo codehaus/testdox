@@ -14,7 +14,7 @@ abstract class AbstractTestElement extends TestElement {
 
   def delete(controller: TestDoxController) {}
 
-  def compareTo(o: TestElement): Int = if (this == o) 0 else -1
+  def compare(that: TestElement): Int = if (this == that) 0 else -1
 
   override def toString = displayString
 }

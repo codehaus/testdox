@@ -2,7 +2,7 @@ package org.codehaus.testdox.intellij
 
 import com.intellij.openapi.vfs.VirtualFile
 
-import org.codehaus.testdox.intellij.panel.TestDoxModel
+import org.codehaus.testdox.intellij.ui.TestDoxTableModel
 
 abstract class TestDoxFile(val file: VirtualFile,
                            val className: String,
@@ -10,7 +10,7 @@ abstract class TestDoxFile(val file: VirtualFile,
                            val testedClass: TestClass,
                            val testMethods: Array[TestMethod]) {
 
-  def updateModel(model: TestDoxModel): Unit
+  def updateModel(model: TestDoxTableModel): Unit
 
   def isTestedClass = false
 

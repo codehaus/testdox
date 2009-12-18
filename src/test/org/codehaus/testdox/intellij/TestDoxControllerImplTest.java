@@ -10,8 +10,8 @@ import com.intellij.psi.PsiIdentifier;
 import com.intellij.psi.PsiMethod;
 import com.intellij.testFramework.LightVirtualFile;
 import org.codehaus.testdox.intellij.config.ConfigurationBean;
-import org.codehaus.testdox.intellij.panel.TestDoxModel;
 import org.codehaus.testdox.intellij.ui.RenameUI;
+import org.codehaus.testdox.intellij.ui.TestDoxTableModel;
 import org.intellij.openapi.testing.MockApplicationManager;
 import org.jmock.Mock;
 import org.jmock.cglib.MockObjectTestCase;
@@ -35,7 +35,7 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
     private final Mock mockToolWindow = mock(ToolWindow.class);
 
     private final ConfigurationBean configuration = new ConfigurationBean();
-    private final TestDoxModel testDoxModel = new TestDoxModel(configuration);
+    private final TestDoxTableModel testDoxModel = new TestDoxTableModel(configuration);
 
     private TestDoxControllerImpl controller;
     private boolean shouldCreateTestClass;
@@ -76,7 +76,7 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
 
         mockEditorApi.expects(once()).method("getCurrentFile").will(returnValue(mockVirtualFile.proxy()));
         mockTestDoxFileFactory.expects(once()).method("getTestDoxFile").with(isA(VirtualFile.class)).will(returnValue(mockTestDoxClass.proxy()));
-        mockTestDoxClass.expects(once()).method("updateModel").with(isA(TestDoxModel.class));
+        mockTestDoxClass.expects(once()).method("updateModel").with(isA(TestDoxTableModel.class));
 
         controller.psiTreeChangeListener.childrenChanged(null);
     }

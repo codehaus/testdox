@@ -57,14 +57,7 @@ public class TestMethodTest extends MockObjectTestCase {
     }
 
     public void testReturnsZeroWhenComparedToAnObjectThatIsNotATestMethod() {
-        assertEquals("comparison result", 0, new TestMethod(null, null, null).compareTo(new AbstractTestElement() {
-            public String displayString() {
-                return null;
-            }
-            public Icon icon() {
-                return null;
-            }
-        }));
+        assertEquals("comparison result", 0, new TestMethod(null, null, null).compareTo(new TestInterface(null, null, null, null)));
     }
 
     public void testUsesItsDisplayStringAsItsTextualRepresentation() {

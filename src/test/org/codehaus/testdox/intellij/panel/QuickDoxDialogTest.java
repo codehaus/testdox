@@ -3,6 +3,7 @@ package org.codehaus.testdox.intellij.panel;
 import static jedi.functional.Coercions.array;
 import org.codehaus.testdox.intellij.*;
 import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.ui.TestDoxTableModel;
 import org.jmock.Mock;
 import org.jmock.cglib.MockObjectTestCase;
 
@@ -16,7 +17,7 @@ public class QuickDoxDialogTest extends MockObjectTestCase {
         mockEditorApi.expects(exactly(2)).method("activateSelectedTextEditor");
 
         ConfigurationBean configuration = new ConfigurationBean();
-        TestDoxModel model = new TestDoxModel(configuration);
+        TestDoxTableModel model = new TestDoxTableModel(configuration);
         TestDoxFile testDoxClass = createTestDoxFileRepresentingAProjectClass((TestClass) mockTestClass.proxy());
         testDoxClass.updateModel(model);
 

@@ -8,7 +8,7 @@ import com.intellij.psi.PsiElement;
 import com.intellij.refactoring.listeners.RefactoringElementListenerProvider;
 import org.codehaus.testdox.intellij.actions.PresentationUpdater;
 import org.codehaus.testdox.intellij.config.ConfigurationBean;
-import org.codehaus.testdox.intellij.panel.TestDoxModel;
+import org.codehaus.testdox.intellij.ui.TestDoxTableModel;
 
 public interface TestDoxController extends FileEditorManagerListener,
                                            RefactoringElementListenerProvider,
@@ -17,7 +17,7 @@ public interface TestDoxController extends FileEditorManagerListener,
 
     TestDoxFileFactory getTestDoxFileFactory();
 
-    TestDoxModel getModel();
+    TestDoxTableModel getModel();
 
     ConfigurationBean getConfiguration();
 
