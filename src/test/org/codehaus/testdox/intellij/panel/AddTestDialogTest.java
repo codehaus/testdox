@@ -1,5 +1,6 @@
 package org.codehaus.testdox.intellij.panel;
 
+import org.codehaus.testdox.intellij.ui.AddTestDialog;
 import org.intellij.openapi.testing.DialogCreator;
 
 public class AddTestDialogTest extends RenameDialogTest {
