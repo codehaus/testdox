@@ -74,7 +74,11 @@ class TestDoxTableModel(configuration: ConfigurationBean) extends DefaultTableMo
       hasDox = true
       definitionOrderData ++= testMethods
       alphaOrderData ++= testMethods
-      Sorting.quickSort[TestElement](alphaOrderData.toArray[TestElement])
+
+      var sortedElements = alphaOrderData.toArray[TestElement]
+      Sorting.quickSort[TestElement](sortedElements)
+      alphaOrderData.clear()
+      alphaOrderData.insertAll(0, sortedElements)
     }
 
     prependTestClassAndNotify(file)

@@ -20,4 +20,6 @@ trait TestElement extends Ordered[TestElement] {
   def rename(controller: TestDoxController): Unit
 
   def delete(controller: TestDoxController): Unit
+
+  def compare(that: TestElement): Int
 }
