@@ -104,10 +104,7 @@ public class TestDoxModelTest extends MockObjectTestCase {
 
         model.sortInAlphabeticalOrder();
 
-        assertOrder(
-            array("foo", TEST_METHODS[0].displayString(), TEST_METHODS[2].displayString(), TEST_METHODS[1].displayString()),
-            model
-        );
+        assertOrder(array("foo", TEST_METHODS[0].displayString(), TEST_METHODS[2].displayString(), TEST_METHODS[1].displayString()), model);
     }
 
     public void testCanRevertSortToDefinitionOrderFromAlphabeticalOrder() {
@@ -118,10 +115,7 @@ public class TestDoxModelTest extends MockObjectTestCase {
         model.sortInAlphabeticalOrder();
         model.sortInDefinitionOrder();
 
-        assertOrder(
-            array("foo", TEST_METHODS[0].displayString(), TEST_METHODS[1].displayString(), TEST_METHODS[2].displayString()),
-            model
-        );
+        assertOrder(array("foo", TEST_METHODS[0].displayString(), TEST_METHODS[1].displayString(), TEST_METHODS[2].displayString()), model);
     }
 
     public void testSetsInitialSortOrderBasedOnStoredConfigurationSetting() {
@@ -133,10 +127,7 @@ public class TestDoxModelTest extends MockObjectTestCase {
 
         mockTestClass.expects(once()).method("displayString").will(returnValue("foo"));
 
-        assertOrder(
-            array("foo", TEST_METHODS[0].displayString(), TEST_METHODS[2].displayString(), TEST_METHODS[1].displayString()),
-            testDoxModel
-        );
+        assertOrder(array("foo", TEST_METHODS[0].displayString(), TEST_METHODS[2].displayString(), TEST_METHODS[1].displayString()), testDoxModel);
     }
 
     public void testDoesNotPerformSortIfNoDoxAreAvailable() {

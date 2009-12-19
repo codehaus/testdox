@@ -11,9 +11,10 @@ class TestDoxNonJavaFile(file: VirtualFile) extends TestDoxFile(file, null, null
 }
 
 object TestDoxNonJavaFile {
+
   val NO_CLASS_MESSAGE = "No class selected"
 
-  val TEST_ELEMENT: TestElement = new AbstractTestElement() {
+  val TEST_ELEMENT = new AbstractTestElement() {
     val displayString = NO_CLASS_MESSAGE
     val icon = IconHelper.getIcon(IconHelper.NOT_JAVA_ICON)
   }

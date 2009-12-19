@@ -14,7 +14,7 @@ class TestDoxNonProjectClass(file: VirtualFile, className: String, testClass: Te
 
 object TestDoxNonProjectClass {
 
-  val TEST_ELEMENT: TestElement = new AbstractTestElement() {
+  val TEST_ELEMENT = new AbstractTestElement() {
     val displayString = "<font color=\"gray\">Not in current project</font>"
     val icon = IconHelper.getIcon(IconHelper.WARNING_ICON)
   }
