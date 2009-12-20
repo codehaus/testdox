@@ -18,11 +18,11 @@ import com.intellij.refactoring.rename.RenameProcessor;
 import com.intellij.util.IncorrectOperationException;
 import org.codehaus.testdox.intellij.IntelliJApi;
 import org.codehaus.testdox.intellij.NameResolver;
-import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.config.Configuration;
 
 public class DianaApi extends IntelliJApi {
 
-    public DianaApi(Project project, NameResolver nameResolver, ConfigurationBean config) {
+    public DianaApi(Project project, NameResolver nameResolver, Configuration config) {
         super(project, nameResolver, config);
     }
 

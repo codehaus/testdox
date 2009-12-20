@@ -3,14 +3,14 @@ package org.codehaus.testdox.intellij;
 import com.intellij.openapi.vfs.VirtualFileAdapter;
 import com.intellij.openapi.vfs.VirtualFileEvent;
 import com.intellij.psi.*;
-import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.config.Configuration;
 
 import java.util.ArrayList;
 import java.util.List;
 
 class DeletionShadowingManager extends VirtualFileAdapter {
 
-    private final ConfigurationBean config;
+    private final Configuration config;
     private final NameResolver nameResolver;
     private final EditorApi editorApi;
 
@@ -21,7 +21,7 @@ class DeletionShadowingManager extends VirtualFileAdapter {
         }
     };
 
-    public DeletionShadowingManager(EditorApi editorApi, ConfigurationBean config, NameResolver nameResolver) {
+    public DeletionShadowingManager(EditorApi editorApi, Configuration config, NameResolver nameResolver) {
         this.config = config;
         this.nameResolver = nameResolver;
         this.editorApi = editorApi;
@@ -30,10 +30,10 @@ class DeletionShadowingManager extends VirtualFileAdapter {
     public void beforeFileDeletion(VirtualFileEvent event) {
         if (event.getRequestor() instanceof PsiManager) {
             if (event.getFile().isDirectory()) {
-                if (config.isDeletePackageOccurrences()) {
+                if (config.deletePackageOccurrences()) {
                     deleteOtherPackageOccurrences(editorApi.getPsiDirectory(event.getFile()));
                 }
-            } else if (config.isAutoApplyChangesToTest()) {
+            } else if (config.autoApplyChangesToTests()) {
                 deleteCorrespondingTestClass(editorApi.getPsiJavaFile(event.getFile()));
             }
         }

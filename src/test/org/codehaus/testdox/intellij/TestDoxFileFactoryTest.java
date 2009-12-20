@@ -7,7 +7,7 @@ import org.intellij.openapi.testing.MockApplicationManager;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiClass;
 
-import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.config.Configuration;
 import org.jmock.Mock;
 import org.jmock.cglib.MockObjectTestCase;
 
@@ -85,8 +85,8 @@ public class TestDoxFileFactoryTest extends MockObjectTestCase {
     }
 
     public void testDoesNotAttemptCustomPackageLookupIfTurnedOffInConfiguration() throws Exception {
-        ConfigurationBean config = new ConfigurationBean();
-        config.setAllowCustomPackages(false);
+        Configuration config = new Configuration();
+        config.setCustomPackagesAllowed(false);
         config.setCustomPackages(Collections.singletonList("com.custom"));
 
         setLookupExpectationsForSourceFile(true, false);
@@ -100,8 +100,8 @@ public class TestDoxFileFactoryTest extends MockObjectTestCase {
     }
 
     public void testAttemptsToFindTestClassesInAlternatePackagesIfTurnedOnInConfiguration() throws Exception {
-        ConfigurationBean config = new ConfigurationBean();
-        config.setAllowCustomPackages(true);
+        Configuration config = new Configuration();
+        config.setCustomPackagesAllowed(true);
         config.setCustomPackages(Collections.singletonList(ALTERNATIVE_PACKAGE));
 
         setLookupExpectationsForSourceFile(true, true);

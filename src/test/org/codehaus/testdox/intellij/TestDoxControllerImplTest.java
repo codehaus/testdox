@@ -9,7 +9,7 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiIdentifier;
 import com.intellij.psi.PsiMethod;
 import com.intellij.testFramework.LightVirtualFile;
-import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.config.Configuration;
 import org.codehaus.testdox.intellij.ui.RenameUI;
 import org.codehaus.testdox.intellij.ui.TestDoxTableModel;
 import org.intellij.openapi.testing.MockApplicationManager;
@@ -34,7 +34,7 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
     private final Mock mockRenameDialog = mock(RenameUI.class);
     private final Mock mockToolWindow = mock(ToolWindow.class);
 
-    private final ConfigurationBean configuration = new ConfigurationBean();
+    private final Configuration configuration = new Configuration();
     private final TestDoxTableModel testDoxModel = new TestDoxTableModel(configuration);
 
     private TestDoxControllerImpl controller;
@@ -139,10 +139,10 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
         testDoxClass.updateModel(testDoxModel);
 
         controller.updateSort(false);
-        assertFalse(controller.getConfiguration().isAlphabeticalSorting());
+        assertFalse(controller.getConfiguration().getAlphabeticalSorting());
 
         controller.updateSort(true);
-        assertTrue(controller.getConfiguration().isAlphabeticalSorting());
+        assertTrue(controller.getConfiguration().getAlphabeticalSorting());
     }
 
     public void testCanCurrentFileBeUnitTestedReturnsFalseWhenThereAreNoActiveEditors() {
@@ -298,7 +298,7 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
     }
 
     private void assertCreateTestDialogShown(TestDoxFile testDoxFile, boolean clickYes) {
-        ConfigurationBean configuration = new ConfigurationBean();
+        Configuration configuration = new Configuration();
         configuration.setCreateTestIfMissing(true);
         controller.setConfiguration(configuration);
         shouldCreateTestClass = clickYes;

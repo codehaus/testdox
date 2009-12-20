@@ -2,11 +2,11 @@ package org.codehaus.testdox.intellij;
 
 import junit.framework.TestCase;
 
-import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.config.Configuration;
 
 public class TemplateNameResolverTest extends TestCase {
 
-    private final ConfigurationBean configuration = new ConfigurationBean();
+    private final Configuration configuration = new Configuration();
     private TemplateNameResolver resolver;
 
     protected void tearDown() throws Exception {

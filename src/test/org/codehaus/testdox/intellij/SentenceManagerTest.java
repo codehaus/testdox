@@ -2,7 +2,7 @@ package org.codehaus.testdox.intellij;
 
 import junit.framework.TestCase;
 
-import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.config.Configuration;
 
 public class SentenceManagerTest extends TestCase {
 
@@ -45,7 +45,7 @@ public class SentenceManagerTest extends TestCase {
     public void testWorksForAnyMethodPrefix() {
         String prefix = "slartibartfast";
 
-        ConfigurationBean configuration = new ConfigurationBean();
+        Configuration configuration = new Configuration();
         configuration.setUnderscoreMode(false);
         configuration.setTestMethodPrefix(prefix);
 
@@ -62,7 +62,7 @@ public class SentenceManagerTest extends TestCase {
     }
 
     public void testIgnoresUnderscoresIfNotInUnderscoreMode() {
-        ConfigurationBean configuration = new ConfigurationBean();
+        Configuration configuration = new Configuration();
         configuration.setUnderscoreMode(false);
         assertEquals("this should leave my TLA TLA as a TLA", converter(configuration).buildSentence("thisShouldLeaveMy_TLA__TLA_AsA_TLA_"));
     }
@@ -96,26 +96,26 @@ public class SentenceManagerTest extends TestCase {
     }
 
     public void testIgnoresAcronymsIfNotInUnderscoreMode() {
-        ConfigurationBean configuration = new ConfigurationBean();
+        Configuration configuration = new Configuration();
         configuration.setUnderscoreMode(false);
         assertEquals("testFooFKHKGHDSIOCFoo", converter(configuration).buildMethodName("foo FKHKGHDS IOC Foo"));
     }
 
     public void testDoesNotCapitaliseFirstLetterIfUsingAnnotations() {
-        ConfigurationBean configuration = new ConfigurationBean();
+        Configuration configuration = new Configuration();
         configuration.setTestMethodAnnotation("@Foo");
         configuration.setUsingAnnotations(true);
         assertEquals("fooFKHKGHDSIOCFoo", converter(configuration).buildMethodName("Foo FKHKGHDS IOC Foo"));
     }
 
     private static SentenceManager converter() {
-        ConfigurationBean configuration = new ConfigurationBean();
+        Configuration configuration = new Configuration();
         configuration.setUnderscoreMode(true);
         configuration.setTestMethodPrefix("test");
         return converter(configuration);
     }
 
-    private static SentenceManager converter(ConfigurationBean configuration) {
+    private static SentenceManager converter(Configuration configuration) {
         return new SentenceManager(configuration);
     }
 }

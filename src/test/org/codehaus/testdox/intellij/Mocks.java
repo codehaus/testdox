@@ -1,6 +1,6 @@
 package org.codehaus.testdox.intellij;
 
-import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.config.Configuration;
 import org.codehaus.testdox.intellij.ui.TestDoxTableModel;
 import org.intellij.openapi.testing.MockVirtualFile;
 import org.jmock.Mock;
@@ -149,7 +149,7 @@ public final class Mocks {
         }
 
         private MockableTestMethod(String name) {
-            super(null, null, new SentenceManager(new ConfigurationBean()));
+            super(null, null, new SentenceManager(new Configuration()));
             this.name = name;
         }
 

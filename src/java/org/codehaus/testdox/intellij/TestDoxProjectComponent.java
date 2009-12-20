@@ -8,7 +8,7 @@ import com.intellij.openapi.wm.ToolWindowAnchor;
 import com.intellij.openapi.wm.ToolWindowType;
 import static jedi.functional.Coercions.list;
 import org.codehaus.testdox.intellij.actions.*;
-import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.config.Configuration;
 import org.codehaus.testdox.intellij.config.ConfigurationController;
 import org.codehaus.testdox.intellij.panel.TestDoxToolWindowPanel;
 import org.codehaus.testdox.intellij.ui.TestDoxTableModel;
@@ -68,8 +68,8 @@ public class TestDoxProjectComponent implements ProjectComponent {
 
     public void projectOpened() {
         ConfigurationController configurationController = project.getComponent(ConfigurationController.class);
-        ConfigurationBean configuration = configurationController.getState();
-        picoContainer.registerComponentInstance(ConfigurationBean.class, configuration);
+        Configuration configuration = configurationController.getState();
+        picoContainer.registerComponentInstance(Configuration.class, configuration);
 
         // move container setup somewhere else...
         picoContainer.registerComponentImplementation(TestDoxTableModel.class);
@@ -118,7 +118,7 @@ public class TestDoxProjectComponent implements ProjectComponent {
         toolWindow.setIcon(IconHelper.getIcon(IconHelper.TESTDOX_ICON));
     }
 
-    private ActionToolbar createToolBar(ConfigurationBean config) {
+    private ActionToolbar createToolBar(Configuration config) {
         ActionManager actionManager = ActionManager.getInstance();
         boolean useFromTestDoxToolWindow = true;
 
@@ -126,8 +126,8 @@ public class TestDoxProjectComponent implements ProjectComponent {
         ActionGroup toolGroup = (ActionGroup) registerAction(actionManager, rootActionGroup, TOOL_WINDOW_TOOLBAR_ID);
 
         addToolBarActions((DefaultActionGroup) toolGroup, list(
-            registerAction(actionManager, new SortTestDoxAction(config.isAlphabeticalSorting(), useFromTestDoxToolWindow), SortTestDoxAction.ID()),
-            registerAction(actionManager, new AutoscrollAction(config.isAutoscrolling(), useFromTestDoxToolWindow), AutoscrollAction.ID()),
+            registerAction(actionManager, new SortTestDoxAction(config.alphabeticalSorting(), useFromTestDoxToolWindow), SortTestDoxAction.ID()),
+            registerAction(actionManager, new AutoscrollAction(config.autoscrolling(), useFromTestDoxToolWindow), AutoscrollAction.ID()),
             Separator.getInstance(),
             registerAction(actionManager, new RenameTestAction(useFromTestDoxToolWindow), RenameTestAction.ID()),
             registerAction(actionManager, new DeleteTestAction(useFromTestDoxToolWindow), DeleteTestAction.ID()),

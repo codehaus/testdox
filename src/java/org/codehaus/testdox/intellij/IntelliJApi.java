@@ -28,7 +28,7 @@ import com.intellij.refactoring.rename.RenameUtil;
 import com.intellij.usageView.UsageInfo;
 import com.intellij.util.IncorrectOperationException;
 import static jedi.functional.Coercions.*;
-import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.config.Configuration;
 import org.codehaus.testdox.intellij.panel.ItemSelectionDialog;
 import org.codehaus.testdox.intellij.ui.ItemSelectionUI;
 import org.jetbrains.annotations.NotNull;
@@ -54,10 +54,10 @@ public abstract class IntelliJApi implements EditorApi {
     protected static final Logger LOGGER = Logger.getInstance(IntelliJApi.class.getName());
 
     protected final Project project;
-    protected final ConfigurationBean config;
+    protected final Configuration config;
     protected final NameResolver nameResolver;
 
-    public IntelliJApi(Project project, NameResolver nameResolver, ConfigurationBean config) {
+    public IntelliJApi(Project project, NameResolver nameResolver, Configuration config) {
         this.project = project;
         this.config = config;
         this.nameResolver = nameResolver;
@@ -254,10 +254,10 @@ public abstract class IntelliJApi implements EditorApi {
     public boolean isTestMethod(PsiElement element) {
         if (element instanceof PsiMethod) {
             PsiMethod psiMethod = (PsiMethod) element;
-            if (config.isUsingAnnotations()) {
-                return matchingAnnotation(psiMethod, config.getTestMethodAnnotation());
+            if (config.usingAnnotations()) {
+                return matchingAnnotation(psiMethod, config.testMethodAnnotation());
             }
-            return psiMethod.getName().startsWith(config.getTestMethodPrefix());
+            return psiMethod.getName().startsWith(config.testMethodPrefix());
         }
         return false;
     }

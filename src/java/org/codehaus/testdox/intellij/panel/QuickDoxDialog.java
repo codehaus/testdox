@@ -29,7 +29,7 @@ import org.codehaus.testdox.intellij.EditorApi;
 import org.codehaus.testdox.intellij.IconHelper;
 import org.codehaus.testdox.intellij.TestElement;
 import org.codehaus.testdox.intellij.TestMethod;
-import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.config.Configuration;
 import org.codehaus.testdox.intellij.ui.TestDoxTableModel;
 
 public class QuickDoxDialog implements TableModelListener, PropertyChangeListener {
@@ -50,7 +50,7 @@ public class QuickDoxDialog implements TableModelListener, PropertyChangeListene
     private Point currentPosition;
     private boolean visible;
 
-    public QuickDoxDialog(Window owner, EditorApi editorApi, TestDoxTableModel model, ConfigurationBean configuration) {
+    public QuickDoxDialog(Window owner, EditorApi editorApi, TestDoxTableModel model, Configuration configuration) {
         this.editorApi = editorApi;
         this.model = model;
 
@@ -85,7 +85,7 @@ public class QuickDoxDialog implements TableModelListener, PropertyChangeListene
     }
 
     public void propertyChange(PropertyChangeEvent event) {
-        if (ConfigurationBean.SHOW_FULLY_QUALIFIED_CLASS_NAME.equals(event.getPropertyName())) {
+        if (Configuration.SHOW_FULLY_QUALIFIED_CLASS_NAME().equals(event.getPropertyName())) {
             updateFromModel();
         }
     }

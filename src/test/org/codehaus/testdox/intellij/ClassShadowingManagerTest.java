@@ -8,7 +8,7 @@ import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiJavaFile;
 
-import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.config.Configuration;
 import org.jmock.Mock;
 import org.jmock.cglib.MockObjectTestCase;
 
@@ -23,7 +23,7 @@ public class ClassShadowingManagerTest extends MockObjectTestCase {
     private final Mock mockPsiClass = mock(PsiClass.class);
     private final Mock mockTestDoxFileFactory = Mocks.createAndRegisterTestDoxFileFactoryMock(this);
     private final Mock mockEditorApi = mock(EditorApi.class);
-    private final Mock mockConfigurationBean = mock(ConfigurationBean.class);
+    private final Mock mockConfiguration = mock(Configuration.class);
     private final Mock mockNameResolver = mock(NameResolver.class);
     private final Mock mockVirtualFile = Mocks.createAndRegisterVirtualFileMock(this);
     private final Mock mockTestDoxClass = Mocks.createAndRegisterTestDoxClassMock(this);
@@ -41,7 +41,7 @@ public class ClassShadowingManagerTest extends MockObjectTestCase {
         classShadowingManager = new ClassShadowingManager(psiClassMock,
                                                           (TestDoxFileFactory) mockTestDoxFileFactory.proxy(),
                                                           (EditorApi) mockEditorApi.proxy(),
-                                                          (ConfigurationBean) mockConfigurationBean.proxy(),
+                                                          (Configuration) mockConfiguration.proxy(),
                                                           (NameResolver) mockNameResolver.proxy());
 
         mockPsiJavaFile.expects(once()).method("getName").will(returnValue("/path/to/the/selected/class/" + CLASS_NAME + ".java"));
@@ -97,12 +97,12 @@ public class ClassShadowingManagerTest extends MockObjectTestCase {
 
     private void setExpectationsForDisabledShadowing() {
         mockPsiClass.expects(atLeastOnce()).method("getName").will(returnValue(CLASS_NAME));
-        mockConfigurationBean.expects(once()).method("isAutoApplyChangesToTest").will(returnValue(false));
+        mockConfiguration.expects(once()).method("autoApplyChangesToTests").will(returnValue(false));
     }
 
     private void setExpectationsForChangedTestClass() {
         mockPsiClass.expects(atLeastOnce()).method("getName").will(returnValue(CLASS_NAME));
-        mockConfigurationBean.expects(once()).method("isAutoApplyChangesToTest").will(returnValue(true));
+        mockConfiguration.expects(once()).method("autoApplyChangesToTests").will(returnValue(true));
         mockNameResolver.expects(once()).method("isRealClass").with(eq(CLASS_NAME)).will(returnValue(false));
     }
 
@@ -112,7 +112,7 @@ public class ClassShadowingManagerTest extends MockObjectTestCase {
 
     private void setExpectationsForChangedTestedClass() {
         mockPsiClass.expects(atLeastOnce()).method("getName").will(returnValue(CLASS_NAME));
-        mockConfigurationBean.expects(once()).method("isAutoApplyChangesToTest").will(returnValue(true));
+        mockConfiguration.expects(once()).method("autoApplyChangesToTests").will(returnValue(true));
         mockNameResolver.expects(once()).method("isRealClass").with(eq(CLASS_NAME)).will(returnValue(true));
         mockTestDoxClass.expects(once()).method("canNavigateToTestClass").will(returnValue(true));
         mockTestDoxClass.expects(once()).method("testClass").will(returnValue(mockTestClass.proxy()));

@@ -27,7 +27,7 @@ import com.intellij.openapi.actionSystem.Presentation;
 
 import org.codehaus.testdox.intellij.TestDoxController;
 import org.codehaus.testdox.intellij.TestElement;
-import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.config.Configuration;
 import org.codehaus.testdox.intellij.ui.TestElementCellRenderer;
 import org.codehaus.testdox.intellij.ui.ToolWindowUI;
 
@@ -78,7 +78,7 @@ public class TestDoxToolWindowPanel extends JPanel implements TableModelListener
     }
 
     void handleSelection() {
-        if (testDoxController.getConfiguration().isAutoscrolling()) {
+        if (testDoxController.getConfiguration().autoscrolling()) {
             testDoxController.jumpToTestElement(getSelectedTestElement(), true);
         }
     }
@@ -132,7 +132,7 @@ public class TestDoxToolWindowPanel extends JPanel implements TableModelListener
     }
 
     public void propertyChange(PropertyChangeEvent event) {
-        if (ConfigurationBean.SHOW_FULLY_QUALIFIED_CLASS_NAME.equals(event.getPropertyName())) {
+        if (Configuration.SHOW_FULLY_QUALIFIED_CLASS_NAME().equals(event.getPropertyName())) {
             testDoxController.getModel().fireTableDataChanged();
         }
     }

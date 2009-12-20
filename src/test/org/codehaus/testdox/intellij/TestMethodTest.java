@@ -8,7 +8,7 @@ import com.intellij.openapi.actionSystem.Presentation;
 import com.intellij.psi.PsiMethod;
 
 import org.codehaus.testdox.intellij.actions.RenameTestAction;
-import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.config.Configuration;
 import org.jmock.Mock;
 import org.jmock.MockObjectTestCase;
 
@@ -45,7 +45,7 @@ public class TestMethodTest extends MockObjectTestCase {
         String methodName2 = "someOtherMethod";
 
         Mock mockPsiMethod2 = mock(PsiMethod.class);
-        SentenceManager sentenceManager = new SentenceManager(new ConfigurationBean());
+        SentenceManager sentenceManager = new SentenceManager(new Configuration());
 
         mockPsiMethod.expects(atLeastOnce()).method("getName").will(returnValue(methodName1));
         mockPsiMethod2.expects(atLeastOnce()).method("getName").will(returnValue(methodName2));
@@ -61,7 +61,7 @@ public class TestMethodTest extends MockObjectTestCase {
     }
 
     public void testUsesItsDisplayStringAsItsTextualRepresentation() {
-        SentenceManager sentenceManager = new SentenceManager(new ConfigurationBean());
+        SentenceManager sentenceManager = new SentenceManager(new Configuration());
         TestMethod testMethod = new TestMethod((PsiMethod) mockPsiMethod.proxy(), editorApiMock, sentenceManager);
 
         mockPsiMethod.expects(atLeastOnce()).method("getName").will(returnValue("someMethod"));

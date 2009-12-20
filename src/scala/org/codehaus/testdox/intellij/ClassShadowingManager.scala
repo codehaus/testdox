@@ -4,9 +4,9 @@ import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiElement
 import com.intellij.refactoring.listeners.RefactoringElementListener
 
-import org.codehaus.testdox.intellij.config.ConfigurationBean
+import org.codehaus.testdox.intellij.config.Configuration
 
-class ClassShadowingManager(psiElement: PsiClass, testDoxFileFactory: TestDoxFileFactory, editorApi: EditorApi, config: ConfigurationBean, nameResolver: NameResolver)
+class ClassShadowingManager(psiElement: PsiClass, testDoxFileFactory: TestDoxFileFactory, editorApi: EditorApi, config: Configuration, nameResolver: NameResolver)
     extends RefactoringElementListener {
 
   private val originalFile = testDoxFileFactory.getTestDoxFile(editorApi.getVirtualFile(psiElement))
@@ -27,7 +27,7 @@ class ClassShadowingManager(psiElement: PsiClass, testDoxFileFactory: TestDoxFil
 
   private def isValidShadowing(psiElement: PsiElement) = {
     isValidClass(psiElement) &&
-        config.isAutoApplyChangesToTest() &&
+        config.autoApplyChangesToTests &&
         nameResolver.isRealClass(psiElement.asInstanceOf[PsiClass].getName()) &&
         originalFile.canNavigateToTestClass
   }

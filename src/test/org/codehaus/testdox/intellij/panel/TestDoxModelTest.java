@@ -2,7 +2,7 @@ package org.codehaus.testdox.intellij.panel;
 
 import static jedi.functional.Coercions.array;
 import org.codehaus.testdox.intellij.*;
-import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.config.Configuration;
 import org.codehaus.testdox.intellij.ui.TestDoxTableModel;
 import org.jmock.Mock;
 import org.jmock.cglib.MockObjectTestCase;
@@ -15,7 +15,7 @@ public class TestDoxModelTest extends MockObjectTestCase {
 
     private final Mock mockTestClass = Mocks.createAndRegisterTestClassMock(this);
 
-    private final TestDoxTableModel model = new TestDoxTableModel(new ConfigurationBean());
+    private final TestDoxTableModel model = new TestDoxTableModel(new Configuration());
 
     public void testHasNoEditableCells() {
         assertFalse(model.isCellEditable(-1, -1));
@@ -119,7 +119,7 @@ public class TestDoxModelTest extends MockObjectTestCase {
     }
 
     public void testSetsInitialSortOrderBasedOnStoredConfigurationSetting() {
-        ConfigurationBean config = new ConfigurationBean();
+        Configuration config = new Configuration();
         config.setAlphabeticalSorting(true);
 
         TestDoxTableModel testDoxModel = new TestDoxTableModel(config);
