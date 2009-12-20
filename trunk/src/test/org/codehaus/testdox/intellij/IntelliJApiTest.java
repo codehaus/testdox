@@ -13,7 +13,7 @@ import com.intellij.refactoring.listeners.RefactoringElementListener;
 import com.intellij.refactoring.listeners.RefactoringElementListenerProvider;
 import com.intellij.refactoring.listeners.RefactoringListenerManager;
 import static jedi.functional.Coercions.array;
-import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.config.Configuration;
 import org.codehaus.testdox.intellij.ui.ItemSelectionUI;
 import org.intellij.openapi.testing.MockApplication;
 import org.intellij.openapi.testing.MockApplicationManager;
@@ -44,10 +44,10 @@ public class IntelliJApiTest extends MockObjectTestCase {
     protected final Mock mockVirtualFileSelectionUI = mock(ItemSelectionUI.class);
 
     protected IntelliJApi intelliJApi;
-    private ConfigurationBean config;
+    private Configuration config;
 
     protected void setUp() {
-        config = new ConfigurationBean();
+        config = new Configuration();
         config.setTestNameTemplate(TemplateNameResolver.DEFAULT_TEMPLATE);
         config.setTestMethodPrefix("pants");
 

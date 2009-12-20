@@ -1,14 +1,14 @@
 package org.codehaus.testdox.intellij
 
-import org.codehaus.testdox.intellij.config.ConfigurationBean
+import org.codehaus.testdox.intellij.config.Configuration
 
-class SentenceManager(config: ConfigurationBean) {
+class SentenceManager(configuration: Configuration) {
 
   def buildSentence(methodName: String): String = methodName match {
     case null => ""
     case "" => ""
     case _ => methodName
-        .replaceFirst(config.getTestMethodPrefix, "")
+        .replaceFirst(configuration.testMethodPrefix, "")
         .replaceAll("([a-z])([A-Z])", "$1 $2")
         .replaceAll("([a-z])([\\d]{2,})", "$1 $2")
         .replaceAll("([\\d]{2,})([A-Z])", "$1 $2")
@@ -24,14 +24,14 @@ class SentenceManager(config: ConfigurationBean) {
     case _ => {
       val methodName = sentence
           .split("\\s+")
-          .map { token => if (config.isUnderscoreMode && token.matches(SentenceManager.ACRONYM_REGEXP)) "_" + token + "_" else token }
+          .map { token => if (configuration.underscoreMode && token.matches(SentenceManager.ACRONYM_REGEXP)) "_" + token + "_" else token }
           .map { token => token.charAt(0).toUpperCase + token.substring(1) }
           .mkString("")
 
-      if (config.isUsingAnnotations) {
+      if (configuration.usingAnnotations) {
         methodName.substring(0, 1).toLowerCase + methodName.substring(1)
       } else {
-        config.getTestMethodPrefix + methodName
+        configuration.testMethodPrefix + methodName
       }
     }
   }

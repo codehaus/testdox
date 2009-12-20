@@ -1,14 +1,14 @@
 package org.codehaus.testdox.intellij.ui
 
 import org.codehaus.testdox.intellij._
-import org.codehaus.testdox.intellij.config.ConfigurationBean
+import org.codehaus.testdox.intellij.config.Configuration
 
 import javax.swing.table.DefaultTableModel
 
 import scala.collection.mutable.ListBuffer
 import scala.util.Sorting
 
-class TestDoxTableModel(configuration: ConfigurationBean) extends DefaultTableModel {
+class TestDoxTableModel(configuration: Configuration) extends DefaultTableModel {
 
   private val definitionOrderData = new ListBuffer[TestElement]()
   private val alphaOrderData = new ListBuffer[TestElement]()
@@ -23,7 +23,7 @@ class TestDoxTableModel(configuration: ConfigurationBean) extends DefaultTableMo
     if (index < 0 || index >= definitionOrderData.size) {
       return TestDoxNonJavaFile.TEST_ELEMENT
     }
-    if (configuration.isAlphabeticalSorting()) alphaOrderData(index) else definitionOrderData(index)
+    if (configuration.alphabeticalSorting) alphaOrderData(index) else definitionOrderData(index)
   }
 
   override def getColumnCount = 1
@@ -101,13 +101,13 @@ class TestDoxTableModel(configuration: ConfigurationBean) extends DefaultTableMo
 
   def sortInAlphabeticalOrder() {
     if (hasDox) {
-      configuration.setAlphabeticalSorting(true)
+      configuration.alphabeticalSorting = true
       fireDataChange()
     }
   }
 
   def sortInDefinitionOrder() {
-    configuration.setAlphabeticalSorting(false)
+    configuration.alphabeticalSorting = false
     fireDataChange()
   }
 }

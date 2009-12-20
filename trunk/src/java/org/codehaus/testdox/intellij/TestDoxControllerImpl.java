@@ -16,7 +16,7 @@ import com.intellij.psi.*;
 import com.intellij.refactoring.listeners.RefactoringElementListener;
 import org.codehaus.testdox.intellij.actions.DeleteTestAction;
 import org.codehaus.testdox.intellij.actions.RenameTestAction;
-import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.config.Configuration;
 import org.codehaus.testdox.intellij.panel.*;
 import org.codehaus.testdox.intellij.ui.AddTestDialog;
 import org.codehaus.testdox.intellij.ui.RenameUI;
@@ -37,11 +37,11 @@ public class TestDoxControllerImpl implements TestDoxController {
     protected PsiTreeChangeListener psiTreeChangeListener;
 
     private VirtualFile currentFile;
-    private ConfigurationBean configuration;
+    private Configuration configuration;
     private QuickDoxDialog dialog;
 
     public TestDoxControllerImpl(Project project, EditorApi editorApi, TestDoxTableModel model,
-                                 ConfigurationBean configuration, NameResolver nameResolver,
+                                 Configuration configuration, NameResolver nameResolver,
                                  SentenceManager sentenceManager, TestDoxFileFactory testDoxFileFactory) {
         this.project = project;
         this.editorApi = editorApi;
@@ -91,11 +91,11 @@ public class TestDoxControllerImpl implements TestDoxController {
         return model;
     }
 
-    public ConfigurationBean getConfiguration() {
+    public Configuration getConfiguration() {
         return configuration;
     }
 
-    public void setConfiguration(ConfigurationBean configuration) {
+    public void setConfiguration(Configuration configuration) {
         this.configuration = configuration;
     }
 
@@ -128,8 +128,8 @@ public class TestDoxControllerImpl implements TestDoxController {
         addTestDialog.show();
         if (addTestDialog.isOK()) {
             StringBuffer methodSignatureAndBody = new StringBuffer();
-            if (configuration.isUsingAnnotations()) {
-                methodSignatureAndBody.append(configuration.getTestMethodAnnotation()).append("\n");
+            if (configuration.usingAnnotations()) {
+                methodSignatureAndBody.append(configuration.testMethodAnnotation()).append("\n");
             }
             methodSignatureAndBody.append("public void ").append(sentenceManager.buildMethodName(addTestDialog.sentence())).append("() {\n}");
             editorApi.addMethod(getCurrentTestDoxFile().testClass().psiElement(), methodSignatureAndBody.toString());
@@ -196,7 +196,7 @@ public class TestDoxControllerImpl implements TestDoxController {
             if (testDoxFile.canNavigateToTestClass()) {
                 jumpToTestElement(testDoxFile.testClass(), false);
             } else
-            if (testDoxFile.canBeUnitTested() && configuration.isCreateTestIfMissing() && shouldCreateTestClass()) {
+            if (testDoxFile.canBeUnitTested() && configuration.createTestIfMissing() && shouldCreateTestClass()) {
                 editorApi.createTestClass(testDoxFile);
             }
         } else if (testDoxFile.canNavigateToTestedClass()) {

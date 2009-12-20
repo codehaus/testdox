@@ -3,7 +3,7 @@ package org.codehaus.testdox.intellij.panel;
 import com.intellij.psi.PsiMethod;
 import static jedi.functional.Coercions.array;
 import org.codehaus.testdox.intellij.*;
-import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.config.Configuration;
 import org.codehaus.testdox.intellij.ui.TestDoxTableModel;
 import org.intellij.openapi.testing.MockApplicationManager;
 import org.jmock.Mock;
@@ -24,7 +24,7 @@ public class TestDoxToolWindowPanelTest extends MockObjectTestCase {
     private final Mock mockTestDoxController = mock(TestDoxController.class);
 
     private Component actionToolbarComponent = new JPanel();
-    private ConfigurationBean configuration = new ConfigurationBean();
+    private Configuration configuration = new Configuration();
     private TestDoxTableModel model = new TestDoxTableModel(configuration);
     private JTable table = new JTable();
     private TestDoxToolWindowPanel window;
@@ -119,7 +119,7 @@ public class TestDoxToolWindowPanelTest extends MockObjectTestCase {
             new TestMethod(
                 (PsiMethod) mockPsiMethod.proxy(),
                 (EditorApi) mockEditorApi.proxy(),
-                new SentenceManager(new ConfigurationBean())
+                new SentenceManager(new Configuration())
             )
         );
         window.handleKeyEvent(createKeyEvent(KeyEvent.VK_DELETE, KeyEvent.VK_UNDEFINED));

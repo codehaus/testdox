@@ -1,6 +1,6 @@
 package org.codehaus.testdox.intellij;
 
-import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.config.Configuration;
 import org.codehaus.testdox.intellij.ui.TestDoxTableModel;
 import org.jmock.Mock;
 import org.jmock.MockObjectTestCase;
@@ -11,7 +11,7 @@ public class TestDoxInterfaceTest extends MockObjectTestCase {
         Mock mockEditorApi = mock(EditorApi.class);
         EditorApi editorApiMock = (EditorApi) mockEditorApi.proxy();
 
-        ConfigurationBean configuration = new ConfigurationBean();
+        Configuration configuration = new Configuration();
         configuration.setTestNameTemplate(TemplateNameResolver.DEFAULT_TEMPLATE);
 
         String className = "com.acme.SomeInterface";

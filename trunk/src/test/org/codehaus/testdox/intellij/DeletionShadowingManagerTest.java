@@ -9,7 +9,7 @@ import com.intellij.psi.PsiDirectory;
 import com.intellij.psi.PsiManager;
 import com.intellij.psi.PsiPackage;
 import static jedi.functional.Coercions.array;
-import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.config.Configuration;
 import org.intellij.openapi.testing.MockApplicationManager;
 import org.jmock.Mock;
 
@@ -26,7 +26,7 @@ public class DeletionShadowingManagerTest extends TestDoxMockObjectTestCase {
         MockApplicationManager.reset();
     }
 
-    private final ConfigurationBean config = new ConfigurationBean();
+    private final Configuration config = new Configuration();
 
     // Package deletion shadowing --------------------------------------------------------------------------------------
 

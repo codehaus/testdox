@@ -3,7 +3,7 @@ package org.codehaus.testdox.intellij;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.config.Configuration;
 
 public class TemplateNameResolver implements NameResolver, PropertyChangeListener {
 
@@ -11,12 +11,12 @@ public class TemplateNameResolver implements NameResolver, PropertyChangeListene
     public static final String DEFAULT_TEMPLATE = NAME_TOKEN + "Test";
     public static final String DEFAULT_PREFIX = "test";
 
-    private final ConfigurationBean configuration;
+    private final Configuration configuration;
 
     private String prefix;
     private String suffix;
 
-    public TemplateNameResolver(ConfigurationBean configuration) {
+    public TemplateNameResolver(Configuration configuration) {
         this.configuration = configuration;
 
         configureTemplate(configuration.getTestNameTemplate());
@@ -40,7 +40,7 @@ public class TemplateNameResolver implements NameResolver, PropertyChangeListene
     }
 
     public void propertyChange(PropertyChangeEvent evt) {
-        if (ConfigurationBean.TEST_NAME_TEMPLATE.equals(evt.getPropertyName())) {
+        if (Configuration.TEST_NAME_TEMPLATE().equals(evt.getPropertyName())) {
             configureTemplate((String) evt.getNewValue());
         }
     }
@@ -70,7 +70,7 @@ public class TemplateNameResolver implements NameResolver, PropertyChangeListene
     }
 
     public String getRealClassNameForDisplay(String className) {
-        return (configuration.isShowFullyQualifiedClassName())
+        return (configuration.getShowFullyQualifiedClassName())
                 ? getRealClassName(className)
                 : extractClassNameWithoutPackageName(getRealClassName(className));
     }

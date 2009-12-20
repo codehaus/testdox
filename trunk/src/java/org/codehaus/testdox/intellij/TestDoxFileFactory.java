@@ -6,15 +6,15 @@ import java.util.List;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiClass;
 
-import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.config.Configuration;
 
 public class TestDoxFileFactory {
 
     private final TestLookup testLookup;
-    private final ConfigurationBean config;
+    private final Configuration config;
     private final NameResolver nameResolver;
 
-    public TestDoxFileFactory(TestLookup testLookup, ConfigurationBean config, NameResolver nameResolver) {
+    public TestDoxFileFactory(TestLookup testLookup, Configuration config, NameResolver nameResolver) {
         this.testLookup = testLookup;
         this.config = config;
         this.nameResolver = nameResolver;
@@ -58,7 +58,7 @@ public class TestDoxFileFactory {
     private PsiClass findTestClass(NameResolver resolver, String className) {
         String testClassName = resolver.getTestClassName(className);
         PsiClass psiClass = testLookup.getClass(testClassName);
-        if ((psiClass == null) && (config != null) && (config.isAllowCustomPackages())) {
+        if ((psiClass == null) && (config != null) && (config.getCustomPackagesAllowed())) {
             List packages = config.getCustomPackages();
             PackageManager packageManager = new PackageManager(getPackage(testClassName));
             testClassName = trimPackage(testClassName);

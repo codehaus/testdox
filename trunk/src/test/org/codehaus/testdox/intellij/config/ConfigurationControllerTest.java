@@ -25,15 +25,11 @@ public class ConfigurationControllerTest extends MockObjectTestCase {
     private final Mock mockConfigurationPanel = mock(ConfigurationUI.class);
 
     private ConfigurationController controller;
-    private ConfigurationBean bean;
+    private Configuration bean;
 
     protected void setUp() {
-        controller = new ConfigurationController() {
-            {
-                this.panel = (ConfigurationUI) mockConfigurationPanel.proxy();
-            }
-        };
-
+        controller = new ConfigurationController();
+        controller.setPanel((ConfigurationUI) mockConfigurationPanel.proxy());
         bean = controller.getState();
     }
 
@@ -78,9 +74,9 @@ public class ConfigurationControllerTest extends MockObjectTestCase {
         getSettingsFromPanel(annotation);
 
         controller.apply();
-        assertTrue(bean.isUsingAnnotations());
-        assertEquals(annotation, bean.getTestMethodAnnotation());
-        assertNull(bean.getTestMethodPrefix());
+        assertTrue(bean.usingAnnotations());
+        assertEquals(annotation, bean.testMethodAnnotation());
+        assertNull(bean.testMethodPrefix());
     }
 
     public void testCopiesValuesFromPanelToBeanWhenChangesAreApplied() throws Exception {
@@ -88,15 +84,15 @@ public class ConfigurationControllerTest extends MockObjectTestCase {
 
         controller.apply();
         assertEquals(TEST_NAME, bean.getTestNameTemplate());
-        assertEquals(TEST_PREFIX, bean.getTestMethodPrefix());
-        assertNull(bean.getTestMethodAnnotation());
-        assertFalse(bean.isUsingAnnotations());
+        assertEquals(TEST_PREFIX, bean.testMethodPrefix());
+        assertNull(bean.testMethodAnnotation());
+        assertFalse(bean.usingAnnotations());
         assertEquals(PACKAGES, bean.getCustomPackages());
-        assertEquals(ALLOW_CUSTOM, bean.isAllowCustomPackages());
-        assertEquals(USE_UNDERSCORE, bean.isUnderscoreMode());
-        assertEquals(SHOW_FULLY_QUALIFIED_CLASS_NAME, bean.isShowFullyQualifiedClassName());
-        assertEquals(AUTO_APPLY_CHANGES, bean.isAutoApplyChangesToTest());
-        assertEquals(DELETE_PACKAGE_OCCURRENCES, bean.isDeletePackageOccurrences());
+        assertEquals(ALLOW_CUSTOM, bean.getCustomPackagesAllowed());
+        assertEquals(USE_UNDERSCORE, bean.underscoreMode());
+        assertEquals(SHOW_FULLY_QUALIFIED_CLASS_NAME, bean.getShowFullyQualifiedClassName());
+        assertEquals(AUTO_APPLY_CHANGES, bean.autoApplyChangesToTests());
+        assertEquals(DELETE_PACKAGE_OCCURRENCES, bean.deletePackageOccurrences());
     }
 
     private void getSettingsFromPanel(String testPrefix) {
@@ -147,7 +143,7 @@ public class ConfigurationControllerTest extends MockObjectTestCase {
     }
 
     private void setSettingsOnBean() {
-        bean.setAllowCustomPackages(ALLOW_CUSTOM);
+        bean.setCustomPackagesAllowed(ALLOW_CUSTOM);
         bean.setCustomPackages(PACKAGES);
         bean.setTestNameTemplate(TEST_NAME);
         bean.setTestMethodPrefix(TEST_PREFIX);
@@ -169,7 +165,7 @@ public class ConfigurationControllerTest extends MockObjectTestCase {
         mockConfigurationPanel.expects(once()).method("getCustomMappingStatus").will(returnValue(ALLOW_CUSTOM));
         mockConfigurationPanel.expects(once()).method("getTestNameTemplate").will(returnValue(TEST_NAME));
 
-        bean.setAllowCustomPackages(ALLOW_CUSTOM);
+        bean.setCustomPackagesAllowed(ALLOW_CUSTOM);
         bean.setCustomPackages(PACKAGES);
         bean.setTestNameTemplate("blarg");
 
@@ -180,7 +176,7 @@ public class ConfigurationControllerTest extends MockObjectTestCase {
         mockConfigurationPanel.expects(once()).method("getCustomPackageMappings").will(returnValue(Collections.singletonList("blarg")));
         mockConfigurationPanel.expects(once()).method("getCustomMappingStatus").will(returnValue(ALLOW_CUSTOM));
 
-        bean.setAllowCustomPackages(ALLOW_CUSTOM);
+        bean.setCustomPackagesAllowed(ALLOW_CUSTOM);
         bean.setCustomPackages(PACKAGES);
         bean.setTestNameTemplate(TEST_NAME);
 
@@ -192,21 +188,21 @@ public class ConfigurationControllerTest extends MockObjectTestCase {
     }
 
     public void testSetsValuesFromElementOnBeanWhenReadingValidConfigurationData() throws Exception {
-        ConfigurationBean configuration = new ConfigurationBean();
+        Configuration configuration = new Configuration();
         configuration.setCustomPackages(list("FOO", "BAR"));
         controller.loadState(configuration);
         assertEquals("custom packages", configuration.getCustomPackages(), bean.getCustomPackages());
     }
 
-    private void assertDefaults(ConfigurationBean bean) {
+    private void assertDefaults(Configuration bean) {
         assertEquals(0, bean.getCustomPackages().size());
         assertEquals(TemplateNameResolver.DEFAULT_TEMPLATE, bean.getTestNameTemplate());
-        assertEquals(TemplateNameResolver.DEFAULT_PREFIX, bean.getTestMethodIndicator());
-        assertFalse(bean.isAllowCustomPackages());
-        assertFalse(bean.isAlphabeticalSorting());
-        assertFalse(bean.isUnderscoreMode());
-        assertTrue(bean.isCreateTestIfMissing());
-        assertTrue(bean.isAutoApplyChangesToTest());
-        assertTrue(bean.isDeletePackageOccurrences());
+        assertEquals(TemplateNameResolver.DEFAULT_PREFIX, bean.testMethodIndicator());
+        assertFalse(bean.getCustomPackagesAllowed());
+        assertFalse(bean.alphabeticalSorting());
+        assertFalse(bean.underscoreMode());
+        assertTrue(bean.createTestIfMissing());
+        assertTrue(bean.autoApplyChangesToTests());
+        assertTrue(bean.deletePackageOccurrences());
     }
 }
