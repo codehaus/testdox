@@ -9,21 +9,18 @@ import javax.swing.event.TableModelEvent
 import javax.swing.event.TableModelListener
 import javax.swing.table.TableModel
 
-import java.util.List
-import scala.collection.JavaConversions
 import scala.collection.mutable.ArrayBuffer
 
 private[config] class PackageTableModel extends TableModel with ListSelectionListener {
 
-  private val mappings = new ArrayBuffer[String]()
+  val mappings = new ArrayBuffer[String]()
+
   private val listeners = new ArrayBuffer[TableModelListener]()
 
   def setMappings(newMappings: List[String]) {
     mappings.clear()
-    mappings.insertAll(0, JavaConversions.asBuffer(newMappings))
+    mappings ++= newMappings
   }
-
-  def getMappings: List[String] = JavaConversions.asList(mappings)
 
   def getColumnClass(columnIndex: Int): Class[_] = if (columnIndex == 0) classOf[String] else classOf[Icon]
 

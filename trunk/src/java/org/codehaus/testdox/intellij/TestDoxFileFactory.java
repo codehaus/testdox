@@ -1,6 +1,5 @@
 package org.codehaus.testdox.intellij;
 
-import java.util.Iterator;
 import java.util.List;
 
 import com.intellij.openapi.vfs.VirtualFile;
@@ -59,11 +58,11 @@ public class TestDoxFileFactory {
         String testClassName = resolver.getTestClassName(className);
         PsiClass psiClass = testLookup.getClass(testClassName);
         if ((psiClass == null) && (config != null) && (config.getCustomPackagesAllowed())) {
-            List packages = config.getCustomPackages();
+            List packages = config.getCustomPackagesAsJavaList();
             PackageManager packageManager = new PackageManager(getPackage(testClassName));
             testClassName = trimPackage(testClassName);
-            for (Iterator iterator = packages.iterator(); iterator.hasNext();) {
-                psiClass = testLookup.getClass(packageManager.getPackage((String) iterator.next()) + "." + testClassName);
+            for (Object aPackage : packages) {
+                psiClass = testLookup.getClass(packageManager.getPackage((String) aPackage) + "." + testClassName);
                 if (psiClass != null) {
                     return psiClass;
                 }

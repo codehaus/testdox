@@ -208,7 +208,7 @@ public abstract class IntelliJApi implements EditorApi {
 
     private String getTestPackage(TestDoxFile testDoxFile) {
         String sourcePackage = getPsiJavaFile(testDoxFile.file()).getPackageName();
-        List<String> customPackages = config.getCustomPackages();
+        List<String> customPackages = config.getCustomPackagesAsJavaList();
         PackageManager packageManager = new PackageManager(sourcePackage);
 
         List<String> packages = new ArrayList<String>();
