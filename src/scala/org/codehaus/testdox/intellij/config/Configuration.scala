@@ -48,12 +48,18 @@ class Configuration {
   }
 
   @deprecated
-  def getCustomPackages = JavaConversions.asList[String](new ListBuffer[String] ++ customPackages)
+  def getCustomPackages = customPackages
 
   @deprecated
-  def setCustomPackages(newPackages: java.util.List[String]) {
+  def getCustomPackagesAsJavaList = JavaConversions.asList[String](new ListBuffer[String] ++ customPackages)
+
+  @deprecated
+  def setCustomPackages(newPackages: java.util.List[String]): Unit = setCustomPackages(JavaConversions.asBuffer(newPackages).toList)
+
+  @deprecated
+  def setCustomPackages(newPackages: List[String]) {
     val oldPackages = customPackages;
-    customPackages = (new ListBuffer[String] ++ JavaConversions.asBuffer(newPackages)).toList
+    customPackages = newPackages
     support.firePropertyChange(Configuration.CUSTOM_PACKAGES, oldPackages, customPackages)
   }
 

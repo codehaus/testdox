@@ -2,6 +2,7 @@ package org.codehaus.testdox.intellij.config
 
 import com.intellij.openapi.components.PersistentStateComponent
 import com.intellij.openapi.components.ProjectComponent
+import com.intellij.openapi.components.State
 import com.intellij.openapi.options.Configurable
 import com.intellij.openapi.options.ConfigurationException
 import com.intellij.util.xmlb.XmlSerializerUtil
@@ -10,19 +11,13 @@ import org.codehaus.testdox.intellij.TemplateNameResolver
 import org.jetbrains.annotations.NotNull
 
 import javax.swing._
-import scala.collection.JavaConversions
 
 /*
 @State(
-    name = ConfigurationController.COMPONENT_NAME,
-    storages = {
-    @Storage(
-        id = ConfigurationController.COMPONENT_NAME,
-        file = "$PROJECT_FILE$"
-    )}
+  name = ConfigurationController.COMPONENT_NAME,
+  storages = { @Storage(id = ConfigurationController.COMPONENT_NAME, file = "$PROJECT_FILE$") }
 )
 */
-
 class ConfigurationController extends ProjectComponent with Configurable with PersistentStateComponent[Configuration] {
 
   private var panel: ConfigurationUI = null
@@ -46,7 +41,7 @@ class ConfigurationController extends ProjectComponent with Configurable with Pe
 
   private def setDefaults() {
     if (configuration.getCustomPackages == null) {
-      configuration.setCustomPackages(new java.util.ArrayList[String])
+      configuration.setCustomPackages(List[String]())
     }
     if (configuration.getTestNameTemplate == null) {
       configuration.setTestNameTemplate(TemplateNameResolver.DEFAULT_TEMPLATE)
@@ -63,16 +58,16 @@ class ConfigurationController extends ProjectComponent with Configurable with Pe
 
   @throws(classOf[ConfigurationException])
   def apply() {
-    configuration.setCustomPackagesAllowed(panel.getCustomMappingStatus())
-    configuration.setCustomPackages(panel.getCustomPackageMappings())
-    configuration.setTestNameTemplate(panel.getTestNameTemplate())
-    configuration.createTestIfMissing = panel.getCreateTestIfMissing()
-    configuration.underscoreMode = panel.getUseUnderscore()
-    configuration.setShowFullyQualifiedClassName(panel.getShowFullyQualifiedClassName())
-    configuration.autoApplyChangesToTests = panel.getAutoApplyChangesToTest()
-    configuration.deletePackageOccurrences = panel.getDeletePackageOccurrences()
+    configuration.setCustomPackagesAllowed(panel.customMappingStatus)
+    configuration.setCustomPackages(panel.customPackageMappings)
+    configuration.setTestNameTemplate(panel.testNameTemplate)
+    configuration.createTestIfMissing = panel.createTestIfMissing
+    configuration.underscoreMode = panel.useUnderscore
+    configuration.setShowFullyQualifiedClassName(panel.showFullyQualifiedClassName)
+    configuration.autoApplyChangesToTests = panel.autoApplyChangesToTests
+    configuration.deletePackageOccurrences = panel.deletePackageOccurrences
 
-    val prefix = panel.getTestMethodPrefix()
+    val prefix = panel.testMethodPrefix
     if (prefix != null && prefix.startsWith("@")) {
       configuration.testMethodPrefix = null
       configuration.testMethodAnnotation = prefix
@@ -85,15 +80,14 @@ class ConfigurationController extends ProjectComponent with Configurable with Pe
   }
 
   def createComponent(): JComponent = {
-    setPanel(new ConfigurationPanel())
+    panel = new ConfigurationPanel()
     reset()
     panel.asInstanceOf[ConfigurationPanel]
   }
 
-  def disposeUIResources() = setPanel(null)
+  def disposeUIResources() = panel = null
 
-  // TODO: must be package private
-  def setPanel(panel: ConfigurationUI) = this.panel = panel
+  private[config] def setPanel(panel: ConfigurationUI) = this.panel = panel
 
   val getDisplayName = "TestDox"
 
@@ -102,27 +96,27 @@ class ConfigurationController extends ProjectComponent with Configurable with Pe
   val getIcon = IconHelper.getIcon(IconHelper.TESTDOX_ICON)
 
   def isModified = {
-    configuration.getCustomPackagesAllowed != panel.getCustomMappingStatus() ||
-        configuration.getCustomPackages != panel.getCustomPackageMappings() ||
-        configuration.getTestNameTemplate != panel.getTestNameTemplate() ||
-        configuration.testMethodIndicator != panel.getTestMethodPrefix() ||
-        configuration.createTestIfMissing != panel.getCreateTestIfMissing() ||
-        configuration.underscoreMode != panel.getUseUnderscore() ||
-        configuration.getShowFullyQualifiedClassName != panel.getShowFullyQualifiedClassName() ||
-        configuration.autoApplyChangesToTests != panel.getAutoApplyChangesToTest() ||
-        configuration.deletePackageOccurrences != panel.getDeletePackageOccurrences()
+    configuration.getCustomPackagesAllowed != panel.customMappingStatus ||
+    configuration.getCustomPackages != panel.customPackageMappings ||
+    configuration.getTestNameTemplate != panel.testNameTemplate ||
+    configuration.testMethodIndicator != panel.testMethodPrefix ||
+    configuration.createTestIfMissing != panel.createTestIfMissing ||
+    configuration.underscoreMode != panel.useUnderscore ||
+    configuration.getShowFullyQualifiedClassName != panel.showFullyQualifiedClassName ||
+    configuration.autoApplyChangesToTests != panel.autoApplyChangesToTests ||
+    configuration.deletePackageOccurrences != panel.deletePackageOccurrences
   }
 
   def reset() {
-    panel.setCustomMappingStatus(configuration.getCustomPackagesAllowed)
-    panel.setCustomPackageMappings(JavaConversions.asList(JavaConversions.asBuffer(configuration.getCustomPackages)))
-    panel.setTestNameTemplate(configuration.getTestNameTemplate)
-    panel.setTestMethodPrefix(configuration.testMethodIndicator)
-    panel.setCreateTestIfMissing(configuration.createTestIfMissing)
-    panel.setUseUnderscore(configuration.underscoreMode)
-    panel.setShowFullyQualifiedClassName(configuration.getShowFullyQualifiedClassName)
-    panel.setAutoApplyChangesToTest(configuration.autoApplyChangesToTests)
-    panel.setDeletePackageOccurrences(configuration.deletePackageOccurrences)
+    panel.customMappingStatus = configuration.getCustomPackagesAllowed
+    panel.customPackageMappings = configuration.getCustomPackages
+    panel.testNameTemplate = configuration.getTestNameTemplate
+    panel.testMethodPrefix = configuration.testMethodIndicator
+    panel.createTestIfMissing = configuration.createTestIfMissing
+    panel.useUnderscore = configuration.underscoreMode
+    panel.showFullyQualifiedClassName = configuration.getShowFullyQualifiedClassName
+    panel.autoApplyChangesToTests = configuration.autoApplyChangesToTests
+    panel.deletePackageOccurrences = configuration.deletePackageOccurrences
   }
 
   def getState = configuration
