@@ -53,12 +53,12 @@ public class ActionEventsTest extends MockObjectTestCase {
 
     public void testReturnsANullTestdoxToolWindowWhenAProjectIsNotAvailable() {
         setExpectationsForProjectNotBeingAvailable();
-        assertSame(ActionEvents.Nulls.TESTDOX_TOOL_WINDOW, actionEvents.getToolWindowUI(anActionEvent));
+        assertSame(Nulls.TESTDOX_TOOL_WINDOW(), actionEvents.getToolWindowUI(anActionEvent));
     }
 
     public void testReturnsANullTestdoxControllerWhenAProjectIsNotAvailable() {
         setExpectationsForProjectNotBeingAvailable();
-        assertSame(ActionEvents.Nulls.TESTDOX_CONTROLLER, actionEvents.getTestDoxController(anActionEvent));
+        assertSame(Nulls.TESTDOX_CONTROLLER(), actionEvents.getTestDoxController(anActionEvent));
     }
 
     public void testReturnsANonNullTestdoxToolWindowWhenAProjectIsNotAvailable() {
@@ -85,7 +85,7 @@ public class ActionEventsTest extends MockObjectTestCase {
         Mock mockVirtualFile = Mocks.createAndRegisterVirtualFileMock(this);
         Mock mockEditorApi = mock(EditorApi.class);
 
-        mockDataContext.expects(once()).method("getData").with(eq(DataKeys.VIRTUAL_FILE.getName())).will(returnValue(mockVirtualFile.proxy()));
+        mockDataContext.expects(once()).method("getData").with(eq(PlatformDataKeys.VIRTUAL_FILE.getName())).will(returnValue(mockVirtualFile.proxy()));
         mockTestDoxProjectComponent.expects(once()).method("getController").will(returnValue(mockTestDoxController.proxy()));
         mockTestDoxController.expects(once()).method("getEditorApi").will(returnValue(mockEditorApi.proxy()));
         mockEditorApi.expects(once()).method("isJavaFile").with(isA(VirtualFile.class)).will(returnValue(true));
@@ -101,7 +101,7 @@ public class ActionEventsTest extends MockObjectTestCase {
         setExpectationsForProjectBeingAvailable();
 
         PsiElement psiElementMock = (PsiElement) mock(PsiElement.class).proxy();
-        mockDataContext.expects(once()).method("getData").with(eq(DataKeys.EDITOR.getName())).will(returnValue(mockEditor.proxy()));
+        mockDataContext.expects(once()).method("getData").with(eq(PlatformDataKeys.EDITOR.getName())).will(returnValue(mockEditor.proxy()));
         mockDataContext.expects(once()).method("getData").with(eq("psi.File")).will(returnValue(mockPsiFile.proxy()));
         mockEditor.expects(once()).method("getCaretModel").will(returnValue(mockCaretModel.proxy()));
         mockCaretModel.expects(once()).method("getOffset").will(returnValue(0));
@@ -124,17 +124,17 @@ public class ActionEventsTest extends MockObjectTestCase {
 
     private void setExpectationsForProjectRetrieval(Project project, TestDoxProjectComponent testDoxProjectComponent) {
         TestDoxProjectComponent.setInstance(project, testDoxProjectComponent);
-        mockDataContext.stubs().method("getData").with(eq(DataKeys.PROJECT.getName())).will(returnValue(project));
+        mockDataContext.stubs().method("getData").with(eq(PlatformDataKeys.PROJECT.getName())).will(returnValue(project));
     }
 
     public void testReturnsANullPsiElementWhenActionEventDidNotOriginateFromACodeEditor() {
-        mockDataContext.expects(once()).method("getData").with(eq(DataKeys.EDITOR.getName()));
+        mockDataContext.expects(once()).method("getData").with(eq(PlatformDataKeys.EDITOR.getName())).will(returnValue(null));
         assertSame(NullPsiElement.INSTANCE(), actionEvents.getTargetPsiElement(anActionEvent));
     }
 
     public void testReturnsANullPsiElementWhenActionEventDidNotOriginateFromAFile() {
-        mockDataContext.expects(once()).method("getData").with(eq(DataKeys.EDITOR.getName())).will(returnValue(mockEditor.proxy()));
-        mockDataContext.expects(once()).method("getData").with(eq(DataKeys.PSI_FILE.getName()));
+        mockDataContext.expects(once()).method("getData").with(eq(PlatformDataKeys.EDITOR.getName())).will(returnValue(mockEditor.proxy()));
+        mockDataContext.expects(once()).method("getData").with(eq(LangDataKeys.PSI_FILE.getName()));
         assertSame(NullPsiElement.INSTANCE(), actionEvents.getTargetPsiElement(anActionEvent));
     }
 

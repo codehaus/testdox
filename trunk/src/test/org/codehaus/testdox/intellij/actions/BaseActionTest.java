@@ -20,7 +20,7 @@ public class BaseActionTest extends TestDoxActionTestCase {
 
     public void testIsDisabledWhenNoProjectIsOpen() {
         mockActionEvents.expects(once()).method("getTestDoxController").with(isA(AnActionEvent.class))
-                .will(returnValue(ActionEvents.Nulls.TESTDOX_CONTROLLER));
+                .will(returnValue(Nulls.TESTDOX_CONTROLLER()));
 
         assertActionEnabledIfTheSelectedElementIsAProjectElement(false);
     }

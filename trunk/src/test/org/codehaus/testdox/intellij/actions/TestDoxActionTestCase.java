@@ -25,7 +25,7 @@ public abstract class TestDoxActionTestCase extends MockObjectTestCase {
         ApplicationInfo applicationInfo = Stubs.createApplicationInfo(this);
         MockApplicationManager.getMockApplication().registerComponent(ApplicationInfo.class, applicationInfo);
 
-        ActionEvents.instance = (ActionEvents) mockActionEvents.proxy();
+        ActionEvents.setInstance((ActionEvents) mockActionEvents.proxy());
     }
 
     protected void tearDown() {
