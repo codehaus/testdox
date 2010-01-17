@@ -2,7 +2,7 @@ package org.codehaus.testdox.intellij.ui
 
 trait RenameUI {
 
-  val sentence: String
+  def sentence: String
 
   def setSentence(sentence: String): Unit
 

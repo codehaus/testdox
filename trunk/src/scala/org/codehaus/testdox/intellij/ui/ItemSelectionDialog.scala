@@ -7,7 +7,7 @@ import javax.swing._
 import javax.swing.event.ListSelectionEvent
 import javax.swing.event.ListSelectionListener
 import java.awt._
-import java.awt.GridBagConstraints.{WEST, HORIZONTAL}
+import java.awt.GridBagConstraints._
 
 class ItemSelectionDialog(project: Project, items: Array[Object], var instructions: String, title: String, renderer: ListCellRenderer)
     extends DialogWrapper(project, true) with ItemSelectionUI {
