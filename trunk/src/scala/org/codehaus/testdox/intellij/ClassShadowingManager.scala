@@ -6,8 +6,11 @@ import com.intellij.refactoring.listeners.RefactoringElementListener
 
 import org.codehaus.testdox.intellij.config.Configuration
 
-class ClassShadowingManager(psiElement: PsiClass, testDoxFileFactory: TestDoxFileFactory, editorApi: EditorApi, config: Configuration, nameResolver: NameResolver)
-    extends RefactoringElementListener {
+class ClassShadowingManager(psiElement: PsiClass,
+                            testDoxFileFactory: TestDoxFileFactory,
+                            editorApi: EditorApi,
+                            config: Configuration,
+                            nameResolver: NameResolver) extends RefactoringElementListener {
 
   private val originalFile = testDoxFileFactory.getTestDoxFile(editorApi.getVirtualFile(psiElement))
 

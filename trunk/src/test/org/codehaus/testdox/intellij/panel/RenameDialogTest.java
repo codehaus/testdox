@@ -92,7 +92,7 @@ public class RenameDialogTest extends MockObjectTestCase {
 
     protected <T extends RenameDialog> DialogCreator<T> dialogCreator() {
         return new DialogCreator<T>() {
-            protected T create() {
+            public T create() {
                 return (T) new RenameDialog(projectMock, "");
             }
         };
