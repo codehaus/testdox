@@ -10,7 +10,7 @@ public abstract class DialogCreator<T extends DialogWrapper> implements Runnable
         dialog = create();
     }
 
-    protected abstract T create();
+    public abstract T create();
 
     public T getDialog() {
         return dialog;

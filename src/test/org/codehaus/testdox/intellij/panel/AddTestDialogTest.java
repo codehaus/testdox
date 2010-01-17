@@ -11,7 +11,7 @@ public class AddTestDialogTest extends RenameDialogTest {
 
     protected DialogCreator<AddTestDialog> dialogCreator() {
         return new DialogCreator<AddTestDialog>() {
-            protected AddTestDialog create() {
+            public AddTestDialog create() {
                 return new AddTestDialog(projectMock);
             }
         };

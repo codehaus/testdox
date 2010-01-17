@@ -29,7 +29,7 @@ import com.intellij.usageView.UsageInfo;
 import com.intellij.util.IncorrectOperationException;
 import static jedi.functional.Coercions.*;
 import org.codehaus.testdox.intellij.config.Configuration;
-import org.codehaus.testdox.intellij.panel.ItemSelectionDialog;
+import org.codehaus.testdox.intellij.ui.ItemSelectionDialog;
 import org.codehaus.testdox.intellij.ui.ItemSelectionUI;
 import org.jetbrains.annotations.NotNull;
 
