@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module relativePaths="true" type="PLUGIN_MODULE" version="4">
-  <component name="DevKit.ModuleBuildProperties" url="file://$MODULE_DIR$/src/META-INF/plugin.xml" />
+  <component name="DevKit.ModuleBuildProperties" url="file://$MODULE_DIR$/src/java/META-INF/plugin.xml" />
   <component name="FacetManager">
     <facet type="JRUBY" name="JRuby">
       <configuration number="0">
@@ -8,7 +8,18 @@
       </configuration>
     </facet>
     <facet type="Scala" name="Scala">
-      <configuration />
+      <configuration>
+        <option name="myScalaCompilerJarPaths">
+          <array>
+            <option value="$MODULE_DIR$/../../.IntelliJIdea90/config/plugins/Scala/lib/scala-compiler.jar" />
+          </array>
+        </option>
+        <option name="myScalaSdkJarPaths">
+          <array>
+            <option value="$MODULE_DIR$/../../.IntelliJIdea90/config/plugins/Scala/lib/scala-library.jar" />
+          </array>
+        </option>
+      </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="false">
@@ -84,15 +95,6 @@
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/test/junit-4.4.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" scope="TEST">
-      <library>
-        <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/test/jmock-core-1.2.0.jar!/" />
         </CLASSES>
         <JAVADOC />
@@ -112,6 +114,33 @@
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/test/junit-addons-1.4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/test/junit-dep-4.8.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/test/objenesis-1.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/test/mockito-core-1.8.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
