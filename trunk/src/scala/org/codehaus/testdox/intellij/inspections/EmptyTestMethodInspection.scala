@@ -27,7 +27,7 @@ class EmptyTestMethodInspection extends Inspection {
       return Inspection.NO_PROBLEMS
     }
 
-    for (val statement <- codeBlock.getStatements()) {
+    for (statement <- codeBlock.getStatements()) {
       if (!classOf[PsiEmptyStatement].isInstance(statement)) {
         return Inspection.NO_PROBLEMS
       }

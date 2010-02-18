@@ -64,7 +64,7 @@ private[config] class PackageTableModel extends TableModel with ListSelectionLis
   }
 
   private def fireTableModelChanged() {
-    for (val listener <- listeners) {
+    for (listener <- listeners) {
       listener.tableChanged(new TableModelEvent(this))
     }
   }
