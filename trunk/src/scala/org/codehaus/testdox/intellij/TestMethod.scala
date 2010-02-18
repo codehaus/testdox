@@ -4,8 +4,7 @@ import com.intellij.openapi.actionSystem.Presentation
 import com.intellij.psi.PsiMethod
 import javax.swing.Icon
 
-class TestMethod(psiMethod: PsiMethod, editorApi: EditorApi, sentenceManager: SentenceManager)
-    extends AbstractTestElement {
+class TestMethod(psiMethod: PsiMethod, editorApi: EditorApi, sentenceManager: SentenceManager) extends AbstractTestElement {
 
   def methodName: String = psiMethod.getName()
 

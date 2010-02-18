@@ -17,11 +17,7 @@ import com.intellij.refactoring.listeners.RefactoringElementListener;
 import org.codehaus.testdox.intellij.actions.DeleteTestAction;
 import org.codehaus.testdox.intellij.actions.RenameTestAction;
 import org.codehaus.testdox.intellij.config.Configuration;
-import org.codehaus.testdox.intellij.panel.*;
-import org.codehaus.testdox.intellij.ui.AddTestDialog;
-import org.codehaus.testdox.intellij.ui.RenameDialog;
-import org.codehaus.testdox.intellij.ui.RenameUI;
-import org.codehaus.testdox.intellij.ui.TestDoxTableModel;
+import org.codehaus.testdox.intellij.ui.*;
 
 public class TestDoxControllerImpl implements TestDoxController {
 
