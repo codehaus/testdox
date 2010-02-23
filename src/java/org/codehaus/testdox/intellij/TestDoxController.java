@@ -47,7 +47,7 @@ public interface TestDoxController extends FileEditorManagerListener,
 
     void toggleTestClassAndTestedClass();
 
-    void jumpToTestElement(TestElement selectedTestElement, boolean autoscrolling);
+    void jumpToTestElement(TestElement selectedTestElement, boolean autoScrolling);
 
     void updateSort(boolean alphabetical);
 
@@ -55,7 +55,7 @@ public interface TestDoxController extends FileEditorManagerListener,
 
     void toggleToolWindow();
 
-    void updateAutoscroll(boolean autoscrolling);
+    void updateAutoScroll(boolean autoScrolling);
 
     void updatePresentation(Presentation presentation, PsiElement targetPsiElement);
 }

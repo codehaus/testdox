@@ -127,13 +127,12 @@ public class TestDoxProjectComponent implements ProjectComponent {
 
         addToolBarActions((DefaultActionGroup) toolGroup, list(
             registerAction(actionManager, new SortTestDoxAction(config.alphabeticalSorting(), useFromTestDoxToolWindow), SortTestDoxAction.ID()),
-            registerAction(actionManager, new AutoscrollAction(config.autoscrolling(), useFromTestDoxToolWindow), AutoscrollAction.ID()),
+            registerAction(actionManager, new AutoSscrollAction(config.autoScrolling(), useFromTestDoxToolWindow), AutoSscrollAction.ID()),
             Separator.getInstance(),
             registerAction(actionManager, new RenameTestAction(useFromTestDoxToolWindow), RenameTestAction.ID()),
             registerAction(actionManager, new DeleteTestAction(useFromTestDoxToolWindow), DeleteTestAction.ID()),
             Separator.getInstance(),
             registerAction(actionManager, new RefreshTestDoxPanelAction(useFromTestDoxToolWindow), RefreshTestDoxPanelAction.ID())
-
         ));
 
         return actionManager.createActionToolbar(TOOL_WINDOW_TOOLBAR_ID, toolGroup, true);

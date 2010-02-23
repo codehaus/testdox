@@ -75,7 +75,7 @@ public class TestDoxProjectComponentTest extends MockObjectTestCase {
         Mock mockIntentionManager = mock(IntentionManager.class);
         MockApplicationManager.getMockApplication().registerComponent(IntentionManager.class, mockIntentionManager.proxy());
 
-        String actionKeyForAutoscrollAction = expectedProjectNameWithoutExtension + '.' + AutoscrollAction.ID();
+        String actionKeyForAutoscrollAction = expectedProjectNameWithoutExtension + '.' + AutoSscrollAction.ID();
         String actionKeyForDeleteTestAction = expectedProjectNameWithoutExtension + '.' + DeleteTestAction.ID();
         String actionKeyForRefreshTestDoxAction = expectedProjectNameWithoutExtension + '.' + RefreshTestDoxPanelAction.ID();
         String actionKeyForRenameTestAction = expectedProjectNameWithoutExtension + '.' + RenameTestAction.ID();
@@ -89,7 +89,7 @@ public class TestDoxProjectComponentTest extends MockObjectTestCase {
         mockActionManager.expects(once()).method("getAction").with(eq(actionKeyForSortTestDoxAction));
         mockActionManager.expects(once()).method("getAction").with(eq(actionKeyForToolbarActionGroup));
 
-        mockActionManager.expects(once()).method("registerAction").with(eq(actionKeyForAutoscrollAction), isA(AutoscrollAction.class));
+        mockActionManager.expects(once()).method("registerAction").with(eq(actionKeyForAutoscrollAction), isA(AutoSscrollAction.class));
         mockActionManager.expects(once()).method("registerAction").with(eq(actionKeyForDeleteTestAction), isA(DeleteTestAction.class));
         mockActionManager.expects(once()).method("registerAction").with(eq(actionKeyForRefreshTestDoxAction), isA(RefreshTestDoxPanelAction.class));
         mockActionManager.expects(once()).method("registerAction").with(eq(actionKeyForRenameTestAction), isA(RenameTestAction.class));
