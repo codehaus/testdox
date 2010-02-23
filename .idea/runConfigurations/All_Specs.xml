@@ -4,6 +4,8 @@
     <setting name="path" value="" />
     <setting name="vmparams" value="" />
     <setting name="params" value="" />
+    <RunnerSettings RunnerId="Run" />
+    <ConfigurationWrapper RunnerId="Run" />
     <method />
   </configuration>
 </component>
