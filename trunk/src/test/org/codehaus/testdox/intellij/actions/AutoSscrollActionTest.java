@@ -3,14 +3,14 @@ package org.codehaus.testdox.intellij.actions;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.ToggleAction;
 
-public class AutoscrollActionTest extends TestDoxActionTestCase {
+public class AutoSscrollActionTest extends TestDoxActionTestCase {
 
     public void testIsEnabledIfEventOriginatedFromATestableProjectClass() {
         checkActionIsEnabled(createAction(), true);
     }
 
     public void testIsEnabledInTestdoxToolWindowIfEventOriginatedFromATestableProjectClass() {
-        assertActionEnabledInTestDoxToolWindowIfEventOriginatedFromClassInProject(new AutoscrollAction(false, true), true);
+        assertActionEnabledInTestDoxToolWindowIfEventOriginatedFromClassInProject(new AutoSscrollAction(false, true), true);
     }
 
     public void testIsNotEnabledIfEventDidNotOriginateFromATestableProjectClass() {
@@ -18,14 +18,14 @@ public class AutoscrollActionTest extends TestDoxActionTestCase {
     }
 
     public void testIsNotEnabledInTestDoxToolWindowIfEventDidNotOriginateFromATestableProjectClass() {
-        assertActionEnabledInTestDoxToolWindowIfEventOriginatedFromClassInProject(new AutoscrollAction(false, true), false);
+        assertActionEnabledInTestDoxToolWindowIfEventOriginatedFromClassInProject(new AutoSscrollAction(false, true), false);
     }
 
-    public void testTriggersTheReorderingOfTestdoxTestElementsWhenItsSelectionStatusIsChangedWithANonNullActionEvent() {
+    public void testTriggersTheReorderingOfTestDoxTestElementsWhenItsSelectionStatusIsChangedWithANonNullActionEvent() {
         boolean actionSelected = true;
 
         useMockTestDoxController();
-        mockTestDoxController.expects(once()).method("updateAutoscroll").with(eq(actionSelected));
+        mockTestDoxController.expects(once()).method("updateAutoScroll").with(eq(actionSelected));
 
         ToggleAction action = createAction();
         AnActionEvent actionEvent = createAnActionEvent(action);
@@ -45,6 +45,6 @@ public class AutoscrollActionTest extends TestDoxActionTestCase {
     }
 
     private ToggleAction createAction() {
-        return new AutoscrollAction();
+        return new AutoSscrollAction();
     }
 }

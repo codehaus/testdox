@@ -235,8 +235,8 @@ public class TestDoxControllerImpl implements TestDoxController {
         }
     }
 
-    public void updateAutoscroll(boolean autoscrolling) {
-        configuration.setAutoscrolling(autoscrolling);
+    public void updateAutoScroll(boolean autoscrolling) {
+        configuration.setAutoScrolling(autoscrolling);
     }
 
     public void update(Presentation presentation) {

@@ -78,7 +78,7 @@ public class TestDoxToolWindowPanel extends JPanel implements TableModelListener
     }
 
     void handleSelection() {
-        if (testDoxController.getConfiguration().autoscrolling()) {
+        if (testDoxController.getConfiguration().autoScrolling()) {
             testDoxController.jumpToTestElement(getSelectedTestElement(), true);
         }
     }

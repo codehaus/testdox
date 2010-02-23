@@ -19,7 +19,7 @@ class Configuration {
   @BeanProperty var alphabeticalSorting = false
   @BeanProperty var createTestIfMissing = true
   @BeanProperty var underscoreMode = false
-  @BeanProperty var autoscrolling = false
+  @BeanProperty var autoScrolling = false
   @BeanProperty var autoApplyChangesToTests = true
   @BeanProperty var deletePackageOccurrences = false
   @BeanProperty var testMethodPrefix = TemplateNameResolver.DEFAULT_PREFIX
