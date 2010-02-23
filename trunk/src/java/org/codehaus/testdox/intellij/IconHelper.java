@@ -22,7 +22,7 @@ public class IconHelper {
     public static final String NO_TESTS_ICON = "/icons/notests.png";
     public static final String NOT_JAVA_ICON = "/icons/notjava.png";
     public static final String REMOVE_ICON = "/icons/remove.png";
-    public static final String AUTOSCROLL_ICON = "/icons/autoscroll.png";
+    public static final String AUTO_SCROLL_ICON = "/icons/autoscroll.png";
     public static final String ADD_TEST_ICON = "/icons/method.png";
     public static final String RENAME_ICON = "/icons/rename.png";
     public static final String DELETE_ICON = "/icons/delete.png";
@@ -33,7 +33,7 @@ public class IconHelper {
     private static final Map ICON_CACHE = new HashMap();
     private static final Map LOCKED_ICON_CACHE = new HashMap();
 
-    public static Icon getIcon(String path) {
+	public static Icon getIcon(String path) {
         if (ICON_CACHE.containsKey(path)) {
             return (Icon) ICON_CACHE.get(path);
         }

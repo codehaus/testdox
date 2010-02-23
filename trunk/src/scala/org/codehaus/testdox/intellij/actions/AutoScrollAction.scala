@@ -5,8 +5,8 @@ import com.intellij.openapi.actionSystem.AnActionEvent
 import org.codehaus.testdox.intellij.IconHelper
 import org.codehaus.testdox.intellij.IconHelper._
 
-class AutoSscrollAction(private var selected: Boolean, useFromTestDoxToolWindow: Boolean)
-    extends BaseToggleAction("Autoscroll To Source", "Toggle auto-scrolling", getIcon(IconHelper.AUTOSCROLL_ICON), useFromTestDoxToolWindow) {
+class AutoScrollAction(private var selected: Boolean, useFromTestDoxToolWindow: Boolean)
+    extends BaseToggleAction("Auto-scroll To Source", "Toggle auto-scrolling", getIcon(IconHelper.AUTO_SCROLL_ICON), useFromTestDoxToolWindow) {
 
   def this() = this(false, false)
 
@@ -18,6 +18,6 @@ class AutoSscrollAction(private var selected: Boolean, useFromTestDoxToolWindow:
   }
 }
 
-object AutoSscrollAction {
-  val ID = "TestDox.Autoscroll"
+object AutoScrollAction {
+  val ID = "TestDox.AutoScroll"
 }

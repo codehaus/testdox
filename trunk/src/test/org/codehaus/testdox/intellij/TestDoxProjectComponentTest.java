@@ -75,21 +75,21 @@ public class TestDoxProjectComponentTest extends MockObjectTestCase {
         Mock mockIntentionManager = mock(IntentionManager.class);
         MockApplicationManager.getMockApplication().registerComponent(IntentionManager.class, mockIntentionManager.proxy());
 
-        String actionKeyForAutoscrollAction = expectedProjectNameWithoutExtension + '.' + AutoSscrollAction.ID();
+        String actionKeyForAutoScrollAction = expectedProjectNameWithoutExtension + '.' + AutoScrollAction.ID();
         String actionKeyForDeleteTestAction = expectedProjectNameWithoutExtension + '.' + DeleteTestAction.ID();
         String actionKeyForRefreshTestDoxAction = expectedProjectNameWithoutExtension + '.' + RefreshTestDoxPanelAction.ID();
         String actionKeyForRenameTestAction = expectedProjectNameWithoutExtension + '.' + RenameTestAction.ID();
         String actionKeyForSortTestDoxAction = expectedProjectNameWithoutExtension + '.' + SortTestDoxAction.ID();
         String actionKeyForToolbarActionGroup = expectedProjectNameWithoutExtension + '.' + TestDoxProjectComponent.TOOL_WINDOW_TOOLBAR_ID;
 
-        mockActionManager.expects(once()).method("getAction").with(eq(actionKeyForAutoscrollAction));
+        mockActionManager.expects(once()).method("getAction").with(eq(actionKeyForAutoScrollAction));
         mockActionManager.expects(once()).method("getAction").with(eq(actionKeyForDeleteTestAction));
         mockActionManager.expects(once()).method("getAction").with(eq(actionKeyForRefreshTestDoxAction));
         mockActionManager.expects(once()).method("getAction").with(eq(actionKeyForRenameTestAction));
         mockActionManager.expects(once()).method("getAction").with(eq(actionKeyForSortTestDoxAction));
         mockActionManager.expects(once()).method("getAction").with(eq(actionKeyForToolbarActionGroup));
 
-        mockActionManager.expects(once()).method("registerAction").with(eq(actionKeyForAutoscrollAction), isA(AutoSscrollAction.class));
+        mockActionManager.expects(once()).method("registerAction").with(eq(actionKeyForAutoScrollAction), isA(AutoScrollAction.class));
         mockActionManager.expects(once()).method("registerAction").with(eq(actionKeyForDeleteTestAction), isA(DeleteTestAction.class));
         mockActionManager.expects(once()).method("registerAction").with(eq(actionKeyForRefreshTestDoxAction), isA(RefreshTestDoxPanelAction.class));
         mockActionManager.expects(once()).method("registerAction").with(eq(actionKeyForRenameTestAction), isA(RenameTestAction.class));
