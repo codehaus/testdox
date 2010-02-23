@@ -206,10 +206,10 @@ public class TestDoxControllerImpl implements TestDoxController {
         return Messages.showYesNoDialog(project, question, "Test not found", Messages.getQuestionIcon()) == DialogWrapper.OK_EXIT_CODE;
     }
 
-    public void jumpToTestElement(TestElement selectedTestElement, boolean autoscrolling) {
+    public void jumpToTestElement(TestElement selectedTestElement, boolean autoScrolling) {
         selectedTestElement.jumpToPsiElement();
 
-        if (!autoscrolling && (toolWindow.getType().equals(ToolWindowType.SLIDING) || toolWindow.isAutoHide())) {
+        if (!autoScrolling && (toolWindow.getType().equals(ToolWindowType.SLIDING) || toolWindow.isAutoHide())) {
             toolWindow.hide(null);
         }
     }
@@ -235,8 +235,8 @@ public class TestDoxControllerImpl implements TestDoxController {
         }
     }
 
-    public void updateAutoScroll(boolean autoscrolling) {
-        configuration.setAutoScrolling(autoscrolling);
+    public void updateAutoScroll(boolean autoScrolling) {
+        configuration.setAutoScrolling(autoScrolling);
     }
 
     public void update(Presentation presentation) {

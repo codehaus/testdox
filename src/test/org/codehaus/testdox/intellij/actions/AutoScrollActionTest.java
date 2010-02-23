@@ -3,14 +3,14 @@ package org.codehaus.testdox.intellij.actions;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.ToggleAction;
 
-public class AutoSscrollActionTest extends TestDoxActionTestCase {
+public class AutoScrollActionTest extends TestDoxActionTestCase {
 
     public void testIsEnabledIfEventOriginatedFromATestableProjectClass() {
         checkActionIsEnabled(createAction(), true);
     }
 
     public void testIsEnabledInTestdoxToolWindowIfEventOriginatedFromATestableProjectClass() {
-        assertActionEnabledInTestDoxToolWindowIfEventOriginatedFromClassInProject(new AutoSscrollAction(false, true), true);
+        assertActionEnabledInTestDoxToolWindowIfEventOriginatedFromClassInProject(new AutoScrollAction(false, true), true);
     }
 
     public void testIsNotEnabledIfEventDidNotOriginateFromATestableProjectClass() {
@@ -18,7 +18,7 @@ public class AutoSscrollActionTest extends TestDoxActionTestCase {
     }
 
     public void testIsNotEnabledInTestDoxToolWindowIfEventDidNotOriginateFromATestableProjectClass() {
-        assertActionEnabledInTestDoxToolWindowIfEventOriginatedFromClassInProject(new AutoSscrollAction(false, true), false);
+        assertActionEnabledInTestDoxToolWindowIfEventOriginatedFromClassInProject(new AutoScrollAction(false, true), false);
     }
 
     public void testTriggersTheReorderingOfTestDoxTestElementsWhenItsSelectionStatusIsChangedWithANonNullActionEvent() {
@@ -45,6 +45,6 @@ public class AutoSscrollActionTest extends TestDoxActionTestCase {
     }
 
     private ToggleAction createAction() {
-        return new AutoSscrollAction();
+        return new AutoScrollAction();
     }
 }
