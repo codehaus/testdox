@@ -25,7 +25,7 @@ class SentenceManager(configuration: Configuration) {
       val methodName = sentence
           .split("\\s+")
           .map { token => if (configuration.underscoreMode && token.matches(SentenceManager.ACRONYM_REGEXP)) "_" + token + "_" else token }
-          .map { token => token.charAt(0).toUpperCase + token.substring(1) }
+          .map { token => token.charAt(0).toUpper + token.substring(1) }
           .mkString("")
 
       if (configuration.usingAnnotations) {
