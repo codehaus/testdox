@@ -1,11 +1,12 @@
 package org.codehaus.testdox.intellij.inspections
 
-import com.intellij.codeInspection.ProblemHighlightType._
+import com.intellij.codeInspection.ProblemHighlightType.GENERIC_ERROR_OR_WARNING
 import com.intellij.codeInspection.{InspectionManager, ProblemDescriptor}
 import com.intellij.psi.PsiClass
 
 import org.jetbrains.annotations.NotNull
 import org.codehaus.testdox.intellij.TestDoxProjectComponent
+import org.codehaus.testdox.intellij.inspections.Inspection.NO_PROBLEMS
 
 class EmptyTestClassInspection extends Inspection {
 
@@ -14,7 +15,7 @@ class EmptyTestClassInspection extends Inspection {
 
   override def checkClass(@NotNull psiClass: PsiClass, @NotNull manager: InspectionManager, isOnTheFly: Boolean): Array[ProblemDescriptor] = {
     if (isInnerClass(psiClass) || isSuite(psiClass)) {
-      return Inspection.NO_PROBLEMS
+      return NO_PROBLEMS
     }
 
     val testDoxController = TestDoxProjectComponent.getInstance(manager.getProject()).getController()
@@ -24,7 +25,7 @@ class EmptyTestClassInspection extends Inspection {
     if (!file.isTestedClass && file.canNavigateToTestedClass && file.testMethods.length == 0)
       Array(manager.createProblemDescriptor(psiClass.getNameIdentifier(), getDisplayName, new AddTestMethodQuickFix(), GENERIC_ERROR_OR_WARNING, false))
     else
-      Inspection.NO_PROBLEMS
+      NO_PROBLEMS
   }
 
   private def isSuite(psiClass: PsiClass) = psiClass.findMethodsByName("suite", true).length > 0

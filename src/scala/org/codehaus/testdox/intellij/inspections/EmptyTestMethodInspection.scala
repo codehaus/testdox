@@ -1,12 +1,13 @@
 package org.codehaus.testdox.intellij.inspections
 
-import com.intellij.codeInspection.ProblemHighlightType._
+import com.intellij.codeInspection.ProblemHighlightType.GENERIC_ERROR_OR_WARNING
 import com.intellij.codeInspection.{LocalQuickFix, InspectionManager, ProblemDescriptor}
 import com.intellij.psi.PsiEmptyStatement
 import com.intellij.psi.PsiMethod
 
 import org.jetbrains.annotations.NotNull
 import org.codehaus.testdox.intellij.TestDoxProjectComponent
+import org.codehaus.testdox.intellij.inspections.Inspection.NO_PROBLEMS
 
 class EmptyTestMethodInspection extends Inspection {
 
@@ -20,17 +21,17 @@ class EmptyTestMethodInspection extends Inspection {
 
     val editorApi = testDoxController.getEditorApi()
     if (file.isTestedClass || !file.canNavigateToTestedClass || !editorApi.isTestMethod(psiMethod)) {
-      return Inspection.NO_PROBLEMS
+      return NO_PROBLEMS
     }
 
     val codeBlock = psiMethod.getBody()
     if (codeBlock == null) {
-      return Inspection.NO_PROBLEMS
+      return NO_PROBLEMS
     }
 
     for (statement <- codeBlock.getStatements()) {
       if (!classOf[PsiEmptyStatement].isInstance(statement)) {
-        return Inspection.NO_PROBLEMS
+        return NO_PROBLEMS
       }
     }
     return createProblemDescriptor(manager, psiMethod)
