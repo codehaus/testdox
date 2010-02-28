@@ -1,8 +1,7 @@
 package org.codehaus.testdox.intellij.inspections
 
-import com.intellij.codeInspection.InspectionManager
-import com.intellij.codeInspection.ProblemDescriptor
-import com.intellij.codeInspection.ProblemHighlightType
+import com.intellij.codeInspection.ProblemHighlightType._
+import com.intellij.codeInspection.{InspectionManager, ProblemDescriptor}
 import com.intellij.psi.PsiClass
 
 import org.jetbrains.annotations.NotNull
@@ -23,7 +22,7 @@ class EmptyTestClassInspection extends Inspection {
     val file = factory.getTestDoxFile(psiClass.getContainingFile().getVirtualFile())
 
     if (!file.isTestedClass && file.canNavigateToTestedClass && file.testMethods.length == 0)
-      Array(manager.createProblemDescriptor(psiClass.getNameIdentifier(), getDisplayName, new AddTestMethodQuickFix(), ProblemHighlightType.GENERIC_ERROR_OR_WARNING))
+      Array(manager.createProblemDescriptor(psiClass.getNameIdentifier(), getDisplayName, new AddTestMethodQuickFix(), GENERIC_ERROR_OR_WARNING, false))
     else
       Inspection.NO_PROBLEMS
   }

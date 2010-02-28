@@ -1,6 +1,7 @@
 package org.codehaus.testdox.intellij.inspections
 
-import com.intellij.codeInspection.{LocalQuickFix, InspectionManager, ProblemDescriptor, ProblemHighlightType}
+import com.intellij.codeInspection.ProblemHighlightType._
+import com.intellij.codeInspection.{LocalQuickFix, InspectionManager, ProblemDescriptor}
 import com.intellij.psi.PsiEmptyStatement
 import com.intellij.psi.PsiMethod
 
@@ -36,6 +37,6 @@ class EmptyTestMethodInspection extends Inspection {
   }
 
   private def createProblemDescriptor(manager: InspectionManager, psiMethod: PsiMethod): Array[ProblemDescriptor] = {
-    Array(manager.createProblemDescriptor(psiMethod.getNameIdentifier(), getDisplayName, null.asInstanceOf[LocalQuickFix], ProblemHighlightType.GENERIC_ERROR_OR_WARNING))
+    Array(manager.createProblemDescriptor(psiMethod.getNameIdentifier(), getDisplayName, null.asInstanceOf[LocalQuickFix], GENERIC_ERROR_OR_WARNING, false))
   }
 }

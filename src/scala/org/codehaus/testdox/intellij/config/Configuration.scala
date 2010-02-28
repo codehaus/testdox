@@ -37,46 +37,46 @@ class Configuration {
     support.removePropertyChangeListener(listener)
   }
 
-  @deprecated
+  @deprecated("will be replaced with 'public var customPackagesAllowed'")
   def getCustomPackagesAllowed = customPackagesAllowed
 
-  @deprecated
+  @deprecated("will be replaced with 'public var customPackagesAllowed'")
   def setCustomPackagesAllowed(customPackagesAllowed: Boolean) {
     val old = this.customPackagesAllowed
     this.customPackagesAllowed = customPackagesAllowed
     support.firePropertyChange(Configuration.ALLOW_CUSTOM_PACKAGES, old, customPackagesAllowed)
   }
 
-  @deprecated
+  @deprecated("will be replaced with 'public var customPackages'")
   def getCustomPackages = customPackages
 
-  @deprecated
+  @deprecated("will be replaced with 'public var customPackages'")
   def getCustomPackagesAsJavaList = JavaConversions.asList[String](new ListBuffer[String] ++ customPackages)
 
-  @deprecated
+  @deprecated("will be replaced with 'public var customPackages'")
   def setCustomPackages(newPackages: java.util.List[String]): Unit = setCustomPackages(JavaConversions.asBuffer(newPackages).toList)
 
-  @deprecated
+  @deprecated("will be replaced with 'public var customPackages'")
   def setCustomPackages(newPackages: List[String]) {
     val oldPackages = customPackages;
     customPackages = newPackages
     support.firePropertyChange(Configuration.CUSTOM_PACKAGES, oldPackages, customPackages)
   }
 
-  @deprecated
+  @deprecated("will be replaced with 'public var testNameTemplate'")
   def getTestNameTemplate = testNameTemplate
 
-  @deprecated
+  @deprecated("will be replaced with 'public var testNameTemplate'")
   def setTestNameTemplate(testNameTemplate: String) {
     val old = this.testNameTemplate
     this.testNameTemplate = testNameTemplate
     support.firePropertyChange(Configuration.TEST_NAME_TEMPLATE, old, testNameTemplate)
   }
 
-  @deprecated
+  @deprecated("will be replaced with 'public var showFullyQualifiedClassName'")
   def getShowFullyQualifiedClassName = showFullyQualifiedClassName
 
-  @deprecated
+  @deprecated("will be replaced with 'public var showFullyQualifiedClassName'")
   def setShowFullyQualifiedClassName(showFullyQualifiedClassName: Boolean) {
     val oldValue = this.showFullyQualifiedClassName
     this.showFullyQualifiedClassName = showFullyQualifiedClassName
