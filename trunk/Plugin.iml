@@ -125,13 +125,13 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library>
+      <library name="specs_2.8.0.Beta1-1.6.4-SNAPSHOT.jar">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/test/specs_2.8.0.Beta1-1.6.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/test/specs_2.8.0.Beta1-1.6.4-SNAPSHOT.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$MODULE_DIR$/lib/test/specs-1.6.2-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/test/specs_2.8.0.Beta1-1.6.4-SNAPSHOT-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
