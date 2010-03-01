@@ -6,7 +6,7 @@ import javax.swing.Icon
 import org.specs.Specification
 import org.specs.mock.Mockito
 
-object AbstractTestElementSpec extends Specification with Mockito {
+class AbstractTestElementSpec extends Specification with Mockito {
 
   private val testElement = new AbstractTestElement() {
     override val displayString = "dummy"

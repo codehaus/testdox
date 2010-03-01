@@ -1,12 +1,14 @@
 import java.io.File
 import sbt._
+import webbytest.HtmlTestsProject
 
-class TestDoxProject(info: ProjectInfo) extends DefaultProject(info) {
+class TestDoxProject(info: ProjectInfo) extends DefaultProject(info) with HtmlTestsProject {
 
   override def outputPath = "build"
 
   override def mainJavaSourcePath = "src" / "java"
   override def mainScalaSourcePath = "src" / "scala"
+  override def mainResourcesPath = "src" / "resources"
   
   override def testJavaSourcePath = "src" / "test"
   override def testScalaSourcePath = "test" / "scala"
