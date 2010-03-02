@@ -33,7 +33,7 @@ import org.codehaus.testdox.intellij.TestElement
 import org.codehaus.testdox.intellij.config.Configuration.SHOW_FULLY_QUALIFIED_CLASS_NAME
 import org.codehaus.testdox.intellij.ui.TestDoxToolWindow._
 
-private[ui] class TestDoxToolWindow(testDoxController: TestDoxController, table: JTable, actionToolbarComponent: Component) extends JPanel
+class TestDoxToolWindow(testDoxController: TestDoxController, table: JTable, actionToolbarComponent: Component) extends JPanel
     with ToolWindowUI with TableModelListener with PropertyChangeListener {
 
   setLayout(new BorderLayout())

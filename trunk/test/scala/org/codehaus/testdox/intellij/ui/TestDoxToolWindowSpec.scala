@@ -11,35 +11,34 @@ import org.intellij.openapi.testing.MockApplicationManager
 
 class TestDoxToolWindowSpec extends Specification with Mockito {
 
-  private val controller = mock[TestDoxController]
-  private val actionToolbarComponent = new JPanel()
-  private val configuration = new Configuration()
-  private val model = new TestDoxTableModel(configuration)
-  private val table = new JTable()
+  val controller = mock[TestDoxController]
+  val actionToolbarComponent = new JPanel()
+  val configuration = new Configuration()
+  val model = new TestDoxTableModel(configuration)
+  val table = new JTable()
 
-  private val TEST_METHODS = Array(Mocks.createTestMethod("testOne"), Mocks.createTestMethod("testTwo"), Mocks.createTestMethod("testThree"))
-
-  private var window: TestDoxToolWindow = _
-
-  doBefore {
-    configuration.setUnderscoreMode(true)
-    table.setModel(model)
-
-    controller.getConfiguration() returns configuration
-    window = new TestDoxToolWindow(controller, table, actionToolbarComponent) {
-      override def handleSelection() {}
-    }
-
-    model.addTableModelListener(window)
-    controller.getModel() returns model
-  }
-
-  doAfter {
-    configuration.removePropertyChangeListener(window)
-    model.removeTableModelListener(window)
-  }
+  val testMethods = Array(Mocks.createTestMethod("testOne"), Mocks.createTestMethod("testTwo"), Mocks.createTestMethod("testThree"))
+  var window: TestDoxToolWindow = null
 
   "TestDoxToolWindow" should {
+
+    doBefore {
+      configuration.setUnderscoreMode(true)
+      table.setModel(model)
+
+      controller.getConfiguration() returns configuration
+      window = new TestDoxToolWindow(controller, table, actionToolbarComponent) {
+        override def handleSelection() {}
+      }
+
+      model.addTableModelListener(window)
+      controller.getModel() returns model
+    }
+
+    doAfter {
+      configuration.removePropertyChangeListener(window)
+      model.removeTableModelListener(window)
+    }
 
     "show no dox message and disable the list of dox when setting Java file which has no dox" in {
       updateTestDoxModelUsingTestDoxFile(new TestDoxClass(null, "foo", true, Mocks.createTestClass(), null, TestMethod.EMPTY_ARRAY))
@@ -63,32 +62,32 @@ class TestDoxToolWindowSpec extends Specification with Mockito {
     }
 
     "shows method based dox even if the TestDox file has no class references" in {
-      updateTestDoxModelUsingTestDoxFile(new TestDoxClass(null, "foo", true, Mocks.createTestClass(), null, TEST_METHODS))
-      assertDox(table, TEST_METHODS)
+      updateTestDoxModelUsingTestDoxFile(new TestDoxClass(null, "foo", true, Mocks.createTestClass(), null, testMethods))
+      assertDox(table, testMethods)
     }
 
     "navigates to source on double click" in {
-      updateTestDoxModelUsingTestDoxFile(new TestDoxClass(null, "foo", true, Mocks.createTestClass(), null, TEST_METHODS))
+      updateTestDoxModelUsingTestDoxFile(new TestDoxClass(null, "foo", true, Mocks.createTestClass(), null, testMethods))
       table.changeSelection(1, -1, false, false)
 
-      controller.jumpToTestElement(TEST_METHODS(0), false)
+      controller.jumpToTestElement(testMethods(0), false)
 
       window.handleMouseEvent(new MouseEvent(table, 0, System.currentTimeMillis(), 0, 0, 0, 2, false))
-      controller.jumpToTestElement(TEST_METHODS(0), false) was called
+      controller.jumpToTestElement(testMethods(0), false) was called
     }
 
     "forwards navigate to source command to project component if ENTER key is pressed" in {
-      controller.jumpToTestElement(TEST_METHODS(0), false)
+      controller.jumpToTestElement(testMethods(0), false)
 
-      updateTestDoxModelUsingTestDoxFile(new TestDoxClass(null, "foo", true, Mocks.createTestClass(), null, TEST_METHODS))
+      updateTestDoxModelUsingTestDoxFile(new TestDoxClass(null, "foo", true, Mocks.createTestClass(), null, testMethods))
       table.changeSelection(1, -1, false, false)
       window.handleKeyEvent(createKeyEvent(KeyEvent.VK_ENTER, KeyEvent.VK_UNDEFINED))
     }
 
     "forwards rename command to project component if rename key is pressed" in {
-      controller.startRename(TEST_METHODS(0))
+      controller.startRename(testMethods(0))
 
-      initialisePanelAndSelectFirstRow(TEST_METHODS)
+      initialisePanelAndSelectFirstRow(testMethods)
       table.changeSelection(1, 1, false, false)
       window.handleKeyEvent(createKeyEvent(KeyEvent.VK_F6, KeyEvent.VK_UNDEFINED))
     }
@@ -119,6 +118,10 @@ class TestDoxToolWindowSpec extends Specification with Mockito {
     table.changeSelection(1, -1, false, false)
   }
 
+  private def updateTestDoxModelUsingTestDoxFile(file: TestDoxFile) = file.updateModel(model)
+
+  private def createKeyEvent(code: Int, modifiers: Int) = new KeyEvent(table, 0, System.currentTimeMillis(), modifiers, code, code.toChar())
+
   private def assertDox(table: JTable, dox: Array[TestMethod]) = {
     table.isEnabled() must_== true
 
@@ -137,9 +140,5 @@ class TestDoxToolWindowSpec extends Specification with Mockito {
       table.getModel().getValueAt(i, 0) must_== noDoxElements(i)
     }
   }
-
-  private def updateTestDoxModelUsingTestDoxFile(file: TestDoxFile) = file.updateModel(model)
-
-  private def createKeyEvent(code: Int, modifiers: Int) = new KeyEvent(table, 0, System.currentTimeMillis(), modifiers, code, code.toChar())
 }
   
