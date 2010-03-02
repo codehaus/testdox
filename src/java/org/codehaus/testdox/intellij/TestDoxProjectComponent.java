@@ -7,11 +7,16 @@ import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowAnchor;
 import com.intellij.openapi.wm.ToolWindowType;
 import static jedi.functional.Coercions.list;
-import org.codehaus.testdox.intellij.actions.*;
+
+import org.codehaus.testdox.intellij.actions.AutoScrollAction;
+import org.codehaus.testdox.intellij.actions.DeleteTestAction;
+import org.codehaus.testdox.intellij.actions.RefreshTestDoxPanelAction;
+import org.codehaus.testdox.intellij.actions.RenameTestAction;
+import org.codehaus.testdox.intellij.actions.SortTestDoxAction;
 import org.codehaus.testdox.intellij.config.Configuration;
 import org.codehaus.testdox.intellij.config.ConfigurationController;
-import org.codehaus.testdox.intellij.panel.TestDoxToolWindowPanel;
 import org.codehaus.testdox.intellij.ui.TestDoxTableModel;
+import org.codehaus.testdox.intellij.ui.TestDoxToolWindow;
 import org.codehaus.testdox.intellij.ui.ToolWindowUI;
 import org.jetbrains.annotations.NotNull;
 import org.picocontainer.MutablePicoContainer;
@@ -33,7 +38,7 @@ public class TestDoxProjectComponent implements ProjectComponent {
 
     protected EditorApiFactory editorApiFactory;
     protected ToolWindow toolWindow;
-    protected TestDoxToolWindowPanel testDoxToolWindowPanel;
+    protected TestDoxToolWindow testDoxToolWindowPanel;
     protected TestDoxTableModel model;
     protected EditorApi editorApi;
     protected TestDoxControllerImpl controller;
@@ -110,7 +115,7 @@ public class TestDoxProjectComponent implements ProjectComponent {
     }
 
     private void initToolWindow() {
-        testDoxToolWindowPanel = new TestDoxToolWindowPanel(getController(), toolbar.getComponent());
+        testDoxToolWindowPanel = new TestDoxToolWindow(getController(), toolbar.getComponent());
         model.addTableModelListener(testDoxToolWindowPanel);
 
         toolWindow = editorApi.getToolWindowManager().registerToolWindow(TOOL_WINDOW_ID, testDoxToolWindowPanel, ToolWindowAnchor.RIGHT);
