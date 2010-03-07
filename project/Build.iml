@@ -16,26 +16,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
-      <library name="scala-library.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../lib/runtime/scala-library.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="jar://$MODULE_DIR$/../lib/runtime/scala-library-src.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="scala-compiler.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../lib/test/scala-compiler.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
       <library name="sbt_2.7.7-0.7.1.jar">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/boot/scala-2.7.7/org.scala-tools.sbt/sbt/0.7.1/sbt_2.7.7-0.7.1.jar!/" />

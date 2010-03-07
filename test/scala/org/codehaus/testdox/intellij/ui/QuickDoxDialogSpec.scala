@@ -6,7 +6,7 @@ import org.codehaus.testdox.intellij.Mocks.MockableTestClass
 import org.specs.Specification
 import org.specs.mock.Mockito
 
-class QuickDoxDialogSpec extends Specification with Mockito {
+object QuickDoxDialogSpec extends Specification with Mockito {
 
   "QuickDoxDialog" should {
     "only be visible when explicitly shown" in {
