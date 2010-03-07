@@ -9,7 +9,7 @@ import com.intellij.psi.PsiMethod
 import org.codehaus.testdox.intellij._
 import org.intellij.openapi.testing.MockApplicationManager
 
-class TestDoxToolWindowSpec extends Specification with Mockito {
+object TestDoxToolWindowSpec extends Specification with Mockito {
 
   val controller = mock[TestDoxController]
   val actionToolbarComponent = new JPanel()
@@ -36,6 +36,7 @@ class TestDoxToolWindowSpec extends Specification with Mockito {
     }
 
     doAfter {
+      controller had noMoreCalls
       configuration.removePropertyChangeListener(window)
       model.removeTableModelListener(window)
     }
@@ -70,32 +71,33 @@ class TestDoxToolWindowSpec extends Specification with Mockito {
       updateTestDoxModelUsingTestDoxFile(new TestDoxClass(null, "foo", true, Mocks.createTestClass(), null, testMethods))
       table.changeSelection(1, -1, false, false)
 
-      controller.jumpToTestElement(testMethods(0), false)
-
       window.handleMouseEvent(new MouseEvent(table, 0, System.currentTimeMillis(), 0, 0, 0, 2, false))
+
       controller.jumpToTestElement(testMethods(0), false) was called
     }
 
-    "forwards navigate to source command to project component if ENTER key is pressed" in {
-      controller.jumpToTestElement(testMethods(0), false)
-
+    "forwards 'Navigate to source' command to project component if the ENTER key was pressed" in {
       updateTestDoxModelUsingTestDoxFile(new TestDoxClass(null, "foo", true, Mocks.createTestClass(), null, testMethods))
       table.changeSelection(1, -1, false, false)
       window.handleKeyEvent(createKeyEvent(KeyEvent.VK_ENTER, KeyEvent.VK_UNDEFINED))
+
+      controller.jumpToTestElement(testMethods(0), false) was called
     }
 
     "forwards rename command to project component if rename key is pressed" in {
-      controller.startRename(testMethods(0))
-
       initialisePanelAndSelectFirstRow(testMethods)
       table.changeSelection(1, 1, false, false)
       window.handleKeyEvent(createKeyEvent(KeyEvent.VK_F6, KeyEvent.VK_UNDEFINED))
+
+      controller.startRename(testMethods(0)) was called
     }
 
     "ignores rename key event if selected item is not a test element" in {
       model.setNotJava()
       table.changeSelection(0, 0, false, false)
       window.handleKeyEvent(createKeyEvent(KeyEvent.VK_F6, KeyEvent.VK_UNDEFINED))
+
+      controller.startRename(testMethods(0)) wasnt called
     }
 
     "uses the selected test element to delete itself when the delete key is pressed" in {
@@ -104,7 +106,6 @@ class TestDoxToolWindowSpec extends Specification with Mockito {
       val editorApi = mock[EditorApi]
 
       psiMethod.getName() returns "testSomething"
-      editorApi.delete(psiMethod)
 
       initialisePanelAndSelectFirstRow(Array(new TestMethod(psiMethod, editorApi, new SentenceManager(new Configuration()))))
       window.handleKeyEvent(createKeyEvent(KeyEvent.VK_DELETE, KeyEvent.VK_UNDEFINED))
@@ -141,4 +142,3 @@ class TestDoxToolWindowSpec extends Specification with Mockito {
     }
   }
 }
-  
