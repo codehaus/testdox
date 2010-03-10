@@ -27,7 +27,7 @@ public class TestDoxControllerImpl implements TestDoxController {
     private final NameResolver nameResolver;
     private final SentenceManager sentenceManager;
     private final TestDoxFileFactory testDoxFileFactory;
-    private final VirtualFileListener deletionShadowingManager;
+    private final VirtualFileListener deletionInterceptor;
 
     ToolWindow toolWindow;
 
@@ -47,7 +47,7 @@ public class TestDoxControllerImpl implements TestDoxController {
         this.nameResolver = nameResolver;
         this.sentenceManager = sentenceManager;
         this.testDoxFileFactory = testDoxFileFactory;
-        this.deletionShadowingManager = new DeletionShadowingManager(editorApi, configuration, nameResolver);
+        this.deletionInterceptor = new DeletionInterceptor(editorApi, configuration, nameResolver);
 
         psiTreeChangeListener = new PsiTreeChangeAdapter() {
             public void childrenChanged(PsiTreeChangeEvent event) {
@@ -66,14 +66,14 @@ public class TestDoxControllerImpl implements TestDoxController {
         editorApi.addFileEditorManagerListener(this);
         editorApi.addRefactoringElementListenerProvider(this);
         editorApi.addPsiTreeChangeListener(psiTreeChangeListener);
-        editorApi.addVirtualFileListener(deletionShadowingManager);
+        editorApi.addVirtualFileListener(deletionInterceptor);
     }
 
     void removeListeners() {
         editorApi.removeFileEditorManagerListener(this);
         editorApi.removeRefactoringElementListenerProvider(this);
         editorApi.removePsiTreeChangeListener(psiTreeChangeListener);
-        editorApi.removeVirtualFileListener(deletionShadowingManager);
+        editorApi.removeVirtualFileListener(deletionInterceptor);
     }
 
     public EditorApi getEditorApi() {

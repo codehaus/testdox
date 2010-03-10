@@ -20,9 +20,8 @@ class TestDoxTableModel(configuration: Configuration) extends DefaultTableModel 
   override def getValueAt(row: Int, column: Int): Object = getDox(row)
 
   private def getDox(index: Int): Object = {
-    if (index < 0 || index >= definitionOrderData.size) {
-      return TestDoxNonJavaFile.TEST_ELEMENT
-    }
+    if (index < 0 || index >= definitionOrderData.size) return TestDoxNonJavaFile.TEST_ELEMENT
+
     if (configuration.alphabeticalSorting) alphaOrderData(index) else definitionOrderData(index)
   }
 
@@ -90,9 +89,7 @@ class TestDoxTableModel(configuration: Configuration) extends DefaultTableModel 
     fireDataChange()
   }
 
-  private def fireDataChange() {
-    fireTableDataChanged()
-  }
+  private def fireDataChange() = fireTableDataChanged()
 
   private def clearLists() {
     definitionOrderData.clear()

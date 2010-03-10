@@ -1,8 +1,8 @@
 package org.codehaus.testdox.intellij.ui
 
-import org.codehaus.testdox.intellij.config.Configuration
 import org.codehaus.testdox.intellij.{TestDoxClass, TestClass, EditorApi, Mocks}
 import org.codehaus.testdox.intellij.Mocks.MockableTestClass
+import org.codehaus.testdox.intellij.config.Configuration
 import org.specs.Specification
 import org.specs.mock.Mockito
 
@@ -35,7 +35,5 @@ object QuickDoxDialogSpec extends Specification with Mockito {
   }
 
   private def createTestDoxFileRepresentingAProjectClass(testClass: TestClass) =
-    new TestDoxClass(null, "blarg", true, testClass, null,
-      Array(Mocks.createTestMethod("foo"), Mocks.createTestMethod("bar"), Mocks.createTestMethod("baz"))
-    )
+    new TestDoxClass(null, "blarg", true, testClass, null, Array(Mocks.createTestMethod("foo"), Mocks.createTestMethod("bar"), Mocks.createTestMethod("baz")))
 }
