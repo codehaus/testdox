@@ -32,6 +32,6 @@ public class TestDoxInterfaceTest extends MockObjectTestCase {
     }
 
     public void testUsesTheWarningIconAsItsGraphicalRepresentation() {
-        assertSame("should have the the Warning icon", IconHelper.getIcon(IconHelper.WARNING_ICON), TestDoxInterface.TEST_ELEMENT().icon());
+        assertSame("should have the the Warning icon", Icons.getIcon(Icons.WARNING_ICON()), TestDoxInterface.TEST_ELEMENT().icon());
     }
 }

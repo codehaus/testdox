@@ -6,7 +6,7 @@ import com.intellij.openapi.components.State
 import com.intellij.openapi.options.Configurable
 import com.intellij.openapi.options.ConfigurationException
 import com.intellij.util.xmlb.XmlSerializerUtil
-import org.codehaus.testdox.intellij.IconHelper
+import org.codehaus.testdox.intellij.Icons
 import org.codehaus.testdox.intellij.TemplateNameResolver
 import org.jetbrains.annotations.NotNull
 
@@ -93,7 +93,7 @@ class ConfigurationController extends ProjectComponent with Configurable with Pe
 
   val getHelpTopic = ""
 
-  val getIcon = IconHelper.getIcon(IconHelper.TESTDOX_ICON)
+  val getIcon = Icons.getIcon(Icons.TESTDOX_ICON)
 
   def isModified = {
     configuration.getCustomPackagesAllowed != panel.customMappingStatus ||

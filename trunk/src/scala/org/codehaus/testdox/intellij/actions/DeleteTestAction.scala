@@ -2,13 +2,13 @@ package org.codehaus.testdox.intellij.actions
 
 import com.intellij.psi.PsiElement
 
-import org.codehaus.testdox.intellij.IconHelper
-import org.codehaus.testdox.intellij.IconHelper._
+import org.codehaus.testdox.intellij.Icons
+import org.codehaus.testdox.intellij.Icons._
 import org.codehaus.testdox.intellij.TestDoxController
 import org.codehaus.testdox.intellij.ui.ToolWindowUI
 
 class DeleteTestAction(useFromTestDoxToolWindow: Boolean)
-    extends BaseTestMethodIntentionAction("Delete Test", "Deletes the current test", getIcon(IconHelper.DELETE_ICON), useFromTestDoxToolWindow) {
+    extends BaseTestMethodIntentionAction("Delete Test", "Deletes the current test", getIcon(Icons.DELETE_ICON), useFromTestDoxToolWindow) {
 
   def this() = this(BaseAction.DO_NOT_USE_FROM_TESTDOX_TOOL_WINDOW)
 

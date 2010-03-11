@@ -120,7 +120,7 @@ public class TestDoxProjectComponent implements ProjectComponent {
 
         toolWindow = editorApi.getToolWindowManager().registerToolWindow(TOOL_WINDOW_ID, testDoxToolWindowPanel, ToolWindowAnchor.RIGHT);
         toolWindow.setType(ToolWindowType.DOCKED, null);
-        toolWindow.setIcon(IconHelper.getIcon(IconHelper.TESTDOX_ICON));
+        toolWindow.setIcon(Icons.getIcon(Icons.TESTDOX_ICON()));
     }
 
     private ActionToolbar createToolBar(Configuration config) {

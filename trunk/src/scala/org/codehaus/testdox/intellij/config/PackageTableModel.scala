@@ -1,6 +1,6 @@
 package org.codehaus.testdox.intellij.config
 
-import org.codehaus.testdox.intellij.IconHelper
+import org.codehaus.testdox.intellij.Icons
 
 import javax.swing._
 import javax.swing.event.ListSelectionEvent
@@ -41,7 +41,7 @@ private[config] class PackageTableModel extends TableModel with ListSelectionLis
   }
 
   def getValueAt(rowIndex: Int, columnIndex: Int): Object = {
-    if (columnIndex == 1) IconHelper.getIcon(IconHelper.REMOVE_ICON) else mappings(rowIndex)
+    if (columnIndex == 1) Icons.getIcon(Icons.REMOVE_ICON) else mappings(rowIndex)
   }
 
   def isCellEditable(rowIndex: Int, columnIndex: Int) = columnIndex == 0

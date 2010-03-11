@@ -9,8 +9,8 @@ class TestInterface(className: String, psiClass: PsiClass, editorApi: EditorApi,
 
   override val icon = {
     if (psiElement != null)
-      IconHelper.getIcon(IconHelper.INTERFACE_ICON)
+      Icons.getIcon(Icons.INTERFACE_ICON)
     else
-      IconHelper.getLockedIcon(IconHelper.INTERFACE_ICON)
+      Icons.getLockedIcon(Icons.INTERFACE_ICON)
   }
 }

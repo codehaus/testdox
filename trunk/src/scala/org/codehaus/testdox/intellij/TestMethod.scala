@@ -14,7 +14,7 @@ class TestMethod(psiMethod: PsiMethod, editorApi: EditorApi, sentenceManager: Se
 
   override def displayString: String = sentenceManager.buildSentence(methodName)
 
-  override def icon: Icon = IconHelper.getIcon(IconHelper.DOX_ICON)
+  override def icon: Icon = Icons.getIcon(Icons.DOX_ICON)
 
   override def update(presentation: Presentation) = presentation.setEnabled(true)
 

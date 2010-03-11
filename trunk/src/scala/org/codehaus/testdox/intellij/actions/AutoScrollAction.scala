@@ -2,11 +2,11 @@ package org.codehaus.testdox.intellij.actions
 
 import com.intellij.openapi.actionSystem.AnActionEvent
 
-import org.codehaus.testdox.intellij.IconHelper
-import org.codehaus.testdox.intellij.IconHelper._
+import org.codehaus.testdox.intellij.Icons
+import org.codehaus.testdox.intellij.Icons._
 
 class AutoScrollAction(private var selected: Boolean, useFromTestDoxToolWindow: Boolean)
-    extends BaseToggleAction("Auto-scroll To Source", "Toggle auto-scrolling", getIcon(IconHelper.AUTO_SCROLL_ICON), useFromTestDoxToolWindow) {
+    extends BaseToggleAction("Auto-scroll To Source", "Toggle auto-scrolling", getIcon(Icons.AUTO_SCROLL_ICON), useFromTestDoxToolWindow) {
 
   def this() = this(false, false)
 

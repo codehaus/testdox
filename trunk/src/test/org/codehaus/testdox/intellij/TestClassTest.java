@@ -64,22 +64,22 @@ public class TestClassTest extends MockObjectTestCase {
 
     public void testReturnsAClassIconIfTheUnderlyingClassBelongsToTheCurrentProject() {
         TestClass testClass = new TestClass("", psiClassMock, editorApiMock, null);
-        assertSame("class icon for project class", IconHelper.getIcon(IconHelper.CLASS_ICON), testClass.icon());
+        assertSame("class icon for project class", Icons.getIcon(Icons.CLASS_ICON()), testClass.icon());
     }
 
     public void testReturnsALockedClassIconIfTheUnderlyingClassDoesNotBelongToTheCurrentProject() {
         TestClass testClass = new TestClass("", null, editorApiMock, null);
-        assertSame("locked class icon for non-project class", IconHelper.getLockedIcon(IconHelper.CLASS_ICON), testClass.icon());
+        assertSame("locked class icon for non-project class", Icons.getLockedIcon(Icons.CLASS_ICON()), testClass.icon());
     }
 
     public void testReturnsAnInterfaceIconIfTheUnderlyingInterfaceBelongsToTheCurrentProject() {
         TestInterface testInterface = new TestInterface("", psiClassMock, editorApiMock, null);
-        assertSame("interface icon for project interface", IconHelper.getIcon(IconHelper.INTERFACE_ICON), testInterface.icon());
+        assertSame("interface icon for project interface", Icons.getIcon(Icons.INTERFACE_ICON()), testInterface.icon());
     }
 
     public void testReturnsALockedInterfaceIconIfTheUnderlyingInterfaceDoesNotBelongToTheCurrentProject() {
         TestInterface testInterface = new TestInterface("", null, editorApiMock, null);
-        assertSame("locked interface icon for non-project interface", IconHelper.getLockedIcon(IconHelper.INTERFACE_ICON), testInterface.icon());
+        assertSame("locked interface icon for non-project interface", Icons.getLockedIcon(Icons.INTERFACE_ICON()), testInterface.icon());
     }
 
     public void testUsesItsDisplayStringToDefineNaturalOrderForComparison() {

@@ -1,7 +1,7 @@
 package org.codehaus.testdox.intellij.actions
 
 import com.intellij.openapi.actionSystem.AnActionEvent
-import org.codehaus.testdox.intellij.IconHelper._
+import org.codehaus.testdox.intellij.Icons._
 
 class AddTestAction extends BaseAction("Add Test", "Adds a test to the current unit test class", getIcon(ADD_TEST_ICON)) {
 

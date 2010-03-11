@@ -10,6 +10,6 @@ public class TestDoxNonProjectClassTest extends TestCase {
     }
 
     public void testUsesTheWarningIconAsItsGraphicalRepresentation() {
-        assertSame("should have the the Warning icon", IconHelper.getIcon(IconHelper.WARNING_ICON), TestDoxNonProjectClass.TEST_ELEMENT().icon());
+        assertSame("should have the the Warning icon", Icons.getIcon(Icons.WARNING_ICON()), TestDoxNonProjectClass.TEST_ELEMENT().icon());
     }
 }

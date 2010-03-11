@@ -27,6 +27,6 @@ class TestDoxClass(override val file: VirtualFile,
 object TestDoxClass {
   val NO_DOX_ELEMENT = new AbstractTestElement() {
     val displayString = "<font color=\"red\">No tests found for current class!</font>"
-    val icon = IconHelper.getIcon(IconHelper.NO_TESTS_ICON)
+    val icon = Icons.getIcon(Icons.NO_TESTS_ICON)
   }
 }
