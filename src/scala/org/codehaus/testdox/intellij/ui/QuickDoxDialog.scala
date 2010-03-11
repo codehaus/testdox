@@ -7,7 +7,7 @@ import javax.swing._
 import javax.swing.event.{TableModelEvent, TableModelListener}
 
 import org.codehaus.testdox.intellij.config.Configuration
-import org.codehaus.testdox.intellij.{IconHelper, TestMethod, TestElement, EditorApi}
+import org.codehaus.testdox.intellij.{Icons, TestMethod, TestElement, EditorApi}
 
 class QuickDoxDialog(owner: Window, private val editorApi: EditorApi, private val model: TestDoxTableModel, configuration: Configuration)
     extends TableModelListener with PropertyChangeListener {
@@ -124,9 +124,9 @@ class QuickDoxDialog(owner: Window, private val editorApi: EditorApi, private va
           closeButton.setToolTipText("<html>Close QuickDox</html>")
           closeButton.setOpaque(true)
           closeButton.setBorder(null)
-          closeButton.setIcon(loadIcon(IconHelper.CLOSE_QUICKDOX_ICON))
-          closeButton.setPressedIcon(loadIcon(IconHelper.CLOSE_QUICKDOX_PRESSED_ICON))
-          closeButton.setRolloverIcon(loadIcon(IconHelper.CLOSE_QUICKDOX_ROLLOVER_ICON))
+          closeButton.setIcon(loadIcon(Icons.CLOSE_QUICKDOX_ICON))
+          closeButton.setPressedIcon(loadIcon(Icons.CLOSE_QUICKDOX_PRESSED_ICON))
+          closeButton.setRolloverIcon(loadIcon(Icons.CLOSE_QUICKDOX_ROLLOVER_ICON))
           closeButton
       }
 

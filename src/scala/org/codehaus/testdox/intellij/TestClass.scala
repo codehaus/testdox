@@ -16,9 +16,9 @@ class TestClass(className: String, psiClass: PsiClass, editorApi: EditorApi, nam
 
   val icon = {
     if (psiClass != null)
-      IconHelper.getIcon(IconHelper.CLASS_ICON)
+      Icons.getIcon(Icons.CLASS_ICON)
     else
-      IconHelper.getLockedIcon(IconHelper.CLASS_ICON)
+      Icons.getLockedIcon(Icons.CLASS_ICON)
   }
 
   override def update(presentation: Presentation) {

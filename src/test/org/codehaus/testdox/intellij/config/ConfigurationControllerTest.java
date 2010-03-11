@@ -3,7 +3,7 @@ package org.codehaus.testdox.intellij.config;
 import static jedi.functional.Coercions.list;
 
 import org.codehaus.testdox.intellij.Constants;
-import org.codehaus.testdox.intellij.IconHelper;
+import org.codehaus.testdox.intellij.Icons;
 import org.codehaus.testdox.intellij.TemplateNameResolver;
 import org.jmock.Mock;
 import org.jmock.MockObjectTestCase;
@@ -60,7 +60,7 @@ public class ConfigurationControllerTest extends MockObjectTestCase {
     }
 
     public void testUsesTheTestdoxIconAsItsRepresentation() {
-        assertSame("icon representation", IconHelper.getIcon(IconHelper.TESTDOX_ICON), controller.getIcon());
+        assertSame("icon representation", Icons.getIcon(Icons.TESTDOX_ICON()), controller.getIcon());
     }
 
     public void testDoesNotHaveAnAssociatedHelpTopic() {

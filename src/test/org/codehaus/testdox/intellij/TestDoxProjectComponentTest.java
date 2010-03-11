@@ -120,7 +120,7 @@ public class TestDoxProjectComponentTest extends MockObjectTestCase {
             .will(returnValue(mockToolWindow.proxy()));
 
         mockToolWindow.expects(once()).method("setType").with(same(ToolWindowType.DOCKED), NULL);
-        mockToolWindow.expects(once()).method("setIcon").with(same(IconHelper.getIcon(IconHelper.TESTDOX_ICON)));
+        mockToolWindow.expects(once()).method("setIcon").with(same(Icons.getIcon(Icons.TESTDOX_ICON())));
 
         projectComponent.projectOpened();
     }

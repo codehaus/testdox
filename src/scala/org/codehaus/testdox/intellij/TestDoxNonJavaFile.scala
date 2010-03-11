@@ -16,6 +16,6 @@ object TestDoxNonJavaFile {
 
   val TEST_ELEMENT = new AbstractTestElement() {
     val displayString = NO_CLASS_MESSAGE
-    val icon = IconHelper.getIcon(IconHelper.NOT_JAVA_ICON)
+    val icon = Icons.getIcon(Icons.NOT_JAVA_ICON)
   }
 }

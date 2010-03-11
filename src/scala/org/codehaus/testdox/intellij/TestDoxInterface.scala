@@ -15,6 +15,6 @@ object TestDoxInterface {
 
   val TEST_ELEMENT = new AbstractTestElement() {
     val displayString = "<font color=\"gray\">Interfaces do not have unit tests.</font>"
-    val icon = IconHelper.getIcon(IconHelper.WARNING_ICON)
+    val icon = Icons.getIcon(Icons.WARNING_ICON)
   }
 }
