@@ -1,7 +1,7 @@
 package org.codehaus.testdox.intellij
 
-import _root_.com.intellij.psi._
-import _root_.org.codehaus.testdox.intellij.Mocks.MockableVirtualFile
+import com.intellij.psi._
+import org.codehaus.testdox.intellij.Mocks.MockableVirtualFile
 import com.intellij.openapi.vfs.newvfs.impl.NullVirtualFile
 import org.intellij.openapi.testing.{RealObjectBuilder, MockApplicationManager}
 import com.intellij.history.LocalHistory

@@ -48,7 +48,7 @@ public class IntelliJApiTest extends MockObjectTestCase {
 
     protected void setUp() {
         config = new Configuration();
-        config.setTestNameTemplate(TemplateNameResolver.DEFAULT_TEMPLATE);
+        config.setTestNameTemplate(TemplateNameResolver.DEFAULT_TEMPLATE());
         config.setTestMethodPrefix("pants");
 
         intelliJApi = new IntelliJApi((Project) mockProject.proxy(), new TemplateNameResolver(config), config) {

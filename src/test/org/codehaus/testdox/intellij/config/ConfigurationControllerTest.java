@@ -194,8 +194,8 @@ public class ConfigurationControllerTest extends MockObjectTestCase {
 
     private void assertDefaults(Configuration bean) {
         assertEquals(0, bean.getCustomPackages().size());
-        assertEquals(TemplateNameResolver.DEFAULT_TEMPLATE, bean.getTestNameTemplate());
-        assertEquals(TemplateNameResolver.DEFAULT_PREFIX, bean.testMethodIndicator());
+        assertEquals(TemplateNameResolver.DEFAULT_TEMPLATE(), bean.getTestNameTemplate());
+        assertEquals(TemplateNameResolver.DEFAULT_PREFIX(), bean.testMethodIndicator());
         assertFalse(bean.getCustomPackagesAllowed());
         assertFalse(bean.alphabeticalSorting());
         assertFalse(bean.underscoreMode());
