@@ -9,10 +9,7 @@
     <output url="file://$MODULE_DIR$/output" />
     <output-test url="file://$MODULE_DIR$/output" />
     <exclude-output />
-    <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/build" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/plugins" isTestSource="false" />
-    </content>
+    <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
@@ -28,6 +25,24 @@
       <library name="webbytest.jar">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../lib/test/webbytest.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../lib/test/scala-compiler.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../lib/runtime/scala-library.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
