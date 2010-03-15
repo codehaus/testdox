@@ -12,7 +12,7 @@ public class TestDoxInterfaceTest extends MockObjectTestCase {
         EditorApi editorApiMock = (EditorApi) mockEditorApi.proxy();
 
         Configuration configuration = new Configuration();
-        configuration.setTestNameTemplate(TemplateNameResolver.DEFAULT_TEMPLATE);
+        configuration.setTestNameTemplate(TemplateNameResolver.DEFAULT_TEMPLATE());
 
         String className = "com.acme.SomeInterface";
         TestInterface testInterface = new TestInterface(className, null, editorApiMock, new TemplateNameResolver(configuration));
