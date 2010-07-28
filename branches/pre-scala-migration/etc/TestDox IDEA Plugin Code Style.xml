@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<code_scheme name="TestDox IDEA Plugin Code Style">
+    <option name="JAVA_INDENT_OPTIONS">
+        <value>
+            <option name="INDENT_SIZE" value="4"/>
+            <option name="CONTINUATION_INDENT_SIZE" value="8"/>
+            <option name="TAB_SIZE" value="4"/>
+            <option name="USE_TAB_CHARACTER" value="false"/>
+            <option name="SMART_TABS" value="true"/>
+            <option name="LABEL_INDENT_SIZE" value="0"/>
+            <option name="LABEL_INDENT_ABSOLUTE" value="false"/>
+        </value>
+    </option>
+    <option name="INDENT_CASE_FROM_SWITCH" value="false"/>
+    <option name="ALIGN_MULTILINE_PARAMETERS_IN_CALLS" value="true"/>
+    <option name="ALIGN_MULTILINE_BINARY_OPERATION" value="true"/>
+    <option name="ALIGN_MULTILINE_ASSIGNMENT" value="true"/>
+    <option name="ALIGN_MULTILINE_TERNARY_OPERATION" value="true"/>
+    <option name="ALIGN_MULTILINE_THROWS_LIST" value="true"/>
+    <option name="ALIGN_MULTILINE_EXTENDS_LIST" value="true"/>
+    <option name="ALIGN_MULTILINE_PARENTHESIZED_EXPRESSION" value="true"/>
+    <option name="KEEP_BLANK_LINES_IN_DECLARATIONS" value="0"/>
+    <option name="BLANK_LINES_BEFORE_PACKAGE" value="2"/>
+    <option name="BLANK_LINES_AFTER_CLASS_HEADER" value="1"/>
+    <option name="CLASS_COUNT_TO_USE_IMPORT_ON_DEMAND" value="50"/>
+    <option name="PACKAGES_TO_USE_IMPORT_ON_DEMAND">
+        <value/>
+    </option>
+    <option name="IMPORT_LAYOUT_TABLE">
+        <value>
+            <package name="java" withSubpackages="true"/>
+            <emptyLine/>
+            <package name="javax" withSubpackages="true"/>
+            <emptyLine/>
+            <package name="javax.swing" withSubpackages="true"/>
+            <emptyLine/>
+            <package name="junit" withSubpackages="true"/>
+            <package name="junitx" withSubpackages="true"/>
+            <emptyLine/>
+            <package name="org.intellij" withSubpackages="true"/>
+            <emptyLine/>
+            <package name="com.intellij" withSubpackages="true"/>
+            <emptyLine/>
+            <package name="org" withSubpackages="true"/>
+            <emptyLine/>
+            <package name="org.jmock" withSubpackages="true"/>
+            <emptyLine/>
+            <package name="org.picocontainer" withSubpackages="true"/>
+            <emptyLine/>
+            <package name="org.springframework" withSubpackages="true"/>
+            <emptyLine/>
+            <package name="org.apache" withSubpackages="true"/>
+            <emptyLine/>
+            <package name="org.codehaus" withSubpackages="true"/>
+            <package name="" withSubpackages="true"/>
+        </value>
+    </option>
+    <option name="METHOD_PARAMETERS_WRAP" value="1"/>
+    <option name="EXTENDS_LIST_WRAP" value="1"/>
+    <option name="THROWS_LIST_WRAP" value="1"/>
+    <option name="EXTENDS_KEYWORD_WRAP" value="1"/>
+    <option name="THROWS_KEYWORD_WRAP" value="1"/>
+    <option name="TERNARY_OPERATION_WRAP" value="1"/>
+    <option name="TERNARY_OPERATION_SIGNS_ON_NEXT_LINE" value="true"/>
+    <option name="KEEP_SIMPLE_BLOCKS_IN_ONE_LINE" value="true"/>
+    <option name="KEEP_SIMPLE_METHODS_IN_ONE_LINE" value="true"/>
+    <option name="ARRAY_INITIALIZER_WRAP" value="5"/>
+    <option name="WRAP_COMMENTS" value="true"/>
+    <option name="IF_BRACE_FORCE" value="3"/>
+    <option name="DOWHILE_BRACE_FORCE" value="3"/>
+    <option name="WHILE_BRACE_FORCE" value="3"/>
+    <option name="FOR_BRACE_FORCE" value="3"/>
+    <option name="ENTITY_VO_SUFFIX" value="DTO"/>
+    <option name="JD_ALIGN_PARAM_COMMENTS" value="false"/>
+    <option name="JD_ALIGN_EXCEPTION_COMMENTS" value="false"/>
+    <option name="JD_ADD_BLANK_AFTER_PARM_COMMENTS" value="true"/>
+    <option name="JD_ADD_BLANK_AFTER_RETURN" value="true"/>
+</code_scheme>
