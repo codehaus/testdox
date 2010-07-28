@@ -13,22 +13,22 @@ public class ActionEventsNullsTest extends TestCase {
     }
 
     public void testANullTestdoxControllerDisablesThePresentationOfAnAction() {
-        Nulls.TESTDOX_CONTROLLER().update(actionPresentation);
+        ActionEvents.Nulls.TESTDOX_CONTROLLER.updatePresentation(actionPresentation);
         assertFalse("action presentation should be disabled", actionPresentation.isEnabled());
     }
 
     public void testANullTestdoxControllerJustReturnsNullWhenNotAskedToUpdateThePresentationOfAnAction() {
-        assertNull("should return null as the configuration", Nulls.TESTDOX_CONTROLLER().getConfiguration());
+        assertNull("should return null as the configuration", ActionEvents.Nulls.TESTDOX_CONTROLLER.getConfiguration());
         assertTrue("action presentation should still be enabled", actionPresentation.isEnabled());
     }
 
     public void testANullTestdoxToolWindowDisablesThePresentationOfAnAction() {
-        Nulls.TESTDOX_TOOL_WINDOW().update(actionPresentation);
+        ActionEvents.Nulls.TESTDOX_TOOL_WINDOW.updatePresentation(actionPresentation);
         assertFalse("action presentation should be disabled", actionPresentation.isEnabled());
     }
 
     public void testANullTestdoxToolWindowJustReturnsNullWhenNotAskedToUpdateThePresentationOfAnAction() {
-        assertNull("should return null as the configuration", Nulls.TESTDOX_TOOL_WINDOW().toString());
+        assertNull("should return null as the configuration", ActionEvents.Nulls.TESTDOX_TOOL_WINDOW.toString());
         assertTrue("action presentation should still be enabled", actionPresentation.isEnabled());
     }
 }

@@ -39,7 +39,7 @@ public class TestClassTest extends MockObjectTestCase {
         TestClass testClass = new TestClass(className, psiClassMock, editorApiMock, nameResolverMock);
         mockNameResolver.expects(once()).method("getRealClassNameForDisplay").with(eq(className)).will(returnValue(realClassName));
 
-        assertEquals("<b>" + realClassName + ":</b>", testClass.displayString());
+        assertEquals("<b>" + realClassName + ":</b>", testClass.getDisplayString());
     }
 
     public void testShowsRealClassNameWithColonSuffixAsDisplayStringForAnInterface() throws Exception {
@@ -49,7 +49,7 @@ public class TestClassTest extends MockObjectTestCase {
         mockNameResolver.expects(once()).method("getRealClassNameForDisplay").with(eq(className)).will(returnValue(realClassName));
 
         TestInterface testInterface = new TestInterface(className, psiClassMock, editorApiMock, nameResolverMock);
-        assertEquals("<i><b>" + realClassName + ":</b></i>", testInterface.displayString());
+        assertEquals("<i><b>" + realClassName + ":</b></i>", testInterface.getDisplayString());
     }
 
     public void testCanBeIdentifiedAsATestClassIfItsFullyQualifiedClassNameResolvesAsSuch() {
@@ -64,22 +64,22 @@ public class TestClassTest extends MockObjectTestCase {
 
     public void testReturnsAClassIconIfTheUnderlyingClassBelongsToTheCurrentProject() {
         TestClass testClass = new TestClass("", psiClassMock, editorApiMock, null);
-        assertSame("class icon for project class", Icons.getIcon(Icons.CLASS_ICON()), testClass.icon());
+        assertSame("class icon for project class", IconHelper.getIcon(IconHelper.CLASS_ICON), testClass.getIcon());
     }
 
     public void testReturnsALockedClassIconIfTheUnderlyingClassDoesNotBelongToTheCurrentProject() {
         TestClass testClass = new TestClass("", null, editorApiMock, null);
-        assertSame("locked class icon for non-project class", Icons.getLockedIcon(Icons.CLASS_ICON()), testClass.icon());
+        assertSame("locked class icon for non-project class", IconHelper.getLockedIcon(IconHelper.CLASS_ICON), testClass.getIcon());
     }
 
     public void testReturnsAnInterfaceIconIfTheUnderlyingInterfaceBelongsToTheCurrentProject() {
         TestInterface testInterface = new TestInterface("", psiClassMock, editorApiMock, null);
-        assertSame("interface icon for project interface", Icons.getIcon(Icons.INTERFACE_ICON()), testInterface.icon());
+        assertSame("interface icon for project interface", IconHelper.getIcon(IconHelper.INTERFACE_ICON), testInterface.getIcon());
     }
 
     public void testReturnsALockedInterfaceIconIfTheUnderlyingInterfaceDoesNotBelongToTheCurrentProject() {
         TestInterface testInterface = new TestInterface("", null, editorApiMock, null);
-        assertSame("locked interface icon for non-project interface", Icons.getLockedIcon(Icons.INTERFACE_ICON()), testInterface.icon());
+        assertSame("locked interface icon for non-project interface", IconHelper.getLockedIcon(IconHelper.INTERFACE_ICON), testInterface.getIcon());
     }
 
     public void testUsesItsDisplayStringToDefineNaturalOrderForComparison() {
@@ -100,7 +100,7 @@ public class TestClassTest extends MockObjectTestCase {
         TestClass testClass = new TestClass(className, null, editorApiMock, nameResolverMock);
         TestMethod testMethod = Mocks.createTestMethod("aMethod");
 
-        mockNameResolver.stubs().method("getRealClassNameForDisplay").with(eq(className)).will(returnValue(className));
+        mockNameResolver.stubs().method("getRealClassName").with(eq(className)).will(returnValue(className));
 
         ComparableAssert.assertLesser("test method", testClass, testMethod);
     }
@@ -124,7 +124,7 @@ public class TestClassTest extends MockObjectTestCase {
 
         mockNameResolver.expects(atLeastOnce()).method("getRealClassNameForDisplay").with(eq(className)).will(returnValue(className));
 
-        assertEquals(testClass.displayString(), testClass.toString());
+        assertEquals(testClass.getDisplayString(), testClass.toString());
     }
 
     public void testAlwaysEnablesTheRepresentationOfAnActionWhenAskedToUpdateIt() {
@@ -132,7 +132,7 @@ public class TestClassTest extends MockObjectTestCase {
         presentation.setEnabled(false);
 
         TestClass testClass = new TestClass(null, null, null, null);
-        testClass.update(presentation);
+        testClass.updatePresentation(presentation);
 
         assertTrue("action representation should have been enabled", presentation.isEnabled());
     }

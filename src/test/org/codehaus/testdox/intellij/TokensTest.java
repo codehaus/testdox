@@ -9,8 +9,8 @@ public class TokensTest extends TestCase {
         try {
             String template = PackageManager.PACKAGE_TOKEN + templateSuffix;
             template.split(PackageManager.PACKAGE_TOKEN);
-            template = TemplateNameResolver.NAME_TOKEN() + templateSuffix;
-            template.split(TemplateNameResolver.NAME_TOKEN());
+            template = TemplateNameResolver.NAME_TOKEN + templateSuffix;
+            template.split(TemplateNameResolver.NAME_TOKEN);
         } catch (Exception e) {
             fail();
         }

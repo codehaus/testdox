@@ -1,19 +1,20 @@
 package org.codehaus.testdox.intellij;
 
+import java.util.Iterator;
 import java.util.List;
 
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiClass;
 
-import org.codehaus.testdox.intellij.config.Configuration;
+import org.codehaus.testdox.intellij.config.ConfigurationBean;
 
 public class TestDoxFileFactory {
 
     private final TestLookup testLookup;
-    private final Configuration config;
+    private final ConfigurationBean config;
     private final NameResolver nameResolver;
 
-    public TestDoxFileFactory(TestLookup testLookup, Configuration config, NameResolver nameResolver) {
+    public TestDoxFileFactory(TestLookup testLookup, ConfigurationBean config, NameResolver nameResolver) {
         this.testLookup = testLookup;
         this.config = config;
         this.nameResolver = nameResolver;
@@ -26,7 +27,7 @@ public class TestDoxFileFactory {
 
         String className = testLookup.getClassName(file);
         PsiClass psiClass = testLookup.getClass(file);
-        TestClass testClass = createTestClass(className, psiClass, testLookup.editorApi());
+        TestClass testClass = createTestClass(className, psiClass, testLookup.getEditorApi());
         TestClass testedClass = null;
 
         if (psiClass == null) {
@@ -39,12 +40,12 @@ public class TestDoxFileFactory {
             isTestedClass = true;
         } else {
             className = nameResolver.getRealClassName(className);
-            testedClass = createTestClass(className, testLookup.getClass(className), testLookup.editorApi());
+            testedClass = createTestClass(className, testLookup.getClass(className), testLookup.getEditorApi());
             isTestedClass = false;
         }
 
         if (psiClass != null) {
-            testClass = createTestClass(className, psiClass, testLookup.editorApi());
+            testClass = createTestClass(className, psiClass, testLookup.getEditorApi());
         }
 
         if ((testClass != null) && (testClass instanceof TestInterface)) {
@@ -57,12 +58,12 @@ public class TestDoxFileFactory {
     private PsiClass findTestClass(NameResolver resolver, String className) {
         String testClassName = resolver.getTestClassName(className);
         PsiClass psiClass = testLookup.getClass(testClassName);
-        if ((psiClass == null) && (config != null) && (config.getCustomPackagesAllowed())) {
-            List packages = config.getCustomPackagesAsJavaList();
+        if ((psiClass == null) && (config != null) && (config.isAllowCustomPackages())) {
+            List packages = config.getCustomPackages();
             PackageManager packageManager = new PackageManager(getPackage(testClassName));
             testClassName = trimPackage(testClassName);
-            for (Object aPackage : packages) {
-                psiClass = testLookup.getClass(packageManager.getPackage((String) aPackage) + "." + testClassName);
+            for (Iterator iterator = packages.iterator(); iterator.hasNext();) {
+                psiClass = testLookup.getClass(packageManager.getPackage((String) iterator.next()) + "." + testClassName);
                 if (psiClass != null) {
                     return psiClass;
                 }

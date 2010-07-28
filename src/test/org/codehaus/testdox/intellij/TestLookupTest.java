@@ -5,7 +5,7 @@ import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiJavaFile;
 import com.intellij.psi.PsiMethod;
 import static jedi.functional.Coercions.array;
-import org.codehaus.testdox.intellij.config.Configuration;
+import org.codehaus.testdox.intellij.config.ConfigurationBean;
 import org.intellij.openapi.testing.MockApplicationManager;
 import org.jmock.Mock;
 import org.jmock.cglib.MockObjectTestCase;
@@ -25,10 +25,10 @@ public class TestLookupTest extends MockObjectTestCase {
     private PsiClass psiClassMock = (PsiClass) mockPsiClass.proxy();
     private PsiJavaFile psiJavaFileMock = (PsiJavaFile) mockPsiJavaFile.proxy();
 
-    private Configuration config = createConfig();
+    private ConfigurationBean config = createConfig();
 
-    private Configuration createConfig() {
-        Configuration configurationBean = new Configuration();
+    private ConfigurationBean createConfig() {
+        ConfigurationBean configurationBean = new ConfigurationBean();
         configurationBean.setTestMethodPrefix("pants");
         return configurationBean;
     }
@@ -97,6 +97,6 @@ public class TestLookupTest extends MockObjectTestCase {
 
         TestMethod[] testMethods = testLookup.getTestMethods(psiClassMock);
         assertEquals(1, testMethods.length);
-        assertEquals("pantsMethod", testMethods[0].methodName());
+        assertEquals("pantsMethod", testMethods[0].getMethodName());
     }
 }

@@ -1,7 +1,7 @@
 package org.codehaus.testdox.intellij;
 
-import org.codehaus.testdox.intellij.config.Configuration;
-import org.codehaus.testdox.intellij.ui.TestDoxTableModel;
+import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.panel.TestDoxModel;
 import org.intellij.openapi.testing.MockVirtualFile;
 import org.jmock.Mock;
 import org.jmock.MockObjectTestCase;
@@ -26,8 +26,8 @@ public final class Mocks {
         return testCase.mock(MockableTestDoxProjectComponent.class);
     }
 
-    public static Mock createAndRegisterTestDoxTableModelMock(MockObjectTestCase testCase) {
-        return testCase.mock(MockableTestDoxTableModel.class);
+    public static Mock createAndRegisterTestDoxModelMock(MockObjectTestCase testCase) {
+        return testCase.mock(MockableTestDoxModel.class);
     }
 
     public static Mock createAndRegisterVirtualFileMock(MockObjectTestCase testCase) {
@@ -84,9 +84,9 @@ public final class Mocks {
         }
     }
 
-    public static class MockableTestDoxTableModel extends TestDoxTableModel {
+    public static class MockableTestDoxModel extends TestDoxModel {
 
-        public MockableTestDoxTableModel() {
+        public MockableTestDoxModel() {
             super(null);
         }
     }
@@ -111,7 +111,7 @@ public final class Mocks {
             super(null, null, null, null, null);
         }
 
-        public void updateModel(TestDoxTableModel model) {
+        public void updateModel(TestDoxModel model) {
         }
     }
 
@@ -121,7 +121,7 @@ public final class Mocks {
             super(null, null, true, null, null, null);
         }
 
-        public void updateModel(TestDoxTableModel model) {
+        public void updateModel(TestDoxModel model) {
         }
     }
 
@@ -131,11 +131,11 @@ public final class Mocks {
             super(null, null, null, null);
         }
 
-        public String displayString() {
+        public String getDisplayString() {
             return null;
         }
 
-        public Icon icon() {
+        public Icon getIcon() {
             return null;
         }
     }
@@ -149,11 +149,11 @@ public final class Mocks {
         }
 
         private MockableTestMethod(String name) {
-            super(null, null, new SentenceManager(new Configuration()));
+            super(null, null, new SentenceManager(new ConfigurationBean()));
             this.name = name;
         }
 
-        public String methodName() {
+        public String getMethodName() {
             return name;
         }
     }

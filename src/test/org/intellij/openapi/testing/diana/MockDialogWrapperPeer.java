@@ -1,7 +1,6 @@
 package org.intellij.openapi.testing.diana;
 
 import com.intellij.openapi.ui.DialogWrapperPeer;
-import com.intellij.openapi.util.ActionCallback;
 
 import javax.swing.*;
 import java.awt.*;
@@ -65,6 +64,9 @@ class MockDialogWrapperPeer extends DialogWrapperPeer {
         return null;
     }
 
+    public void setIconImage(Image image) {
+    }
+
     public void setModal(boolean modal) {
     }
 
@@ -99,8 +101,7 @@ class MockDialogWrapperPeer extends DialogWrapperPeer {
     public void setLocation(int x, int y) {
     }
 
-    public ActionCallback show() {
-        return null;
+    public void show() {
     }
 
     public void setContentPane(JComponent content) {

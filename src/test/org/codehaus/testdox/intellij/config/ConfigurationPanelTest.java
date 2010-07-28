@@ -46,25 +46,25 @@ public class ConfigurationPanelTest extends TestCase {
     private class PanelMock extends ConfigurationPanel {
 
         public JTextField getPackageField() {
-            return packageInputField();
+            return packageInputField;
         }
 
         public JButton getAddButton() {
-            return addButton();
+            return addButton;
         }
 
         public void check() {
-            assertFalse(customMappingStatus());
-            allowCustom().doClick();
+            assertFalse(allowCustom.isSelected());
+            allowCustom.doClick();
         }
 
         public void uncheck() {
-            assertTrue(customMappingStatus());
-            allowCustom().doClick();
+            assertTrue(allowCustom.isSelected());
+            allowCustom.doClick();
         }
 
         public JTable getMappingTable() {
-            return table();
+            return table;
         }
     }
 }

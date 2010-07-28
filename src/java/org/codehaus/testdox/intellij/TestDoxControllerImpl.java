@@ -16,29 +16,29 @@ import com.intellij.psi.*;
 import com.intellij.refactoring.listeners.RefactoringElementListener;
 import org.codehaus.testdox.intellij.actions.DeleteTestAction;
 import org.codehaus.testdox.intellij.actions.RenameTestAction;
-import org.codehaus.testdox.intellij.config.Configuration;
-import org.codehaus.testdox.intellij.ui.*;
+import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.panel.*;
 
 public class TestDoxControllerImpl implements TestDoxController {
 
     private final Project project;
     private final EditorApi editorApi;
-    private final TestDoxTableModel model;
+    private final TestDoxModel model;
     private final NameResolver nameResolver;
     private final SentenceManager sentenceManager;
     private final TestDoxFileFactory testDoxFileFactory;
-    private final VirtualFileListener deletionInterceptor;
+    private final VirtualFileListener deletionShadowingManager;
 
     ToolWindow toolWindow;
 
     protected PsiTreeChangeListener psiTreeChangeListener;
 
     private VirtualFile currentFile;
-    private Configuration configuration;
+    private ConfigurationBean configuration;
     private QuickDoxDialog dialog;
 
-    public TestDoxControllerImpl(Project project, EditorApi editorApi, TestDoxTableModel model,
-                                 Configuration configuration, NameResolver nameResolver,
+    public TestDoxControllerImpl(Project project, EditorApi editorApi, TestDoxModel model,
+                                 ConfigurationBean configuration, NameResolver nameResolver,
                                  SentenceManager sentenceManager, TestDoxFileFactory testDoxFileFactory) {
         this.project = project;
         this.editorApi = editorApi;
@@ -47,7 +47,7 @@ public class TestDoxControllerImpl implements TestDoxController {
         this.nameResolver = nameResolver;
         this.sentenceManager = sentenceManager;
         this.testDoxFileFactory = testDoxFileFactory;
-        this.deletionInterceptor = new DeletionInterceptor(editorApi, configuration, nameResolver);
+        this.deletionShadowingManager = new DeletionShadowingManager(editorApi, configuration, nameResolver);
 
         psiTreeChangeListener = new PsiTreeChangeAdapter() {
             public void childrenChanged(PsiTreeChangeEvent event) {
@@ -66,14 +66,14 @@ public class TestDoxControllerImpl implements TestDoxController {
         editorApi.addFileEditorManagerListener(this);
         editorApi.addRefactoringElementListenerProvider(this);
         editorApi.addPsiTreeChangeListener(psiTreeChangeListener);
-        editorApi.addVirtualFileListener(deletionInterceptor);
+        editorApi.addVirtualFileListener(deletionShadowingManager);
     }
 
     void removeListeners() {
         editorApi.removeFileEditorManagerListener(this);
         editorApi.removeRefactoringElementListenerProvider(this);
         editorApi.removePsiTreeChangeListener(psiTreeChangeListener);
-        editorApi.removeVirtualFileListener(deletionInterceptor);
+        editorApi.removeVirtualFileListener(deletionShadowingManager);
     }
 
     public EditorApi getEditorApi() {
@@ -84,15 +84,15 @@ public class TestDoxControllerImpl implements TestDoxController {
         return testDoxFileFactory;
     }
 
-    public TestDoxTableModel getModel() {
+    public TestDoxModel getModel() {
         return model;
     }
 
-    public Configuration getConfiguration() {
+    public ConfigurationBean getConfiguration() {
         return configuration;
     }
 
-    public void setConfiguration(Configuration configuration) {
+    public void setConfiguration(ConfigurationBean configuration) {
         this.configuration = configuration;
     }
 
@@ -125,11 +125,11 @@ public class TestDoxControllerImpl implements TestDoxController {
         addTestDialog.show();
         if (addTestDialog.isOK()) {
             StringBuffer methodSignatureAndBody = new StringBuffer();
-            if (configuration.usingAnnotations()) {
-                methodSignatureAndBody.append(configuration.testMethodAnnotation()).append("\n");
+            if (configuration.isUsingAnnotations()) {
+                methodSignatureAndBody.append(configuration.getTestMethodAnnotation()).append("\n");
             }
-            methodSignatureAndBody.append("public void ").append(sentenceManager.buildMethodName(addTestDialog.sentence())).append("() {\n}");
-            editorApi.addMethod(getCurrentTestDoxFile().testClass().psiElement(), methodSignatureAndBody.toString());
+            methodSignatureAndBody.append("public void ").append(sentenceManager.buildMethodName(addTestDialog.getSentence())).append("() {\n}");
+            editorApi.addMethod((PsiClass) getCurrentTestDoxFile().getTestClass().getPsiElement(), methodSignatureAndBody.toString());
         }
     }
 
@@ -140,7 +140,7 @@ public class TestDoxControllerImpl implements TestDoxController {
     public void delete(PsiElement element) {
         TestMethod testMethod = getCurrentTestMethod(element);
         if (testMethod != null) {
-            editorApi.delete(testMethod.psiElement());
+            editorApi.delete(testMethod.getPsiElement());
         }
     }
 
@@ -150,10 +150,10 @@ public class TestDoxControllerImpl implements TestDoxController {
 
     public void startRename(TestMethod testMethod) {
         if (testMethod != null) {
-            RenameUI renameDialog = createRenameDialog(testMethod.displayString());
+            RenameUI renameDialog = createRenameDialog(testMethod.getDisplayString());
             renameDialog.show();
             if (renameDialog.isOK()) {
-                editorApi.rename(testMethod.psiElement(), sentenceManager.buildMethodName(renameDialog.sentence()));
+                editorApi.rename(testMethod.getPsiElement(), sentenceManager.buildMethodName(renameDialog.getSentence()));
             }
         }
     }
@@ -191,13 +191,13 @@ public class TestDoxControllerImpl implements TestDoxController {
         TestDoxFile testDoxFile = getCurrentTestDoxFile();
         if (testDoxFile.isTestedClass()) {
             if (testDoxFile.canNavigateToTestClass()) {
-                jumpToTestElement(testDoxFile.testClass(), false);
+                jumpToTestElement(testDoxFile.getTestClass(), false);
             } else
-            if (testDoxFile.canBeUnitTested() && configuration.createTestIfMissing() && shouldCreateTestClass()) {
+            if (testDoxFile.canBeUnitTested() && configuration.isCreateTestIfMissing() && shouldCreateTestClass()) {
                 editorApi.createTestClass(testDoxFile);
             }
         } else if (testDoxFile.canNavigateToTestedClass()) {
-            jumpToTestElement(testDoxFile.testedClass(), false);
+            jumpToTestElement(testDoxFile.getTestedClass(), false);
         }
     }
 
@@ -206,10 +206,10 @@ public class TestDoxControllerImpl implements TestDoxController {
         return Messages.showYesNoDialog(project, question, "Test not found", Messages.getQuestionIcon()) == DialogWrapper.OK_EXIT_CODE;
     }
 
-    public void jumpToTestElement(TestElement selectedTestElement, boolean autoScrolling) {
+    public void jumpToTestElement(TestElement selectedTestElement, boolean autoscrolling) {
         selectedTestElement.jumpToPsiElement();
 
-        if (!autoScrolling && (toolWindow.getType().equals(ToolWindowType.SLIDING) || toolWindow.isAutoHide())) {
+        if (!autoscrolling && (toolWindow.getType().equals(ToolWindowType.SLIDING) || toolWindow.isAutoHide())) {
             toolWindow.hide(null);
         }
     }
@@ -235,11 +235,11 @@ public class TestDoxControllerImpl implements TestDoxController {
         }
     }
 
-    public void updateAutoScroll(boolean autoScrolling) {
-        configuration.setAutoScrolling(autoScrolling);
+    public void updateAutoscroll(boolean autoscrolling) {
+        configuration.setAutoscrolling(autoscrolling);
     }
 
-    public void update(Presentation presentation) {
+    public void updatePresentation(Presentation presentation) {
         TestDoxFile testDoxFile = getCurrentTestDoxFile();
         presentation.setEnabled(testDoxFile.canNavigateToTestedClass() || testDoxFile.canNavigateToTestClass());
     }
@@ -249,7 +249,7 @@ public class TestDoxControllerImpl implements TestDoxController {
     }
 
     private TestMethod getCurrentTestMethod(PsiElement element) {
-        return editorApi.getCurrentTestMethod(element, sentenceManager, getCurrentTestDoxFile().file());
+        return editorApi.getCurrentTestMethod(element, sentenceManager, getCurrentTestDoxFile().getFile());
     }
 
     // FileEditorManagerListener ---------------------------------------------------------------------------------------

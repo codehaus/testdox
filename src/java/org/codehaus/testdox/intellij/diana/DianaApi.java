@@ -7,19 +7,21 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.pom.Navigatable;
 import com.intellij.psi.PsiClass;
-import com.intellij.psi.PsiDirectory;
 import com.intellij.psi.PsiElement;
+import com.intellij.refactoring.MoveDestination;
+import com.intellij.refactoring.PackageWrapper;
+import com.intellij.refactoring.move.moveClassesOrPackages.AutocreatingSingleSourceRootMoveDestination;
 import com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesUtil;
 import com.intellij.refactoring.rename.RenameDialog;
 import com.intellij.refactoring.rename.RenameProcessor;
 import com.intellij.util.IncorrectOperationException;
 import org.codehaus.testdox.intellij.IntelliJApi;
 import org.codehaus.testdox.intellij.NameResolver;
-import org.codehaus.testdox.intellij.config.Configuration;
+import org.codehaus.testdox.intellij.config.ConfigurationBean;
 
 public class DianaApi extends IntelliJApi {
 
-    public DianaApi(Project project, NameResolver nameResolver, Configuration config) {
+    public DianaApi(Project project, NameResolver nameResolver, ConfigurationBean config) {
         super(project, nameResolver, config);
     }
 
@@ -55,19 +57,21 @@ public class DianaApi extends IntelliJApi {
         return false;
     }
 
-    protected MoveClassCommand createMoveClassCommand(PsiClass psiClass, PsiDirectory destinationPackage) {
-        return new DemetraMoveClassCommand(psiClass, destinationPackage);
+    protected MoveClassCommand createMoveClassCommand(PsiClass psiClass, String destinationPackageName) {
+        return new DemetraMoveClassCommand(psiClass, destinationPackageName);
     }
 
     protected class DemetraMoveClassCommand extends MoveClassCommand {
 
-        public DemetraMoveClassCommand(PsiClass psiClass, PsiDirectory destinationPackage) {
-            super(psiClass, destinationPackage);
+        public DemetraMoveClassCommand(PsiClass psiClass, String destinationPackageName) {
+            super(psiClass, destinationPackageName);
         }
 
         protected void move() {
             try {
-                MoveClassesOrPackagesUtil.doMoveClass(psiClass, destinationPackage);
+                PackageWrapper packageWrapper = new PackageWrapper(getPsiManager(), destinationPackageName);
+                MoveDestination moveDestination = new AutocreatingSingleSourceRootMoveDestination(packageWrapper, findSourceFolder());
+                MoveClassesOrPackagesUtil.doMoveClass(psiClass, moveDestination);
             } catch (IncorrectOperationException e) {
                 LOGGER.error(e);
                 showErrorMessage("Could not add method: " + e.getMessage(), "Warning");

@@ -5,7 +5,6 @@ import com.intellij.codeInsight.intention.IntentionAction;
 import com.intellij.codeInsight.intention.IntentionManager;
 import com.intellij.codeInspection.LocalQuickFix;
 import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
 
 public class MockIntentionManager extends IntentionManager {
 
@@ -13,12 +12,6 @@ public class MockIntentionManager extends IntentionManager {
     }
 
     public IntentionAction[] getIntentionActions() {
-        return new IntentionAction[0];
-    }
-
-    @NotNull
-    @Override
-    public IntentionAction[] getAvailableIntentionActions() {
         return new IntentionAction[0];
     }
 
@@ -30,10 +23,6 @@ public class MockIntentionManager extends IntentionManager {
     }
 
     public void registerIntentionAndMetaData(IntentionAction action, String[] category, String description, String exampleFileExtension, String[] exampleTextBefore, String[] exampleTextAfter) {
-    }
-
-    @Override
-    public void unregisterIntention(@NotNull IntentionAction intentionAction) {
     }
 
     public java.util.List<IntentionAction> getStandardIntentionOptions(HighlightDisplayKey displayKey, PsiElement context) {

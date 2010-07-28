@@ -16,7 +16,6 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.projectRoots.Sdk;
 import com.intellij.openapi.projectRoots.SdkType;
 import com.intellij.openapi.roots.ModifiableRootModel;
-import com.intellij.openapi.roots.ui.configuration.ModuleConfigurationState;
 import com.intellij.openapi.roots.ui.configuration.ModulesProvider;
 import com.intellij.openapi.ui.DialogWrapperPeerFactory;
 import com.intellij.openapi.vcs.FileStatus;
@@ -120,10 +119,6 @@ public class MockPeerFactory extends PeerFactory {
     }
 
     public Sdk createProjectJdk(String name, String version, String homePath, SdkType sdkType) {
-        return null;
-    }
-
-    public ModuleConfigurationEditor createModuleConfigurationEditor(String s, ModuleConfigurationState moduleConfigurationState) {
         return null;
     }
 

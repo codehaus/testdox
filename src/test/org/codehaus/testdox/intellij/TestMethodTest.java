@@ -8,11 +8,9 @@ import com.intellij.openapi.actionSystem.Presentation;
 import com.intellij.psi.PsiMethod;
 
 import org.codehaus.testdox.intellij.actions.RenameTestAction;
-import org.codehaus.testdox.intellij.config.Configuration;
+import org.codehaus.testdox.intellij.config.ConfigurationBean;
 import org.jmock.Mock;
 import org.jmock.MockObjectTestCase;
-
-import javax.swing.*;
 
 public class TestMethodTest extends MockObjectTestCase {
 
@@ -35,7 +33,7 @@ public class TestMethodTest extends MockObjectTestCase {
         presentation.setEnabled(false);
 
         TestMethod testMethod = new TestMethod(null, null, null);
-        testMethod.update(presentation);
+        testMethod.updatePresentation(presentation);
 
         assertTrue("action representation should have been enabled", presentation.isEnabled());
     }
@@ -45,7 +43,7 @@ public class TestMethodTest extends MockObjectTestCase {
         String methodName2 = "someOtherMethod";
 
         Mock mockPsiMethod2 = mock(PsiMethod.class);
-        SentenceManager sentenceManager = new SentenceManager(new Configuration());
+        SentenceManager sentenceManager = new SentenceManager(new ConfigurationBean());
 
         mockPsiMethod.expects(atLeastOnce()).method("getName").will(returnValue(methodName1));
         mockPsiMethod2.expects(atLeastOnce()).method("getName").will(returnValue(methodName2));
@@ -57,14 +55,14 @@ public class TestMethodTest extends MockObjectTestCase {
     }
 
     public void testReturnsZeroWhenComparedToAnObjectThatIsNotATestMethod() {
-        assertEquals("comparison result", 0, new TestMethod(null, null, null).compareTo(new TestInterface(null, null, null, null)));
+        assertEquals("comparison result", 0, new TestMethod(null, null, null).compareTo(""));
     }
 
     public void testUsesItsDisplayStringAsItsTextualRepresentation() {
-        SentenceManager sentenceManager = new SentenceManager(new Configuration());
+        SentenceManager sentenceManager = new SentenceManager(new ConfigurationBean());
         TestMethod testMethod = new TestMethod((PsiMethod) mockPsiMethod.proxy(), editorApiMock, sentenceManager);
 
         mockPsiMethod.expects(atLeastOnce()).method("getName").will(returnValue("someMethod"));
-        assertEquals(testMethod.displayString(), testMethod.toString());
+        assertEquals(testMethod.getDisplayString(), testMethod.toString());
     }
 }

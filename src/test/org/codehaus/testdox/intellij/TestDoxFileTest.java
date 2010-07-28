@@ -1,12 +1,13 @@
 package org.codehaus.testdox.intellij;
 
 import junit.framework.TestCase;
-import org.codehaus.testdox.intellij.ui.TestDoxTableModel;
+
+import org.codehaus.testdox.intellij.panel.TestDoxModel;
 
 public class TestDoxFileTest extends TestCase {
 
-    private TestDoxFile testDoxFile = new TestDoxFile(null, null, null, null, TestMethod.EMPTY_ARRAY()) {
-        public void updateModel(TestDoxTableModel model) { }
+    private TestDoxFile testDoxFile = new TestDoxFile(null, null, null, null, TestMethod.EMPTY_ARRAY) {
+        public void updateModel(TestDoxModel model) { }
     };
 
     public void testCanBeRepresentedAsText() {

@@ -16,7 +16,7 @@
         <property name="binary.extensions" value="**/*.png, **/*.jpg, **/*.jpeg, **/*.gif"/>
         <property name="license.file" value="LICENSE.txt"/>
 
-        <property name="test.lib" value="lib/test"/>
+        <property name="compile.lib" value="lib/compile"/>
         <property name="runtime.lib" value="lib/runtime"/>
 
         <property name="java.src" value="src/java"/>
@@ -60,11 +60,11 @@
         </condition>
 
         <path id="compile.classpath">
-          <fileset dir="${runtime.lib}">
-              <include name="*.jar"/>
-          </fileset>
-            <fileset dir="${test.lib}">
+            <fileset dir="${compile.lib}">
                 <include name="*.jar"/>
+            </fileset>
+            <fileset dir="${runtime.lib}">
+                <include name="**/*.jar"/>
             </fileset>
         </path>
 

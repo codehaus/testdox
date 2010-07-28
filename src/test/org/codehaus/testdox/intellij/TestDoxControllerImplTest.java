@@ -9,9 +9,9 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiIdentifier;
 import com.intellij.psi.PsiMethod;
 import com.intellij.testFramework.LightVirtualFile;
-import org.codehaus.testdox.intellij.config.Configuration;
-import org.codehaus.testdox.intellij.ui.RenameUI;
-import org.codehaus.testdox.intellij.ui.TestDoxTableModel;
+import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.panel.RenameUI;
+import org.codehaus.testdox.intellij.panel.TestDoxModel;
 import org.intellij.openapi.testing.MockApplicationManager;
 import org.jmock.Mock;
 import org.jmock.cglib.MockObjectTestCase;
@@ -34,8 +34,8 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
     private final Mock mockRenameDialog = mock(RenameUI.class);
     private final Mock mockToolWindow = mock(ToolWindow.class);
 
-    private final Configuration configuration = new Configuration();
-    private final TestDoxTableModel testDoxModel = new TestDoxTableModel(configuration);
+    private final ConfigurationBean configuration = new ConfigurationBean();
+    private final TestDoxModel testDoxModel = new TestDoxModel(configuration);
 
     private TestDoxControllerImpl controller;
     private boolean shouldCreateTestClass;
@@ -76,7 +76,7 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
 
         mockEditorApi.expects(once()).method("getCurrentFile").will(returnValue(mockVirtualFile.proxy()));
         mockTestDoxFileFactory.expects(once()).method("getTestDoxFile").with(isA(VirtualFile.class)).will(returnValue(mockTestDoxClass.proxy()));
-        mockTestDoxClass.expects(once()).method("updateModel").with(isA(TestDoxTableModel.class));
+        mockTestDoxClass.expects(once()).method("updateModel").with(isA(TestDoxModel.class));
 
         controller.psiTreeChangeListener.childrenChanged(null);
     }
@@ -84,7 +84,7 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
     public void testSetsNotJavaOnModelIfFileIsNull() throws Exception {
         mockToolWindow.expects(once()).method("setTitle").with(eq(""));
         controller.selectedFileChanged((VirtualFile) null);
-        assertEquals(TestDoxNonJavaFile.TEST_ELEMENT(), testDoxModel.getValueAt(0, 0));
+        assertEquals(TestDoxNonJavaFile.TEST_ELEMENT, testDoxModel.getValueAt(0, 0));
     }
 
     public void testUpdatesModelWithDoxFileFromFactoryWhenFileSelected() throws Exception {
@@ -98,7 +98,7 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
 
         controller.selectedFileChanged(virtualFileMock);
         assertEquals(1, testDoxModel.getRowCount());
-        assertEquals(TestDoxNonJavaFile.TEST_ELEMENT(), testDoxModel.getValueAt(0, 0));
+        assertEquals(TestDoxNonJavaFile.TEST_ELEMENT, testDoxModel.getValueAt(0, 0));
     }
 
     public void testClosesToolWindowOnNavigationIfInSlidingMode() throws Exception {
@@ -139,30 +139,30 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
         testDoxClass.updateModel(testDoxModel);
 
         controller.updateSort(false);
-        assertFalse(controller.getConfiguration().getAlphabeticalSorting());
+        assertFalse(controller.getConfiguration().isAlphabeticalSorting());
 
         controller.updateSort(true);
-        assertTrue(controller.getConfiguration().getAlphabeticalSorting());
+        assertTrue(controller.getConfiguration().isAlphabeticalSorting());
     }
 
     public void testCanCurrentFileBeUnitTestedReturnsFalseWhenThereAreNoActiveEditors() {
         TestDoxFile nullFile = new TestDoxNonJavaFile(null);
-        mockEditorApi.expects(once()).method("getCurrentFile").will(returnValue(nullFile.file()));
+        mockEditorApi.expects(once()).method("getCurrentFile").will(returnValue(nullFile.getFile()));
         mockTestDoxFileFactory.expects(once()).method("getTestDoxFile").with(NULL).will(returnValue(nullFile));
         assertFalse(controller.canCurrentFileBeUnitTested());
     }
 
     public void testCanCurrentFileBeUnitTestedReturnsFalseWhenTheCurrentFileIsNotATestableProjectClass() {
         TestDoxFile nonJavaFile = new TestDoxNonProjectClass(new LightVirtualFile(), null, null, null);
-        mockEditorApi.expects(once()).method("getCurrentFile").will(returnValue(nonJavaFile.file()));
-        mockTestDoxFileFactory.expects(once()).method("getTestDoxFile").with(same(nonJavaFile.file())).will(returnValue(nonJavaFile));
+        mockEditorApi.expects(once()).method("getCurrentFile").will(returnValue(nonJavaFile.getFile()));
+        mockTestDoxFileFactory.expects(once()).method("getTestDoxFile").with(same(nonJavaFile.getFile())).will(returnValue(nonJavaFile));
         assertFalse(controller.canCurrentFileBeUnitTested());
     }
 
     public void testCanCurrentFileBeUnitTestedReturnsTrueWhenTheCurrentFileIsATestableProjectClass() {
-        TestDoxClass testableClass = new TestDoxClass(new LightVirtualFile(), null, true, null, null, TestMethod.EMPTY_ARRAY());
-        mockEditorApi.expects(once()).method("getCurrentFile").will(returnValue(testableClass.file()));
-        mockTestDoxFileFactory.expects(once()).method("getTestDoxFile").with(same(testableClass.file())).will(returnValue(testableClass));
+        TestDoxClass testableClass = new TestDoxClass(new LightVirtualFile(), null, true, null, null, TestMethod.EMPTY_ARRAY);
+        mockEditorApi.expects(once()).method("getCurrentFile").will(returnValue(testableClass.getFile()));
+        mockTestDoxFileFactory.expects(once()).method("getTestDoxFile").with(same(testableClass.getFile())).will(returnValue(testableClass));
         assertTrue(controller.canCurrentFileBeUnitTested());
     }
 
@@ -185,7 +185,7 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
         mockTestDoxFile.expects(once()).method("canNavigateToTestedClass").will(returnValue(true));
 
         TestClass testClass = new TestClass(null, (PsiClass) mockPsiClass.proxy(), (EditorApi) mockEditorApi.proxy(), null);
-        mockTestDoxFile.expects(once()).method("testedClass").will(returnValue(testClass));
+        mockTestDoxFile.expects(once()).method("getTestedClass").will(returnValue(testClass));
         mockEditorApi.expects(once()).method("jumpToPsiClass").withAnyArguments().will(returnValue(true));
         mockToolWindow.expects(once()).method("getType").will(returnValue(ToolWindowType.DOCKED));
         mockToolWindow.expects(once()).method("isAutoHide").will(returnValue(false));
@@ -201,7 +201,7 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
         mockTestDoxFile.expects(once()).method("canNavigateToTestClass").will(returnValue(true));
 
         TestClass testClass = new TestClass(null, (PsiClass) mockPsiClass.proxy(), (EditorApi) mockEditorApi.proxy(), null);
-        mockTestDoxFile.expects(once()).method("testClass").will(returnValue(testClass));
+        mockTestDoxFile.expects(once()).method("getTestClass").will(returnValue(testClass));
         mockEditorApi.expects(once()).method("jumpToPsiClass").withAnyArguments().will(returnValue(true));
         mockToolWindow.expects(once()).method("getType").will(returnValue(ToolWindowType.DOCKED));
         mockToolWindow.expects(once()).method("isAutoHide").will(returnValue(false));
@@ -251,9 +251,9 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
 
         mockEditorApi.expects(once()).method("getCurrentFile");
         mockTestDoxFileFactory.expects(once()).method("getTestDoxFile").withAnyArguments().will(returnValue(mockTestDoxFile.proxy()));
-        mockTestDoxFile.expects(once()).method("file");
+        mockTestDoxFile.expects(once()).method("getFile");
         mockEditorApi.expects(once()).method("getCurrentTestMethod").with(eq(mockPsiIdentifier.proxy()), isA(SentenceManager.class), NULL).will(returnValue(mockTestMethod.proxy()));
-        mockTestMethod.expects(once()).method("displayString").will(returnValue("does something useful"));
+        mockTestMethod.expects(once()).method("getDisplayString").will(returnValue("does something useful"));
 
         mockRenameDialog.expects(once()).method("show");
         mockRenameDialog.expects(once()).method("isOK").will(returnValue(false));
@@ -264,7 +264,7 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
     public void testDoesNotShowRenameDialogIfRenameActionFiredFromOutsideTestMethodCodeBlock() throws Exception {
         mockEditorApi.expects(once()).method("getCurrentFile");
         mockTestDoxFileFactory.expects(once()).method("getTestDoxFile").withAnyArguments().will(returnValue(mockTestDoxFile.proxy()));
-        mockTestDoxFile.expects(once()).method("file");
+        mockTestDoxFile.expects(once()).method("getFile");
         mockEditorApi.expects(once()).method("getCurrentTestMethod").with(eq(mockPsiClass.proxy()), isA(SentenceManager.class), NULL).will(returnValue(null));
         controller.startRename((PsiElement) mockPsiClass.proxy());
     }
@@ -272,7 +272,7 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
     public void testFiresRenameCommandThatDelegatesRenamingToIdeaIfOkPressedInRenameDialog() throws Exception {
         mockRenameDialog.expects(once()).method("show");
         mockRenameDialog.expects(once()).method("isOK").will(returnValue(true));
-        mockRenameDialog.expects(once()).method("sentence").will(returnValue("whatever works"));
+        mockRenameDialog.expects(once()).method("getSentence").will(returnValue("whatever works"));
         mockSentenceManager.expects(once()).method("buildMethodName").will(returnValue("testWhateverWorks"));
         mockEditorApi.expects(once()).method("rename").with(NULL, eq("testWhateverWorks"));
 
@@ -282,7 +282,7 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
     public void testDelegatesTestMethodDeletionToIdea() throws Exception {
         mockEditorApi.expects(once()).method("getCurrentFile");
         mockTestDoxFileFactory.expects(once()).method("getTestDoxFile").withAnyArguments().will(returnValue(mockTestDoxFile.proxy()));
-        mockTestDoxFile.expects(once()).method("file");
+        mockTestDoxFile.expects(once()).method("getFile");
         mockEditorApi.expects(once()).method("getCurrentTestMethod").withAnyArguments().will(returnValue(Mocks.createTestMethod("testAnythingThatWorks")));
         mockEditorApi.expects(once()).method("delete").withAnyArguments();
 
@@ -292,13 +292,13 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
     public void testDoesNotDeleteAnElementThatIsNotATestMethod() throws Exception {
         mockEditorApi.expects(once()).method("getCurrentFile");
         mockTestDoxFileFactory.expects(once()).method("getTestDoxFile").withAnyArguments().will(returnValue(mockTestDoxFile.proxy()));
-        mockTestDoxFile.expects(once()).method("file");
+        mockTestDoxFile.expects(once()).method("getFile");
         mockEditorApi.expects(once()).method("getCurrentTestMethod").withAnyArguments();
         controller.delete(null);
     }
 
     private void assertCreateTestDialogShown(TestDoxFile testDoxFile, boolean clickYes) {
-        Configuration configuration = new Configuration();
+        ConfigurationBean configuration = new ConfigurationBean();
         configuration.setCreateTestIfMissing(true);
         controller.setConfiguration(configuration);
         shouldCreateTestClass = clickYes;
@@ -320,12 +320,12 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
     public void testFiresAddMethodCommandThatDelegatesToIdeaIfOkPressedInAddTestDialog() throws Exception {
         mockAddTestDialog.expects(once()).method("show");
         mockAddTestDialog.expects(once()).method("isOK").will(returnValue(true));
-        mockAddTestDialog.expects(once()).method("sentence").will(returnValue("has an undefined behaviour"));
+        mockAddTestDialog.expects(once()).method("getSentence").will(returnValue("has an undefined behaviour"));
 
         mockSentenceManager.expects(once()).method("buildMethodName").will(returnValue("testHasAnUndefinedBehaviour"));
         mockEditorApi.expects(once()).method("getCurrentFile");
 
-        TestDoxClass testDoxClass = new TestDoxClass(null, null, false, Mocks.createTestClass(), null, TestMethod.EMPTY_ARRAY());
+        TestDoxClass testDoxClass = new TestDoxClass(null, null, false, Mocks.createTestClass(), null, TestMethod.EMPTY_ARRAY);
         mockTestDoxFileFactory.expects(once()).method("getTestDoxFile").with(NULL).will(returnValue(testDoxClass));
         mockEditorApi.expects(once()).method("addMethod").with(NULL, eq("public void testHasAnUndefinedBehaviour() {\n}"));
 
@@ -337,12 +337,12 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
         configuration.setUsingAnnotations(true);
         mockAddTestDialog.expects(once()).method("show");
         mockAddTestDialog.expects(once()).method("isOK").will(returnValue(true));
-        mockAddTestDialog.expects(once()).method("sentence").will(returnValue("has an undefined behaviour"));
+        mockAddTestDialog.expects(once()).method("getSentence").will(returnValue("has an undefined behaviour"));
 
         mockSentenceManager.expects(once()).method("buildMethodName").will(returnValue("hasAnUndefinedBehaviour"));
         mockEditorApi.expects(once()).method("getCurrentFile");
 
-        TestDoxClass testDoxClass = new TestDoxClass(null, null, false, Mocks.createTestClass(), null, TestMethod.EMPTY_ARRAY());
+        TestDoxClass testDoxClass = new TestDoxClass(null, null, false, Mocks.createTestClass(), null, TestMethod.EMPTY_ARRAY);
         mockTestDoxFileFactory.expects(once()).method("getTestDoxFile").with(NULL).will(returnValue(testDoxClass));
         mockEditorApi.expects(once()).method("addMethod").with(NULL, eq("@Zebra\npublic void hasAnUndefinedBehaviour() {\n}"));
 

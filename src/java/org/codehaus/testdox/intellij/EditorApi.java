@@ -48,7 +48,7 @@ public interface EditorApi {
 
     void addMethod(PsiClass psiClass, String methodSignatureAndBody);
 
-    void move(PsiClass psiClass, PsiDirectory destinationPackage);
+    void move(PsiClass psiClass, String destinationPackageName);
 
     void rename(PsiElement element);
 

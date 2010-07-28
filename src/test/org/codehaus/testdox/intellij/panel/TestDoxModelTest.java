@@ -2,8 +2,7 @@ package org.codehaus.testdox.intellij.panel;
 
 import static jedi.functional.Coercions.array;
 import org.codehaus.testdox.intellij.*;
-import org.codehaus.testdox.intellij.config.Configuration;
-import org.codehaus.testdox.intellij.ui.TestDoxTableModel;
+import org.codehaus.testdox.intellij.config.ConfigurationBean;
 import org.jmock.Mock;
 import org.jmock.cglib.MockObjectTestCase;
 
@@ -15,7 +14,7 @@ public class TestDoxModelTest extends MockObjectTestCase {
 
     private final Mock mockTestClass = Mocks.createAndRegisterTestClassMock(this);
 
-    private final TestDoxTableModel model = new TestDoxTableModel(new Configuration());
+    private final TestDoxModel model = new TestDoxModel(new ConfigurationBean());
 
     public void testHasNoEditableCells() {
         assertFalse(model.isCellEditable(-1, -1));
@@ -28,15 +27,15 @@ public class TestDoxModelTest extends MockObjectTestCase {
     }
 
     public void testHasNoDoxOutsideModelBoundaries() {
-        assertSame(TestDoxNonJavaFile.TEST_ELEMENT(), model.getValueAt(-1, 0));
-        assertSame(TestDoxNonJavaFile.TEST_ELEMENT(), model.getValueAt(model.getRowCount() + 1, 0));
+        assertSame(TestDoxNonJavaFile.TEST_ELEMENT, model.getValueAt(-1, 0));
+        assertSame(TestDoxNonJavaFile.TEST_ELEMENT, model.getValueAt(model.getRowCount() + 1, 0));
     }
 
     public void testPopulatesDoxListButReportsHasNoDoxIfNoDoxSet() {
         model.setNotJava();
         assertFalse(model.hasDox());
         assertEquals(1, model.getRowCount());
-        assertSame(TestDoxNonJavaFile.TEST_ELEMENT(), model.getValueAt(0, 0));
+        assertSame(TestDoxNonJavaFile.TEST_ELEMENT, model.getValueAt(0, 0));
     }
 
     public void testPopulatesDoxListButReportsHasNoDoxIfTestdoxFileIsAnInterface() {
@@ -46,7 +45,7 @@ public class TestDoxModelTest extends MockObjectTestCase {
         assertFalse(model.hasDox());
         assertEquals(2, model.getRowCount());
         assertEquals(mockTestClass.proxy(), model.getValueAt(0, 0));
-        assertSame(TestDoxInterface.TEST_ELEMENT(), model.getValueAt(1, 0));
+        assertSame(TestDoxInterface.TEST_ELEMENT, model.getValueAt(1, 0));
     }
 
     public void testPopulatesDoxListButReportsHasNoDoxIfTestdoxFileIsANonProjectClass() {
@@ -56,18 +55,18 @@ public class TestDoxModelTest extends MockObjectTestCase {
         assertFalse(model.hasDox());
         assertEquals(2, model.getRowCount());
         assertEquals(mockTestClass.proxy(), model.getValueAt(0, 0));
-        assertSame(TestDoxNonProjectClass.TEST_ELEMENT(), model.getValueAt(1, 0));
+        assertSame(TestDoxNonProjectClass.TEST_ELEMENT, model.getValueAt(1, 0));
     }
 
     public void testPopulatesDoxListAndReportsHasDoxIfDoxSet() {
         TestMethod methodMock = Mocks.createTestMethod("blarg");
-        mockTestClass.expects(once()).method("displayString").will(returnValue("foo"));
+        mockTestClass.expects(once()).method("getDisplayString").will(returnValue("foo"));
         createTestDoxClass(methodMock).updateModel(model);
 
         assertTrue(model.hasDox());
         assertEquals(2, model.getRowCount());
-        assertEquals("foo", ((TestElement) model.getValueAt(0, 1)).displayString());
-        assertEquals(methodMock.displayString(), ((TestElement) model.getValueAt(1, 1)).displayString());
+        assertEquals("foo", ((TestElement) model.getValueAt(0, 1)).getDisplayString());
+        assertEquals(methodMock.getDisplayString(), ((TestElement) model.getValueAt(1, 1)).getDisplayString());
     }
 
     public void testClearsPreviousDoxListWhenNoDoxSet() {
@@ -100,48 +99,57 @@ public class TestDoxModelTest extends MockObjectTestCase {
     public void testCanSortEntriesAlphabetically() {
         createTestDoxClass(TEST_METHODS).updateModel(model);
 
-        mockTestClass.expects(once()).method("displayString").will(returnValue("foo"));
+        mockTestClass.expects(once()).method("getDisplayString").will(returnValue("foo"));
 
         model.sortInAlphabeticalOrder();
 
-        assertOrder(array("foo", TEST_METHODS[0].displayString(), TEST_METHODS[2].displayString(), TEST_METHODS[1].displayString()), model);
+        assertOrder(
+            array("foo", TEST_METHODS[0].getDisplayString(), TEST_METHODS[2].getDisplayString(), TEST_METHODS[1].getDisplayString()),
+            model
+        );
     }
 
     public void testCanRevertSortToDefinitionOrderFromAlphabeticalOrder() {
         createTestDoxClass(TEST_METHODS).updateModel(model);
 
-        mockTestClass.expects(once()).method("displayString").will(returnValue("foo"));
+        mockTestClass.expects(once()).method("getDisplayString").will(returnValue("foo"));
 
         model.sortInAlphabeticalOrder();
         model.sortInDefinitionOrder();
 
-        assertOrder(array("foo", TEST_METHODS[0].displayString(), TEST_METHODS[1].displayString(), TEST_METHODS[2].displayString()), model);
+        assertOrder(
+            array("foo", TEST_METHODS[0].getDisplayString(), TEST_METHODS[1].getDisplayString(), TEST_METHODS[2].getDisplayString()),
+            model
+        );
     }
 
     public void testSetsInitialSortOrderBasedOnStoredConfigurationSetting() {
-        Configuration config = new Configuration();
+        ConfigurationBean config = new ConfigurationBean();
         config.setAlphabeticalSorting(true);
 
-        TestDoxTableModel testDoxModel = new TestDoxTableModel(config);
+        TestDoxModel testDoxModel = new TestDoxModel(config);
         createTestDoxClass(TEST_METHODS).updateModel(testDoxModel);
 
-        mockTestClass.expects(once()).method("displayString").will(returnValue("foo"));
+        mockTestClass.expects(once()).method("getDisplayString").will(returnValue("foo"));
 
-        assertOrder(array("foo", TEST_METHODS[0].displayString(), TEST_METHODS[2].displayString(), TEST_METHODS[1].displayString()), testDoxModel);
+        assertOrder(
+            array("foo", TEST_METHODS[0].getDisplayString(), TEST_METHODS[2].getDisplayString(), TEST_METHODS[1].getDisplayString()),
+            testDoxModel
+        );
     }
 
     public void testDoesNotPerformSortIfNoDoxAreAvailable() {
         model.setNotJava();
         model.sortInAlphabeticalOrder();
 
-        assertOrder(array(TestDoxNonJavaFile.NO_CLASS_MESSAGE()), model);
+        assertOrder(array(TestDoxNonJavaFile.NO_CLASS_MESSAGE), model);
     }
 
-    private void assertOrder(Object[] values, TestDoxTableModel model) {
+    private void assertOrder(Object[] values, TestDoxModel model) {
         assertEquals(values.length, model.getRowCount());
         for (int i = 0; i < values.length; i++) {
             TestElement testElement = (TestElement) model.getValueAt(i, 1);
-            assertEquals(values[i], testElement.displayString());
+            assertEquals(values[i], testElement.getDisplayString());
         }
     }
 

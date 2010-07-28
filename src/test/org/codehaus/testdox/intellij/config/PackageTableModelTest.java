@@ -1,6 +1,6 @@
 package org.codehaus.testdox.intellij.config;
 
-import org.codehaus.testdox.intellij.Icons;
+import org.codehaus.testdox.intellij.IconHelper;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
@@ -28,7 +28,7 @@ public class PackageTableModelTest {
     }
 
     public void testReturnsRemoveAsValueForAllRowsInRemoveColumn() throws Exception {
-        assertEquals(Icons.getIcon(Icons.REMOVE_ICON()), model.getValueAt(0, 1));
+        assertEquals(IconHelper.getIcon(IconHelper.REMOVE_ICON), model.getValueAt(0, 1));
     }
 
     public void testUpdatesTableWhenAMappingIsAdded() throws Exception {

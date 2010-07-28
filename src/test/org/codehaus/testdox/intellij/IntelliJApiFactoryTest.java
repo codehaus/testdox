@@ -7,7 +7,7 @@ import org.intellij.openapi.testing.MockApplicationManager;
 import com.intellij.openapi.application.ApplicationInfo;
 import com.intellij.openapi.project.Project;
 
-import org.codehaus.testdox.intellij.config.Configuration;
+import org.codehaus.testdox.intellij.config.ConfigurationBean;
 import org.jmock.Mock;
 import org.jmock.cglib.MockObjectTestCase;
 import org.picocontainer.MutablePicoContainer;
@@ -21,7 +21,7 @@ public class IntelliJApiFactoryTest extends MockObjectTestCase {
 
     protected void setUp() {
         picoContainer.registerComponentInstance(Project.class, mock(Project.class).proxy());
-        picoContainer.registerComponentImplementation(Configuration.class);
+        picoContainer.registerComponentImplementation(ConfigurationBean.class);
         picoContainer.registerComponentImplementation(NameResolver.class, TemplateNameResolver.class);
 
         mockApplicationInfo.stubs().method("getMajorVersion");

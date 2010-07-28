@@ -7,17 +7,12 @@ import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowAnchor;
 import com.intellij.openapi.wm.ToolWindowType;
 import static jedi.functional.Coercions.list;
-
-import org.codehaus.testdox.intellij.actions.AutoScrollAction;
-import org.codehaus.testdox.intellij.actions.DeleteTestAction;
-import org.codehaus.testdox.intellij.actions.RefreshTestDoxPanelAction;
-import org.codehaus.testdox.intellij.actions.RenameTestAction;
-import org.codehaus.testdox.intellij.actions.SortTestDoxAction;
-import org.codehaus.testdox.intellij.config.Configuration;
+import org.codehaus.testdox.intellij.actions.*;
+import org.codehaus.testdox.intellij.config.ConfigurationBean;
 import org.codehaus.testdox.intellij.config.ConfigurationController;
-import org.codehaus.testdox.intellij.ui.TestDoxTableModel;
-import org.codehaus.testdox.intellij.ui.TestDoxToolWindow;
-import org.codehaus.testdox.intellij.ui.ToolWindowUI;
+import org.codehaus.testdox.intellij.panel.TestDoxModel;
+import org.codehaus.testdox.intellij.panel.TestDoxToolWindowPanel;
+import org.codehaus.testdox.intellij.panel.TestDoxToolWindowUI;
 import org.jetbrains.annotations.NotNull;
 import org.picocontainer.MutablePicoContainer;
 import org.picocontainer.defaults.DefaultPicoContainer;
@@ -38,8 +33,8 @@ public class TestDoxProjectComponent implements ProjectComponent {
 
     protected EditorApiFactory editorApiFactory;
     protected ToolWindow toolWindow;
-    protected TestDoxToolWindow testDoxToolWindowPanel;
-    protected TestDoxTableModel model;
+    protected TestDoxToolWindowPanel testDoxToolWindowPanel;
+    protected TestDoxModel model;
     protected EditorApi editorApi;
     protected TestDoxControllerImpl controller;
 
@@ -73,18 +68,18 @@ public class TestDoxProjectComponent implements ProjectComponent {
 
     public void projectOpened() {
         ConfigurationController configurationController = project.getComponent(ConfigurationController.class);
-        Configuration configuration = configurationController.getState();
-        picoContainer.registerComponentInstance(Configuration.class, configuration);
+        ConfigurationBean configuration = configurationController.getState();
+        picoContainer.registerComponentInstance(ConfigurationBean.class, configuration);
 
         // move container setup somewhere else...
-        picoContainer.registerComponentImplementation(TestDoxTableModel.class);
+        picoContainer.registerComponentImplementation(TestDoxModel.class);
         picoContainer.registerComponentImplementation(NameResolver.class, TemplateNameResolver.class);
         picoContainer.registerComponentImplementation(SentenceManager.class);
         picoContainer.registerComponentImplementation(TestLookup.class);
         picoContainer.registerComponentImplementation(TestDoxFileFactory.class);
         picoContainer.registerComponentImplementation(TestDoxController.class, TestDoxControllerImpl.class);
 
-        model = (TestDoxTableModel) picoContainer.getComponentInstance(TestDoxTableModel.class);
+        model = (TestDoxModel) picoContainer.getComponentInstance(TestDoxModel.class);
         model.setNotJava();
 
         editorApi = editorApiFactory.createEditorApi();
@@ -115,15 +110,15 @@ public class TestDoxProjectComponent implements ProjectComponent {
     }
 
     private void initToolWindow() {
-        testDoxToolWindowPanel = new TestDoxToolWindow(getController(), toolbar.getComponent());
+        testDoxToolWindowPanel = new TestDoxToolWindowPanel(getController(), toolbar.getComponent());
         model.addTableModelListener(testDoxToolWindowPanel);
 
         toolWindow = editorApi.getToolWindowManager().registerToolWindow(TOOL_WINDOW_ID, testDoxToolWindowPanel, ToolWindowAnchor.RIGHT);
         toolWindow.setType(ToolWindowType.DOCKED, null);
-        toolWindow.setIcon(Icons.getIcon(Icons.TESTDOX_ICON()));
+        toolWindow.setIcon(IconHelper.getIcon(IconHelper.TESTDOX_ICON));
     }
 
-    private ActionToolbar createToolBar(Configuration config) {
+    private ActionToolbar createToolBar(ConfigurationBean config) {
         ActionManager actionManager = ActionManager.getInstance();
         boolean useFromTestDoxToolWindow = true;
 
@@ -131,13 +126,14 @@ public class TestDoxProjectComponent implements ProjectComponent {
         ActionGroup toolGroup = (ActionGroup) registerAction(actionManager, rootActionGroup, TOOL_WINDOW_TOOLBAR_ID);
 
         addToolBarActions((DefaultActionGroup) toolGroup, list(
-            registerAction(actionManager, new SortTestDoxAction(config.alphabeticalSorting(), useFromTestDoxToolWindow), SortTestDoxAction.ID()),
-            registerAction(actionManager, new AutoScrollAction(config.autoScrolling(), useFromTestDoxToolWindow), AutoScrollAction.ID()),
+            registerAction(actionManager, new SortTestDoxAction(config.isAlphabeticalSorting(), useFromTestDoxToolWindow), SortTestDoxAction.ID),
+            registerAction(actionManager, new AutoscrollAction(config.isAutoscrolling(), useFromTestDoxToolWindow), AutoscrollAction.ID),
             Separator.getInstance(),
-            registerAction(actionManager, new RenameTestAction(useFromTestDoxToolWindow), RenameTestAction.ID()),
-            registerAction(actionManager, new DeleteTestAction(useFromTestDoxToolWindow), DeleteTestAction.ID()),
+            registerAction(actionManager, new RenameTestAction(useFromTestDoxToolWindow), RenameTestAction.ID),
+            registerAction(actionManager, new DeleteTestAction(useFromTestDoxToolWindow), DeleteTestAction.ID),
             Separator.getInstance(),
-            registerAction(actionManager, new RefreshTestDoxPanelAction(useFromTestDoxToolWindow), RefreshTestDoxPanelAction.ID())
+            registerAction(actionManager, new RefreshTestDoxPanelAction(useFromTestDoxToolWindow), RefreshTestDoxPanelAction.ID)
+
         ));
 
         return actionManager.createActionToolbar(TOOL_WINDOW_TOOLBAR_ID, toolGroup, true);
@@ -166,7 +162,7 @@ public class TestDoxProjectComponent implements ProjectComponent {
         return controller;
     }
 
-    public ToolWindowUI getToolWindowUI() {
+    public TestDoxToolWindowUI getTestDoxToolWindowUI() {
         return testDoxToolWindowPanel;
     }
 }

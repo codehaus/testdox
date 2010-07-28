@@ -10,7 +10,7 @@ import org.codehaus.testdox.intellij.EditorApi;
 import org.codehaus.testdox.intellij.Mocks;
 import org.codehaus.testdox.intellij.TestDoxController;
 import org.codehaus.testdox.intellij.TestDoxProjectComponent;
-import org.codehaus.testdox.intellij.ui.ToolWindowUI;
+import org.codehaus.testdox.intellij.panel.TestDoxToolWindowUI;
 import org.intellij.openapi.testing.MockApplicationManager;
 import org.jmock.Mock;
 
@@ -104,9 +104,9 @@ public class BaseTestMethodIntentionActionTest extends TestDoxActionTestCase {
 
     private BaseTestMethodIntentionAction createTestMethodIntentionAction(boolean useFromToolWindow) {
         return new BaseTestMethodIntentionAction("short description", "description", null, useFromToolWindow) {
-            public void execute(TestDoxController testDoxController, PsiElement targetPsiElement) { }
+            void execute(TestDoxController testDoxController, PsiElement targetPsiElement) { }
 
-            public void executeUsingTestDoxToolWindow(ToolWindowUI testDoxToolWindow) { }
+            void executeUsingTestDoxToolWindow(TestDoxToolWindowUI testDoxToolWindow) { }
         };
     }
 }

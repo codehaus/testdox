@@ -28,9 +28,9 @@ import com.intellij.refactoring.rename.RenameUtil;
 import com.intellij.usageView.UsageInfo;
 import com.intellij.util.IncorrectOperationException;
 import static jedi.functional.Coercions.*;
-import org.codehaus.testdox.intellij.config.Configuration;
-import org.codehaus.testdox.intellij.ui.ItemSelectionDialog;
-import org.codehaus.testdox.intellij.ui.ItemSelectionUI;
+import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.panel.ItemSelectionDialog;
+import org.codehaus.testdox.intellij.panel.ItemSelectionUI;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
@@ -54,10 +54,10 @@ public abstract class IntelliJApi implements EditorApi {
     protected static final Logger LOGGER = Logger.getInstance(IntelliJApi.class.getName());
 
     protected final Project project;
-    protected final Configuration config;
+    protected final ConfigurationBean config;
     protected final NameResolver nameResolver;
 
-    public IntelliJApi(Project project, NameResolver nameResolver, Configuration config) {
+    public IntelliJApi(Project project, NameResolver nameResolver, ConfigurationBean config) {
         this.project = project;
         this.config = config;
         this.nameResolver = nameResolver;
@@ -149,7 +149,7 @@ public abstract class IntelliJApi implements EditorApi {
 
     public void createTestClass(TestDoxFile testDoxFile) {
         ProjectFileIndex index = ProjectRootManager.getInstance(project).getFileIndex();
-        Module module = index.getModuleForFile(testDoxFile.file());
+        Module module = index.getModuleForFile(testDoxFile.getFile());
         String testClassName = getTestClassName(testDoxFile);
         String testPackage = getTestPackage(testDoxFile);
         VirtualFile targetDirectory = getTestDirectory(module);
@@ -163,8 +163,8 @@ public abstract class IntelliJApi implements EditorApi {
         runCommand(project, new AddMethodCommand(psiClass, methodSignatureAndBody), "Add Method", "TestDox");
     }
 
-    public void move(PsiClass psiClass, PsiDirectory destinationPackage) {
-        runCommand(project, createMoveClassCommand(psiClass, destinationPackage), "Move Class", "TestDox");
+    public void move(PsiClass psiClass, String destinationPackageName) {
+        runCommand(project, createMoveClassCommand(psiClass, destinationPackageName), "Move Class", "TestDox");
     }
 
     public void renameTest(String className, TestDoxFileFactory testDoxFileFactory) {
@@ -177,7 +177,7 @@ public abstract class IntelliJApi implements EditorApi {
             if (renamedClass != null) {
                 TestDoxFile testDoxFile = testDoxFileFactory.getTestDoxFile(getVirtualFile(renamedClass));
                 if (testDoxFile.canNavigateToTestClass()) {
-                    rename(testDoxFile.testClass().psiElement(), newName);
+                    rename(testDoxFile.getTestClass().getPsiElement(), newName);
                 }
             }
         }
@@ -207,8 +207,8 @@ public abstract class IntelliJApi implements EditorApi {
     }
 
     private String getTestPackage(TestDoxFile testDoxFile) {
-        String sourcePackage = getPsiJavaFile(testDoxFile.file()).getPackageName();
-        List<String> customPackages = config.getCustomPackagesAsJavaList();
+        String sourcePackage = getPsiJavaFile(testDoxFile.getFile()).getPackageName();
+        List<String> customPackages = config.getCustomPackages();
         PackageManager packageManager = new PackageManager(sourcePackage);
 
         List<String> packages = new ArrayList<String>();
@@ -231,7 +231,7 @@ public abstract class IntelliJApi implements EditorApi {
     }
 
     private String getTestClassName(TestDoxFile testDoxFile) {
-        String testClassName = testDoxFile.className();
+        String testClassName = testDoxFile.getClassName();
         int lastDot = testClassName.lastIndexOf(".");
 
         if ((lastDot > 0) && (lastDot < testClassName.length() - 1)) {
@@ -254,10 +254,10 @@ public abstract class IntelliJApi implements EditorApi {
     public boolean isTestMethod(PsiElement element) {
         if (element instanceof PsiMethod) {
             PsiMethod psiMethod = (PsiMethod) element;
-            if (config.usingAnnotations()) {
-                return matchingAnnotation(psiMethod, config.testMethodAnnotation());
+            if (config.isUsingAnnotations()) {
+                return matchingAnnotation(psiMethod, config.getTestMethodAnnotation());
             }
-            return psiMethod.getName().startsWith(config.testMethodPrefix());
+            return psiMethod.getName().startsWith(config.getTestMethodPrefix());
         }
         return false;
     }
@@ -579,16 +579,16 @@ public abstract class IntelliJApi implements EditorApi {
         return (PsiMethod) nearestMethod;
     }
 
-    protected abstract MoveClassCommand createMoveClassCommand(PsiClass psiClass, PsiDirectory destinationPackage);
+    protected abstract MoveClassCommand createMoveClassCommand(PsiClass psiClass, String destinationPackageName);
 
     protected abstract class MoveClassCommand implements Runnable {
 
-        protected final PsiDirectory destinationPackage;
+        protected final String destinationPackageName;
         protected PsiClass psiClass;
 
-        public MoveClassCommand(PsiClass psiClass, PsiDirectory destinationPackage) {
+        public MoveClassCommand(PsiClass psiClass, String destinationPackageName) {
             this.psiClass = psiClass;
-            this.destinationPackage = destinationPackage;
+            this.destinationPackageName = destinationPackageName;
         }
 
         public void run() {

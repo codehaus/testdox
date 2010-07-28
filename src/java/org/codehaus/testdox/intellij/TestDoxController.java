@@ -6,22 +6,21 @@ import com.intellij.openapi.fileEditor.FileEditorManagerListener;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiElement;
 import com.intellij.refactoring.listeners.RefactoringElementListenerProvider;
-import org.codehaus.testdox.intellij.actions.PresentationUpdater;
-import org.codehaus.testdox.intellij.config.Configuration;
-import org.codehaus.testdox.intellij.ui.TestDoxTableModel;
+import org.codehaus.testdox.intellij.config.ConfigurationBean;
+import org.codehaus.testdox.intellij.panel.TestDoxModel;
 
 public interface TestDoxController extends FileEditorManagerListener,
                                            RefactoringElementListenerProvider,
-                                           PresentationUpdater {
+                                           TestDoxActionPresentationUpdater {
     EditorApi getEditorApi();
 
     TestDoxFileFactory getTestDoxFileFactory();
 
-    TestDoxTableModel getModel();
+    TestDoxModel getModel();
 
-    Configuration getConfiguration();
+    ConfigurationBean getConfiguration();
 
-    void setConfiguration(Configuration configuration);
+    void setConfiguration(ConfigurationBean configuration);
 
     void selectedFileChanged(FileEditorManagerEvent event);
 
@@ -47,7 +46,7 @@ public interface TestDoxController extends FileEditorManagerListener,
 
     void toggleTestClassAndTestedClass();
 
-    void jumpToTestElement(TestElement selectedTestElement, boolean autoScrolling);
+    void jumpToTestElement(TestElement selectedTestElement, boolean autoscrolling);
 
     void updateSort(boolean alphabetical);
 
@@ -55,7 +54,7 @@ public interface TestDoxController extends FileEditorManagerListener,
 
     void toggleToolWindow();
 
-    void updateAutoScroll(boolean autoScrolling);
+    void updateAutoscroll(boolean autoscrolling);
 
     void updatePresentation(Presentation presentation, PsiElement targetPsiElement);
 }
