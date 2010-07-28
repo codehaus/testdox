@@ -2,9 +2,6 @@
 <module relativePaths="true" type="PLUGIN_MODULE" version="4">
   <component name="DevKit.ModuleBuildProperties" url="file://$MODULE_DIR$/META-INF/plugin.xml" />
   <component name="FacetManager">
-    <facet type="Scala" name="Scala">
-      <configuration />
-    </facet>
     <facet type="JRUBY" name="JRuby">
       <configuration number="0">
         <JRUBY_FACET_CONFIG_ID NAME="JRUBY_SDK_NAME" VALUE="" />
@@ -126,13 +123,13 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="specs_2.8.0.Beta1-1.6.4-SNAPSHOT.jar">
+      <library name="specs_2.8.0-1.6.5.jar">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/test/specs_2.8.0.Beta1-1.6.4-SNAPSHOT.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/test/specs_2.8.0-1.6.5.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$MODULE_DIR$/lib/test/specs_2.8.0.Beta1-1.6.4-SNAPSHOT-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/test/specs_2.8.0-1.6.5-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
