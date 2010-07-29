@@ -1,4 +1,4 @@
-package org.intellij.openapi.testing.diana;
+package org.intellij.openapi.testing.maia;
 
 import com.intellij.openapi.components.BaseComponent;
 import com.intellij.openapi.components.ComponentConfig;
@@ -6,7 +6,6 @@ import com.intellij.openapi.components.ComponentManager;
 import com.intellij.openapi.extensions.ExtensionPointName;
 import com.intellij.openapi.util.Key;
 import com.intellij.util.messages.MessageBus;
-import static jedi.functional.Coercions.asArray;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.picocontainer.MutablePicoContainer;
@@ -14,6 +13,8 @@ import org.picocontainer.PicoContainer;
 import org.picocontainer.defaults.DefaultPicoContainer;
 
 import java.util.List;
+
+import static jedi.functional.Coercions.asArray;
 
 public class ComponentManagerImpl implements ComponentManager {
 

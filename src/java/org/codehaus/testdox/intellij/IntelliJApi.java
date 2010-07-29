@@ -2,7 +2,6 @@ package org.codehaus.testdox.intellij;
 
 import com.intellij.ide.util.DeleteHandler;
 import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.command.CommandListener;
 import com.intellij.openapi.command.CommandProcessor;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.editor.Editor;
@@ -27,7 +26,6 @@ import com.intellij.refactoring.listeners.RefactoringListenerManager;
 import com.intellij.refactoring.rename.RenameUtil;
 import com.intellij.usageView.UsageInfo;
 import com.intellij.util.IncorrectOperationException;
-import static jedi.functional.Coercions.*;
 import org.codehaus.testdox.intellij.config.ConfigurationBean;
 import org.codehaus.testdox.intellij.panel.ItemSelectionDialog;
 import org.codehaus.testdox.intellij.panel.ItemSelectionUI;
@@ -38,9 +36,10 @@ import java.awt.*;
 import java.util.*;
 import java.util.List;
 
+import static jedi.functional.Coercions.*;
+
 public abstract class IntelliJApi implements EditorApi {
 
-    protected static final String RENAME_COMMAND_PREFIX = "Renaming class ";
     protected static final UsageInfo[] EMPTY_USAGE_INFO = new UsageInfo[0];
 
     protected static final RefactoringElementListener REFACTORING_ELEMENT_ADAPTER = new RefactoringElementListener() {
@@ -163,24 +162,8 @@ public abstract class IntelliJApi implements EditorApi {
         runCommand(project, new AddMethodCommand(psiClass, methodSignatureAndBody), "Add Method", "TestDox");
     }
 
-    public void move(PsiClass psiClass, String destinationPackageName) {
-        runCommand(project, createMoveClassCommand(psiClass, destinationPackageName), "Move Class", "TestDox");
-    }
-
-    public void renameTest(String className, TestDoxFileFactory testDoxFileFactory) {
-        if (className != null && className.startsWith(RENAME_COMMAND_PREFIX)) {
-            String name = className.substring(RENAME_COMMAND_PREFIX.length());
-            String oldClassName = name.substring(0, name.indexOf(" ", 1)).trim();
-            oldClassName = nameResolver.getTestClassName(oldClassName);
-            String newName = nameResolver.getTestClassName(name.substring(name.lastIndexOf(" ") + 1));
-            PsiClass renamedClass = getPsiClass(oldClassName);
-            if (renamedClass != null) {
-                TestDoxFile testDoxFile = testDoxFileFactory.getTestDoxFile(getVirtualFile(renamedClass));
-                if (testDoxFile.canNavigateToTestClass()) {
-                    rename(testDoxFile.getTestClass().getPsiElement(), newName);
-                }
-            }
-        }
+    public void move(PsiClass psiClass, PsiDirectory destinationPackage) {
+        runCommand(project, createMoveClassCommand(psiClass, destinationPackage), "Move Class", "TestDox");
     }
 
     public void delete(PsiElement psiElement) {
@@ -359,7 +342,7 @@ public abstract class IntelliJApi implements EditorApi {
 
     protected ItemSelectionUI createItemSelectionDialog(String[] packages) {
         return new ItemSelectionDialog(project, packages,
-                "Please select the destination package for the test", "Select package", null);
+            "Please select the destination package for the test", "Select package", null);
     }
 
     protected ItemSelectionUI createVirtualFileSelectionDialog(VirtualFile[] items) {
@@ -388,14 +371,6 @@ public abstract class IntelliJApi implements EditorApi {
 
     public void removePsiTreeChangeListener(PsiTreeChangeListener listener) {
         getPsiManager().removePsiTreeChangeListener(listener);
-    }
-
-    public void addCommandListener(CommandListener listener) {
-        getCommandProcessor().addCommandListener(listener);
-    }
-
-    public void removeCommandListener(CommandListener listener) {
-        getCommandProcessor().removeCommandListener(listener);
     }
 
     public void addVirtualFileListener(VirtualFileListener listener) {
@@ -496,7 +471,7 @@ public abstract class IntelliJApi implements EditorApi {
             String packageElement = tokenizer.nextToken();
             PsiDirectory subdirectory = currentDirectory.findSubdirectory(packageElement);
             currentDirectory = (subdirectory != null) ? subdirectory
-                    : currentDirectory.createSubdirectory(packageElement);
+                : currentDirectory.createSubdirectory(packageElement);
         }
 
         return currentDirectory;
@@ -579,16 +554,16 @@ public abstract class IntelliJApi implements EditorApi {
         return (PsiMethod) nearestMethod;
     }
 
-    protected abstract MoveClassCommand createMoveClassCommand(PsiClass psiClass, String destinationPackageName);
+    protected abstract MoveClassCommand createMoveClassCommand(PsiClass psiClass, PsiDirectory destinationPackage);
 
     protected abstract class MoveClassCommand implements Runnable {
 
-        protected final String destinationPackageName;
+        protected final PsiDirectory destinationPackage;
         protected PsiClass psiClass;
 
-        public MoveClassCommand(PsiClass psiClass, String destinationPackageName) {
+        public MoveClassCommand(PsiClass psiClass, PsiDirectory destinationPackage) {
             this.psiClass = psiClass;
-            this.destinationPackageName = destinationPackageName;
+            this.destinationPackage = destinationPackage;
         }
 
         public void run() {
@@ -600,19 +575,6 @@ public abstract class IntelliJApi implements EditorApi {
         }
 
         protected abstract void move();
-
-        protected VirtualFile findSourceFolder() throws IncorrectOperationException {
-            VirtualFile currentFile = psiClass.getContainingFile().getVirtualFile();
-            Module module = ProjectRootManager.getInstance(project).getFileIndex().getModuleForFile(currentFile);
-            for (ContentEntry entry : ModuleRootManager.getInstance(module).getContentEntries()) {
-                for (VirtualFile folder : entry.getSourceFolderFiles()) {
-                    if (currentFile.getPath().indexOf(folder.getPath()) > -1) {
-                        return folder;
-                    }
-                }
-            }
-            throw new IncorrectOperationException("Could not locate current source folder!");
-        }
     }
 
     protected class RenameCommand implements Runnable {

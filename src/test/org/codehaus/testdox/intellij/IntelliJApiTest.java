@@ -12,7 +12,6 @@ import com.intellij.psi.*;
 import com.intellij.refactoring.listeners.RefactoringElementListener;
 import com.intellij.refactoring.listeners.RefactoringElementListenerProvider;
 import com.intellij.refactoring.listeners.RefactoringListenerManager;
-import static jedi.functional.Coercions.array;
 import org.codehaus.testdox.intellij.config.ConfigurationBean;
 import org.codehaus.testdox.intellij.panel.ItemSelectionUI;
 import org.intellij.openapi.testing.MockApplication;
@@ -23,6 +22,8 @@ import org.jmock.cglib.MockObjectTestCase;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import static jedi.functional.Coercions.array;
 
 public class IntelliJApiTest extends MockObjectTestCase {
 
@@ -39,7 +40,6 @@ public class IntelliJApiTest extends MockObjectTestCase {
     protected final Mock mockModule = mock(Module.class);
     protected final Mock mockPsiJavaFile = mock(PsiJavaFile.class);
     protected final Mock mockVirtualFile = Mocks.createAndRegisterVirtualFileMock(this);
-    protected final Mock mockPsiClass = mock(PsiClass.class);
     protected final Mock mockCommandProcessor = mock(CommandProcessor.class);
     protected final Mock mockItemSelectionUI = mock(ItemSelectionUI.class);
     protected final Mock mockVirtualFileSelectionUI = mock(ItemSelectionUI.class);
@@ -79,7 +79,7 @@ public class IntelliJApiTest extends MockObjectTestCase {
                 return (ItemSelectionUI) mockVirtualFileSelectionUI.proxy();
             }
 
-            protected MoveClassCommand createMoveClassCommand(PsiClass psiClass, String destinationPackageName) {
+            protected MoveClassCommand createMoveClassCommand(PsiClass psiClass, PsiDirectory destinationPackage) {
                 return null;
             }
         };

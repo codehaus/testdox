@@ -7,7 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 
 public class MockApplicationManager extends ApplicationManager {
 
-    private static final String APPLICATION_CLASS_NAME = "org.intellij.openapi.testing.diana.MockApplication";
+    private static final String APPLICATION_CLASS_NAME = "org.intellij.openapi.testing.maia.MockApplication";
 
     private static MockApplication applicationMock = createMockApplication();
 

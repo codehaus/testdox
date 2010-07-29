@@ -1,18 +1,11 @@
 package org.codehaus.testdox.intellij;
 
-import com.intellij.openapi.command.CommandListener;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.fileEditor.FileEditorManagerListener;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.vfs.VirtualFileListener;
 import com.intellij.openapi.wm.ToolWindowManager;
-import com.intellij.psi.PsiClass;
-import com.intellij.psi.PsiDirectory;
-import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiJavaFile;
-import com.intellij.psi.PsiManager;
-import com.intellij.psi.PsiMethod;
-import com.intellij.psi.PsiTreeChangeListener;
+import com.intellij.psi.*;
 import com.intellij.refactoring.listeners.RefactoringElementListenerProvider;
 import com.intellij.util.IncorrectOperationException;
 
@@ -48,13 +41,11 @@ public interface EditorApi {
 
     void addMethod(PsiClass psiClass, String methodSignatureAndBody);
 
-    void move(PsiClass psiClass, String destinationPackageName);
+    void move(PsiClass psiClass, PsiDirectory destinationPackage);
 
     void rename(PsiElement element);
 
     void rename(PsiElement element, String newName);
-
-    void renameTest(String className, TestDoxFileFactory testDoxFileFactory);
 
     void delete(PsiElement psiElement);
 
@@ -78,10 +69,6 @@ public interface EditorApi {
 
     void removePsiTreeChangeListener(PsiTreeChangeListener listener);
 
-    void addCommandListener(CommandListener listener);
-
-    void removeCommandListener(CommandListener listener);
-
     void addVirtualFileListener(VirtualFileListener listener);
 
     void removeVirtualFileListener(VirtualFileListener listener);
@@ -90,8 +77,7 @@ public interface EditorApi {
 
     void decorateClassWithTestTemplate(PsiClass aClass, PsiManager psiManager) throws IncorrectOperationException;
 
-    PsiDirectory createOrMoveToCorrectDirectory(PsiDirectory startDirectory, String targetPackage)
-            throws IncorrectOperationException;
+    PsiDirectory createOrMoveToCorrectDirectory(PsiDirectory startDirectory, String targetPackage) throws IncorrectOperationException;
 
     PsiMethod findNearestMethodAnchorInSelectedFile();
 }

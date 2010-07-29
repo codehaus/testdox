@@ -3,9 +3,8 @@
   <component name="DevKit.ModuleBuildProperties" url="file://$MODULE_DIR$/META-INF/plugin.xml" />
   <component name="FacetManager">
     <facet type="JRUBY" name="JRuby">
-      <configuration>
-        <JRUBY_FACET_CONFIG_ID NAME="JRUBY_SDK_NAME" VALUE="JRuby SDK 1.1.4" />
-        <JRUBY_FACET_CONFIG_ID NAME="NUMBER" VALUE="0" />
+      <configuration number="0">
+        <JRUBY_FACET_CONFIG_ID NAME="JRUBY_SDK_NAME" VALUE="" />
       </configuration>
     </facet>
   </component>
@@ -82,7 +81,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="JRuby SDK 1.1.4 facet library" level="application" />
   </component>
   <component name="RModuleSettingsStorage">
     <RMODULE_SETTINGS_STORAGE_ID NAME="NUMBER" VALUE="0" />

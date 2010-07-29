@@ -1,10 +1,9 @@
 package org.codehaus.testdox.intellij;
 
 import com.intellij.psi.PsiClass;
+import com.intellij.psi.PsiDirectory;
 import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiJavaFile;
 import com.intellij.refactoring.listeners.RefactoringElementListener;
-
 import org.codehaus.testdox.intellij.config.ConfigurationBean;
 
 class ClassShadowingManager implements RefactoringElementListener {
@@ -24,8 +23,8 @@ class ClassShadowingManager implements RefactoringElementListener {
 
     public void elementMoved(PsiElement psiElement) {
         if (isValidShadowing(psiElement)) {
-            String newPackageName = ((PsiJavaFile) psiElement.getContainingFile()).getPackageName();
-            editorApi.move((PsiClass) originalFile.getTestClass().getPsiElement(), newPackageName);
+            PsiDirectory newPackage = psiElement.getContainingFile().getContainingDirectory();
+            editorApi.move((PsiClass) originalFile.getTestClass().getPsiElement(), newPackage);
         }
     }
 
@@ -38,9 +37,9 @@ class ClassShadowingManager implements RefactoringElementListener {
 
     private boolean isValidShadowing(PsiElement psiElement) {
         return ((isValidClass(psiElement))
-                           && (config.isAutoApplyChangesToTest())
-                           && (nameResolver.isRealClass(((PsiClass) psiElement).getName()))
-                           && (originalFile.canNavigateToTestClass()));
+            && (config.isAutoApplyChangesToTest())
+            && (nameResolver.isRealClass(((PsiClass) psiElement).getName()))
+            && (originalFile.canNavigateToTestClass()));
     }
 
     private boolean isValidClass(PsiElement psiElement) {
