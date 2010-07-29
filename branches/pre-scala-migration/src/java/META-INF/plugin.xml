@@ -5,7 +5,6 @@
   <change-notes>@PROJECT.CHANGENOTES@</change-notes>
   <vendor email="@PROJECT.VENDOR.EMAIL@" url="@PROJECT.VENDOR.HOMEPAGE@">@PROJECT.VENDOR@</vendor>
   <idea-version since-build="@IDEA.SINCE-BUILD@" until-build="@IDEA.UNTIL-BUILD@"/>
-  <depends/>
 
   <project-components>
     <component>
