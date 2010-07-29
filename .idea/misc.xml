@@ -35,7 +35,13 @@
                 <map>
                   <entry key="https://svn.codehaus.org/testdox/branches">
                     <value>
-                      <list />
+                      <list>
+                        <SvnBranchItem>
+                          <option name="creationDateMillis" value="1280383625807" />
+                          <option name="revision" value="101" />
+                          <option name="url" value="https://svn.codehaus.org/testdox/branches/pre-scala-migration" />
+                        </SvnBranchItem>
+                      </list>
                     </value>
                   </entry>
                   <entry key="https://svn.codehaus.org/testdox/tags">
@@ -59,6 +65,10 @@
     </option>
     <option name="myVersion" value="124" />
     <option name="mySupportsUserInfoFilter" value="true" />
+  </component>
+  <component name="TestDoxConfiguration">
+    <option name="createTestIfMissing" value="true" />
+    <option name="deletePackageOccurrences" value="true" />
   </component>
   <component name="WebServicesPlugin" addRequiredLibraries="true" />
   <component name="org.twodividedbyzero.idea.findbugs">

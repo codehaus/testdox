@@ -68,18 +68,18 @@
             </fileset>
         </path>
 
-        <path id="diana.compile.classpath">
+        <path id="maia.compile.classpath">
             <fileset dir="${idea.home}">
                 <include name="**/*.jar"/>
             </fileset>
-            <pathelement location="${classes}/diana"/>
+            <pathelement location="${classes}/maia"/>
             <path refid="compile.classpath"/>
         </path>
 
-        <path id="diana.test.classpath">
-            <pathelement location="${test.classes}/diana"/>
+        <path id="maia.test.classpath">
+            <pathelement location="${test.classes}/maia"/>
             <path refid="clover.classpath"/>
-            <path refid="diana.compile.classpath"/>
+            <path refid="maia.compile.classpath"/>
         </path>
 
         <tstamp>
@@ -97,18 +97,18 @@
         </filterset>
     </target>
 
-    <target name="check.diana.available" depends="initialise">
-        <condition property="diana.available">
+    <target name="check.maia.available" depends="initialise">
+        <condition property="maia.available">
             <and>
-                <available classname="com.intellij.psi.JavaDirectoryService" classpathref="diana.compile.classpath"/>
-                <available classname="com.intellij.psi.JavaPsiFacade" classpathref="diana.compile.classpath"/>
+                <available classname="com.intellij.psi.JavaDirectoryService" classpathref="maia.compile.classpath"/>
+                <available classname="com.intellij.psi.JavaPsiFacade" classpathref="maia.compile.classpath"/>
             </and>
         </condition>
     </target>
 
-    <target name="diana.available" depends="check.diana.available" unless="diana.available">
-        <fail>IntelliJ IDEA 8.0 is not available. Please set the idea.home system property to the path to your
-            IntelliJ IDEA 8.0 installation.
+    <target name="maia.available" depends="check.maia.available" unless="maia.available">
+        <fail>
+          IntelliJ IDEA 9.0 is not available. Please set the idea.home system property to the path of your IntelliJ IDEA 9.0 installation.
         </fail>
     </target>
 
@@ -116,41 +116,41 @@
         <delete dir="${build}" failonerror="false"/>
     </target>
 
-    <target name="compile.diana" depends="initialise, diana.available">
-        <mkdir dir="${classes}/diana"/>
-        <javac srcdir="${java.src}" destdir="${classes}/diana" debug="on">
-            <classpath refid="diana.compile.classpath"/>
+    <target name="compile.maia" depends="initialise, maia.available">
+        <mkdir dir="${classes}/maia"/>
+        <javac srcdir="${java.src}" destdir="${classes}/maia" debug="on">
+            <classpath refid="maia.compile.classpath"/>
         </javac>
-        <copy todir="${classes}/diana" overwrite="true">
+        <copy todir="${classes}/maia" overwrite="true">
             <fileset dir="${java.src}" excludes="**/*.java, ${binary.extensions}"/>
             <filterset>
-                <filter token="IDEA.SINCE-BUILD" value="8823"/>
-                <filter token="IDEA.UNTIL-BUILD" value="9999"/>
-                <filter token="PROJECT.VERSION" value="${project.version} (Diana)"/>
+                <filter token="IDEA.SINCE-BUILD" value="90.116"/>
+                <filter token="IDEA.UNTIL-BUILD" value="99.9999"/>
+                <filter token="PROJECT.VERSION" value="${project.version} (Maia)"/>
             </filterset>
             <filterset refid="project.vars"/>
             <filterset refid="timestamp.vars"/>
         </copy>
-        <copy todir="${classes}/diana" overwrite="true">
+        <copy todir="${classes}/maia" overwrite="true">
             <fileset dir="${java.src}" includes="${binary.extensions}"/>
         </copy>
-        <copy todir="${classes}/diana" file="${license.file}" overwrite="true">
+        <copy todir="${classes}/maia" file="${license.file}" overwrite="true">
             <filterset refid="project.vars"/>
             <filterset refid="timestamp.vars"/>
         </copy>
     </target>
 
-    <target name="compile.versions" depends="compile.diana"
+    <target name="compile.versions" depends="compile.maia"
             description="Compiles the project source files"/>
 
-    <target name="compile.tests.diana" depends="compile.diana">
-        <mkdir dir="${test.classes}/diana"/>
-        <javac srcdir="${test.src}" destdir="${test.classes}/diana" debug="on">
-            <classpath refid="diana.test.classpath"/>
+    <target name="compile.tests.maia" depends="compile.maia">
+        <mkdir dir="${test.classes}/maia"/>
+        <javac srcdir="${test.src}" destdir="${test.classes}/maia" debug="on">
+            <classpath refid="maia.test.classpath"/>
         </javac>
     </target>
 
-    <target name="compile.tests" depends="compile.tests.diana"/>
+    <target name="compile.tests" depends="compile.tests.maia"/>
 
     <target name="test.reports" depends="compile.tests" description="Runs all unit tests for this project">
         <delete dir="${test.results}"/>
@@ -160,11 +160,11 @@
                haltonfailure="false" haltonerror="false" showoutput="true" printsummary="withOutAndErr"
                includeantruntime="true" newenvironment="false">
 
-            <classpath refid="diana.test.classpath"/>
+            <classpath refid="maia.test.classpath"/>
             <formatter type="brief" usefile="false"/>
 
             <batchtest todir="${test.results}">
-                <fileset dir="${test.classes}/diana">
+                <fileset dir="${test.classes}/maia">
                     <include name="**/*Test.class"/>
                     <exclude name="**/*ApiTest.class, **/*TestCase.class"/>
                 </fileset>
@@ -172,7 +172,7 @@
             </batchtest>
         </junit>
 
-        <test-idea-plugin eapName="diana"/>
+        <test-idea-plugin eapName="maia"/>
 
         <delete dir="${test.reports}"/>
         <mkdir dir="${test.reports}"/>
@@ -230,7 +230,7 @@
         <fail message="Coverage criteria not met! Check coverage reports."/>
     </target>
 
-    <target name="zip.versions" depends="compile.diana"
+    <target name="zip.versions" depends="compile.maia"
             description="Creates deployable ZIP files for each version of IntelliJ IDEA">
 
         <delete failonerror="true">
@@ -240,14 +240,13 @@
         <antcall inheritall="true" target="compile.versions"/>
 
         <mkdir dir="${dist}"/>
-        <zip-idea-plugin eapName="diana"/>
+        <zip-idea-plugin eapName="maia"/>
     </target>
 
     <target name="build" description="Runs the continuous integration build"
-            depends="clean, with.clover, test.reports, coverage.reports, coverage.check, without.clover, zip.versions"
-            />
+            depends="clean, with.clover, test.reports, coverage.reports, coverage.check, without.clover, zip.versions"/>
 
-    <macrodef name="test-idea-plugin">
+  <macrodef name="test-idea-plugin">
         <attribute name="eapName"/>
 
         <sequential>
