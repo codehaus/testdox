@@ -31,8 +31,8 @@ object DeletionInterceptorSpec extends Specification with Mockito {
     doBeforeSpec {MockApplicationManager.reset()}
 
     doAfter {
-      editorApi had noMoreCalls
-      nameResolver had noMoreCalls
+      there were noMoreCallsTo(editorApi)
+      there were noMoreCallsTo(nameResolver)
     }
 
     // Package deletion
@@ -42,25 +42,25 @@ object DeletionInterceptorSpec extends Specification with Mockito {
       "if TestDox is not configured to delete package occurrences" in {
         config.setDeletePackageOccurrences(false)
         interceptor.beforeFileDeletion(createDirectoryDeletedEvent())
-        editorApi had noMoreCalls
+        there were noMoreCallsTo(editorApi)
       }
 
       "when triggered by a cancelled deletion" in {
         config.setDeletePackageOccurrences(false)
         interceptor.beforeFileDeletion(createVcsDirectoryPruningEvent())
-        editorApi had noMoreCalls
+        there were noMoreCallsTo(editorApi)
       }
 
       "when triggered by a local VCS operation" in {
         config.setDeletePackageOccurrences(false)
         interceptor.beforeFileDeletion(createVcsDirectoryPruningEvent())
-        editorApi had noMoreCalls
+        there were noMoreCallsTo(editorApi)
       }
 
       "when triggered by the CVS directory prunner" in {
         config.setDeletePackageOccurrences(false)
         interceptor.beforeFileDeletion(createVcsDirectoryPruningEvent())
-        editorApi had noMoreCalls
+        there were noMoreCallsTo(editorApi)
       }
 
       "if the directory being deleted does not represent a package" in {
@@ -76,7 +76,7 @@ object DeletionInterceptorSpec extends Specification with Mockito {
         config.setDeletePackageOccurrences(true)
         interceptor.beforeFileDeletion(createDirectoryDeletedEvent())
 
-        javaDirectoryService.getPackage(deletedDirectory) was called
+        there was one(javaDirectoryService).getPackage(deletedDirectory)
       }
 
       "if the directory being deleted is the only occurrence of the package it represents" in {
@@ -95,8 +95,8 @@ object DeletionInterceptorSpec extends Specification with Mockito {
         config.setDeletePackageOccurrences(true)
         interceptor.beforeFileDeletion(createDirectoryDeletedEvent())
 
-        javaDirectoryService.getPackage(deletedDirectory) was called.twice
-        psiPackage.getDirectories() was called
+        there were two(javaDirectoryService).getPackage(deletedDirectory)
+        there was one(psiPackage).getDirectories()
       }
 
       "if other occurrences of the associated package are read-only" in {
@@ -118,8 +118,8 @@ object DeletionInterceptorSpec extends Specification with Mockito {
         config.setDeletePackageOccurrences(true)
         interceptor.beforeFileDeletion(createDirectoryDeletedEvent())
 
-        javaDirectoryService.getPackage(deletedDirectory) was called.twice
-        psiPackage.getDirectories() was called
+        there were two(javaDirectoryService).getPackage(deletedDirectory)
+        there was one(psiPackage).getDirectories()
       }
     }
 
@@ -147,7 +147,7 @@ object DeletionInterceptorSpec extends Specification with Mockito {
       config.setDeletePackageOccurrences(true)
       interceptor.beforeFileDeletion(createDirectoryDeletedEvent())
 
-      javaDirectoryService.getPackage(deletedDirectory) was called.atLeastOnce
+      there was atLeastOne(javaDirectoryService).getPackage(deletedDirectory)
     }
 
     // Class deletion
@@ -157,25 +157,25 @@ object DeletionInterceptorSpec extends Specification with Mockito {
       "if TestDox is not configured to automatically apply changes to tests" in {
         config.setAutoApplyChangesToTests(false)
         interceptor.beforeFileDeletion(createFileDeletedEvent())
-        editorApi had noMoreCalls
+        there were noMoreCallsTo(editorApi)
       }
 
       "when triggered by a cancelled deletion" in {
         config.setAutoApplyChangesToTests(true)
         interceptor.beforeFileDeletion(new VirtualFileEvent(new Object(), NullVirtualFile.INSTANCE, CLASS_NAME + ".java", null))
-        editorApi had noMoreCalls
+        there were noMoreCallsTo(editorApi)
       }
 
       "when triggered by a local VCS operation" in {
         config.setAutoApplyChangesToTests(true)
         interceptor.beforeFileDeletion(createVcsDirectoryPruningEvent())
-        editorApi had noMoreCalls
+        there were noMoreCallsTo(editorApi)
       }
 
       "when triggered by the CVS directory prunner" in {
         config.setAutoApplyChangesToTests(true)
         interceptor.beforeFileDeletion(createVcsDirectoryPruningEvent())
-        editorApi had noMoreCalls
+        there were noMoreCallsTo(editorApi)
       }
 
       "if the file being deleted is not a class in the project" in {
@@ -184,7 +184,7 @@ object DeletionInterceptorSpec extends Specification with Mockito {
         config.setAutoApplyChangesToTests(true)
         interceptor.beforeFileDeletion(createVcsDirectoryPruningEvent())
 
-        editorApi had noMoreCalls
+        there were noMoreCallsTo(editorApi)
       }
 
       "if the file being deleted is a test class" in {
@@ -200,7 +200,7 @@ object DeletionInterceptorSpec extends Specification with Mockito {
         config.setAutoApplyChangesToTests(true)
         interceptor.beforeFileDeletion(createFileDeletedEvent())
 
-        nameResolver had noMoreCalls
+        there were noMoreCallsTo(nameResolver)
       }
 
       "if the test class cannot be found" in {
@@ -218,7 +218,7 @@ object DeletionInterceptorSpec extends Specification with Mockito {
         config.setAutoApplyChangesToTests(true)
         interceptor.beforeFileDeletion(createFileDeletedEvent())
         
-        nameResolver had noMoreCalls
+        there were noMoreCallsTo(nameResolver)
       }
     }
 
@@ -238,7 +238,7 @@ object DeletionInterceptorSpec extends Specification with Mockito {
       config.setAutoApplyChangesToTests(true)
       interceptor.beforeFileDeletion(createFileDeletedEvent())
       
-      nameResolver had noMoreCalls
+      there were noMoreCallsTo(nameResolver)
     }
   }
 

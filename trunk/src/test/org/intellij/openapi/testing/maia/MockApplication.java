@@ -1,4 +1,4 @@
-package org.intellij.openapi.testing.diana;
+package org.intellij.openapi.testing.maia;
 
 import com.intellij.ide.plugins.IdeaPluginDescriptor;
 import com.intellij.openapi.Disposable;

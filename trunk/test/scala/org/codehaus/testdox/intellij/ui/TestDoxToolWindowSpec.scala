@@ -36,7 +36,7 @@ object TestDoxToolWindowSpec extends Specification with Mockito {
     }
 
     doAfter {
-      controller had noMoreCalls
+      there were noMoreCallsTo(controller)
       configuration.removePropertyChangeListener(window)
       model.removeTableModelListener(window)
     }
@@ -73,7 +73,7 @@ object TestDoxToolWindowSpec extends Specification with Mockito {
 
       window.handleMouseEvent(new MouseEvent(table, 0, System.currentTimeMillis(), 0, 0, 0, 2, false))
 
-      controller.jumpToTestElement(testMethods(0), false) was called
+      there was one(controller).jumpToTestElement(testMethods(0), false)
     }
 
     "forwards 'Navigate to source' command to project component if the ENTER key was pressed" in {
@@ -81,7 +81,7 @@ object TestDoxToolWindowSpec extends Specification with Mockito {
       table.changeSelection(1, -1, false, false)
       window.handleKeyEvent(createKeyEvent(KeyEvent.VK_ENTER, KeyEvent.VK_UNDEFINED))
 
-      controller.jumpToTestElement(testMethods(0), false) was called
+      there was one(controller).jumpToTestElement(testMethods(0), false)
     }
 
     "forwards rename command to project component if rename key is pressed" in {
@@ -89,7 +89,7 @@ object TestDoxToolWindowSpec extends Specification with Mockito {
       table.changeSelection(1, 1, false, false)
       window.handleKeyEvent(createKeyEvent(KeyEvent.VK_F6, KeyEvent.VK_UNDEFINED))
 
-      controller.startRename(testMethods(0)) was called
+      there was one(controller).startRename(testMethods(0))
     }
 
     "ignores rename key event if selected item is not a test element" in {
@@ -97,7 +97,7 @@ object TestDoxToolWindowSpec extends Specification with Mockito {
       table.changeSelection(0, 0, false, false)
       window.handleKeyEvent(createKeyEvent(KeyEvent.VK_F6, KeyEvent.VK_UNDEFINED))
 
-      controller.startRename(testMethods(0)) wasnt called
+      there was no(controller).startRename(testMethods(0))
     }
 
     "uses the selected test element to delete itself when the delete key is pressed" in {
@@ -110,7 +110,7 @@ object TestDoxToolWindowSpec extends Specification with Mockito {
       initialisePanelAndSelectFirstRow(Array(new TestMethod(psiMethod, editorApi, new SentenceManager(new Configuration()))))
       window.handleKeyEvent(createKeyEvent(KeyEvent.VK_DELETE, KeyEvent.VK_UNDEFINED))
 
-      editorApi.delete(psiMethod) was called
+      there was one(editorApi).delete(psiMethod)
     }
   }
 
