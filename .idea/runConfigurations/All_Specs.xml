@@ -1,0 +1,15 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="All Specs" type="SpecsRunConfiguration" factoryName="Specs">
+    <module name="Plugin" />
+    <setting name="path" value="" />
+    <setting name="vmparams" value="" />
+    <setting name="params" value="" />
+    <setting name="packagepath" value="org.codehaus.testdox.intellij" />
+    <setting name="workingDirectory" value="$PROJECT_DIR$" />
+    <setting name="sysFilter" value=".*" />
+    <setting name="exampleFilter" value=".*" />
+    <RunnerSettings RunnerId="Run" />
+    <ConfigurationWrapper RunnerId="Run" />
+    <method />
+  </configuration>
+</component>

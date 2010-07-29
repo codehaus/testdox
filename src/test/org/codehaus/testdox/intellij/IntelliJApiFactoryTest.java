@@ -1,5 +1,6 @@
 package org.codehaus.testdox.intellij;
 
+import com.intellij.openapi.util.BuildNumber;
 import junitx.framework.StringAssert;
 
 import org.intellij.openapi.testing.MockApplicationManager;
@@ -36,7 +37,7 @@ public class IntelliJApiFactoryTest extends MockObjectTestCase {
 
     public void testThrowsARuntimeExceptionWhenAttemptingToCreateEditorApiWithInvalidBuildNumber() {
         mockApplicationInfo.expects(once()).method("getVersionName").will(returnValue("IDEA version name"));
-        mockApplicationInfo.expects(once()).method("getBuildNumber").will(returnValue("invalid build number"));
+        mockApplicationInfo.expects(once()).method("getBuild").will(returnValue(new BuildNumber(null, -1, -1)));
         try {
             new IntelliJApiFactory(picoContainer).createEditorApi();
             fail("A RuntimeException should have been thrown for this unsupported version of IntelliJ IDEA!");
@@ -47,7 +48,7 @@ public class IntelliJApiFactoryTest extends MockObjectTestCase {
 
     public void testThrowsARuntimeExceptionWhenAttemptingToCreateEditorApiUnderUnsupportedVersionOfIntellijIdea() {
         mockApplicationInfo.expects(once()).method("getVersionName").will(returnValue("a string that contains the name AriAdNa..."));
-        mockApplicationInfo.expects(once()).method("getBuildNumber").will(returnValue("700"));
+        mockApplicationInfo.expects(once()).method("getBuild").will(returnValue(new BuildNumber("IC", 89, 1234)));
         try {
             new IntelliJApiFactory(picoContainer).createEditorApi();
             fail("A RuntimeException should have been thrown for this unsupported version of IntelliJ IDEA!");

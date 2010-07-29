@@ -1,4 +1,4 @@
-package org.intellij.openapi.testing.diana;
+package org.intellij.openapi.testing.maia;
 
 import com.intellij.openapi.ui.DialogWrapperPeer;
 import com.intellij.openapi.util.ActionCallback;

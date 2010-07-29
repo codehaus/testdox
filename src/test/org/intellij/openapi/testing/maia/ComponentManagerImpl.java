@@ -1,4 +1,4 @@
-package org.intellij.openapi.testing.diana;
+package org.intellij.openapi.testing.maia;
 
 import com.intellij.openapi.components.BaseComponent;
 import com.intellij.openapi.components.ComponentConfig;

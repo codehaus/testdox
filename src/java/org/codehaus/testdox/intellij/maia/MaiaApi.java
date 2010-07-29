@@ -1,4 +1,4 @@
-package org.codehaus.testdox.intellij.diana;
+package org.codehaus.testdox.intellij.maia;
 
 import com.intellij.ide.util.EditSourceUtil;
 import com.intellij.openapi.application.ApplicationManager;
@@ -17,9 +17,9 @@ import org.codehaus.testdox.intellij.IntelliJApi;
 import org.codehaus.testdox.intellij.NameResolver;
 import org.codehaus.testdox.intellij.config.Configuration;
 
-public class DianaApi extends IntelliJApi {
+public class MaiaApi extends IntelliJApi {
 
-    public DianaApi(Project project, NameResolver nameResolver, Configuration config) {
+    public MaiaApi(Project project, NameResolver nameResolver, Configuration config) {
         super(project, nameResolver, config);
     }
 

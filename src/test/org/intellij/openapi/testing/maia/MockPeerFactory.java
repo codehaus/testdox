@@ -1,4 +1,4 @@
-package org.intellij.openapi.testing.diana;
+package org.intellij.openapi.testing.maia;
 
 import com.intellij.execution.runners.ProcessProxyFactory;
 import com.intellij.lang.ASTNode;

@@ -5,7 +5,7 @@ import org.picocontainer.MutablePicoContainer;
 
 public class IntelliJApiFactory implements EditorApiFactory {
 
-    private static final String DIANA_API_CLASS_NAME = "org.codehaus.testdox.intellij.diana.DianaApi";
+    private static final String MAIA_API_CLASS_NAME = "org.codehaus.testdox.intellij.maia.MaiaApi";
 
     private final MutablePicoContainer picoContainer;
 
@@ -18,10 +18,10 @@ public class IntelliJApiFactory implements EditorApiFactory {
 
         ApplicationInfo applicationInfo = ApplicationInfo.getInstance();
         ideaName = applicationInfo.getVersionName();
-        buildNumber = applicationInfo.getBuildNumber();
+        buildNumber = applicationInfo.getBuild().asStringWithoutProductCode();
 
         try {
-            editorApiClass = Class.forName(getClassForIDEA(ideaName, Integer.parseInt(buildNumber)));
+            editorApiClass = Class.forName(getClassForIDEA(ideaName, Double.parseDouble(buildNumber)));
         } catch (NumberFormatException e) {
             throw newFactoryRuntimeException(ideaName, buildNumber, e);
         } catch (ClassNotFoundException e) {
@@ -40,9 +40,9 @@ public class IntelliJApiFactory implements EditorApiFactory {
         return editorApi;
     }
 
-    private String getClassForIDEA(String ideaName, int buildNumber) {
-        if (ideaName.toLowerCase().matches(".*diana.*") || buildNumber >= 8823) {
-            return DIANA_API_CLASS_NAME;
+    private String getClassForIDEA(String ideaName, double buildNumber) {
+        if (ideaName.toLowerCase().matches(".*maia.*") || buildNumber >= 90.116D) {
+            return MAIA_API_CLASS_NAME;
         }
         throw newFactoryRuntimeException(ideaName, String.valueOf(buildNumber));
     }

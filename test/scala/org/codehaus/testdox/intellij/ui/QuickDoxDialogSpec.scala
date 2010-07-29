@@ -30,7 +30,8 @@ object QuickDoxDialogSpec extends Specification with Mockito {
       dialog.isVisible() must be (false)
 
       configuration.removePropertyChangeListener(dialog)
-      editorApi.activateSelectedTextEditor was called.times(2)
+
+      there were two(editorApi).activateSelectedTextEditor
     }
   }
 

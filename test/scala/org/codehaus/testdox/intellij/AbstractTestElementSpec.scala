@@ -42,13 +42,13 @@ object AbstractTestElementSpec extends Specification with Mockito {
     "do nothing when asked to rename the underlying tested class" in {
       val controller = mock[TestDoxController]
       testElement.rename(controller)
-      controller had noMoreCalls
+      there were noMoreCallsTo(controller)
     }
 
     "do nothing when asked to delete the underlying tested class" in {
       val controller = mock[TestDoxController]
       testElement.delete(controller)
-      controller had noMoreCalls
+      there were noMoreCallsTo(controller)
     }
   }
 }
