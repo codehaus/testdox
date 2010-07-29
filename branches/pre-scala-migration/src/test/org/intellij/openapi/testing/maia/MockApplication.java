@@ -1,6 +1,7 @@
-package org.intellij.openapi.testing.diana;
+package org.intellij.openapi.testing.maia;
 
 import com.intellij.ide.plugins.IdeaPluginDescriptor;
+import com.intellij.openapi.Disposable;
 import com.intellij.openapi.application.ApplicationListener;
 import com.intellij.openapi.application.ModalityInvokator;
 import com.intellij.openapi.application.ModalityState;
@@ -82,6 +83,9 @@ public class MockApplication extends MockUserDataHolder implements org.intellij.
     }
 
     public void addApplicationListener(ApplicationListener applicationListener) {
+    }
+
+    public void addApplicationListener(ApplicationListener applicationListener, Disposable disposable) {
     }
 
     public void removeApplicationListener(ApplicationListener applicationListener) {
@@ -214,6 +218,10 @@ public class MockApplication extends MockUserDataHolder implements org.intellij.
     }
 
     public void restart() {
+    }
+
+    public boolean isActive() {
+        return false;
     }
 
     @Nullable

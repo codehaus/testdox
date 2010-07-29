@@ -1,6 +1,5 @@
-package org.intellij.openapi.testing.diana;
+package org.intellij.openapi.testing.maia;
 
-import com.intellij.execution.runners.ProcessProxyFactory;
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.Language;
 import com.intellij.lang.PsiBuilder;
@@ -15,8 +14,7 @@ import com.intellij.openapi.module.ModuleConfigurationEditor;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.projectRoots.Sdk;
 import com.intellij.openapi.projectRoots.SdkType;
-import com.intellij.openapi.roots.ModifiableRootModel;
-import com.intellij.openapi.roots.ui.configuration.ModulesProvider;
+import com.intellij.openapi.roots.ui.configuration.ModuleConfigurationState;
 import com.intellij.openapi.ui.DialogWrapperPeerFactory;
 import com.intellij.openapi.vcs.FileStatus;
 import com.intellij.openapi.vcs.FileStatusFactory;
@@ -64,10 +62,6 @@ public class MockPeerFactory extends PeerFactory {
 
     public DialogWrapperPeerFactory getDialogWrapperPeerFactory() {
         return new MockDialogWrapperPeerFactory();
-    }
-
-    public ProcessProxyFactory getProcessProxyFactory() {
-        return null;
     }
 
     public PackageSetFactory getPackageSetFactory() {
@@ -122,7 +116,7 @@ public class MockPeerFactory extends PeerFactory {
         return null;
     }
 
-    public ModuleConfigurationEditor createModuleConfigurationEditor(Project project, String moduleName, ModifiableRootModel model, ModulesProvider modulesProvider) {
+    public ModuleConfigurationEditor createModuleConfigurationEditor(String s, ModuleConfigurationState moduleConfigurationState) {
         return null;
     }
 }
