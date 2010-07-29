@@ -33,41 +33,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="c72e3e0a-be26-4461-9fc9-037f717bb44a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/maia" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/MockApplicationManager.java" afterPath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/MockApplicationManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/Stubs.java" afterPath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/Stubs.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/maia/MockApplication.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/maia" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/maia/MockUserDataHolder.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/diana/DianaApi.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TestDox.ipr" afterPath="$PROJECT_DIR$/TestDox.ipr" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/maia/MockDialogWrapperPeerFactory.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/diana/MockDialogWrapperPeerFactory.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/IntelliJApiFactoryTest.java" afterPath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/IntelliJApiFactoryTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/IntelliJApi.java" afterPath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/IntelliJApi.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/META-INF/plugin.xml" afterPath="$PROJECT_DIR$/src/java/META-INF/plugin.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/diana/MockUserDataHolder.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/MockIntentionManager.java" afterPath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/MockIntentionManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/ClassShadowingManager.java" afterPath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/ClassShadowingManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/ClassShadowingManagerTest.java" afterPath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/ClassShadowingManagerTest.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/diana/MockDialogWrapperPeer.java" afterPath="" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/maia/MockDialogWrapperPeer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/IntelliJApiTest.java" afterPath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/IntelliJApiTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/IntelliJApiFactory.java" afterPath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/IntelliJApiFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/maia/MaiaApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.xml" afterPath="$PROJECT_DIR$/build.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Plugin.iml" afterPath="$PROJECT_DIR$/Plugin.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TestDox.iws" afterPath="$PROJECT_DIR$/TestDox.iws" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/maia" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/maia/MockPeerFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/EditorApi.java" afterPath="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/EditorApi.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/diana/DianaApiTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/diana/MockPeerFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/diana/ComponentManagerImpl.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project.properties" afterPath="$PROJECT_DIR$/project.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/maia/ComponentManagerImpl.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/diana/MockApplication.java" afterPath="" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/maia/MaiaApiTest.java" />
     </list>
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -320,16 +287,34 @@
       <file leaf-file-name="ClassShadowingManager.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/ClassShadowingManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="0" selection-start="1231" selection-end="1231" vertical-scroll-proportion="0.0">
+            <state line="22" column="0" selection-start="941" selection-end="941" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MockIntentionManager.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/org/intellij/openapi/testing/MockIntentionManager.java">
+      <file leaf-file-name="idea-plugin-registry.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/META-INF/idea-plugin-registry.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="7" selection-start="46" selection-end="46" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="plugin.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/java/META-INF/plugin.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="0" selection-start="409" selection-end="409" vertical-scroll-proportion="0.13753581">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DeletionShadowingManager.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/DeletionShadowingManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="6" selection-start="291" selection-end="291" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -338,18 +323,25 @@
       <file leaf-file-name="IntelliJApiFactoryTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/IntelliJApiFactoryTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="22" selection-start="799" selection-end="799" vertical-scroll-proportion="-5.5">
-              <folding>
-                <marker date="1280381491000" expanded="false" signature="47:517" placeholder="..." />
-              </folding>
+            <state line="20" column="22" selection-start="799" selection-end="799" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="project.properties" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="project.properties" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/project.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="0" selection-start="582" selection-end="582" vertical-scroll-proportion="0.31625184">
+            <state line="18" column="0" selection-start="582" selection-end="582" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="plugin.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/META-INF/plugin.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -358,7 +350,7 @@
       <file leaf-file-name="ClassShadowingManagerTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/ClassShadowingManagerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="116" column="47" selection-start="5682" selection-end="5682" vertical-scroll-proportion="0.0">
+            <state line="19" column="0" selection-start="611" selection-end="611" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -412,7 +404,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/maia/MaiaApi.java" />
         <option value="$PROJECT_DIR$/src/java/org/intellij/openapi/testing/maia/MockApplication.java" />
         <option value="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/diana/MockApplication.java" />
         <option value="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/maia/MockApplication.java" />
@@ -424,10 +415,11 @@
         <option value="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/maia/MockDialogWrapperPeerFactory.java" />
         <option value="$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/ClassShadowingManager.java" />
         <option value="$PROJECT_DIR$/src/test/org/intellij/openapi/testing/MockIntentionManager.java" />
-        <option value="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/ClassShadowingManagerTest.java" />
         <option value="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/Stubs.java" />
         <option value="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/IntelliJApiFactoryTest.java" />
         <option value="$PROJECT_DIR$/project.properties" />
+        <option value="$PROJECT_DIR$/src/java/META-INF/plugin.xml" />
+        <option value="$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/ClassShadowingManagerTest.java" />
       </list>
     </option>
   </component>
@@ -724,6 +716,9 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Favorites" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -755,8 +750,22 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
+              <option name="myItemId" value="TestDox" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="testdox-r16" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -774,29 +783,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="maia" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TestDox" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="testdox-r16" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
+              <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -814,15 +801,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="META-INF" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="Favorites" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -927,156 +911,6 @@
     <option name="referenceOn" value="false" />
     <option name="referencePos" value="0" />
     <option name="showLabels" value="true" />
-  </component>
-  <component name="RestoreUpdateTree">
-    <UpdateInfo date="7/29/10 6:34 AM" ActionInfo="_Update">
-      <UpdatedFiles>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated from server" />
-          <option name="myStatusName" value="Changed on server" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CHANGED_ON_SERVER" />
-          <FILE-GROUP>
-            <option name="myUpdateName" value="Updated" />
-            <option name="myStatusName" value="Changed" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" value="UPDATED" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" value="Created" />
-            <option name="myStatusName" value="Created" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" value="CREATED" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" value="Deleted" />
-            <option name="myStatusName" value="Deleted" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="true" />
-            <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" value="Restored" />
-            <option name="myStatusName" value="Will be restored" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" value="RESTORED" />
-          </FILE-GROUP>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Modified" />
-          <option name="myStatusName" value="Modified" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="MODIFIED" />
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/TestDox.iws</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/IntelliJApiFactory.java</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/IntelliJApi.java</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/EditorApi.java</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/ClassShadowingManager.java</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/java/META-INF/plugin.xml</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/Stubs.java</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/IntelliJApiFactoryTest.java</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/ClassShadowingManagerTest.java</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/IntelliJApiTest.java</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/test/org/intellij/openapi/testing/MockIntentionManager.java</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/test/org/intellij/openapi/testing/MockApplicationManager.java</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/build.xml</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/TestDox.ipr</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/project.properties</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/Plugin.iml</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Skipped" />
-          <option name="myStatusName" value="Skipped" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="SKIPPED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Merged with conflicts" />
-          <option name="myStatusName" value="Will be merged with conflicts" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="MERGED_WITH_CONFLICTS" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Merged with tree conflicts" />
-          <option name="myStatusName" value="Merged with tree conflicts" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Merged" />
-          <option name="myStatusName" value="Will be merged" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="MERGED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Not in repository" />
-          <option name="myStatusName" value="Not in repository" />
-          <option name="mySupportsDeletion" value="true" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UNKNOWN" />
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/IDEA-9.0.patch</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/META-INF</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/TESTDOX-24__Added_support_for_IDEA_9_0.patch</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/build</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Locally added" />
-          <option name="myStatusName" value="Locally added" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="LOCALLY_ADDED" />
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/maia</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/maia/MaiaApi.java</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/maia</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/maia/MaiaApiTest.java</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/test/org/intellij/openapi/testing/maia</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/test/org/intellij/openapi/testing/maia/ComponentManagerImpl.java</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/test/org/intellij/openapi/testing/maia/MockPeerFactory.java</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/test/org/intellij/openapi/testing/maia/MockUserDataHolder.java</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/test/org/intellij/openapi/testing/maia/MockDialogWrapperPeerFactory.java</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/test/org/intellij/openapi/testing/maia/MockApplication.java</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/test/org/intellij/openapi/testing/maia/MockDialogWrapperPeer.java</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Locally removed" />
-          <option name="myStatusName" value="Locally removed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="LOCALLY_REMOVED" />
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/diana/DianaApi.java</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/diana/DianaApiTest.java</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/test/org/intellij/openapi/testing/diana/ComponentManagerImpl.java</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/test/org/intellij/openapi/testing/diana/MockPeerFactory.java</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/test/org/intellij/openapi/testing/diana/MockUserDataHolder.java</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/test/org/intellij/openapi/testing/diana/MockDialogWrapperPeerFactory.java</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/test/org/intellij/openapi/testing/diana/MockApplication.java</PATH>
-          <PATH vcs="svn" revision="">$PROJECT_DIR$/src/test/org/intellij/openapi/testing/diana/MockDialogWrapperPeer.java</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Switched" />
-          <option name="myStatusName" value="Switched" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="SWITCHED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Merged with property conflicts" />
-          <option name="myStatusName" value="Will be merged with property conflicts" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-        </FILE-GROUP>
-      </UpdatedFiles>
-    </UpdateInfo>
   </component>
   <component name="RubyDocSettings">
     <RUBY_DOC NAME="DEFAULTS" VALUE="true" />
@@ -1374,14 +1208,13 @@
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32348993" sideWeight="0.5" order="18" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15965167" sideWeight="0.633557" order="0" side_tool="false" content_ui="tabs" x="727" y="80" width="206" height="837" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1595359" sideWeight="0.633557" order="0" side_tool="false" content_ui="tabs" x="727" y="80" width="206" height="837" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.48457143" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TestDox" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27651006" sideWeight="0.5" order="32" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35973155" sideWeight="0.5" order="31" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.357047" sideWeight="0.5" order="35" side_tool="false" content_ui="tabs" />
-      <window_info id="SVN Repositories" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32885906" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33142856" sideWeight="0.5" order="36" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2469537" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3408267" sideWeight="0.66174495" order="0" side_tool="false" content_ui="tabs" x="436" y="80" width="404" height="634" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3524293" sideWeight="0.714094" order="0" side_tool="false" content_ui="tabs" x="436" y="80" width="404" height="634" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="30" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3395973" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Regex" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1392,7 +1225,6 @@
       <window_info id="Dataflow to this" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="IDE talk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22230595" sideWeight="0.6342857" order="16" side_tool="false" content_ui="tabs" />
-      <window_info id="TestDox" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27728286" sideWeight="0.5" order="32" side_tool="false" content_ui="tabs" />
       <window_info id="Research" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24939074" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Lib Finder" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="22" side_tool="false" content_ui="tabs" />
@@ -1401,11 +1233,12 @@
       <window_info id="Scrappy" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33415842" sideWeight="0.5" order="26" side_tool="false" content_ui="tabs" />
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Dilbert" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31409395" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5637584" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gold Section" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33168316" sideWeight="0.5" order="25" side_tool="false" content_ui="tabs" x="69" y="258" width="573" height="663" />
       <window_info id="Profile" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="29" side_tool="false" content_ui="tabs" />
       <window_info id="IntelliJad Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329653" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Color" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33168316" sideWeight="0.5" order="33" side_tool="false" content_ui="tabs" x="700" y="418" width="474" height="484" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.357047" sideWeight="0.5" order="35" side_tool="false" content_ui="tabs" />
       <window_info id="UI Defaults" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296027" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Hibero" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="24" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1418,6 +1251,7 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24189901" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Clover" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24860509" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="SVN Repositories" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32885906" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Dynamic properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32949308" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="File View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="CodeDependency" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
@@ -1585,48 +1419,9 @@
     <option name="myLastEditedConfigurable" value="IDE Profiles" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/IntelliJApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="576" column="0" selection-start="23367" selection-end="23367" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/maia/MaiaApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="32" selection-start="890" selection-end="890" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/org/intellij/openapi/testing/maia/MockPeerFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="7" selection-start="51" selection-end="51" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/org/intellij/openapi/testing/maia/MockDialogWrapperPeer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="126" column="0" selection-start="2258" selection-end="2258" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/org/intellij/openapi/testing/maia/MockDialogWrapperPeerFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="27" column="0" selection-start="943" selection-end="943" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/ClassShadowingManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="1231" selection-end="1231" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/org/intellij/openapi/testing/MockIntentionManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="7" selection-start="46" selection-end="46" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/ClassShadowingManagerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="116" column="47" selection-start="5682" selection-end="5682" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/inspections/AbstractTestDoxInspectionTest.java">
@@ -1641,44 +1436,71 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/actions/ActionEventsTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="54" selection-start="1708" selection-end="1708" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="40" column="54" selection-start="1708" selection-end="1708" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/Mocks.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="802" selection-end="802" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="25" column="0" selection-start="802" selection-end="802" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/IntelliJApiFactory.java">
+    <entry file="file://$PROJECT_DIR$/src/test/org/intellij/openapi/testing/MockIntentionManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="38" selection-start="737" selection-end="737" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="2" column="7" selection-start="46" selection-end="46" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/Stubs.java">
+    <entry file="file://$PROJECT_DIR$/src/java/META-INF/idea-plugin-registry.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="511" selection-end="511" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/DeletionShadowingManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="6" selection-start="291" selection-end="291" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/IntelliJApiFactoryTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="22" selection-start="799" selection-end="799" vertical-scroll-proportion="-5.5">
-          <folding>
-            <marker date="1280381491000" expanded="false" signature="47:517" placeholder="..." />
-          </folding>
-        </state>
+        <state line="20" column="22" selection-start="799" selection-end="799" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/project.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="582" selection-end="582" vertical-scroll-proportion="0.31625184">
+        <state line="18" column="0" selection-start="582" selection-end="582" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/META-INF/plugin.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/Stubs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="0" selection-start="511" selection-end="511" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/IntelliJApiFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="38" selection-start="737" selection-end="737" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/org/codehaus/testdox/intellij/ClassShadowingManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="0" selection-start="941" selection-end="941" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/org/codehaus/testdox/intellij/ClassShadowingManagerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="0" selection-start="611" selection-end="611" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/META-INF/plugin.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="0" selection-start="409" selection-end="409" vertical-scroll-proportion="0.13753581">
           <folding />
         </state>
       </provider>
