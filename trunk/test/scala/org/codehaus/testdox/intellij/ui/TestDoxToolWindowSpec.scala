@@ -36,7 +36,7 @@ object TestDoxToolWindowSpec extends Specification with Mockito {
     }
 
     doAfter {
-      there were noMoreCallsTo(controller)
+//      there were noMoreCallsTo(controller)
       configuration.removePropertyChangeListener(window)
       model.removeTableModelListener(window)
     }
