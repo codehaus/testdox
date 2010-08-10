@@ -23,8 +23,6 @@ public interface TestDoxController extends FileEditorManagerListener,
 
     void setConfiguration(Configuration configuration);
 
-    void selectedFileChanged(FileEditorManagerEvent event);
-
     void selectedFileChanged(VirtualFile file);
 
     boolean hasActiveEditors();

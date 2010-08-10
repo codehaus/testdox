@@ -96,10 +96,6 @@ public class TestDoxControllerImpl implements TestDoxController {
         this.configuration = configuration;
     }
 
-    public void selectedFileChanged(FileEditorManagerEvent event) {
-        selectedFileChanged(event.getNewFile());
-    }
-
     public void selectedFileChanged(VirtualFile file) {
         if (file == null) {
             hideQuickDoxForCurrentFile();
