@@ -209,13 +209,13 @@ public abstract class IntelliJApi implements EditorApi {
     private String getTestPackage(TestDoxFile testDoxFile) {
         String sourcePackage = getPsiJavaFile(testDoxFile.file()).getPackageName();
         List<String> customPackages = config.getCustomPackagesAsJavaList();
-        PackageManager packageManager = new PackageManager(sourcePackage);
+        PackageResolver packageResolver = new PackageResolver(sourcePackage);
 
         List<String> packages = new ArrayList<String>();
         packages.add(sourcePackage);
 
         for (String customPackage : customPackages) {
-            packages.add(packageManager.getPackage(customPackage));
+            packages.add(packageResolver.getPackage(customPackage));
         }
 
         ItemSelectionUI dialog = createItemSelectionDialog(asArray(packages));

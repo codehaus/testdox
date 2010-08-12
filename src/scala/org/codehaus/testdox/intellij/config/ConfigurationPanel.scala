@@ -7,7 +7,8 @@ import java.awt.Insets
 import java.awt.FlowLayout
 import java.awt.event._
 import javax.swing._
-import org.codehaus.testdox.intellij.{PackageManager, TemplateNameResolver}
+import org.codehaus.testdox.intellij.PackageResolver._
+import org.codehaus.testdox.intellij.TemplateNameResolver
 import scala.collection.JavaConversions
 
 class ConfigurationPanel extends JPanel with ConfigurationUI {
@@ -184,7 +185,7 @@ class ConfigurationPanel extends JPanel with ConfigurationUI {
   private def createInputBox() = {
     val box = Box.createVerticalBox()
     box.add(packageInputField)
-    box.add(new JLabel("Template format: " + PackageManager.PACKAGE_TOKEN + " denotes the package of the current file, and " + PackageManager.POP_TOKEN + " pops a package level, e.g. " + PackageManager.PACKAGE_TOKEN + PackageManager.POP_TOKEN + "/test"))
+    box.add(new JLabel("Template format: " + PACKAGE_TOKEN + " denotes the package of the current file, and " + POP_TOKEN + " pops a package level, e.g. " + PACKAGE_TOKEN + POP_TOKEN + "/test"))
     box.add(new JLabel("Remember: The current package of a source file is always checked for the corresponding test."))
     box
   }

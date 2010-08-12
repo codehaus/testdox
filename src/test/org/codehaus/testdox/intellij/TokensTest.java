@@ -7,8 +7,8 @@ public class TokensTest extends TestCase {
     public void testCanBeUsedInRegularExpressions() throws Exception {
         String templateSuffix = "Foo";
         try {
-            String template = PackageManager.PACKAGE_TOKEN + templateSuffix;
-            template.split(PackageManager.PACKAGE_TOKEN);
+            String template = PackageResolver.PACKAGE_TOKEN() + templateSuffix;
+            template.split(PackageResolver.PACKAGE_TOKEN());
             template = TemplateNameResolver.NAME_TOKEN() + templateSuffix;
             template.split(TemplateNameResolver.NAME_TOKEN());
         } catch (Exception e) {
