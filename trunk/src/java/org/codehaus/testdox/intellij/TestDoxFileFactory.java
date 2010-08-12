@@ -59,10 +59,10 @@ public class TestDoxFileFactory {
         PsiClass psiClass = testLookup.getClass(testClassName);
         if ((psiClass == null) && (config != null) && (config.getCustomPackagesAllowed())) {
             List packages = config.getCustomPackagesAsJavaList();
-            PackageManager packageManager = new PackageManager(getPackage(testClassName));
+            PackageResolver packageResolver = new PackageResolver(getPackage(testClassName));
             testClassName = trimPackage(testClassName);
             for (Object aPackage : packages) {
-                psiClass = testLookup.getClass(packageManager.getPackage((String) aPackage) + "." + testClassName);
+                psiClass = testLookup.getClass(packageResolver.getPackage((String) aPackage) + "." + testClassName);
                 if (psiClass != null) {
                     return psiClass;
                 }
