@@ -54,8 +54,8 @@ public final class Mocks {
         return testCase.mock(MockableTestMethod.class);
     }
 
-    public static Mock createAndRegisterSentenceManagerMock(MockObjectTestCase testCase) {
-        return testCase.mock(MockableSentenceManager.class);
+    public static Mock createAndRegisterSentenceTranslatorMock(MockObjectTestCase testCase) {
+        return testCase.mock(MockableSentenceTranslator.class);
     }
 
     // Factory methods -------------------------------------------------------------------------------------------------
@@ -149,7 +149,7 @@ public final class Mocks {
         }
 
         private MockableTestMethod(String name) {
-            super(null, null, new SentenceManager(new Configuration()));
+            super(null, null, new SentenceTranslator(new Configuration()));
             this.name = name;
         }
 
@@ -158,9 +158,9 @@ public final class Mocks {
         }
     }
 
-    public static class MockableSentenceManager extends SentenceManager {
+    public static class MockableSentenceTranslator extends SentenceTranslator {
 
-        public MockableSentenceManager() {
+        public MockableSentenceTranslator() {
             super(null);
         }
     }

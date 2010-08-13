@@ -25,7 +25,7 @@ public class TestDoxControllerImpl implements TestDoxController {
     private final EditorApi editorApi;
     private final TestDoxTableModel model;
     private final NameResolver nameResolver;
-    private final SentenceManager sentenceManager;
+    private final SentenceTranslator sentenceTranslator;
     private final TestDoxFileFactory testDoxFileFactory;
     private final VirtualFileListener deletionInterceptor;
 
@@ -39,13 +39,13 @@ public class TestDoxControllerImpl implements TestDoxController {
 
     public TestDoxControllerImpl(Project project, EditorApi editorApi, TestDoxTableModel model,
                                  Configuration configuration, NameResolver nameResolver,
-                                 SentenceManager sentenceManager, TestDoxFileFactory testDoxFileFactory) {
+                                 SentenceTranslator sentenceTranslator, TestDoxFileFactory testDoxFileFactory) {
         this.project = project;
         this.editorApi = editorApi;
         this.model = model;
         this.configuration = configuration;
         this.nameResolver = nameResolver;
-        this.sentenceManager = sentenceManager;
+        this.sentenceTranslator = sentenceTranslator;
         this.testDoxFileFactory = testDoxFileFactory;
         this.deletionInterceptor = new DeletionInterceptor(editorApi, configuration, nameResolver);
 
@@ -124,7 +124,7 @@ public class TestDoxControllerImpl implements TestDoxController {
             if (configuration.usingAnnotations()) {
                 methodSignatureAndBody.append(configuration.testMethodAnnotation()).append("\n");
             }
-            methodSignatureAndBody.append("public void ").append(sentenceManager.buildMethodName(addTestDialog.sentence())).append("() {\n}");
+            methodSignatureAndBody.append("public void ").append(sentenceTranslator.buildMethodName(addTestDialog.sentence())).append("() {\n}");
             editorApi.addMethod(getCurrentTestDoxFile().testClass().psiElement(), methodSignatureAndBody.toString());
         }
     }
@@ -149,7 +149,7 @@ public class TestDoxControllerImpl implements TestDoxController {
             RenameUI renameDialog = createRenameDialog(testMethod.displayString());
             renameDialog.show();
             if (renameDialog.isOK()) {
-                editorApi.rename(testMethod.psiElement(), sentenceManager.buildMethodName(renameDialog.sentence()));
+                editorApi.rename(testMethod.psiElement(), sentenceTranslator.buildMethodName(renameDialog.sentence()));
             }
         }
     }
@@ -245,7 +245,7 @@ public class TestDoxControllerImpl implements TestDoxController {
     }
 
     private TestMethod getCurrentTestMethod(PsiElement element) {
-        return editorApi.getCurrentTestMethod(element, sentenceManager, getCurrentTestDoxFile().file());
+        return editorApi.getCurrentTestMethod(element, sentenceTranslator, getCurrentTestDoxFile().file());
     }
 
     // FileEditorManagerListener ---------------------------------------------------------------------------------------

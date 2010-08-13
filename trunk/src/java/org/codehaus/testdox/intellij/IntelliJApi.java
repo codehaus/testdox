@@ -240,7 +240,7 @@ public abstract class IntelliJApi implements EditorApi {
         return nameResolver.getTestClassName(testClassName);
     }
 
-    public TestMethod getCurrentTestMethod(PsiElement element, SentenceManager sentenceManager, VirtualFile currentFile) {
+    public TestMethod getCurrentTestMethod(PsiElement element, SentenceTranslator sentenceTranslator, VirtualFile currentFile) {
         element = getPsiMethodForOffsetFollowingTestMethodClosingBrace(element, currentFile);
         while (!isTestMethod(element)) {
             if (element == null) {
@@ -248,7 +248,7 @@ public abstract class IntelliJApi implements EditorApi {
             }
             element = element.getParent();
         }
-        return new TestMethod((PsiMethod) element, this, sentenceManager);
+        return new TestMethod((PsiMethod) element, this, sentenceTranslator);
     }
 
     public boolean isTestMethod(PsiElement element) {

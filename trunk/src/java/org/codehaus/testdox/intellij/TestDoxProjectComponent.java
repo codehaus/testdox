@@ -79,7 +79,7 @@ public class TestDoxProjectComponent implements ProjectComponent {
         // move container setup somewhere else...
         picoContainer.registerComponentImplementation(TestDoxTableModel.class);
         picoContainer.registerComponentImplementation(NameResolver.class, TemplateNameResolver.class);
-        picoContainer.registerComponentImplementation(SentenceManager.class);
+        picoContainer.registerComponentImplementation(SentenceTranslator.class);
         picoContainer.registerComponentImplementation(TestLookup.class);
         picoContainer.registerComponentImplementation(TestDoxFileFactory.class);
         picoContainer.registerComponentImplementation(TestDoxController.class, TestDoxControllerImpl.class);

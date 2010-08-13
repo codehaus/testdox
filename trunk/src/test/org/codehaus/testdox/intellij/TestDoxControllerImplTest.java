@@ -29,7 +29,7 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
     private final Mock mockVirtualFile = Mocks.createAndRegisterVirtualFileMock(this);
     private final Mock mockPsiClass = mock(PsiClass.class);
     private final Mock mockNameResolver = mock(NameResolver.class);
-    private final Mock mockSentenceManager = Mocks.createAndRegisterSentenceManagerMock(this);
+    private final Mock mockSentenceTranslator = Mocks.createAndRegisterSentenceTranslatorMock(this);
     private final Mock mockAddTestDialog = mock(RenameUI.class);
     private final Mock mockRenameDialog = mock(RenameUI.class);
     private final Mock mockToolWindow = mock(ToolWindow.class);
@@ -44,7 +44,7 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
     protected void setUp() {
         controller = new TestDoxControllerImpl((Project) mockProject.proxy(), (EditorApi) mockEditorApi.proxy(),
                                                testDoxModel, configuration, (NameResolver) mockNameResolver.proxy(),
-                                               (SentenceManager) mockSentenceManager.proxy(),
+                                               (SentenceTranslator) mockSentenceTranslator.proxy(),
                                                (TestDoxFileFactory) mockTestDoxFileFactory.proxy()) {
             {
                 toolWindow = (ToolWindow) mockToolWindow.proxy();
@@ -252,7 +252,7 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
         mockEditorApi.expects(once()).method("getCurrentFile");
         mockTestDoxFileFactory.expects(once()).method("getTestDoxFile").withAnyArguments().will(returnValue(mockTestDoxFile.proxy()));
         mockTestDoxFile.expects(once()).method("file");
-        mockEditorApi.expects(once()).method("getCurrentTestMethod").with(eq(mockPsiIdentifier.proxy()), isA(SentenceManager.class), NULL).will(returnValue(mockTestMethod.proxy()));
+        mockEditorApi.expects(once()).method("getCurrentTestMethod").with(eq(mockPsiIdentifier.proxy()), isA(SentenceTranslator.class), NULL).will(returnValue(mockTestMethod.proxy()));
         mockTestMethod.expects(once()).method("displayString").will(returnValue("does something useful"));
 
         mockRenameDialog.expects(once()).method("show");
@@ -265,7 +265,7 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
         mockEditorApi.expects(once()).method("getCurrentFile");
         mockTestDoxFileFactory.expects(once()).method("getTestDoxFile").withAnyArguments().will(returnValue(mockTestDoxFile.proxy()));
         mockTestDoxFile.expects(once()).method("file");
-        mockEditorApi.expects(once()).method("getCurrentTestMethod").with(eq(mockPsiClass.proxy()), isA(SentenceManager.class), NULL).will(returnValue(null));
+        mockEditorApi.expects(once()).method("getCurrentTestMethod").with(eq(mockPsiClass.proxy()), isA(SentenceTranslator.class), NULL).will(returnValue(null));
         controller.startRename((PsiElement) mockPsiClass.proxy());
     }
 
@@ -273,7 +273,7 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
         mockRenameDialog.expects(once()).method("show");
         mockRenameDialog.expects(once()).method("isOK").will(returnValue(true));
         mockRenameDialog.expects(once()).method("sentence").will(returnValue("whatever works"));
-        mockSentenceManager.expects(once()).method("buildMethodName").will(returnValue("testWhateverWorks"));
+        mockSentenceTranslator.expects(once()).method("buildMethodName").will(returnValue("testWhateverWorks"));
         mockEditorApi.expects(once()).method("rename").with(NULL, eq("testWhateverWorks"));
 
         controller.startRename(Mocks.createTestMethod("testAnythingThatWorks"));
@@ -322,7 +322,7 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
         mockAddTestDialog.expects(once()).method("isOK").will(returnValue(true));
         mockAddTestDialog.expects(once()).method("sentence").will(returnValue("has an undefined behaviour"));
 
-        mockSentenceManager.expects(once()).method("buildMethodName").will(returnValue("testHasAnUndefinedBehaviour"));
+        mockSentenceTranslator.expects(once()).method("buildMethodName").will(returnValue("testHasAnUndefinedBehaviour"));
         mockEditorApi.expects(once()).method("getCurrentFile");
 
         TestDoxClass testDoxClass = new TestDoxClass(null, null, false, Mocks.createTestClass(), null, TestMethod.EMPTY_ARRAY());
@@ -339,7 +339,7 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
         mockAddTestDialog.expects(once()).method("isOK").will(returnValue(true));
         mockAddTestDialog.expects(once()).method("sentence").will(returnValue("has an undefined behaviour"));
 
-        mockSentenceManager.expects(once()).method("buildMethodName").will(returnValue("hasAnUndefinedBehaviour"));
+        mockSentenceTranslator.expects(once()).method("buildMethodName").will(returnValue("hasAnUndefinedBehaviour"));
         mockEditorApi.expects(once()).method("getCurrentFile");
 
         TestDoxClass testDoxClass = new TestDoxClass(null, null, false, Mocks.createTestClass(), null, TestMethod.EMPTY_ARRAY());
