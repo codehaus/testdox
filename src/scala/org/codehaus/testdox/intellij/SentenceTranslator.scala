@@ -1,8 +1,9 @@
 package org.codehaus.testdox.intellij
 
+import org.codehaus.testdox.intellij.SentenceTranslator._
 import org.codehaus.testdox.intellij.config.Configuration
 
-class SentenceManager(configuration: Configuration) {
+class SentenceTranslator(configuration: Configuration) {
 
   def buildSentence(methodName: String): String = methodName match {
     case null => ""
@@ -19,12 +20,12 @@ class SentenceManager(configuration: Configuration) {
   }
 
   def buildMethodName(sentence: String): String = sentence match {
-    case null => SentenceManager.DEFAULT_TEST_METHOD_NAME
-    case "" => SentenceManager.DEFAULT_TEST_METHOD_NAME
+    case null => DEFAULT_TEST_METHOD_NAME
+    case "" => DEFAULT_TEST_METHOD_NAME
     case _ => {
       val methodName = sentence
           .split("\\s+")
-          .map { token => if (configuration.underscoreMode && token.matches(SentenceManager.ACRONYM_REGEXP)) "_" + token + "_" else token }
+          .map { token => if (configuration.underscoreMode && token.matches(ACRONYM_REGEXP)) "_" + token + "_" else token }
           .map { token => token.charAt(0).toUpper + token.substring(1) }
           .mkString("")
 
@@ -37,7 +38,7 @@ class SentenceManager(configuration: Configuration) {
   }
 }
 
-object SentenceManager {
+object SentenceTranslator {
   val DEFAULT_TEST_METHOD_NAME = "testNoInformationKnownAboutThisTest"
   val ACRONYM_REGEXP = "[A-Z]{2,}"
 }

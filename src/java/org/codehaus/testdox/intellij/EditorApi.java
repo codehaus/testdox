@@ -62,7 +62,7 @@ public interface EditorApi {
 
     void deleteAsynchronously(PsiDirectory[] directories, String question, String title, Runnable callback);
 
-    TestMethod getCurrentTestMethod(PsiElement element, SentenceManager sentenceManager, VirtualFile currentFile);
+    TestMethod getCurrentTestMethod(PsiElement element, SentenceTranslator sentenceTranslator, VirtualFile currentFile);
 
     boolean isTestMethod(PsiElement element);
 

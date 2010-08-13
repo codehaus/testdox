@@ -107,7 +107,7 @@ object TestDoxToolWindowSpec extends Specification with Mockito {
 
       psiMethod.getName() returns "testSomething"
 
-      initialisePanelAndSelectFirstRow(Array(new TestMethod(psiMethod, editorApi, new SentenceManager(new Configuration()))))
+      initialisePanelAndSelectFirstRow(Array(new TestMethod(psiMethod, editorApi, new SentenceTranslator(new Configuration()))))
       window.handleKeyEvent(createKeyEvent(KeyEvent.VK_DELETE, KeyEvent.VK_UNDEFINED))
 
       there was one(editorApi).delete(psiMethod)

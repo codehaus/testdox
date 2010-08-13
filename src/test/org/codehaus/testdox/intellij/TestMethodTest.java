@@ -12,8 +12,6 @@ import org.codehaus.testdox.intellij.config.Configuration;
 import org.jmock.Mock;
 import org.jmock.MockObjectTestCase;
 
-import javax.swing.*;
-
 public class TestMethodTest extends MockObjectTestCase {
 
     static {
@@ -45,13 +43,13 @@ public class TestMethodTest extends MockObjectTestCase {
         String methodName2 = "someOtherMethod";
 
         Mock mockPsiMethod2 = mock(PsiMethod.class);
-        SentenceManager sentenceManager = new SentenceManager(new Configuration());
+        SentenceTranslator sentenceTranslator = new SentenceTranslator(new Configuration());
 
         mockPsiMethod.expects(atLeastOnce()).method("getName").will(returnValue(methodName1));
         mockPsiMethod2.expects(atLeastOnce()).method("getName").will(returnValue(methodName2));
 
-        TestMethod testMethod1 = new TestMethod((PsiMethod) mockPsiMethod.proxy(), editorApiMock, sentenceManager);
-        TestMethod testMethod2 = new TestMethod((PsiMethod) mockPsiMethod2.proxy(), editorApiMock, sentenceManager);
+        TestMethod testMethod1 = new TestMethod((PsiMethod) mockPsiMethod.proxy(), editorApiMock, sentenceTranslator);
+        TestMethod testMethod2 = new TestMethod((PsiMethod) mockPsiMethod2.proxy(), editorApiMock, sentenceTranslator);
 
         ComparableAssert.assertGreater(methodName2, testMethod1, testMethod2);
     }
@@ -61,8 +59,8 @@ public class TestMethodTest extends MockObjectTestCase {
     }
 
     public void testUsesItsDisplayStringAsItsTextualRepresentation() {
-        SentenceManager sentenceManager = new SentenceManager(new Configuration());
-        TestMethod testMethod = new TestMethod((PsiMethod) mockPsiMethod.proxy(), editorApiMock, sentenceManager);
+        SentenceTranslator sentenceTranslator = new SentenceTranslator(new Configuration());
+        TestMethod testMethod = new TestMethod((PsiMethod) mockPsiMethod.proxy(), editorApiMock, sentenceTranslator);
 
         mockPsiMethod.expects(atLeastOnce()).method("getName").will(returnValue("someMethod"));
         assertEquals(testMethod.displayString(), testMethod.toString());

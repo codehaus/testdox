@@ -3,7 +3,7 @@ package org.codehaus.testdox.intellij
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.{PsiClass}
 
-class TestLookup(val editorApi: EditorApi, sentenceManager: SentenceManager) {
+class TestLookup(val editorApi: EditorApi, sentenceTranslator: SentenceTranslator) {
 
   def isJavaFile(file: VirtualFile) = editorApi.isJavaFile(file)
 
@@ -26,7 +26,7 @@ class TestLookup(val editorApi: EditorApi, sentenceManager: SentenceManager) {
     if (testClass != null) {
       editorApi.getMethods(testClass)
           .filter {editorApi.isTestMethod(_)}
-          .map {new TestMethod(_, editorApi, sentenceManager)}
+          .map {new TestMethod(_, editorApi, sentenceTranslator)}
     }
     else
       TestMethod.EMPTY_ARRAY

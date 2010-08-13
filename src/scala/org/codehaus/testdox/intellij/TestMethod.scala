@@ -4,7 +4,7 @@ import com.intellij.openapi.actionSystem.Presentation
 import com.intellij.psi.PsiMethod
 import javax.swing.Icon
 
-class TestMethod(psiMethod: PsiMethod, editorApi: EditorApi, sentenceManager: SentenceManager) extends AbstractTestElement {
+class TestMethod(psiMethod: PsiMethod, editorApi: EditorApi, sentenceTranslator: SentenceTranslator) extends AbstractTestElement {
 
   def methodName: String = psiMethod.getName()
 
@@ -12,7 +12,7 @@ class TestMethod(psiMethod: PsiMethod, editorApi: EditorApi, sentenceManager: Se
 
   override def jumpToPsiElement(): Boolean = editorApi.jumpToPsiElement(psiElement)
 
-  override def displayString: String = sentenceManager.buildSentence(methodName)
+  override def displayString: String = sentenceTranslator.buildSentence(methodName)
 
   override def icon: Icon = Icons.getIcon(Icons.DOX_ICON)
 
@@ -31,6 +31,5 @@ class TestMethod(psiMethod: PsiMethod, editorApi: EditorApi, sentenceManager: Se
 }
 
 object TestMethod {
-
   val EMPTY_ARRAY = new Array[TestMethod](0)
 }
