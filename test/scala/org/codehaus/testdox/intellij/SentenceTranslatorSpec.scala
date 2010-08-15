@@ -7,7 +7,7 @@ import org.specs.Specification
 
 object SentenceTranslatorSpec extends Specification {
 
-  "SentenceTranslator.buildSentence must" >> {
+  "SentenceTranslator.buildSentence" should {
 
     "return an empty string when given a null string" in {
       translator().buildSentence(null) must be equalTo ""
@@ -72,7 +72,7 @@ object SentenceTranslatorSpec extends Specification {
     }
   }
 
-  "SentenceTranslator.buildMethodName must" >> {
+  "SentenceTranslator.buildMethodName" should {
 
     "return the default test method name when given null" in {
       translator().buildMethodName(null) must be equalTo DEFAULT_TEST_METHOD_NAME
