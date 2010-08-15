@@ -6,7 +6,7 @@ import org.codehaus.testdox.intellij.PackageResolver._
 object PackageResolverSpec extends Specification {
   private val packageResolver = new PackageResolver("com.acme.foo.bar")
 
-  "A PackageResolver must" >> {
+  "A PackageResolver" should {
     "return an empty package given a null template" in {
       packageResolver.getPackage(null) must be equalTo ""
     }
