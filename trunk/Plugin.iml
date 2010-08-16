@@ -2,11 +2,6 @@
 <module relativePaths="true" type="PLUGIN_MODULE" version="4">
   <component name="DevKit.ModuleBuildProperties" url="file://$MODULE_DIR$/META-INF/plugin.xml" />
   <component name="FacetManager">
-    <facet type="JRUBY" name="JRuby">
-      <configuration number="0">
-        <JRUBY_FACET_CONFIG_ID NAME="JRUBY_SDK_NAME" VALUE="" />
-      </configuration>
-    </facet>
     <facet type="scala" name="Scala">
       <configuration>
         <option name="compilerLibraryLevel" value="Global" />
@@ -14,6 +9,11 @@
         <option name="deprecationWarnings" value="true" />
         <option name="explainTypeErrors" value="true" />
         <option name="optimiseBytecode" value="true" />
+      </configuration>
+    </facet>
+    <facet type="JRUBY" name="JRuby">
+      <configuration number="0">
+        <JRUBY_FACET_CONFIG_ID NAME="JRUBY_SDK_NAME" VALUE="" />
       </configuration>
     </facet>
   </component>
@@ -30,6 +30,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Scala SDK" level="application" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
@@ -103,6 +104,15 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/runtime/scalaj-collection_2.8.0-1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
       <library name="mockito-core-1.8.5.jar">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/test/mockito-core-1.8.5.jar!/" />
@@ -124,7 +134,6 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="library" name="Scala SDK" level="application" />
   </component>
   <component name="RModuleSettingsStorage">
     <RMODULE_SETTINGS_STORAGE_ID NAME="NUMBER" VALUE="0" />

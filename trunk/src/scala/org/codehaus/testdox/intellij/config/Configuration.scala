@@ -4,9 +4,8 @@ import org.codehaus.testdox.intellij.TemplateNameResolver
 
 import java.beans.PropertyChangeListener
 import java.beans.PropertyChangeSupport
-import scala.collection.mutable.ListBuffer
-import scala.collection.JavaConversions
 import scala.reflect.BeanProperty
+import scalaj.collection.Imports._
 
 @serializable
 class Configuration {
@@ -51,14 +50,14 @@ class Configuration {
   def getCustomPackages = customPackages
 
   @deprecated("will be replaced with 'public var customPackages'")
-  def getCustomPackagesAsJavaList = JavaConversions.asList[String](new ListBuffer[String] ++ customPackages)
+  def getCustomPackagesAsJavaList = customPackages.asJava
 
   @deprecated("will be replaced with 'public var customPackages'")
-  def setCustomPackages(newPackages: java.util.List[String]): Unit = setCustomPackages(JavaConversions.asBuffer(newPackages).toList)
+  def setCustomPackages(newPackages: java.util.List[String]): Unit = setCustomPackages(newPackages.asScala.toList)
 
   @deprecated("will be replaced with 'public var customPackages'")
   def setCustomPackages(newPackages: List[String]) {
-    val oldPackages = customPackages;
+    val oldPackages = customPackages
     customPackages = newPackages
     support.firePropertyChange(Configuration.CUSTOM_PACKAGES, oldPackages, customPackages)
   }
