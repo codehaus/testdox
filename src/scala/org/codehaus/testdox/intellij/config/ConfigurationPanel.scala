@@ -9,7 +9,7 @@ import java.awt.event._
 import javax.swing._
 import org.codehaus.testdox.intellij.PackageResolver._
 import org.codehaus.testdox.intellij.TemplateNameResolver
-import scala.collection.JavaConversions
+import scalaj.collection.Imports._
 
 class ConfigurationPanel extends JPanel with ConfigurationUI {
   
@@ -42,7 +42,7 @@ class ConfigurationPanel extends JPanel with ConfigurationUI {
 
   def customPackageMappings = model.mappings.toList
   def customPackageMappings_=(mappings: List[String]) = model.setMappings(mappings)
-  def setCustomPackageMappings(mappings: java.util.List[String]) = customPackageMappings = JavaConversions.asBuffer(mappings).toList
+  def setCustomPackageMappings(mappings: java.util.List[String]) = customPackageMappings = mappings.asScala.toList
 
   def customMappingStatus = allowCustom.isSelected()
   def customMappingStatus_=(active: Boolean) {
