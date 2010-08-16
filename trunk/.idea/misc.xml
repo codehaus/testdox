@@ -4,6 +4,7 @@
     <scope name="IntelliJ IDEA" pattern="lib:com.intellij..*" />
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
   </component>
+  <component name="IdProvider" IDEtalkID="E3C6D21814EDA2B0DD7165D8A7C1D133" />
   <component name="JavadocGenerationManager">
     <option name="OUTPUT_DIRECTORY" />
     <option name="OPTION_SCOPE" value="protected" />
