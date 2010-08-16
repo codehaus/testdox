@@ -6,7 +6,7 @@
       <additionalClassPath>
         <entry path="file://$PROJECT_DIR$/tools/lib/bsf-2.3.0RC1.jar" />
         <entry path="file://$PROJECT_DIR$/tools/lib/junit-3.8.1.jar" />
-        <entry path="file://$PROJECT_DIR$/../../../.ant/lib/clover.jar" />
+        <entry path="file://$USER_HOME$/.ant/lib/clover.jar" />
         <entry path="file://$PROJECT_DIR$/tools/lib/rhino-js-1.5R3.jar" />
       </additionalClassPath>
       <antReference projectDefault="true" />
