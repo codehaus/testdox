@@ -8,38 +8,38 @@ object ConfigurationPanelSpec extends Specification {
 
   "ConfigurationPanel" should {
 
-    "toggle the activation of entry widgets when the custom packaging checkbox is clicked" in {
-      assertControls(false)
+    "toggle the activation of entry widgets when the custom packaging checkbox is toggled" in {
+      assertControlsAreEnabled(false)
 
-      panel.allowCustom.doClick
-      assertControls(true)
+      panel.allowCustom.doClick()
+      assertControlsAreEnabled(true)
 
-      panel.allowCustom.doClick
-      assertControls(false)
+      panel.allowCustom.doClick()
+      assertControlsAreEnabled(false)
     }
 
     "remove the current row when the delete column is clicked" in {
       panel.packageInputField.setText("foo")
-      panel.addMapping
+      panel.addMapping()
 
       panel.table.changeSelection(0, 1, false, false)
-      panel.deleteRow
+      panel.deleteRow()
 
       panel.table.getRowCount() must be equalTo 0
     }
 
     "not remove the current row if the mapping column is clicked" in {
       panel.packageInputField.setText("foo")
-      panel.addMapping
+      panel.addMapping()
 
       panel.table.changeSelection(0, 0, false, false)
-      panel.deleteRow
+      panel.deleteRow()
 
-      panel.table.getRowCount must be equalTo 1
+      panel.table.getRowCount() must be equalTo 1
     }
   }
 
-  private def assertControls(enabled: Boolean) {
+  private def assertControlsAreEnabled(enabled: Boolean) {
     panel.packageInputField.isEnabled must be equalTo enabled
     panel.addButton.isEnabled must be equalTo enabled
     panel.table.isEnabled must be equalTo enabled
