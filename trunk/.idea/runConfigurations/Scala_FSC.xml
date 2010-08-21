@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Scala FSC" type="ScalaCompilationServerRunConfiguration" factoryName="Scala Compilation Server">
+    <module name="Plugin" />
+    <setting name="vmparams" value="-Xms256m -Xmx768m -verbose" />
+    <RunnerSettings RunnerId="Run" />
+    <ConfigurationWrapper RunnerId="Run" />
+    <method>
+      <option name="Make" enabled="false" />
+    </method>
+  </configuration>
+</component>
