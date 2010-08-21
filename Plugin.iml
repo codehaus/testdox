@@ -6,6 +6,7 @@
       <configuration>
         <option name="compilerLibraryLevel" value="Global" />
         <option name="compilerLibraryName" value="Scala SDK" />
+        <option name="compilerOptions" value="-target:jvm-1.5" />
         <option name="deprecationWarnings" value="true" />
         <option name="explainTypeErrors" value="true" />
         <option name="optimiseBytecode" value="true" />
