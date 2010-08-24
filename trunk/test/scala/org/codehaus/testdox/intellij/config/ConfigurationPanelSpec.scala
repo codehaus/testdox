@@ -1,8 +1,8 @@
 package org.codehaus.testdox.intellij.config
 
-import org.specs.Specification
+import org.specs.SpecificationWithJUnit
 
-object ConfigurationPanelSpec extends Specification {
+object ConfigurationPanelSpec extends SpecificationWithJUnit {
 
   val panel = new ConfigurationPanel()
 

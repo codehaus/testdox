@@ -3,10 +3,10 @@ package org.codehaus.testdox.intellij.ui
 import org.codehaus.testdox.intellij.{TestDoxClass, TestClass, EditorApi, Mocks}
 import org.codehaus.testdox.intellij.Mocks.MockableTestClass
 import org.codehaus.testdox.intellij.config.Configuration
-import org.specs.Specification
+import org.specs.SpecificationWithJUnit
 import org.specs.mock.Mockito
 
-object QuickDoxDialogSpec extends Specification with Mockito {
+object QuickDoxDialogSpec extends SpecificationWithJUnit with Mockito {
 
   "QuickDoxDialog" should {
     "only be visible when explicitly shown" in {

@@ -1,8 +1,8 @@
 package org.codehaus.testdox.intellij.inspections
 
-import org.specs.Specification
+import org.specs.SpecificationWithJUnit
 
-object InspectionProviderSpec extends Specification {
+object InspectionProviderSpec extends SpecificationWithJUnit {
 
   "InspectionProvider" should {
     val inspectionProvider = new InspectionProvider()

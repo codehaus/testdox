@@ -1,9 +1,9 @@
 package org.codehaus.testdox.intellij
 
-import org.specs.Specification
+import org.specs.SpecificationWithJUnit
 import org.codehaus.testdox.intellij.PackageResolver._
 
-object PackageResolverSpec extends Specification {
+object PackageResolverSpec extends SpecificationWithJUnit {
   private val packageResolver = new PackageResolver("com.acme.foo.bar")
 
   "A PackageResolver" should {

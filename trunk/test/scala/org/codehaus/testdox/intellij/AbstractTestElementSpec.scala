@@ -3,10 +3,10 @@ package org.codehaus.testdox.intellij
 import org.codehaus.testdox.intellij.actions.RenameTestAction
 import org.intellij.openapi.testing.MockApplicationManager
 import javax.swing.Icon
-import org.specs.Specification
+import org.specs.SpecificationWithJUnit
 import org.specs.mock.Mockito
 
-object AbstractTestElementSpec extends Specification with Mockito {
+object AbstractTestElementSpec extends SpecificationWithJUnit with Mockito {
 
   private val testElement = new AbstractTestElement() {
     override val displayString = "dummy"

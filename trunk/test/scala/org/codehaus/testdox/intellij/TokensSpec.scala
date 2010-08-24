@@ -3,9 +3,9 @@ package org.codehaus.testdox.intellij
 import org.codehaus.testdox.intellij.PackageResolver.PACKAGE_TOKEN
 import org.codehaus.testdox.intellij.TemplateNameResolver.NAME_TOKEN
 
-import org.specs.Specification
+import org.specs.SpecificationWithJUnit
 
-object TokensSpec extends Specification {
+object TokensSpec extends SpecificationWithJUnit {
 
   val templateSuffix = "Foo"
 
