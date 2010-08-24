@@ -1,10 +1,10 @@
 package org.codehaus.testdox.intellij
 
-import org.specs.Specification
+import org.specs.SpecificationWithJUnit
 
 import org.codehaus.testdox.intellij.config.Configuration
 
-object TemplateNameResolverSpec extends Specification {
+object TemplateNameResolverSpec extends SpecificationWithJUnit {
 
   private var configuration: Configuration = _
   private var nameResolver: TemplateNameResolver = _

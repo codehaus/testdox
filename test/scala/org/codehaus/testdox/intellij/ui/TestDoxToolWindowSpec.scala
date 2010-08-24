@@ -1,7 +1,7 @@
 package org.codehaus.testdox.intellij.ui
 
 import org.specs.mock.Mockito
-import org.specs.Specification
+import org.specs.SpecificationWithJUnit
 import org.codehaus.testdox.intellij.config.Configuration
 import javax.swing.{JTable, JPanel}
 import java.awt.event.{KeyEvent, MouseEvent}
@@ -9,7 +9,7 @@ import com.intellij.psi.PsiMethod
 import org.codehaus.testdox.intellij._
 import org.intellij.openapi.testing.MockApplicationManager
 
-object TestDoxToolWindowSpec extends Specification with Mockito {
+object TestDoxToolWindowSpec extends SpecificationWithJUnit with Mockito {
 
   val controller = mock[TestDoxController]
   val actionToolbarComponent = new JPanel()

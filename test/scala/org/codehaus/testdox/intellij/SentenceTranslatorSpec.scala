@@ -3,9 +3,9 @@ package org.codehaus.testdox.intellij
 import org.codehaus.testdox.intellij.SentenceTranslator.DEFAULT_TEST_METHOD_NAME
 import org.codehaus.testdox.intellij.config.Configuration
 
-import org.specs.Specification
+import org.specs.SpecificationWithJUnit
 
-object SentenceTranslatorSpec extends Specification {
+object SentenceTranslatorSpec extends SpecificationWithJUnit {
 
   "SentenceTranslator.buildSentence" should {
 

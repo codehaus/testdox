@@ -3,10 +3,10 @@ package org.codehaus.testdox.intellij.config
 import javax.swing.Icon
 import javax.swing.event.{TableModelEvent, TableModelListener}
 
-import org.specs.Specification
+import org.specs.SpecificationWithJUnit
 import org.codehaus.testdox.intellij.Icons
 
-object PackageTableModelSpec extends Specification {
+object PackageTableModelSpec extends SpecificationWithJUnit {
 
   val model = new PackageTableModel()
 

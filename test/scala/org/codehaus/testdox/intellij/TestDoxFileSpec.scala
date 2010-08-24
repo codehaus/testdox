@@ -1,9 +1,9 @@
 package org.codehaus.testdox.intellij
 
-import org.specs.Specification
+import org.specs.SpecificationWithJUnit
 import org.codehaus.testdox.intellij.ui.TestDoxTableModel
 
-object TestDoxFileSpec extends Specification {
+object TestDoxFileSpec extends SpecificationWithJUnit {
 
   val testDoxFile = new TestDoxFile(null, null, null, null, TestMethod.EMPTY_ARRAY) {
       def updateModel(model: TestDoxTableModel) { }

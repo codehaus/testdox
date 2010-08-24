@@ -1,8 +1,8 @@
 package org.codehaus.testdox.intellij
 
-import org.specs.Specification
+import org.specs.SpecificationWithJUnit
 
-object TestDoxNonProjectClassSpec extends Specification {
+object TestDoxNonProjectClassSpec extends SpecificationWithJUnit {
 
   "The test element of a Java class that is not in the current project" should {
     val testElement = TestDoxNonProjectClass.TEST_ELEMENT

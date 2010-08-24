@@ -8,10 +8,10 @@ import com.intellij.history.LocalHistory
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.vfs.VirtualFileEvent
 import org.codehaus.testdox.intellij.config.Configuration
-import org.specs.Specification
+import org.specs.SpecificationWithJUnit
 import org.specs.mock.Mockito
 
-object DeletionInterceptorSpec extends Specification with Mockito {
+object DeletionInterceptorSpec extends SpecificationWithJUnit with Mockito {
 
   private val PACKAGE_PATH = "src/java/com/acme"
   private val PACKAGE_NAME = "com.acme"
