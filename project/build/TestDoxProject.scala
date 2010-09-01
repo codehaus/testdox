@@ -1,8 +1,7 @@
 import java.io.File
 import sbt._
-import webbytest.HtmlTestsProject
 
-class TestDoxProject(info: ProjectInfo) extends DefaultProject(info) with HtmlTestsProject {
+class TestDoxProject(info: ProjectInfo) extends DefaultProject(info) {
 
   // mapping Maven's project structure to TestDox's
 
