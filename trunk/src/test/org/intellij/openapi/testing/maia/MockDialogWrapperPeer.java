@@ -123,4 +123,8 @@ class MockDialogWrapperPeer extends DialogWrapperPeer {
 
     public void setAppIcons() {
     }
+
+    public boolean isHeadless() {
+        return true;
+    }
 }
