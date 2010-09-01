@@ -2,27 +2,26 @@ package org.intellij.openapi.testing;
 
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.vfs.VirtualFileEvent;
-import com.intellij.openapi.vfs.newvfs.impl.NullVirtualFile;
+import com.intellij.openapi.vfs.newvfs.impl.StubVirtualFile;
 
 public class VirtualFileEventBuilder {
 
-    private Object requestor;
-    private VirtualFile file = NullVirtualFile.INSTANCE;
+    private Object requester;
     private String fileName;
-    private VirtualFile parent;
 
-    public VirtualFileEventBuilder withRequestor(Object requestor) {
-        this.requestor = requestor;
+    private VirtualFile file = new StubVirtualFile() {
+        public boolean isDirectory() {
+            return false;
+        }
+    };
+
+    public VirtualFileEventBuilder withRequester(Object requester) {
+        this.requester = requester;
         return this;
     }
 
     public VirtualFileEventBuilder withFileName(String fileName) {
         this.fileName = fileName;
-        return this;
-    }
-
-    public VirtualFileEventBuilder withFileDeleted() {
-//        new VirtualFileEvent(psiManagerMock, virtualFileMock, CLASS_NAME + ".java", false, null)
         return this;
     }
 
@@ -32,6 +31,6 @@ public class VirtualFileEventBuilder {
     }
 
     public VirtualFileEvent build() {
-        return new VirtualFileEvent(requestor, file, fileName, parent);
+        return new VirtualFileEvent(requester, file, fileName, null);
     }
 }

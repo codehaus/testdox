@@ -9,216 +9,205 @@ import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.vfs.VirtualFileEvent
 import org.codehaus.testdox.intellij.config.Configuration
 import org.specs.SpecificationWithJUnit
-import org.specs.mock.Mockito
+import org.specs.mock.{ClassMocker, JMocker}
+import org.jmock.lib.concurrent.Synchroniser
 
-object DeletionInterceptorSpec extends SpecificationWithJUnit with Mockito {
+object DeletionInterceptorSpec extends SpecificationWithJUnit with JMocker with ClassMocker {
 
-  private val PACKAGE_PATH = "src/java/com/acme"
-  private val PACKAGE_NAME = "com.acme"
-  private val CLASS_NAME = "Foo"
+  val PACKAGE_PATH = "src/java/com/acme"
+  val PACKAGE_NAME = "com.acme"
+  val CLASS_NAME = "Foo"
 
-  private val FULLY_QUALIFIED_CLASS_NAME = PACKAGE_NAME + '.' + CLASS_NAME
-  private val FULLY_QUALIFIED_TEST_CLASS_NAME = FULLY_QUALIFIED_CLASS_NAME + "Test"
+  val FULLY_QUALIFIED_CLASS_NAME = PACKAGE_NAME + '.' + CLASS_NAME
+  val FULLY_QUALIFIED_TEST_CLASS_NAME = FULLY_QUALIFIED_CLASS_NAME + "Test"
 
   "DeletionInterceptor" should {
-
     val editorApi = mock[EditorApi]
     val nameResolver = mock[NameResolver]
     val config = new Configuration()
 
     val interceptor = new DeletionInterceptor(editorApi, config, nameResolver)
 
-    doBeforeSpec {MockApplicationManager.reset()}
+    doBeforeSpec { MockApplicationManager.reset() }
 
-    doAfter {
-//      there were noMoreCallsTo(editorApi)
-      there were noMoreCallsTo(nameResolver)
-    }
-
-    // Package deletion
+    doBefore { context.setThreadingPolicy(new Synchroniser()) }
 
     "not intercept directory deletion" in {
 
       "if TestDox is not configured to delete package occurrences" in {
+        expect { never(editorApi).getPsiDirectory(any[VirtualFile]) }
+
         config.setDeletePackageOccurrences(false)
         interceptor.beforeFileDeletion(createDirectoryDeletedEvent())
-        there were noMoreCallsTo(editorApi)
       }
 
       "when triggered by a cancelled deletion" in {
+        expect { never(editorApi).getPsiDirectory(any[VirtualFile]) }
+
         config.setDeletePackageOccurrences(false)
         interceptor.beforeFileDeletion(createVcsDirectoryPruningEvent())
-        there were noMoreCallsTo(editorApi)
       }
 
       "when triggered by a local VCS operation" in {
+        expect { never(editorApi).getPsiDirectory(any[VirtualFile]) }
+
         config.setDeletePackageOccurrences(false)
         interceptor.beforeFileDeletion(createVcsDirectoryPruningEvent())
-        there were noMoreCallsTo(editorApi)
       }
 
       "when triggered by the CVS directory prunner" in {
+        expect { never(editorApi).getPsiDirectory(any[VirtualFile]) }
+
         config.setDeletePackageOccurrences(false)
         interceptor.beforeFileDeletion(createVcsDirectoryPruningEvent())
-        there were noMoreCallsTo(editorApi)
       }
 
       "if the directory being deleted does not represent a package" in {
         val deletedDirectory = mock[PsiDirectory]
-
-        editorApi.getPsiDirectory(any[VirtualFile]) returns deletedDirectory
-
         val javaDirectoryService = mock[JavaDirectoryService]
-        javaDirectoryService.getPackage(deletedDirectory) returns null
+
+        expect {
+          one(editorApi).getPsiDirectory(any[VirtualFile]) will returnValue(deletedDirectory)
+          one(javaDirectoryService).getPackage(deletedDirectory) will returnValue(null)
+        }
 
         MockApplicationManager.getMockApplication().registerComponent(classOf[JavaDirectoryService], javaDirectoryService)
 
         config.setDeletePackageOccurrences(true)
         interceptor.beforeFileDeletion(createDirectoryDeletedEvent())
-
-        there was one(javaDirectoryService).getPackage(deletedDirectory)
       }
 
       "if the directory being deleted is the only occurrence of the package it represents" in {
         val deletedDirectory = mock[PsiDirectory]
-
-        editorApi.getPsiDirectory(any[VirtualFile]) returns deletedDirectory
-
         val psiPackage = mock[PsiPackage]
-        psiPackage.getDirectories() returns Array(deletedDirectory)
-
         val javaDirectoryService = mock[JavaDirectoryService]
-        javaDirectoryService.getPackage(deletedDirectory) returns psiPackage
+
+        expect {
+          one(editorApi).getPsiDirectory(any[VirtualFile]) will returnValue(deletedDirectory)
+          one(psiPackage).getDirectories() will returnValue(Array(deletedDirectory))
+          exactly(2).of(javaDirectoryService).getPackage(deletedDirectory) will returnValue(psiPackage)
+        }
 
         MockApplicationManager.getMockApplication().registerComponent(classOf[JavaDirectoryService], javaDirectoryService)
 
         config.setDeletePackageOccurrences(true)
         interceptor.beforeFileDeletion(createDirectoryDeletedEvent())
-
-        there were two(javaDirectoryService).getPackage(deletedDirectory)
-        there was one(psiPackage).getDirectories()
       }
 
       "if other occurrences of the associated package are read-only" in {
         val deletedDirectory = mock[PsiDirectory]
-
-        editorApi.getPsiDirectory(any[VirtualFile]) returns deletedDirectory
-
         val readOnlyDirectory = mock[PsiDirectory]
-        readOnlyDirectory.isWritable returns false
-
         val psiPackage = mock[PsiPackage]
-        psiPackage.getDirectories() returns Array(readOnlyDirectory)
-
         val javaDirectoryService = mock[JavaDirectoryService]
-        javaDirectoryService.getPackage(deletedDirectory) returns psiPackage
+
+        expect {
+          one(editorApi).getPsiDirectory(any[VirtualFile]) will returnValue(deletedDirectory)
+          one(readOnlyDirectory).isWritable will returnValue(false)
+          one(psiPackage).getDirectories() will returnValue(Array(readOnlyDirectory))
+          exactly(2).of(javaDirectoryService).getPackage(deletedDirectory) will returnValue(psiPackage)
+        }
 
         MockApplicationManager.getMockApplication().registerComponent(classOf[JavaDirectoryService], javaDirectoryService)
 
         config.setDeletePackageOccurrences(true)
         interceptor.beforeFileDeletion(createDirectoryDeletedEvent())
-
-        there were two(javaDirectoryService).getPackage(deletedDirectory)
-        there was one(psiPackage).getDirectories()
       }
     }
 
     "asynchronously delete other occurrences of the package represented by the directory being deleted" in {
       val anotherVirtualFile = mock[MockableVirtualFile]
-      anotherVirtualFile.getPath() returns "src/test/com/acme"
-
       val psiPackage = mock[PsiPackage]
       val directory = mock[PsiDirectory]
-
-      psiPackage.getQualifiedName() returns PACKAGE_NAME
-      psiPackage.getDirectories() returns Array(directory)
-      directory.isWritable() returns true
-      directory.getVirtualFile() returns anotherVirtualFile
-
       val deletedDirectory = mock[PsiDirectory]
-      editorApi.getPsiDirectory(any[VirtualFile]) returns deletedDirectory
-      editorApi.deleteAsynchronously(any[Array[PsiDirectory]], any[String], any[String], any[Runnable])
-
       val javaDirectoryService = mock[JavaDirectoryService]
-      javaDirectoryService.getPackage(deletedDirectory) returns psiPackage
+
+      expect {
+        one(anotherVirtualFile).getPath() will returnValue("src/test/com/acme")
+        one(psiPackage).getQualifiedName() will returnValue(PACKAGE_NAME)
+        one(psiPackage).getDirectories() will returnValue(Array(directory))
+        one(directory).isWritable() will returnValue(true)
+        one(directory).getVirtualFile() will returnValue(anotherVirtualFile)
+
+        one(editorApi).getPsiDirectory(any[VirtualFile]) will returnValue(deletedDirectory)
+        one(editorApi).deleteAsynchronously(any[Array[PsiDirectory]], any[String], any[String], any[Runnable])
+        atLeast(1).of(javaDirectoryService).getPackage(deletedDirectory) will returnValue(psiPackage)
+      }
 
       MockApplicationManager.getMockApplication().registerComponent(classOf[JavaDirectoryService], javaDirectoryService)
 
       config.setDeletePackageOccurrences(true)
       interceptor.beforeFileDeletion(createDirectoryDeletedEvent())
-
-      there was atLeastOne(javaDirectoryService).getPackage(deletedDirectory)
     }
-
-    // Class deletion
 
     "not intercept class deletion" in {
 
       "if TestDox is not configured to automatically apply changes to tests" in {
+        expect { never(editorApi).getPsiJavaFile(any[VirtualFile]) }
+
         config.setAutoApplyChangesToTests(false)
         interceptor.beforeFileDeletion(createFileDeletedEvent())
-        there were noMoreCallsTo(editorApi)
       }
 
       "when triggered by a cancelled deletion" in {
+        expect { never(editorApi).getPsiJavaFile(any[VirtualFile]) }
+
         config.setAutoApplyChangesToTests(true)
         interceptor.beforeFileDeletion(new VirtualFileEvent(new Object(), NullVirtualFile.INSTANCE, CLASS_NAME + ".java", null))
-        there were noMoreCallsTo(editorApi)
       }
 
       "when triggered by a local VCS operation" in {
+        expect { never(editorApi).getPsiJavaFile(any[VirtualFile]) }
+
         config.setAutoApplyChangesToTests(true)
         interceptor.beforeFileDeletion(createVcsDirectoryPruningEvent())
-        there were noMoreCallsTo(editorApi)
       }
 
       "when triggered by the CVS directory prunner" in {
+        expect { never(editorApi).getPsiJavaFile(any[VirtualFile]) }
+
         config.setAutoApplyChangesToTests(true)
         interceptor.beforeFileDeletion(createVcsDirectoryPruningEvent())
-        there were noMoreCallsTo(editorApi)
       }
 
       "if the file being deleted is not a class in the project" in {
-        editorApi.getPsiJavaFile(any[VirtualFile]) returns null
+        expect { one(editorApi).getPsiJavaFile(any[VirtualFile]) will returnValue(null) }
 
         config.setAutoApplyChangesToTests(true)
-        interceptor.beforeFileDeletion(createVcsDirectoryPruningEvent())
-
-        there were noMoreCallsTo(editorApi)
+        interceptor.beforeFileDeletion(createFileDeletedEvent())
       }
 
       "if the file being deleted is a test class" in {
         val javaFile = mock[PsiJavaFile]
         val javaClass = mock[PsiClass]
 
-        editorApi.getPsiJavaFile(any[VirtualFile]) returns javaFile
-        javaFile.getPackageName() returns PACKAGE_NAME
-        javaFile.getClasses() returns Array(javaClass)
-        javaClass.getName() returns "FooTest"
-        nameResolver.isRealClass(FULLY_QUALIFIED_TEST_CLASS_NAME) returns false
+        expect {
+          one(editorApi).getPsiJavaFile(any[VirtualFile]) will returnValue(javaFile)
+          one(javaFile).getPackageName() will returnValue(PACKAGE_NAME)
+          one(javaFile).getClasses() will returnValue(Array(javaClass))
+          one(javaClass).getName() will returnValue("FooTest")
+          one(nameResolver).isRealClass(FULLY_QUALIFIED_TEST_CLASS_NAME) will returnValue(false)
+        }
 
         config.setAutoApplyChangesToTests(true)
         interceptor.beforeFileDeletion(createFileDeletedEvent())
-
-        there were noMoreCallsTo(nameResolver)
       }
 
       "if the test class cannot be found" in {
         val javaFile = mock[PsiJavaFile]
         val javaClass = mock[PsiClass]
 
-        editorApi.getPsiJavaFile(any[VirtualFile]) returns javaFile
-        javaFile.getPackageName() returns PACKAGE_NAME
-        javaFile.getClasses() returns Array(javaClass)
-        javaClass.getName() returns CLASS_NAME
-        nameResolver.isRealClass(FULLY_QUALIFIED_CLASS_NAME) returns true
-        nameResolver.getTestClassName(FULLY_QUALIFIED_CLASS_NAME) returns FULLY_QUALIFIED_TEST_CLASS_NAME
-        editorApi.getPsiClass(FULLY_QUALIFIED_TEST_CLASS_NAME) returns null
+        expect {
+          one(editorApi).getPsiJavaFile(any[VirtualFile]) will returnValue(javaFile)
+          one(javaFile).getPackageName() will returnValue(PACKAGE_NAME)
+          one(javaFile).getClasses() will returnValue(Array(javaClass))
+          one(javaClass).getName() will returnValue(CLASS_NAME)
+          one(nameResolver).isRealClass(FULLY_QUALIFIED_CLASS_NAME) will returnValue(true)
+          one(nameResolver).getTestClassName(FULLY_QUALIFIED_CLASS_NAME) will returnValue(FULLY_QUALIFIED_TEST_CLASS_NAME)
+          one(editorApi).getPsiClass(FULLY_QUALIFIED_TEST_CLASS_NAME) will returnValue(null)
+        }
 
         config.setAutoApplyChangesToTests(true)
         interceptor.beforeFileDeletion(createFileDeletedEvent())
-        
-        there were noMoreCallsTo(nameResolver)
       }
     }
 
@@ -226,29 +215,32 @@ object DeletionInterceptorSpec extends SpecificationWithJUnit with Mockito {
       val javaFile = mock[PsiJavaFile]
       val javaClass = mock[PsiClass]
 
-      editorApi.getPsiJavaFile(any[VirtualFile]) returns javaFile
-      javaFile.getPackageName() returns PACKAGE_NAME
-      javaFile.getClasses() returns Array(javaClass)
-      javaClass.getName() returns CLASS_NAME
-      nameResolver.isRealClass(FULLY_QUALIFIED_CLASS_NAME) returns true
-      nameResolver.getTestClassName(FULLY_QUALIFIED_CLASS_NAME) returns FULLY_QUALIFIED_TEST_CLASS_NAME
-      editorApi.getPsiClass(FULLY_QUALIFIED_TEST_CLASS_NAME) returns javaClass
-      editorApi.deleteAsynchronously(any[PsiClass])
+      expect {
+        one(editorApi).getPsiJavaFile(any[VirtualFile]) will returnValue(javaFile)
+        one(javaFile).getPackageName() will returnValue(PACKAGE_NAME)
+        one(javaFile).getClasses() will returnValue(Array(javaClass))
+        one(javaClass).getName() will returnValue(CLASS_NAME)
+        one(nameResolver).isRealClass(FULLY_QUALIFIED_CLASS_NAME) will returnValue(true)
+        one(nameResolver).getTestClassName(FULLY_QUALIFIED_CLASS_NAME) will returnValue(FULLY_QUALIFIED_TEST_CLASS_NAME)
+        one(editorApi).getPsiClass(FULLY_QUALIFIED_TEST_CLASS_NAME) will returnValue(javaClass)
+        one(editorApi).deleteAsynchronously(any[PsiClass])
+      }
 
       config.setAutoApplyChangesToTests(true)
       interceptor.beforeFileDeletion(createFileDeletedEvent())
-      
-      there were noMoreCallsTo(nameResolver)
     }
   }
 
   private def createVcsDirectoryPruningEvent() = new VirtualFileEvent(mock[LocalHistory], mock[VirtualFile], PACKAGE_PATH, null)
 
   private def createDirectoryDeletedEvent() = new RealObjectBuilder().virtualFileEvent()
-      .withRequestor(mock[PsiManager])
+      .withRequester(mock[PsiManager])
       .withFileName(PACKAGE_PATH)
       .withIsDirectory(true)
       .build()
 
-  private def createFileDeletedEvent() = new RealObjectBuilder().virtualFileEvent().withFileDeleted().build()
+  private def createFileDeletedEvent() = new RealObjectBuilder().virtualFileEvent()
+      .withRequester(mock[PsiManager])
+      .withFileName(CLASS_NAME + ".java")
+      .build()
 }

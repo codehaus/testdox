@@ -4,23 +4,26 @@ import org.codehaus.testdox.intellij.{TestDoxClass, TestClass, EditorApi, Mocks}
 import org.codehaus.testdox.intellij.Mocks.MockableTestClass
 import org.codehaus.testdox.intellij.config.Configuration
 import org.specs.SpecificationWithJUnit
-import org.specs.mock.Mockito
+import org.specs.mock.{ClassMocker, JMocker}
 
-object QuickDoxDialogSpec extends SpecificationWithJUnit with Mockito {
+object QuickDoxDialogSpec extends SpecificationWithJUnit with JMocker with ClassMocker {
 
   "QuickDoxDialog" should {
     "only be visible when explicitly shown" in {
       val testClass = mock[MockableTestClass]
-      testClass.displayString returns "FooClass"
+      val testDoxClass = createTestDoxFileRepresentingAProjectClass(testClass)
 
-      val editorApi = mock[EditorApi]
+      expect { allowing(testClass).displayString() will returnValue("FooClass") }
+
       val configuration = new Configuration()
       val model = new TestDoxTableModel(configuration)
-
-      val testDoxClass = createTestDoxFileRepresentingAProjectClass(testClass)
       testDoxClass.updateModel(model)
 
+      val editorApi = mock[EditorApi]
       val dialog = new QuickDoxDialog(null, editorApi, model, configuration)
+
+      expect { exactly(2).of(editorApi).activateSelectedTextEditor() }
+
       dialog.isVisible() must be (false)
 
       dialog.show()
@@ -30,8 +33,6 @@ object QuickDoxDialogSpec extends SpecificationWithJUnit with Mockito {
       dialog.isVisible() must be (false)
 
       configuration.removePropertyChangeListener(dialog)
-
-      there were two(editorApi).activateSelectedTextEditor
     }
   }
 
