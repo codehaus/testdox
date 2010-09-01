@@ -4,9 +4,9 @@ import org.codehaus.testdox.intellij.actions.RenameTestAction
 import org.intellij.openapi.testing.MockApplicationManager
 import javax.swing.Icon
 import org.specs.SpecificationWithJUnit
-import org.specs.mock.Mockito
+import org.specs.mock.JMocker
 
-object AbstractTestElementSpec extends SpecificationWithJUnit with Mockito {
+object AbstractTestElementSpec extends SpecificationWithJUnit with JMocker {
 
   private val testElement = new AbstractTestElement() {
     override val displayString = "dummy"
@@ -42,13 +42,13 @@ object AbstractTestElementSpec extends SpecificationWithJUnit with Mockito {
     "do nothing when asked to rename the underlying tested class" in {
       val controller = mock[TestDoxController]
       testElement.rename(controller)
-      there were noMoreCallsTo(controller)
+      expect { never(controller).startRename(same(testElement.psiElement)) }
     }
 
     "do nothing when asked to delete the underlying tested class" in {
       val controller = mock[TestDoxController]
       testElement.delete(controller)
-      there were noMoreCallsTo(controller)
+      expect { never(controller).delete(same(testElement.psiElement)) }
     }
   }
 }
