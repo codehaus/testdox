@@ -1,6 +1,5 @@
 package org.codehaus.testdox.intellij
 
-import junitx.framework.ComparableAssert
 import com.intellij.psi.PsiMethod
 import org.codehaus.testdox.intellij.actions.RenameTestAction
 import org.codehaus.testdox.intellij.config.Configuration
@@ -41,7 +40,7 @@ object TestMethodSpec extends SpecificationWithJUnit with JMocker {
       val testMethod1 = new TestMethod(psiMethod,  editorApi, sentenceTranslator)
       val testMethod2 = new TestMethod(psiMethod2, editorApi, sentenceTranslator)
 
-      ComparableAssert.assertGreater(methodName2, testMethod1, testMethod2)
+      testMethod2.compareTo(testMethod1) must be > 0
     }
 
     "use its display string as its textual representation" in {
