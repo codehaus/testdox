@@ -3,7 +3,6 @@ package org.codehaus.testdox.intellij
 import com.intellij.psi._
 import org.codehaus.testdox.intellij.Mocks.MockableVirtualFile
 import com.intellij.openapi.vfs.newvfs.impl.NullVirtualFile
-import org.intellij.openapi.testing.{RealObjectBuilder, MockApplicationManager}
 import com.intellij.history.LocalHistory
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.vfs.VirtualFileEvent
@@ -11,6 +10,7 @@ import org.codehaus.testdox.intellij.config.Configuration
 import org.specs.SpecificationWithJUnit
 import org.specs.mock.{ClassMocker, JMocker}
 import org.jmock.lib.concurrent.Synchroniser
+import org.intellij.openapi.testing.{VirtualFileEventBuilder, MockApplicationManager}
 
 object DeletionInterceptorSpec extends SpecificationWithJUnit with JMocker with ClassMocker {
 
@@ -233,13 +233,13 @@ object DeletionInterceptorSpec extends SpecificationWithJUnit with JMocker with 
 
   private def createVcsDirectoryPruningEvent() = new VirtualFileEvent(mock[LocalHistory], mock[VirtualFile], PACKAGE_PATH, null)
 
-  private def createDirectoryDeletedEvent() = new RealObjectBuilder().virtualFileEvent()
+  private def createDirectoryDeletedEvent() = new VirtualFileEventBuilder()
       .withRequester(mock[PsiManager])
       .withFileName(PACKAGE_PATH)
       .withIsDirectory(true)
       .build()
 
-  private def createFileDeletedEvent() = new RealObjectBuilder().virtualFileEvent()
+  private def createFileDeletedEvent() = new VirtualFileEventBuilder()
       .withRequester(mock[PsiManager])
       .withFileName(CLASS_NAME + ".java")
       .build()
