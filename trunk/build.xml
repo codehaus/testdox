@@ -3,7 +3,10 @@
     <target name="check.ant.version">
         <echo taskname="ant.version" message="${ant.version}"/>
         <condition property="ant.version.ok">
-            <contains string="${ant.version}" substring="1.7"/>
+            <or>
+                <contains string="${ant.version}" substring="1.7"/>
+                <contains string="${ant.version}" substring="1.8"/>
+            </or>
         </condition>
     </target>
 
@@ -59,6 +62,13 @@
             </and>
         </condition>
 
+        <taskdef resource="scala/tools/ant/antlib.xml">
+            <classpath>
+                <pathelement location="lib/runtime/scala-library.jar"/>
+                <pathelement location="lib/test/scala-compiler.jar"/>
+            </classpath>
+        </taskdef>
+
         <path id="compile.classpath">
           <fileset dir="${runtime.lib}">
               <include name="*.jar"/>
@@ -108,7 +118,7 @@
 
     <target name="maia.available" depends="check.maia.available" unless="maia.available">
         <fail>
-          IntelliJ IDEA 9.0 is not available. Please set the idea.home system property to the path of your IntelliJ IDEA 9.0 installation.
+          IntelliJ IDEA X is not available. Please set the idea.home system property to the path of your IntelliJ IDEA X installation.
         </fail>
     </target>
 
@@ -118,11 +128,17 @@
 
     <target name="compile.maia" depends="initialise, maia.available">
         <mkdir dir="${classes}/maia"/>
+        <scalac destdir="${classes}/maia" classpathref="maia.compile.classpath">
+            <src path="${java.src}"/>
+            <src path="src/scala"/>
+            <include name="**/*.scala"/>
+            <include name="**/*.java"/>
+        </scalac>
         <javac srcdir="${java.src}" destdir="${classes}/maia" debug="on">
             <classpath refid="maia.compile.classpath"/>
         </javac>
         <copy todir="${classes}/maia" overwrite="true">
-            <fileset dir="${java.src}" excludes="**/*.java, ${binary.extensions}"/>
+            <fileset dir="src/resources" excludes="**/*.java, ${binary.extensions}"/>
             <filterset>
                 <filter token="IDEA.SINCE-BUILD" value="90.116"/>
                 <filter token="IDEA.UNTIL-BUILD" value="99.9999"/>
@@ -132,7 +148,7 @@
             <filterset refid="timestamp.vars"/>
         </copy>
         <copy todir="${classes}/maia" overwrite="true">
-            <fileset dir="${java.src}" includes="${binary.extensions}"/>
+            <fileset dir="src/resources" includes="${binary.extensions}"/>
         </copy>
         <copy todir="${classes}/maia" file="${license.file}" overwrite="true">
             <filterset refid="project.vars"/>
@@ -145,6 +161,12 @@
 
     <target name="compile.tests.maia" depends="compile.maia">
         <mkdir dir="${test.classes}/maia"/>
+        <scalac destdir="${test.classes}/maia" classpathref="maia.test.classpath">
+            <src path="${test.src}"/>
+            <src path="test/scala"/>
+            <include name="**/*.scala"/>
+            <include name="**/*.java"/>
+        </scalac>
         <javac srcdir="${test.src}" destdir="${test.classes}/maia" debug="on">
             <classpath refid="maia.test.classpath"/>
         </javac>
