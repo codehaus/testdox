@@ -4,6 +4,7 @@ import com.intellij.openapi.components.BaseComponent;
 import com.intellij.openapi.components.ComponentConfig;
 import com.intellij.openapi.components.ComponentManager;
 import com.intellij.openapi.extensions.ExtensionPointName;
+import com.intellij.openapi.util.Condition;
 import com.intellij.openapi.util.Key;
 import com.intellij.util.messages.MessageBus;
 import static jedi.functional.Coercions.asArray;
@@ -68,6 +69,11 @@ public class ComponentManagerImpl implements ComponentManager {
     }
 
     @NotNull
+    public Condition getDisposed() {
+        return Condition.NOT_NULL;
+    }
+
+    @NotNull
     public Class[] getComponentInterfaces() {
         return new Class[0];
     }
@@ -84,11 +90,11 @@ public class ComponentManagerImpl implements ComponentManager {
         return hasComponent(interfaceClass) ? getComponent(interfaceClass) : defaultImplementationIfAbsent;
     }
 
-    public <T> T getUserData(Key<T> key) {
+    public <T> T getUserData(@NotNull Key<T> key) {
         return null;
     }
 
-    public <T> void putUserData(Key<T> key, T value) {
+    public <T> void putUserData(@NotNull Key<T> key, T value) {
     }
 
     public void dispose() {

@@ -45,23 +45,23 @@ public class MockApplication extends MockUserDataHolder implements org.intellij.
         manager.removeComponent(componentClass);
     }
 
-    public void runReadAction(Runnable runnable) {
+    public void runReadAction(@NotNull Runnable runnable) {
         runnable.run();
     }
 
-    public <T> T runReadAction(Computable<T> computation) {
+    public <T> T runReadAction(@NotNull Computable<T> computation) {
         return computation.compute();
     }
 
-    public void runWriteAction(Runnable runnable) {
+    public void runWriteAction(@NotNull Runnable runnable) {
         runnable.run();
     }
 
-    public <T> T runWriteAction(Computable<T> computation) {
+    public <T> T runWriteAction(@NotNull Computable<T> computation) {
         return computation.compute();
     }
 
-    public Object getCurrentWriteAction(Class aClass) {
+    public <T> T getCurrentWriteAction(Class<T> clazz) {
         return null;
     }
 
@@ -82,13 +82,13 @@ public class MockApplication extends MockUserDataHolder implements org.intellij.
     public void assertIsDispatchThread() {
     }
 
-    public void addApplicationListener(ApplicationListener applicationListener) {
+    public void addApplicationListener(@NotNull ApplicationListener applicationListener) {
     }
 
-    public void addApplicationListener(ApplicationListener applicationListener, Disposable disposable) {
+    public void addApplicationListener(@NotNull ApplicationListener applicationListener, @NotNull Disposable disposable) {
     }
 
-    public void removeApplicationListener(ApplicationListener applicationListener) {
+    public void removeApplicationListener(@NotNull ApplicationListener applicationListener) {
     }
 
     public void saveAll() {
@@ -136,19 +136,19 @@ public class MockApplication extends MockUserDataHolder implements org.intellij.
         return manager.getComponents(baseInterfaceClass);
     }
 
-    public void invokeLater(Runnable runnable) {
+    public void invokeLater(@NotNull Runnable runnable) {
     }
 
-    public void invokeLater(Runnable runnable, @NotNull Condition expired) {
+    public void invokeLater(@NotNull Runnable runnable, @NotNull Condition expired) {
     }
 
-    public void invokeLater(Runnable runnable, @NotNull ModalityState modalityState) {
+    public void invokeLater(@NotNull Runnable runnable, @NotNull ModalityState modalityState) {
     }
 
-    public void invokeLater(Runnable runnable, @NotNull ModalityState state, @NotNull Condition expired) {
+    public void invokeLater(@NotNull Runnable runnable, @NotNull ModalityState state, @NotNull Condition expired) {
     }
 
-    public void invokeAndWait(Runnable runnable, @NotNull ModalityState modalityState) {
+    public void invokeAndWait(@NotNull Runnable runnable, @NotNull ModalityState modalityState) {
         runnable.run();
     }
 
@@ -156,7 +156,7 @@ public class MockApplication extends MockUserDataHolder implements org.intellij.
         return null;
     }
 
-    public ModalityState getModalityStateForComponent(Component component) {
+    public ModalityState getModalityStateForComponent(@NotNull Component component) {
         return null;
     }
 
@@ -205,7 +205,7 @@ public class MockApplication extends MockUserDataHolder implements org.intellij.
         return new ComponentConfig[0];
     }
 
-    public Future<?> executeOnPooledThread(Runnable action) {
+    public Future<?> executeOnPooledThread(@NotNull Runnable action) {
         return null;
     }
 
@@ -235,6 +235,11 @@ public class MockApplication extends MockUserDataHolder implements org.intellij.
 
     public ComponentConfig getConfig(Class componentImplementation) {
         return null;
+    }
+
+    @NotNull
+    public Condition getDisposed() {
+        return Condition.NOT_NULL;
     }
 
     public boolean isDispatchThread() {
