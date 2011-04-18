@@ -7,11 +7,11 @@ class TestDoxProject(info: ProjectInfo) extends DefaultProject(info) {
 
   override def outputPath = "build"
 
-  override def mainJavaSourcePath = "src" / "java"
+  override def mainJavaSourcePath  = "src" / "java"
   override def mainScalaSourcePath = "src" / "scala"
-  override def mainResourcesPath = "src" / "resources"
+  override def mainResourcesPath   = "src" / "resources"
   
-  override def testJavaSourcePath = "src" / "test"
+  override def testJavaSourcePath  = "src" / "test"
   override def testScalaSourcePath = "test" / "scala"
 
   // loading all JAR's into the unmanaged classpath
@@ -25,13 +25,23 @@ class TestDoxProject(info: ProjectInfo) extends DefaultProject(info) {
 
   // porting all key Ant tasks to SBT
 
-  lazy val build = task { None } describedAs "Runs the build used for continuous integration" dependsOn(clean, createTestReports, checkCoverage, createArtifact)
+  lazy val continuousIntegration = task { None } dependsOn(checkIdeaVersion, createTestReports, checkCoverage, zipPlugin)
 
-  lazy val createTestReports = task { None }
-  lazy val checkCoverage = task { None }
-  lazy val createArtifact = task { createArtifactAction; None } describedAs "Zips up the plugin for deployment into IntelliJ IDEA" dependsOn compile
+  lazy val checkIdeaVersion = task { None }
+  lazy val createTestReports = task { None } dependsOn test
+  lazy val checkCoverage = task { None } dependsOn test
 
-  def createArtifactAction {
-    log.info("zipping up plugin for distribution...")
+  override def defaultJarBaseName = projectName.value + "-" + projectVersion.value
+
+  lazy val zipPlugin = task { zipPluginAction } dependsOn `package` describedAs "Zips up the plugin for deployment into IntelliJ IDEA"
+
+  def stagingPath = outputPath / "staging" / projectName.value / "lib"
+
+  def zipPluginAction: Option[String] = {
+    FileUtilities.copy(List((outputPath ##) / defaultJarName), stagingPath, true, log)
+    FileUtilities.copy((("lib" / "runtime" ##) ** "*.jar").get, stagingPath, true, log)
+    FileUtilities.zip(List((outputPath / "staging" ##) / projectName.value), outputPath / (defaultJarBaseName + ".zip"), true, log)
+    FileUtilities.clean(List(outputPath / "staging", outputPath / defaultJarName), log)
+    None
   }
 }
