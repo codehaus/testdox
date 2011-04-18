@@ -22,6 +22,7 @@ import org.jetbrains.annotations.Nullable;
 import org.picocontainer.PicoContainer;
 
 import java.awt.*;
+import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
 
 public class MockApplication extends MockUserDataHolder implements org.intellij.openapi.testing.MockApplication {
@@ -206,6 +207,10 @@ public class MockApplication extends MockUserDataHolder implements org.intellij.
     }
 
     public Future<?> executeOnPooledThread(@NotNull Runnable action) {
+        return null;
+    }
+
+    public <T> Future<T> executeOnPooledThread(@NotNull Callable<T> callable) {
         return null;
     }
 

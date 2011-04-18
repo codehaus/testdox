@@ -144,7 +144,7 @@
             <filterset>
                 <filter token="IDEA.SINCE-BUILD" value="90.116"/>
                 <filter token="IDEA.UNTIL-BUILD" value="99.9999"/>
-                <filter token="PROJECT.VERSION" value="${project.version} (Maia)"/>
+                <filter token="PROJECT.VERSION" value="${project.version} (IDEA X)"/>
             </filterset>
             <filterset refid="project.vars"/>
             <filterset refid="timestamp.vars"/>
@@ -158,8 +158,7 @@
         </copy>
     </target>
 
-    <target name="compile.versions" depends="compile.maia"
-            description="Compiles the project source files"/>
+    <target name="compile.versions" depends="compile.maia" description="Compiles the project source files"/>
 
     <target name="compile.tests.maia" depends="compile.maia">
         <mkdir dir="${test.classes}/maia"/>
@@ -303,14 +302,14 @@
     <macrodef name="zip-idea-plugin">
         <attribute name="eapName"/>
         <sequential>
-            <jar destfile="${dist}/${distfile.name}-@{eapName}.jar" basedir="${classes}/@{eapName}" compress="true"/>
+            <jar destfile="${dist}/${distfile.name}.jar" basedir="${classes}/@{eapName}" compress="true"/>
 
-            <zip destfile="${dist}/${distfile.name}-@{eapName}.zip" compress="true" followsymlinks="true">
-                <zipfileset dir="${dist}" includes="${distfile.name}-@{eapName}.jar" prefix="${project.name}/lib"/>
+            <zip destfile="${dist}/${distfile.name}.zip" compress="true" followsymlinks="true">
+                <zipfileset dir="${dist}" includes="${distfile.name}.jar" prefix="${project.name}/lib"/>
                 <zipfileset dir="${runtime.lib}" includes="*.jar" prefix="${project.name}/lib"/>
             </zip>
 
-            <delete file="${dist}/${distfile.name}-@{eapName}.jar" failonerror="true"/>
+            <delete file="${dist}/${distfile.name}.jar" failonerror="true"/>
 
             <buildnumber/>
         </sequential>

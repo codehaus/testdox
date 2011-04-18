@@ -20,12 +20,14 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
-      <library name="sbt_2.7.7-0.7.1.jar">
+      <library name="sbt_2.7.7-0.7.6.RC0.jar">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/boot/scala-2.7.7/org.scala-tools.sbt/sbt/0.7.1/sbt_2.7.7-0.7.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/boot/scala-2.7.7/org.scala-tools.sbt/sbt/0.7.6.RC0/sbt_2.7.7-0.7.6.RC0.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../../../Scala/xsbt/sbt/src/main/scala" />
+        </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="library" name="Scala SDK" level="application" />
