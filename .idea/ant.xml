@@ -14,7 +14,7 @@
       <maximumHeapSize value="128" />
       <maximumStackSize value="32" />
       <properties>
-        <property name="idea.home" value="$TEMPLATE$" />
+        <property name="idea.home" value="$APPLICATION_HOME_DIR$" />
       </properties>
     </buildFile>
   </component>

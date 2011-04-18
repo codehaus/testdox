@@ -17,7 +17,9 @@
       <value defaultName="wholeProject" />
     </option>
     <envs />
-    <patterns />
+    <patterns>
+      <pattern testClass="org.codehaus.testdox.intellij.*Test" />
+    </patterns>
     <RunnerSettings RunnerId="Run" />
     <ConfigurationWrapper RunnerId="Run" />
     <method />
