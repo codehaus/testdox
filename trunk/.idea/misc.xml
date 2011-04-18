@@ -31,7 +31,7 @@
   <component name="ProjectResources">
     <default-html-doctype>http://www.w3.org/1999/xhtml</default-html-doctype>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_5" assert-keyword="true" jdk-15="true" project-jdk-name="IDEA X" project-jdk-type="IDEA JDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_5" assert-keyword="true" jdk-15="true" project-jdk-name="IDEA 10.5" project-jdk-type="IDEA JDK" />
   <component name="SvnBranchConfigurationManager">
     <option name="myConfigurationMap">
       <map>
@@ -73,9 +73,15 @@
     <option name="myVersion" value="124" />
     <option name="mySupportsUserInfoFilter" value="true" />
   </component>
+  <component name="TaskProjectConfiguration">
+    <server type="JIRA" url="http://jira.codehaus.org" />
+  </component>
   <component name="TestDoxConfiguration">
     <option name="createTestIfMissing" value="true" />
     <option name="deletePackageOccurrences" value="true" />
+    <option name="testMethodAnnotation" value="@Test" />
+    <option name="testMethodPrefix" />
+    <option name="usingAnnotations" value="true" />
   </component>
   <component name="WebServicesPlugin" addRequiredLibraries="true" />
   <component name="com.sixrr.metrics.MetricsReloaded">
