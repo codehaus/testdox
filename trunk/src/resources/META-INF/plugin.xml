@@ -1,9 +1,9 @@
-<idea-plugin url="@PROJECT.HOMEPAGE@">
+<idea-plugin url="@PROJECT.URL@">
     <name>@PROJECT.TITLE@</name>
     <description>@PROJECT.DESCRIPTION@</description>
     <version>@PROJECT.VERSION@</version>
-    <change-notes>@PROJECT.CHANGENOTES@</change-notes>
-    <vendor email="@PROJECT.VENDOR.EMAIL@" url="@PROJECT.VENDOR.HOMEPAGE@">@PROJECT.VENDOR@</vendor>
+    <change-notes>@PROJECT.RELEASENOTES@</change-notes>
+    <vendor email="@PROJECT.ORGANIZATION.EMAIL@" url="@PROJECT.ORGANIZATION.URL@">@PROJECT.ORGANIZATION@</vendor>
     <!--<idea-version since-build="@IDEA.SINCE-BUILD@" until-build="@IDEA.UNTIL-BUILD@"/>-->
     <idea-version since-build="@IDEA.SINCE-BUILD@"/>
 

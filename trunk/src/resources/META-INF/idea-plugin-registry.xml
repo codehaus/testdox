@@ -6,11 +6,11 @@
         <name>@PROJECT.TITLE@</name>
         <description>@PROJECT.DESCRIPTION@</description>
         <version>@PROJECT.VERSION@</version>
-        <vendor>@PROJECT.VENDOR@</vendor>
+        <vendor>@PROJECT.ORGANIZATION@</vendor>
         <idea-version since-build="@IDEA.SINCE-BUILD@"/>
-        <docUrl>@PROJECT.HOMEPAGE@</docUrl>
-        <binUrl>@PROJECT.HOMEPAGE@</binUrl>
-        <srcUrl>@PROJECT.HOMEPAGE@</srcUrl>
+        <docUrl>@PROJECT.URL@</docUrl>
+        <binUrl>@PROJECT.URL@</binUrl>
+        <srcUrl>@PROJECT.URL@</srcUrl>
         <lastModified year="@YEAR@" month="@MONTH@" day="@DAY@"/>
     </idea-plugin>
 </idea-plugin-registry>
