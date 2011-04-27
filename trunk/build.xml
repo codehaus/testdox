@@ -19,7 +19,6 @@
     <target name="initialise" depends="ant.version.pass">
         <property file="project.properties"/>
         <property name="binary.extensions" value="**/*.png, **/*.jpg, **/*.jpeg, **/*.gif"/>
-        <property name="license.file" value="LICENSE.txt"/>
 
         <property name="test.lib" value="lib/test"/>
         <property name="runtime.lib" value="lib/runtime"/>
@@ -151,10 +150,6 @@
         </copy>
         <copy todir="${classes}/maia" overwrite="true">
             <fileset dir="src/resources" includes="${binary.extensions}"/>
-        </copy>
-        <copy todir="${classes}/maia" file="${license.file}" overwrite="true">
-            <filterset refid="project.vars"/>
-            <filterset refid="timestamp.vars"/>
         </copy>
     </target>
 

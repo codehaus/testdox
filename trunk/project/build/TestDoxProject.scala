@@ -64,10 +64,12 @@ class TestDoxProject(info: ProjectInfo) extends DefaultProject(info) with EditSo
   val metaInfDirectory   = outputPath / "resources" / "META-INF"
   val ideaPluginRegistry = metaInfDirectory / "idea-plugin-registry.xml"
   val pluginDescriptor   = metaInfDirectory / "plugin.xml"
+  val licenseFile        = (outputPath / "resources" ##) / "LICENSE.txt"
 
   lazy val applyFilter = task {
     editSourceToFile(Source.fromFile(ideaPluginRegistry.absolutePath), tokens, ideaPluginRegistry.asFile)
     editSourceToFile(Source.fromFile(pluginDescriptor.absolutePath),   tokens, pluginDescriptor.asFile)
+    editSourceToFile(Source.fromFile(licenseFile.absolutePath),        tokens, licenseFile.asFile)
     None
   } dependsOn copyResources
 
@@ -79,13 +81,11 @@ class TestDoxProject(info: ProjectInfo) extends DefaultProject(info) with EditSo
   lazy val zipPlugin = task { zipPluginAction } dependsOn `package` describedAs "Zips up the plugin for deployment into IntelliJ IDEA"
 
   val stagingPath = outputPath / "staging" / projectName.value / "lib"
-  val licenseFile = stagingPath / "LICENSE.txt"
 
   def zipPluginAction: Option[String] = {
     FileUtilities.copy(List((outputPath ##) / defaultJarName),  stagingPath, true, log)
     FileUtilities.copy((("lib" / "runtime" ##) ** "*.jar").get, stagingPath, true, log)
-    FileUtilities.copy(List("LICENSE.TXT"),  stagingPath, true, log)
-    editSourceToFile(Source.fromFile(licenseFile.absolutePath), tokens, licenseFile.asFile)
+    FileUtilities.copy(List(licenseFile), stagingPath, true, log)
     FileUtilities.zip(List((outputPath / "staging" ##) / projectName.value), outputPath / (defaultJarBaseName + ".zip"), true, log)
     FileUtilities.clean(List(outputPath / "staging", outputPath / defaultJarName), log)
     None
