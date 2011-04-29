@@ -54,7 +54,7 @@ class TestDoxProject(info: ProjectInfo) extends DefaultProject(info) with EditSo
     "PROJECT.ORGANIZATION.URL"   -> projectOrganizationUrl.value,
 
     "IDEA.SINCE-BUILD" -> "90.116",
-    "IDEA.UNTIL-BUILD" -> "106.999",
+    "IDEA.UNTIL-BUILD" -> "109.999",
 
     "DAY"   -> new SimpleDateFormat("d",    ENGLISH).format(now),
     "MONTH" -> new SimpleDateFormat("MM",   ENGLISH).format(now),
