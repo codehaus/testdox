@@ -12,7 +12,7 @@ class TestLookup(val editorApi: EditorApi, sentenceTranslator: SentenceTranslato
   def getClassName(file: VirtualFile): String = {
     val javaFile = editorApi.getPsiJavaFile(file)
     if (javaFile != null)
-      javaFile.getPackageName() + "." + file.getNameWithoutExtension()
+      javaFile.getPackageName + "." + file.getNameWithoutExtension
     else
       null
   }
@@ -23,11 +23,10 @@ class TestLookup(val editorApi: EditorApi, sentenceTranslator: SentenceTranslato
   }
 
   def getTestMethods(testClass: PsiClass): Array[TestMethod] = {
-    if (testClass != null) {
+    if (testClass != null)
       editorApi.getMethods(testClass)
           .filter {editorApi.isTestMethod(_)}
-          .map {new TestMethod(_, editorApi, sentenceTranslator)}
-    }
+          .map { new TestMethod(_, editorApi, sentenceTranslator) }
     else
       TestMethod.EMPTY_ARRAY
   }

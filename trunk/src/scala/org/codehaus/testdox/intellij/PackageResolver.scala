@@ -51,7 +51,7 @@ class PackageResolver(sourcePackage: String) {
     var count, current = 0
     var done = false
     while (!done) {
-      var index = packageTemplate.indexOf(POP_TOKEN, current)
+      val index = packageTemplate.indexOf(POP_TOKEN, current)
       if (index >= 0) {
         count += 1
         current = index + POP_TOKEN.length()

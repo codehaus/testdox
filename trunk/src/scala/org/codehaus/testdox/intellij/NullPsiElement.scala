@@ -12,7 +12,7 @@ object NullPsiElement {
   }
 
   private val interfaces = Array(classOf[PsiElement]).asInstanceOf[Array[Class[_]]]
-  private val classLoader = nullPsiElementInvocationHandler.getClass().getClassLoader()
+  private val classLoader = nullPsiElementInvocationHandler.getClass.getClassLoader
 
   val INSTANCE = Proxy.newProxyInstance(classLoader, interfaces, nullPsiElementInvocationHandler).asInstanceOf[PsiElement]
 }

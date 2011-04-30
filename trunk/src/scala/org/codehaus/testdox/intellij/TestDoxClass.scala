@@ -19,12 +19,11 @@ class TestDoxClass(override val file: VirtualFile,
 
   override def canNavigateToTestedClass = testedClass != null && !testedClass.isTestClass
 
-  def updateModel(model: TestDoxTableModel) {
-    model.setTestDoxForClass(this)
-  }
+  def updateModel(model: TestDoxTableModel) { model.setTestDoxForClass(this) }
 }
 
 object TestDoxClass {
+
   val NO_DOX_ELEMENT = new AbstractTestElement() {
     val displayString = "<font color=\"red\">No tests found for current class!</font>"
     val icon = Icons.getIcon(Icons.NO_TESTS_ICON)

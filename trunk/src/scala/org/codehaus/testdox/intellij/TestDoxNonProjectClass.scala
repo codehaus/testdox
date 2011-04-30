@@ -7,9 +7,7 @@ import org.codehaus.testdox.intellij.ui.TestDoxTableModel
 class TestDoxNonProjectClass(file: VirtualFile, className: String, testClass: TestClass, testedClass: TestClass)
     extends TestDoxFile(file, className, testClass, testedClass, TestMethod.EMPTY_ARRAY) {
 
-  def updateModel(model: TestDoxTableModel) {
-    model.setTestDoxForNonProjectClass(this)
-  }
+  def updateModel(model: TestDoxTableModel) { model.setTestDoxForNonProjectClass(this) }
 }
 
 object TestDoxNonProjectClass {

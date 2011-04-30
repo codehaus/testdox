@@ -12,17 +12,17 @@ class DeletionInterceptor(editorApi: EditorApi, config: Configuration, nameResol
   private var deleting: Boolean =_
 
   private val taskCompletionMarker = new Runnable() {
-    def run() = deleting = false
+    def run() { deleting = false }
   }
 
   override def beforeFileDeletion(event: VirtualFileEvent) {
-    if (event.getRequestor().isInstanceOf[PsiManager]) {
-      if (event.getFile().isDirectory()) {
+    if (event.getRequestor.isInstanceOf[PsiManager]) {
+      if (event.getFile.isDirectory) {
         if (config.deletePackageOccurrences) {
-          deleteOtherPackageOccurrences(editorApi.getPsiDirectory(event.getFile()))
+          deleteOtherPackageOccurrences(editorApi.getPsiDirectory(event.getFile))
         }
       } else if (config.autoApplyChangesToTests) {
-        deleteCorrespondingTestClass(editorApi.getPsiJavaFile(event.getFile()))
+        deleteCorrespondingTestClass(editorApi.getPsiJavaFile(event.getFile))
       }
     }
   }
@@ -32,7 +32,7 @@ class DeletionInterceptor(editorApi: EditorApi, config: Configuration, nameResol
     if (!deleting && deletedDirectory != null && deletedPackage != null) {
       val deletableDirectories = retrieveOtherDeletablePackageOccurrences(deletedDirectory)
       if (deletableDirectories.length > 0) {
-        val packageName = deletedPackage.getQualifiedName()
+        val packageName = deletedPackage.getQualifiedName
         editorApi.deleteAsynchronously(deletableDirectories, buildQuestion(packageName, deletableDirectories), "Delete Other Package Occurrences", taskCompletionMarker)
         deleting = true
       }
@@ -41,8 +41,8 @@ class DeletionInterceptor(editorApi: EditorApi, config: Configuration, nameResol
 
   private def retrieveOtherDeletablePackageOccurrences(deletedDirectory: PsiDirectory): Array[PsiDirectory] = {
     val deletablePackageOccurrences = new ListBuffer[PsiDirectory]()
-    getPackage(deletedDirectory).getDirectories() foreach { directory =>
-        if ((!directory.equals(deletedDirectory)) && (directory.isWritable())) {
+    getPackage(deletedDirectory).getDirectories foreach { directory =>
+        if ((!directory.equals(deletedDirectory)) && (directory.isWritable)) {
           deletablePackageOccurrences += directory
         }
     }
@@ -54,13 +54,13 @@ class DeletionInterceptor(editorApi: EditorApi, config: Configuration, nameResol
   private def buildQuestion(packageName: String, deletableDirectories: Array[PsiDirectory]) = {
     val question = new StringBuilder("Do you also want to delete the following occurrences of package '")
     question.append(packageName).append("'?\n ")
-    deletableDirectories foreach { directory => question.append('\n').append(directory.getVirtualFile().getPath()) }
+    deletableDirectories foreach { directory => question.append('\n').append(directory.getVirtualFile.getPath) }
     question.toString()
   }
 
   private def deleteCorrespondingTestClass(deletedClassFile: PsiJavaFile) {
     if (deletedClassFile != null) {
-      val deletedClassName = deletedClassFile.getPackageName() + '.' + deletedClassFile.getClasses()(0).getName()
+      val deletedClassName = deletedClassFile.getPackageName + '.' + deletedClassFile.getClasses()(0).getName
       if (nameResolver.isRealClass(deletedClassName)) {
         val testClassName = nameResolver.getTestClassName(deletedClassName)
         val testClass = editorApi.getPsiClass(testClassName)

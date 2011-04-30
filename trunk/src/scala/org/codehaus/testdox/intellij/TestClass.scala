@@ -12,7 +12,7 @@ class TestClass(className: String, psiClass: PsiClass, editorApi: EditorApi, nam
 
   override def jumpToPsiElement(): Boolean = editorApi.jumpToPsiClass(psiClass)
 
-  def isTestClass = psiClass != null && nameResolver.isTestClass(psiClass.getName())
+  def isTestClass = psiClass != null && nameResolver.isTestClass(psiClass.getName)
 
   val icon = {
     if (psiClass != null)
@@ -21,17 +21,9 @@ class TestClass(className: String, psiClass: PsiClass, editorApi: EditorApi, nam
       Icons.getLockedIcon(Icons.CLASS_ICON)
   }
 
-  override def update(presentation: Presentation) {
-    presentation.setEnabled(true);
-  }
-
-  override def rename(controller: TestDoxController) {
-    editorApi.rename(testedClass);
-  }
-
-  override def delete(controller: TestDoxController) {
-    editorApi.delete(testedClass);
-  }
+  override def update(presentation: Presentation)    { presentation.setEnabled(true) }
+  override def rename(controller: TestDoxController) { editorApi.rename(testedClass) }
+  override def delete(controller: TestDoxController) { editorApi.delete(testedClass) }
 
   override def compare(that: TestElement): Int = {
     if (that.isInstanceOf[TestClass])
@@ -42,5 +34,5 @@ class TestClass(className: String, psiClass: PsiClass, editorApi: EditorApi, nam
 
   override def equals(o: Any) = o.isInstanceOf[TestClass] && compareTo(o.asInstanceOf[TestElement]) == 0
 
-  private def testedClass: PsiClass = editorApi.getPsiClass(nameResolver.getRealClassName(psiClass.getQualifiedName()))
+  private def testedClass: PsiClass = editorApi.getPsiClass(nameResolver.getRealClassName(psiClass.getQualifiedName))
 }
