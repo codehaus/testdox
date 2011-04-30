@@ -12,7 +12,7 @@ abstract class BaseToggleAction(text: String, description: String, icon: Icon, u
 
   override def update(event: AnActionEvent) {
     super.update(event)
-    selectController(event).update(event.getPresentation())
+    selectController(event).update(event.getPresentation)
   }
 
   private def selectController(event: AnActionEvent) = {

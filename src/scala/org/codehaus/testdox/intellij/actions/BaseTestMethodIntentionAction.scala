@@ -30,10 +30,10 @@ abstract class BaseTestMethodIntentionAction(text: String, description: String, 
 
   override def update(event: AnActionEvent) {
     if (useFromTestDoxToolWindow) {
-      actionEvents.getToolWindowUI(event).update(event.getPresentation())
+      actionEvents.getToolWindowUI(event).update(event.getPresentation)
     } else {
       val controller = actionEvents.getTestDoxController(event)
-      controller.updatePresentation(event.getPresentation(), actionEvents.getTargetPsiElement(event))
+      controller.updatePresentation(event.getPresentation, actionEvents.getTargetPsiElement(event))
     }
   }
 
@@ -44,15 +44,15 @@ abstract class BaseTestMethodIntentionAction(text: String, description: String, 
   val getFamilyName = "TestDox.TestMethodIntentions"
 
   def isAvailable(project: Project, editor: Editor, file: PsiFile): Boolean = {
-    val controller = TestDoxProjectComponent.getInstance(project).getController()
-    val psiElement = file.findElementAt(editor.getCaretModel().getOffset())
-    return psiElement != null && controller.getEditorApi().isTestMethod(psiElement.getParent())
+    val controller = TestDoxProjectComponent.getInstance(project).getController
+    val psiElement = file.findElementAt(editor.getCaretModel.getOffset)
+    return psiElement != null && controller.getEditorApi.isTestMethod(psiElement.getParent)
   }
 
   @throws(classOf[IncorrectOperationException])
   def invoke(project: Project, editor: Editor, file: PsiFile) {
-    execute(TestDoxProjectComponent.getInstance(project).getController(), file.findElementAt(editor.getCaretModel().getOffset()))
+    execute(TestDoxProjectComponent.getInstance(project).getController, file.findElementAt(editor.getCaretModel.getOffset))
   }
 
-  def startInWriteAction(): Boolean = false
+  def startInWriteAction = false
 }

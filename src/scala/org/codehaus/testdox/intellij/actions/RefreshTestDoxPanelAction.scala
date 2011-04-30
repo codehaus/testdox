@@ -10,9 +10,7 @@ class RefreshTestDoxPanelAction(useFromTestDoxToolWindow: Boolean)
 
   def this() = this(BaseAction.DO_NOT_USE_FROM_TESTDOX_TOOL_WINDOW)
 
-  def actionPerformed(event: AnActionEvent) {
-    actionEvents.getTestDoxController(event).refreshToolWindow()
-  }
+  def actionPerformed(event: AnActionEvent) { actionEvents.getTestDoxController(event).refreshToolWindow() }
 }
 
 object RefreshTestDoxPanelAction {
