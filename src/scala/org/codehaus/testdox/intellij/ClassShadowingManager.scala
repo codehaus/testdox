@@ -16,14 +16,14 @@ class ClassShadowingManager(psiElement: PsiClass,
 
   def elementMoved(psiElement: PsiElement) {
     if (isValidShadowing(psiElement)) {
-      val newPackage = psiElement.getContainingFile().getContainingDirectory()
+      val newPackage = psiElement.getContainingFile.getContainingDirectory
       editorApi.move(originalFile.testClass.psiElement.asInstanceOf[PsiClass], newPackage)
     }
   }
 
   def elementRenamed(psiElement: PsiElement) {
     if (isValidShadowing(psiElement)) {
-      val newTestClassName = nameResolver.getTestClassName(psiElement.asInstanceOf[PsiClass].getName())
+      val newTestClassName = nameResolver.getTestClassName(psiElement.asInstanceOf[PsiClass].getName)
       editorApi.rename(originalFile.testClass.psiElement, newTestClassName)
     }
   }
@@ -31,7 +31,7 @@ class ClassShadowingManager(psiElement: PsiClass,
   private def isValidShadowing(psiElement: PsiElement) = {
     isValidClass(psiElement) &&
         config.autoApplyChangesToTests &&
-        nameResolver.isRealClass(psiElement.asInstanceOf[PsiClass].getName()) &&
+        nameResolver.isRealClass(psiElement.asInstanceOf[PsiClass].getName) &&
         originalFile.canNavigateToTestClass
   }
 
@@ -40,6 +40,6 @@ class ClassShadowingManager(psiElement: PsiClass,
   }
 
   private def isInnerClass(psiClass: PsiClass) = {
-    psiClass.getContainingFile().getName().indexOf(psiClass.getName()) < 0
+    psiClass.getContainingFile.getName.indexOf(psiClass.getName) < 0
   }
 }

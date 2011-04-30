@@ -15,8 +15,8 @@ class TemplateNameResolver(configuration: Configuration) extends NameResolver wi
   configuration.addPropertyChangeListener(this)
 
   def propertyChange(event: PropertyChangeEvent) {
-    if (Configuration.TEST_NAME_TEMPLATE == event.getPropertyName()) {
-      configureTemplate(event.getNewValue().asInstanceOf[String])
+    if (Configuration.TEST_NAME_TEMPLATE == event.getPropertyName) {
+      configureTemplate(event.getNewValue.asInstanceOf[String])
     }
   }
 

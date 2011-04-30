@@ -10,7 +10,7 @@ abstract class TestDoxFile(val file: VirtualFile,
                            val testedClass: TestClass,
                            val testMethods: Array[TestMethod]) {
 
-  def updateModel(model: TestDoxTableModel): Unit
+  def updateModel(model: TestDoxTableModel)
 
   def isTestedClass = false
 
@@ -21,12 +21,12 @@ abstract class TestDoxFile(val file: VirtualFile,
   def canNavigateToTestedClass = false
 
   override def toString: String = {
-    new StringBuilder(getClass().getName())
+    new StringBuilder(getClass.getName)
         .append(" { file: ").append(file)
         .append("; className: ").append(className)
         .append("; testClass: ").append(testClass)
         .append("; testedClass: ").append(testedClass)
         .append(" }")
-        .toString
+        .toString()
   }
 }

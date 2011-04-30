@@ -5,9 +5,7 @@ import org.codehaus.testdox.intellij.ui.TestDoxTableModel
 
 class TestDoxNonJavaFile(file: VirtualFile) extends TestDoxFile(file, null, null, null, TestMethod.EMPTY_ARRAY) {
 
-  def updateModel(model: TestDoxTableModel) {
-    model.setNotJava()
-  }
+  def updateModel(model: TestDoxTableModel) { model.setNotJava() }
 }
 
 object TestDoxNonJavaFile {

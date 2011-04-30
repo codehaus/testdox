@@ -42,10 +42,10 @@ object Icons {
       val icon = getIcon(path)
       var lockedIcon = getIcon("/icons/locked.png")
 
-      val bufferedImage = new BufferedImage(lockedIcon.getIconWidth(), lockedIcon.getIconHeight(), BufferedImage.TYPE_4BYTE_ABGR)
-      val g = bufferedImage.getGraphics()
-      g.drawImage(icon.asInstanceOf[ImageIcon].getImage(), 0, 0, null)
-      g.drawImage(lockedIcon.asInstanceOf[ImageIcon].getImage(), 0, 0, null)
+      val bufferedImage = new BufferedImage(lockedIcon.getIconWidth, lockedIcon.getIconHeight, BufferedImage.TYPE_4BYTE_ABGR)
+      val g = bufferedImage.getGraphics
+      g.drawImage(icon.asInstanceOf[ImageIcon].getImage, 0, 0, null)
+      g.drawImage(lockedIcon.asInstanceOf[ImageIcon].getImage, 0, 0, null)
 
       lockedIcon = new ImageIcon(bufferedImage)
       LOCKED_ICON_CACHE.put(path, lockedIcon)

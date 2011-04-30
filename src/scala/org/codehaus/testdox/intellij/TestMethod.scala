@@ -6,21 +6,19 @@ import javax.swing.Icon
 
 class TestMethod(psiMethod: PsiMethod, editorApi: EditorApi, sentenceTranslator: SentenceTranslator) extends AbstractTestElement {
 
-  def methodName: String = psiMethod.getName()
+  def methodName = psiMethod.getName
 
   override val psiElement = psiMethod
 
-  override def jumpToPsiElement(): Boolean = editorApi.jumpToPsiElement(psiElement)
+  override def jumpToPsiElement() = editorApi.jumpToPsiElement(psiElement)
 
-  override def displayString: String = sentenceTranslator.buildSentence(methodName)
+  override def displayString = sentenceTranslator.buildSentence(methodName)
 
   override def icon: Icon = Icons.getIcon(Icons.DOX_ICON)
 
-  override def update(presentation: Presentation) = presentation.setEnabled(true)
-
-  override def rename(controller: TestDoxController) = controller.startRename(this)
-
-  override def delete(controller: TestDoxController) = editorApi.delete(psiElement)
+  override def update(presentation: Presentation)    { presentation.setEnabled(true) }
+  override def rename(controller: TestDoxController) { controller.startRename(this) }
+  override def delete(controller: TestDoxController) { editorApi.delete(psiElement) }
 
   override def compare(that: TestElement): Int = {
     if (that.isInstanceOf[TestMethod])

@@ -8,7 +8,7 @@ abstract class AbstractTestElement extends TestElement with Ordered[TestElement]
 
   def jumpToPsiElement() = false
 
-  def update(presentation: Presentation): Unit = presentation.setEnabled(false)
+  def update(presentation: Presentation) { presentation.setEnabled(false) }
 
   def rename(controller: TestDoxController) {}
 

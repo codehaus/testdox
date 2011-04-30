@@ -15,11 +15,11 @@ trait TestElement extends Ordered[TestElement] {
 
   def icon: Icon
 
-  def update(presentation: Presentation): Unit
+  def update(presentation: Presentation)
 
-  def rename(controller: TestDoxController): Unit
+  def rename(controller: TestDoxController)
 
-  def delete(controller: TestDoxController): Unit
+  def delete(controller: TestDoxController)
 
   def compare(that: TestElement): Int
 }
