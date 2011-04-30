@@ -8,7 +8,7 @@ abstract class BaseTestElementAction(text: String, description: String, icon: Ic
     extends BaseAction(text, description, icon) {
 
   override def update(event: AnActionEvent) {
-    selectController(event).update(event.getPresentation())
+    selectController(event).update(event.getPresentation)
   }
 
   private def selectController(event: AnActionEvent) = {

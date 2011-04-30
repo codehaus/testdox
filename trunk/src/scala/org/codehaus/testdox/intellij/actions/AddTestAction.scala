@@ -6,7 +6,7 @@ import org.codehaus.testdox.intellij.Icons._
 class AddTestAction extends BaseAction("Add Test", "Adds a test to the current unit test class", getIcon(ADD_TEST_ICON)) {
 
   def actionPerformed(event: AnActionEvent) {
-    actionEvents.getTestDoxController(event).addTest
+    actionEvents.getTestDoxController(event).addTest()
   }
 
   override def update(event: AnActionEvent) {

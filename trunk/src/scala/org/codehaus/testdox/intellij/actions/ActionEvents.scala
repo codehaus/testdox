@@ -11,12 +11,12 @@ class ActionEvents {
 
   def getTestDoxController(event: AnActionEvent) = {
     val testDoxProjectComponent = getTestDoxProjectComponent(event)
-    if (testDoxProjectComponent != null) testDoxProjectComponent.getController() else Nulls.TESTDOX_CONTROLLER
+    if (testDoxProjectComponent != null) testDoxProjectComponent.getController else Nulls.TESTDOX_CONTROLLER
   }
 
   def getToolWindowUI(event: AnActionEvent) = {
     val testDoxProjectComponent = getTestDoxProjectComponent(event)
-    if (testDoxProjectComponent != null) testDoxProjectComponent.getToolWindowUI() else Nulls.TESTDOX_TOOL_WINDOW
+    if (testDoxProjectComponent != null) testDoxProjectComponent.getToolWindowUI else Nulls.TESTDOX_TOOL_WINDOW
   }
 
   private def getTestDoxProjectComponent(event: AnActionEvent) = {
@@ -26,7 +26,7 @@ class ActionEvents {
   def isJavaFile(event: AnActionEvent) = {
     val testDoxController = getTestDoxController(event)
     val file = event.getData(PlatformDataKeys.VIRTUAL_FILE)
-    testDoxController != null && file != null && testDoxController.getEditorApi().isJavaFile(file)
+    testDoxController != null && file != null && testDoxController.getEditorApi.isJavaFile(file)
   }
 
   def getTargetPsiElement(event: AnActionEvent): PsiElement = {
@@ -36,13 +36,13 @@ class ActionEvents {
     val psiFile: PsiFile = event.getData(LangDataKeys.PSI_FILE)
     if (psiFile == null) return NullPsiElement.INSTANCE
 
-    return psiFile.findElementAt(editor.getCaretModel().getOffset())
+    return psiFile.findElementAt(editor.getCaretModel.getOffset)
   }
 }
 
 object ActionEvents {
   var instance = new ActionEvents()
-  def setInstance(actionEvents: ActionEvents) = instance = actionEvents
+  def setInstance(actionEvents: ActionEvents) { instance = actionEvents }
 }
 
 object Nulls {
@@ -51,17 +51,17 @@ object Nulls {
     private val NON_JAVA_TEST_DOX_FILE = new TestDoxNonJavaFile(null)
 
     def invoke(proxy: Object, method: Method, args: Array[Object]): Object = {
-      if ("hasActiveEditors" == method.getName()) return boolean2Boolean(false)
-      else if ("canCurrentFileBeUnitTested" == method.getName()) return boolean2Boolean(false)
-      else if ("update" == method.getName() && args(0).isInstanceOf[Presentation]) {
+      if ("hasActiveEditors" == method.getName) return boolean2Boolean(false)
+      else if ("canCurrentFileBeUnitTested" == method.getName) return boolean2Boolean(false)
+      else if ("update" == method.getName && args(0).isInstanceOf[Presentation]) {
         (args(0).asInstanceOf[Presentation]).setEnabled(false)
       }
-      if ("getCurrentTestDoxFile".equals(method.getName())) return NON_JAVA_TEST_DOX_FILE
+      if ("getCurrentTestDoxFile".equals(method.getName)) return NON_JAVA_TEST_DOX_FILE
       return null
     }
   }
 
-  private val classLoader = invocationHandler.getClass().getClassLoader()
+  private val classLoader = invocationHandler.getClass.getClassLoader
   private val interfaces = Array(classOf[ToolWindowUI], classOf[TestDoxController])
   private val nullObject = Proxy.newProxyInstance(classLoader, interfaces.asInstanceOf[Array[Class[_]]], invocationHandler)
 
