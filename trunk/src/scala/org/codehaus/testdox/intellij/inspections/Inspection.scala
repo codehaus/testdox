@@ -10,8 +10,8 @@ abstract class Inspection extends BaseJavaLocalInspectionTool {
   val getGroupDisplayName = "TestDox Issues"
 
   @NotNull
-  def getShortName: String = {
-    val className = getClass().getName()
+  def getShortName = {
+    val className = getClass.getName
     className.substring(className.lastIndexOf('.') + 1, className.indexOf("Inspection"))
   }
 }
