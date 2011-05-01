@@ -41,35 +41,35 @@ class ConfigurationPanel extends JPanel with ConfigurationUI {
   togglePackageInputWidgetState()
 
   def customPackageMappings = model.mappings.toList
-  def customPackageMappings_=(mappings: List[String]) = model.setMappings(mappings)
-  def setCustomPackageMappings(mappings: java.util.List[String]) = customPackageMappings = mappings.asScala.toList
+  def customPackageMappings_=(mappings: List[String]) { model.setMappings(mappings) }
+  def setCustomPackageMappings(mappings: java.util.List[String]) { customPackageMappings = mappings.asScala.toList }
 
-  def customMappingStatus = allowCustom.isSelected()
+  def customMappingStatus = allowCustom.isSelected
   def customMappingStatus_=(active: Boolean) {
     allowCustom.setSelected(active)
     togglePackageInputWidgetState()
   }
 
-  def testNameTemplate = testName.getText()
-  def testNameTemplate_=(template: String) = testName.setText(template)
+  def testNameTemplate = testName.getText
+  def testNameTemplate_=(template: String) { testName.setText(template) }
 
-  def testMethodPrefix = methodNamePrefix.getText()
-  def testMethodPrefix_=(prefix: String) = methodNamePrefix.setText(prefix)
+  def testMethodPrefix = methodNamePrefix.getText
+  def testMethodPrefix_=(prefix: String) { methodNamePrefix.setText(prefix) }
 
-  def createTestIfMissing = createTestIfMissingCheckBox.isSelected()
-  def createTestIfMissing_=(selected: Boolean) = createTestIfMissingCheckBox.setSelected(selected)
+  def createTestIfMissing = createTestIfMissingCheckBox.isSelected
+  def createTestIfMissing_=(selected: Boolean) { createTestIfMissingCheckBox.setSelected(selected) }
 
-  def useUnderscore = useUnderscoreCheckBox.isSelected()
-  def useUnderscore_=(selected: Boolean) = useUnderscoreCheckBox.setSelected(selected)
+  def useUnderscore = useUnderscoreCheckBox.isSelected
+  def useUnderscore_=(selected: Boolean) { useUnderscoreCheckBox.setSelected(selected) }
 
-  def showFullyQualifiedClassName = showFullyQualifiedClassNameCheckBox.isSelected()
-  def showFullyQualifiedClassName_=(selected: Boolean) = showFullyQualifiedClassNameCheckBox.setSelected(selected)
+  def showFullyQualifiedClassName = showFullyQualifiedClassNameCheckBox.isSelected
+  def showFullyQualifiedClassName_=(selected: Boolean) { showFullyQualifiedClassNameCheckBox.setSelected(selected) }
 
-  def autoApplyChangesToTests = autoApplyChangesToTestsCheckBox.isSelected()
-  def autoApplyChangesToTests_=(selected: Boolean) = autoApplyChangesToTestsCheckBox.setSelected(selected)
+  def autoApplyChangesToTests = autoApplyChangesToTestsCheckBox.isSelected
+  def autoApplyChangesToTests_=(selected: Boolean) { autoApplyChangesToTestsCheckBox.setSelected(selected) }
 
-  def deletePackageOccurrences = deletePackageOccurrencesCheckBox.isSelected()
-  def deletePackageOccurrences_=(selected: Boolean) = deletePackageOccurrencesCheckBox.setSelected(selected)
+  def deletePackageOccurrences = deletePackageOccurrencesCheckBox.isSelected
+  def deletePackageOccurrences_=(selected: Boolean) { deletePackageOccurrencesCheckBox.setSelected(selected) }
 
   private def createBehaviourPanel() = {
     val gbc = new GridBagConstraints(0, 0, 1, 1, 1, 0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 2, 2)
@@ -125,7 +125,7 @@ class ConfigurationPanel extends JPanel with ConfigurationUI {
 
   private def createPackageTable() = {
     table.addMouseListener(new MouseAdapter() {
-      override def mouseClicked(event: MouseEvent) = deleteRow()
+      override def mouseClicked(event: MouseEvent) { deleteRow() }
     })
     table.setAutoCreateColumnsFromModel(false)
     table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS)
@@ -135,7 +135,7 @@ class ConfigurationPanel extends JPanel with ConfigurationUI {
     table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION)
     table.setDefaultRenderer(classOf[Icon], new IconCellRenderer())
 
-    val iconColumn = table.getColumnModel().getColumn(1)
+    val iconColumn = table.getColumnModel.getColumn(1)
     iconColumn.setMaxWidth(20)
     iconColumn.setResizable(false)
 
@@ -144,7 +144,7 @@ class ConfigurationPanel extends JPanel with ConfigurationUI {
 
   private[config] def deleteRow() {
     if (table.isColumnSelected(1)) {
-      model.setValueAt("", table.getSelectedRow(), 0)
+      model.setValueAt("", table.getSelectedRow, 0)
     }
   }
 
@@ -170,7 +170,7 @@ class ConfigurationPanel extends JPanel with ConfigurationUI {
   private def createAddButton() = {
     val box = Box.createVerticalBox()
     addButton.addActionListener(new ActionListener() {
-      def actionPerformed(event: ActionEvent) = addMapping()
+      def actionPerformed(event: ActionEvent) { addMapping() }
     })
     box.add(addButton)
     box.add(Box.createVerticalGlue())
@@ -178,7 +178,7 @@ class ConfigurationPanel extends JPanel with ConfigurationUI {
   }
 
   private[config] def addMapping() {
-    model.addMapping(packageInputField.getText())
+    model.addMapping(packageInputField.getText)
     packageInputField.setText("")
   }
 
@@ -193,7 +193,7 @@ class ConfigurationPanel extends JPanel with ConfigurationUI {
   private def createCustomPackagingOptionControl() = {
     val box = Box.createHorizontalBox()
     allowCustom.addActionListener(new ActionListener() {
-      def actionPerformed(event: ActionEvent) = togglePackageInputWidgetState()
+      def actionPerformed(event: ActionEvent) { togglePackageInputWidgetState() }
     })
     box.add(allowCustom)
     box.add(Box.createHorizontalGlue())
@@ -201,8 +201,8 @@ class ConfigurationPanel extends JPanel with ConfigurationUI {
   }
 
   private def togglePackageInputWidgetState() {
-    packageInputField.setEnabled(allowCustom.isSelected())
-    addButton.setEnabled(allowCustom.isSelected())
-    table.setEnabled(allowCustom.isSelected())
+    packageInputField.setEnabled(allowCustom.isSelected)
+    addButton.setEnabled(allowCustom.isSelected)
+    table.setEnabled(allowCustom.isSelected)
   }
 }

@@ -53,7 +53,7 @@ class Configuration {
   def getCustomPackagesAsJavaList = customPackages.asJava
 
   @deprecated("will be replaced with 'public var customPackages'")
-  def setCustomPackages(newPackages: java.util.List[String]): Unit = setCustomPackages(newPackages.asScala.toList)
+  def setCustomPackages(newPackages: java.util.List[String]) { setCustomPackages(newPackages.asScala.toList) }
 
   @deprecated("will be replaced with 'public var customPackages'")
   def setCustomPackages(newPackages: List[String]) {
