@@ -85,9 +85,9 @@ class ConfigurationController extends ProjectComponent with Configurable with Pe
     panel.asInstanceOf[ConfigurationPanel]
   }
 
-  def disposeUIResources() = panel = null
+  def disposeUIResources() { panel = null }
 
-  private[config] def setPanel(panel: ConfigurationUI) = this.panel = panel
+  private[config] def setPanel(panel: ConfigurationUI) { this.panel = panel }
 
   val getDisplayName = "TestDox"
 
@@ -121,9 +121,7 @@ class ConfigurationController extends ProjectComponent with Configurable with Pe
 
   def getState = configuration
 
-  def loadState(configuration: Configuration) {
-    XmlSerializerUtil.copyBean(configuration, this.configuration)
-  }
+  def loadState(configuration: Configuration) { XmlSerializerUtil.copyBean(configuration, this.configuration) }
 }
 
 object ConfigurationController {
