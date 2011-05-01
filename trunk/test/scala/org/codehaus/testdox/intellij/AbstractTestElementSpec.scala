@@ -33,10 +33,10 @@ object AbstractTestElementSpec extends SpecificationWithJUnit with JMocker {
     }
 
     "always disable the representation of an action when asked to update it" in {
-      val presentation = new RenameTestAction().getTemplatePresentation()
+      val presentation = new RenameTestAction().getTemplatePresentation
       presentation.setEnabled(true)
       testElement.update(presentation)
-      presentation.isEnabled() must be (false)
+      presentation.isEnabled must be (false)
     }
 
     "do nothing when asked to rename the underlying tested class" in {

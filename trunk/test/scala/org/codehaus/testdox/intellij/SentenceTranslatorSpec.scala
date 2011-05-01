@@ -49,8 +49,8 @@ object SentenceTranslatorSpec extends SpecificationWithJUnit {
       val prefix = "slartibartfast"
 
       val configuration = new Configuration()
-      configuration.setUnderscoreMode(false)
-      configuration.setTestMethodPrefix(prefix)
+      configuration.underscoreMode = false
+      configuration.testMethodPrefix = prefix
 
       translator(configuration).buildSentence(prefix) must be equalTo ""
       translator(configuration).buildSentence(prefix + "Foo") must be equalTo "foo"
@@ -66,7 +66,7 @@ object SentenceTranslatorSpec extends SpecificationWithJUnit {
 
     "ignore underscores if not in underscore mode" in {
       val configuration = new Configuration()
-      configuration.setUnderscoreMode(false)
+      configuration.underscoreMode = false
 
       translator(configuration).buildSentence("thisShouldLeaveMy_TLA__TLA_AsA_TLA_") must be equalTo "this should leave my TLA TLA as a TLA"
     }
@@ -96,15 +96,15 @@ object SentenceTranslatorSpec extends SpecificationWithJUnit {
 
     "ignore acronyms when not in underscore mode" in {
       val configuration = new Configuration()
-      configuration.setUnderscoreMode(false)
+      configuration.underscoreMode = false
 
       translator(configuration).buildMethodName("foo FKHKGHDS IOC Foo") must be equalTo "testFooFKHKGHDSIOCFoo"
     }
 
     "not capitalise the first letter when using annotations" in {
       val configuration = new Configuration()
-      configuration.setTestMethodAnnotation("@Foo")
-      configuration.setUsingAnnotations(true)
+      configuration.testMethodAnnotation = "@Foo"
+      configuration.usingAnnotations = true
 
       translator(configuration).buildMethodName("Foo FKHKGHDS IOC Foo") must be equalTo "fooFKHKGHDSIOCFoo"
     }
@@ -112,8 +112,8 @@ object SentenceTranslatorSpec extends SpecificationWithJUnit {
 
   private def translator(): SentenceTranslator = {
     val configuration = new Configuration()
-    configuration.setUnderscoreMode(true)
-    configuration.setTestMethodPrefix("test")
+    configuration.underscoreMode = true
+    configuration.testMethodPrefix = "test"
     translator(configuration)
   }
 

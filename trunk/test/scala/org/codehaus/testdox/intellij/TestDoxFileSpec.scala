@@ -27,8 +27,7 @@ object TestDoxFileSpec extends SpecificationWithJUnit {
     }
 
     "be represented as text" in {
-      testDoxFile.toString() must be equalTo
-          (testDoxFile.getClass().getName() + " { file: null; className: null; testClass: null; testedClass: null }")
+      testDoxFile.toString() must be equalTo(testDoxFile.getClass.getName + " { file: null; className: null; testClass: null; testedClass: null }")
     }
   }
 }
