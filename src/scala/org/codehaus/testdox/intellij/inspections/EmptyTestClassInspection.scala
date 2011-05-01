@@ -14,23 +14,19 @@ class EmptyTestClassInspection extends Inspection {
   val getDisplayName = "Test class with no tests"
 
   override def checkClass(@NotNull psiClass: PsiClass, @NotNull manager: InspectionManager, isOnTheFly: Boolean): Array[ProblemDescriptor] = {
-    if (isInnerClass(psiClass) || isSuite(psiClass)) {
-      return NO_PROBLEMS
-    }
+    if (isInnerClass(psiClass) || isSuite(psiClass)) return NO_PROBLEMS
 
-    val testDoxController = TestDoxProjectComponent.getInstance(manager.getProject()).getController()
-    val factory = testDoxController.getTestDoxFileFactory()
-    val file = factory.getTestDoxFile(psiClass.getContainingFile().getVirtualFile())
+    val testDoxController = TestDoxProjectComponent.getInstance(manager.getProject).getController
+    val factory = testDoxController.getTestDoxFileFactory
+    val file = factory.getTestDoxFile(psiClass.getContainingFile.getVirtualFile)
 
     if (!file.isTestedClass && file.canNavigateToTestedClass && file.testMethods.length == 0)
-      Array(manager.createProblemDescriptor(psiClass.getNameIdentifier(), getDisplayName, new AddTestMethodQuickFix(), GENERIC_ERROR_OR_WARNING, false))
+      Array(manager.createProblemDescriptor(psiClass.getNameIdentifier, getDisplayName, new AddTestMethodQuickFix(), GENERIC_ERROR_OR_WARNING, false))
     else
       NO_PROBLEMS
   }
 
   private def isSuite(psiClass: PsiClass) = psiClass.findMethodsByName("suite", true).length > 0
 
-  private def isInnerClass(psiClass: PsiClass) = {
-    psiClass.getName() != null && psiClass.getContainingFile().getName().indexOf(psiClass.getName()) < 0
-  }
+  private def isInnerClass(psiClass: PsiClass) = psiClass.getName != null && psiClass.getContainingFile.getName.indexOf(psiClass.getName) < 0
 }

@@ -9,10 +9,7 @@ import org.codehaus.testdox.intellij.TestDoxProjectComponent
 class AddTestMethodQuickFix extends LocalQuickFix {
 
   val getName = "Add Test"
-
   val getFamilyName = "TestDox Quick Fixes"
 
-  def applyFix(project: Project, problemDescriptor: ProblemDescriptor) {
-    TestDoxProjectComponent.getInstance(project).getController().addTest()
-  }
+  def applyFix(project: Project, problemDescriptor: ProblemDescriptor) { TestDoxProjectComponent.getInstance(project).getController.addTest() }
 }

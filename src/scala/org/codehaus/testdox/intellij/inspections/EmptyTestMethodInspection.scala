@@ -15,29 +15,23 @@ class EmptyTestMethodInspection extends Inspection {
   val getDisplayName = "Empty test"
 
   override def checkMethod(@NotNull psiMethod: PsiMethod, @NotNull manager: InspectionManager, isOnTheFly: Boolean): Array[ProblemDescriptor] = {
-    val testDoxController = TestDoxProjectComponent.getInstance(manager.getProject()).getController()
-    val factory = testDoxController.getTestDoxFileFactory()
-    val file = factory.getTestDoxFile(psiMethod.getContainingFile().getVirtualFile())
+    val testDoxController = TestDoxProjectComponent.getInstance(manager.getProject).getController
+    val factory = testDoxController.getTestDoxFileFactory
+    val file = factory.getTestDoxFile(psiMethod.getContainingFile.getVirtualFile)
 
-    val editorApi = testDoxController.getEditorApi()
-    if (file.isTestedClass || !file.canNavigateToTestedClass || !editorApi.isTestMethod(psiMethod)) {
-      return NO_PROBLEMS
-    }
+    val editorApi = testDoxController.getEditorApi
+    if (file.isTestedClass || !file.canNavigateToTestedClass || !editorApi.isTestMethod(psiMethod)) return NO_PROBLEMS
 
-    val codeBlock = psiMethod.getBody()
-    if (codeBlock == null) {
-      return NO_PROBLEMS
-    }
+    val codeBlock = psiMethod.getBody
+    if (codeBlock == null) return NO_PROBLEMS
 
-    for (statement <- codeBlock.getStatements()) {
-      if (!classOf[PsiEmptyStatement].isInstance(statement)) {
-        return NO_PROBLEMS
-      }
+    for (statement <- codeBlock.getStatements) {
+      if (!classOf[PsiEmptyStatement].isInstance(statement)) return NO_PROBLEMS
     }
-    return createProblemDescriptor(manager, psiMethod)
+    createProblemDescriptor(manager, psiMethod)
   }
 
   private def createProblemDescriptor(manager: InspectionManager, psiMethod: PsiMethod): Array[ProblemDescriptor] = {
-    Array(manager.createProblemDescriptor(psiMethod.getNameIdentifier(), getDisplayName, null.asInstanceOf[LocalQuickFix], GENERIC_ERROR_OR_WARNING, false))
+    Array(manager.createProblemDescriptor(psiMethod.getNameIdentifier, getDisplayName, null.asInstanceOf[LocalQuickFix], GENERIC_ERROR_OR_WARNING, false))
   }
 }
