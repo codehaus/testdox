@@ -14,7 +14,6 @@ class TestDoxProject(info: ProjectInfo) extends DefaultProject(info) with EditSo
 
   override def mainJavaSourcePath  = "src" / "java"
   override def mainScalaSourcePath = "src" / "scala"
-  override def mainResourcesPath   = "src" / "resources"
   
   override def testJavaSourcePath  = "src" / "test"
   override def testScalaSourcePath = "test" / "scala"

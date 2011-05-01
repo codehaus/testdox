@@ -139,7 +139,7 @@
             <classpath refid="maia.compile.classpath"/>
         </javac>
         <copy todir="${classes}/maia" overwrite="true">
-            <fileset dir="src/resources" excludes="**/*.java, ${binary.extensions}"/>
+            <fileset dir="src/main/resources" excludes="**/*.java, ${binary.extensions}"/>
             <filterset>
                 <filter token="IDEA.SINCE-BUILD" value="90.116"/>
                 <filter token="IDEA.UNTIL-BUILD" value="99.9999"/>
@@ -149,7 +149,7 @@
             <filterset refid="timestamp.vars"/>
         </copy>
         <copy todir="${classes}/maia" overwrite="true">
-            <fileset dir="src/resources" includes="${binary.extensions}"/>
+            <fileset dir="src/main/resources" includes="${binary.extensions}"/>
         </copy>
     </target>
 
