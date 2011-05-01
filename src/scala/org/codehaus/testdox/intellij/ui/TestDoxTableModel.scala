@@ -74,7 +74,7 @@ class TestDoxTableModel(configuration: Configuration) extends DefaultTableModel 
       definitionOrderData ++= testMethods
       alphaOrderData ++= testMethods
 
-      var sortedElements = alphaOrderData.toArray[TestElement]
+      val sortedElements = alphaOrderData.toArray[TestElement]
       Sorting.quickSort[TestElement](sortedElements)
       alphaOrderData.clear()
       alphaOrderData.insertAll(0, sortedElements)
@@ -89,7 +89,7 @@ class TestDoxTableModel(configuration: Configuration) extends DefaultTableModel 
     fireDataChange()
   }
 
-  private def fireDataChange() = fireTableDataChanged()
+  private def fireDataChange() { fireTableDataChanged() }
 
   private def clearLists() {
     definitionOrderData.clear()

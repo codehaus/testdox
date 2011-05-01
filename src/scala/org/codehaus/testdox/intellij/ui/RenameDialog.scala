@@ -32,13 +32,13 @@ class RenameDialog(project: Project, initialSentence: String) extends DialogWrap
     updatePanel()
   }
 
-  override def getPreferredFocusedComponent(): JComponent = sentenceField
+  override def getPreferredFocusedComponent: JComponent = sentenceField
 
-  override protected def createActions(): Array[Action] = Array(getOKAction(), getCancelAction())
+  override protected def createActions(): Array[Action] = Array(getOKAction, getCancelAction)
 
-  private def updatePanel() = setOKActionEnabled(isValidSentence(currentSentence))
+  private def updatePanel() { setOKActionEnabled(isValidSentence(currentSentence)) }
 
-  private def isValidSentence(sentence: String): Boolean = (sentence.replaceAll("\\s", ""): Seq[Char]) match {
+  private def isValidSentence(sentence: String) = (sentence.replaceAll("\\s", ""): Seq[Char]) match {
     case Seq(first, rest @ _*) => Character.isJavaIdentifierStart(first) && rest.forall(Character.isJavaIdentifierPart(_))
     case Seq(_*) => true
   }
@@ -60,15 +60,13 @@ class RenameDialog(project: Project, initialSentence: String) extends DialogWrap
     val label = new JLabel("Type a sentence that describes the intention of the test: ")
     panel.add(label, new GridBagConstraints(0, 0, 1, 1, 0.0d, 0.0d, WEST, NONE, RenameDialog.INSETS, 0, 0))
     panel.add(sentenceField, new GridBagConstraints(0, 1, 1, 1, 1.0d, 0.0d, WEST, HORIZONTAL, RenameDialog.INSETS, 20, 0))
-    return panel
+    panel
   }
 
   private def addDocumentListener(sentenceField: JTextField) {
-    sentenceField.getDocument().addDocumentListener(new DocumentListener() {
-      def insertUpdate(event: DocumentEvent) = handleRename(sentenceField.getText())
-
-      def removeUpdate(event: DocumentEvent) = insertUpdate(event)
-
+    sentenceField.getDocument.addDocumentListener(new DocumentListener() {
+      def insertUpdate(event: DocumentEvent) { handleRename(sentenceField.getText) }
+      def removeUpdate(event: DocumentEvent) { insertUpdate(event) }
       def changedUpdate(event: DocumentEvent) {}
     })
   }

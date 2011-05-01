@@ -21,9 +21,9 @@ class QuickDoxDialog(owner: Window, private val editorApi: EditorApi, private va
   private val window = new QuickDoxWindow(owner, model)
   window.pack()
 
-  positionComponent(if (owner != null) owner.getBounds() else QuickDoxDialog.DEFAULT_BOUNDS, window)
+  positionComponent(if (owner != null) owner.getBounds else QuickDoxDialog.DEFAULT_BOUNDS, window)
 
-  def isVisible() = visible
+  def isVisible = visible
 
   def show() {
     window.setVisible(true)
@@ -43,19 +43,19 @@ class QuickDoxDialog(owner: Window, private val editorApi: EditorApi, private va
   }
 
   def propertyChange(event: PropertyChangeEvent) {
-    if (Configuration.SHOW_FULLY_QUALIFIED_CLASS_NAME.equals(event.getPropertyName())) {
+    if (Configuration.SHOW_FULLY_QUALIFIED_CLASS_NAME.equals(event.getPropertyName)) {
       updateFromModel()
     }
   }
 
-  private def updateFromModel() = window.setContents(model)
+  private def updateFromModel() { window.setContents(model) }
 
   private def positionComponent(ownerBounds: Rectangle, child: Component) {
     if (currentPosition == null) {
-      val x = ownerBounds.x + (ownerBounds.width - child.getWidth()) / 2
-      val y = ownerBounds.y + (ownerBounds.height - child.getHeight()) / 2
+      val x = ownerBounds.x + (ownerBounds.width - child.getWidth) / 2
+      val y = ownerBounds.y + (ownerBounds.height - child.getHeight) / 2
       child.setLocation(x, y)
-      currentPosition = child.getLocation()
+      currentPosition = child.getLocation
     } else {
       child.setLocation(currentPosition.x, currentPosition.y)
     }
@@ -100,11 +100,11 @@ class QuickDoxDialog(owner: Window, private val editorApi: EditorApi, private va
           mainPanel.add(Box.createHorizontalStrut(10), BorderLayout.EAST)
           mainPanel.add(Box.createHorizontalStrut(10), BorderLayout.WEST)
           mainPanel.add(Box.createVerticalStrut(10), BorderLayout.SOUTH)
-          getContentPane().add(mainPanel)
+          getContentPane.add(mainPanel)
 
           setContents(model)
 
-          closeButton.setBounds(getWidth() - (BOUNDS_CONSTANT + 1), 1, BOUNDS_CONSTANT, BOUNDS_CONSTANT - 1)
+          closeButton.setBounds(getWidth - (BOUNDS_CONSTANT + 1), 1, BOUNDS_CONSTANT, BOUNDS_CONSTANT - 1)
           closeButton.addActionListener(new ActionListener() {
               def actionPerformed(event: ActionEvent) {
                   QuickDoxDialog.this.hide()
@@ -130,18 +130,18 @@ class QuickDoxDialog(owner: Window, private val editorApi: EditorApi, private va
           closeButton
       }
 
-      private def loadIcon(closeQuickdoxIcon: String) = new ImageIcon(getClass().getResource(closeQuickdoxIcon))
+      private def loadIcon(closeQuickdoxIcon: String) = new ImageIcon(getClass.getResource(closeQuickdoxIcon))
 
       private def initListeners() {
           addMouseListener(new MouseAdapter() {
-              override def mousePressed(event: MouseEvent) = currentPosition = event.getPoint()
-              override def mouseClicked(event: MouseEvent) = if (event.getClickCount() > 1) QuickDoxDialog.this.hide()
+              override def mousePressed(event: MouseEvent) { currentPosition = event.getPoint }
+              override def mouseClicked(event: MouseEvent) { if (event.getClickCount > 1) QuickDoxDialog.this.hide() }
           })
 
           addMouseMotionListener(new MouseMotionAdapter() {
               override def mouseDragged(event: MouseEvent) {
-                  val i = (getLocation().x - currentPosition.x) + event.getPoint().x;
-                  val j = (getLocation().y - currentPosition.y) + event.getPoint().y;
+                  val i = (getLocation.x - currentPosition.x) + event.getPoint.x;
+                  val j = (getLocation.y - currentPosition.y) + event.getPoint.y;
                   setLocation(i, j)
                   editorApi.activateSelectedTextEditor()
               }
@@ -150,7 +150,7 @@ class QuickDoxDialog(owner: Window, private val editorApi: EditorApi, private va
 
       private[QuickDoxDialog] def setContents(model: TestDoxTableModel) {
           contents.setText(createHTML(model))
-          val dimension = contents.getPreferredSize()
+          val dimension = contents.getPreferredSize
           contents.setBounds(BOUNDS_CONSTANT, BOUNDS_CONSTANT, dimension.width, dimension.height)
           setSize(dimension.width + (2 * BOUNDS_CONSTANT), dimension.height + (2 * BOUNDS_CONSTANT))
       }
@@ -164,7 +164,7 @@ object QuickDoxDialog {
   private val DEFAULT_BOUNDS = screenSizeAsRectangle()
 
   private def screenSizeAsRectangle() = {
-    val screenSize = Toolkit.getDefaultToolkit().getScreenSize()
+    val screenSize = Toolkit.getDefaultToolkit.getScreenSize
     new Rectangle(0, 0, screenSize.width, screenSize.height)
   }
 }
