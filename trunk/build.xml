@@ -23,7 +23,7 @@
         <property name="test.lib" value="lib/test"/>
         <property name="runtime.lib" value="lib/runtime"/>
 
-        <property name="java.src" value="src/java"/>
+        <property name="java.src" value="src/main/java"/>
         <property name="test.src" value="src/test"/>
 
         <property name="build" value="build"/>
