@@ -24,7 +24,7 @@
         <property name="runtime.lib" value="lib/runtime"/>
 
         <property name="java.src" value="src/java"/>
-        <property name="test.src" value="src/test/java"/>
+        <property name="test.src" value="src/test"/>
 
         <property name="build" value="build"/>
         <property name="classes" value="${build}/classes"/>
@@ -131,7 +131,7 @@
         <mkdir dir="${classes}/maia"/>
         <scalac destdir="${classes}/maia" classpathref="maia.compile.classpath">
             <src path="${java.src}"/>
-            <src path="src/scala"/>
+            <src path="src/main/scala"/>
             <include name="**/*.scala"/>
             <include name="**/*.java"/>
         </scalac>
@@ -158,12 +158,12 @@
     <target name="compile.tests.maia" depends="compile.maia">
         <mkdir dir="${test.classes}/maia"/>
         <scalac destdir="${test.classes}/maia" classpathref="maia.test.classpath">
-            <src path="${test.src}"/>
-            <src path="test/scala"/>
+            <src path="${test.src}/java"/>
+            <src path="${test.src}/scala"/>
             <include name="**/*.scala"/>
             <include name="**/*.java"/>
         </scalac>
-        <javac srcdir="${test.src}" destdir="${test.classes}/maia" debug="on">
+        <javac srcdir="${test.src}/java" destdir="${test.classes}/maia" debug="on">
             <classpath refid="maia.test.classpath"/>
         </javac>
     </target>

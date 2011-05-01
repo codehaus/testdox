@@ -11,10 +11,7 @@ class TestDoxProject(info: ProjectInfo) extends DefaultProject(info) with EditSo
   // mapping Maven's project structure to TestDox's
 
   override def outputPath = "build"
-
   override def mainJavaSourcePath  = "src" / "java"
-  override def testJavaSourcePath  = "src" / "test"
-  override def testScalaSourcePath = "test" / "scala"
 
   // loading all JAR's into the unmanaged classpath
 
