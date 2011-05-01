@@ -32,8 +32,8 @@ object TestMethodSpec extends SpecificationWithJUnit with JMocker {
       val psiMethod2 = mock[PsiMethod]
 
       expect {
-        atLeast(1).of(psiMethod).getName()  will returnValue(methodName1)
-        atLeast(1).of(psiMethod2).getName() will returnValue(methodName2)
+        atLeast(1).of(psiMethod).getName  will returnValue(methodName1)
+        atLeast(1).of(psiMethod2).getName will returnValue(methodName2)
       }
 
       val sentenceTranslator = new SentenceTranslator(new Configuration)
@@ -47,18 +47,18 @@ object TestMethodSpec extends SpecificationWithJUnit with JMocker {
       val sentenceTranslator = new SentenceTranslator(new Configuration())
       val testMethod = new TestMethod(psiMethod, editorApi, sentenceTranslator)
 
-      expect { atLeast(1).of(psiMethod).getName() will returnValue("someMethod") }
+      expect { atLeast(1).of(psiMethod).getName will returnValue("someMethod") }
 
       testMethod.toString() must be eq(testMethod.displayString)
     }
 
     "always enable the representation of an action when asked to update it" in {
-      val presentation = new RenameTestAction().getTemplatePresentation()
+      val presentation = new RenameTestAction().getTemplatePresentation
       presentation.setEnabled(false)
 
       new TestMethod(null, null, null).update(presentation)
 
-      presentation.isEnabled() must be equalTo true
+      presentation.isEnabled must be equalTo true
     }
   }
 }

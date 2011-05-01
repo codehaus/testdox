@@ -37,28 +37,28 @@ object DeletionInterceptorSpec extends SpecificationWithJUnit with JMocker with 
       "if TestDox is not configured to delete package occurrences" in {
         expect { never(editorApi).getPsiDirectory(any[VirtualFile]) }
 
-        config.setDeletePackageOccurrences(false)
+        config.deletePackageOccurrences = false
         interceptor.beforeFileDeletion(createDirectoryDeletedEvent())
       }
 
       "when triggered by a cancelled deletion" in {
         expect { never(editorApi).getPsiDirectory(any[VirtualFile]) }
 
-        config.setDeletePackageOccurrences(false)
+        config.deletePackageOccurrences = false
         interceptor.beforeFileDeletion(createVcsDirectoryPruningEvent())
       }
 
       "when triggered by a local VCS operation" in {
         expect { never(editorApi).getPsiDirectory(any[VirtualFile]) }
 
-        config.setDeletePackageOccurrences(false)
+        config.deletePackageOccurrences = false
         interceptor.beforeFileDeletion(createVcsDirectoryPruningEvent())
       }
 
       "when triggered by the CVS directory prunner" in {
         expect { never(editorApi).getPsiDirectory(any[VirtualFile]) }
 
-        config.setDeletePackageOccurrences(false)
+        config.deletePackageOccurrences = false
         interceptor.beforeFileDeletion(createVcsDirectoryPruningEvent())
       }
 
@@ -71,9 +71,9 @@ object DeletionInterceptorSpec extends SpecificationWithJUnit with JMocker with 
           one(javaDirectoryService).getPackage(deletedDirectory) will returnValue(null)
         }
 
-        MockApplicationManager.getMockApplication().registerComponent(classOf[JavaDirectoryService], javaDirectoryService)
+        MockApplicationManager.getMockApplication.registerComponent(classOf[JavaDirectoryService], javaDirectoryService)
 
-        config.setDeletePackageOccurrences(true)
+        config.deletePackageOccurrences = true
         interceptor.beforeFileDeletion(createDirectoryDeletedEvent())
       }
 
@@ -84,13 +84,13 @@ object DeletionInterceptorSpec extends SpecificationWithJUnit with JMocker with 
 
         expect {
           one(editorApi).getPsiDirectory(any[VirtualFile]) will returnValue(deletedDirectory)
-          one(psiPackage).getDirectories() will returnValue(Array(deletedDirectory))
+          one(psiPackage).getDirectories will returnValue(Array(deletedDirectory))
           exactly(2).of(javaDirectoryService).getPackage(deletedDirectory) will returnValue(psiPackage)
         }
 
-        MockApplicationManager.getMockApplication().registerComponent(classOf[JavaDirectoryService], javaDirectoryService)
+        MockApplicationManager.getMockApplication.registerComponent(classOf[JavaDirectoryService], javaDirectoryService)
 
-        config.setDeletePackageOccurrences(true)
+        config.deletePackageOccurrences = true
         interceptor.beforeFileDeletion(createDirectoryDeletedEvent())
       }
 
@@ -103,13 +103,13 @@ object DeletionInterceptorSpec extends SpecificationWithJUnit with JMocker with 
         expect {
           one(editorApi).getPsiDirectory(any[VirtualFile]) will returnValue(deletedDirectory)
           one(readOnlyDirectory).isWritable will returnValue(false)
-          one(psiPackage).getDirectories() will returnValue(Array(readOnlyDirectory))
+          one(psiPackage).getDirectories will returnValue(Array(readOnlyDirectory))
           exactly(2).of(javaDirectoryService).getPackage(deletedDirectory) will returnValue(psiPackage)
         }
 
-        MockApplicationManager.getMockApplication().registerComponent(classOf[JavaDirectoryService], javaDirectoryService)
+        MockApplicationManager.getMockApplication.registerComponent(classOf[JavaDirectoryService], javaDirectoryService)
 
-        config.setDeletePackageOccurrences(true)
+        config.deletePackageOccurrences = true
         interceptor.beforeFileDeletion(createDirectoryDeletedEvent())
       }
     }
@@ -122,20 +122,20 @@ object DeletionInterceptorSpec extends SpecificationWithJUnit with JMocker with 
       val javaDirectoryService = mock[JavaDirectoryService]
 
       expect {
-        one(anotherVirtualFile).getPath() will returnValue("src/test/com/acme")
-        one(psiPackage).getQualifiedName() will returnValue(PACKAGE_NAME)
-        one(psiPackage).getDirectories() will returnValue(Array(directory))
-        one(directory).isWritable() will returnValue(true)
-        one(directory).getVirtualFile() will returnValue(anotherVirtualFile)
+        one(anotherVirtualFile).getPath will returnValue("src/test/com/acme")
+        one(psiPackage).getQualifiedName will returnValue(PACKAGE_NAME)
+        one(psiPackage).getDirectories will returnValue(Array(directory))
+        one(directory).isWritable will returnValue(true)
+        one(directory).getVirtualFile will returnValue(anotherVirtualFile)
 
         one(editorApi).getPsiDirectory(any[VirtualFile]) will returnValue(deletedDirectory)
         one(editorApi).deleteAsynchronously(any[Array[PsiDirectory]], any[String], any[String], any[Runnable])
         atLeast(1).of(javaDirectoryService).getPackage(deletedDirectory) will returnValue(psiPackage)
       }
 
-      MockApplicationManager.getMockApplication().registerComponent(classOf[JavaDirectoryService], javaDirectoryService)
+      MockApplicationManager.getMockApplication.registerComponent(classOf[JavaDirectoryService], javaDirectoryService)
 
-      config.setDeletePackageOccurrences(true)
+      config.deletePackageOccurrences = true
       interceptor.beforeFileDeletion(createDirectoryDeletedEvent())
     }
 
@@ -144,35 +144,35 @@ object DeletionInterceptorSpec extends SpecificationWithJUnit with JMocker with 
       "if TestDox is not configured to automatically apply changes to tests" in {
         expect { never(editorApi).getPsiJavaFile(any[VirtualFile]) }
 
-        config.setAutoApplyChangesToTests(false)
+        config.autoApplyChangesToTests = false
         interceptor.beforeFileDeletion(createFileDeletedEvent())
       }
 
       "when triggered by a cancelled deletion" in {
         expect { never(editorApi).getPsiJavaFile(any[VirtualFile]) }
 
-        config.setAutoApplyChangesToTests(true)
+        config.autoApplyChangesToTests = true
         interceptor.beforeFileDeletion(new VirtualFileEvent(new Object(), NullVirtualFile.INSTANCE, CLASS_NAME + ".java", null))
       }
 
       "when triggered by a local VCS operation" in {
         expect { never(editorApi).getPsiJavaFile(any[VirtualFile]) }
 
-        config.setAutoApplyChangesToTests(true)
+        config.autoApplyChangesToTests = true
         interceptor.beforeFileDeletion(createVcsDirectoryPruningEvent())
       }
 
       "when triggered by the CVS directory prunner" in {
         expect { never(editorApi).getPsiJavaFile(any[VirtualFile]) }
 
-        config.setAutoApplyChangesToTests(true)
+        config.autoApplyChangesToTests = true
         interceptor.beforeFileDeletion(createVcsDirectoryPruningEvent())
       }
 
       "if the file being deleted is not a class in the project" in {
         expect { one(editorApi).getPsiJavaFile(any[VirtualFile]) will returnValue(null) }
 
-        config.setAutoApplyChangesToTests(true)
+        config.autoApplyChangesToTests = true
         interceptor.beforeFileDeletion(createFileDeletedEvent())
       }
 
@@ -182,13 +182,13 @@ object DeletionInterceptorSpec extends SpecificationWithJUnit with JMocker with 
 
         expect {
           one(editorApi).getPsiJavaFile(any[VirtualFile]) will returnValue(javaFile)
-          one(javaFile).getPackageName() will returnValue(PACKAGE_NAME)
-          one(javaFile).getClasses() will returnValue(Array(javaClass))
-          one(javaClass).getName() will returnValue("FooTest")
+          one(javaFile).getPackageName will returnValue(PACKAGE_NAME)
+          one(javaFile).getClasses will returnValue(Array(javaClass))
+          one(javaClass).getName will returnValue("FooTest")
           one(nameResolver).isRealClass(FULLY_QUALIFIED_TEST_CLASS_NAME) will returnValue(false)
         }
 
-        config.setAutoApplyChangesToTests(true)
+        config.autoApplyChangesToTests = true
         interceptor.beforeFileDeletion(createFileDeletedEvent())
       }
 
@@ -198,15 +198,15 @@ object DeletionInterceptorSpec extends SpecificationWithJUnit with JMocker with 
 
         expect {
           one(editorApi).getPsiJavaFile(any[VirtualFile]) will returnValue(javaFile)
-          one(javaFile).getPackageName() will returnValue(PACKAGE_NAME)
-          one(javaFile).getClasses() will returnValue(Array(javaClass))
-          one(javaClass).getName() will returnValue(CLASS_NAME)
+          one(javaFile).getPackageName will returnValue(PACKAGE_NAME)
+          one(javaFile).getClasses will returnValue(Array(javaClass))
+          one(javaClass).getName will returnValue(CLASS_NAME)
           one(nameResolver).isRealClass(FULLY_QUALIFIED_CLASS_NAME) will returnValue(true)
           one(nameResolver).getTestClassName(FULLY_QUALIFIED_CLASS_NAME) will returnValue(FULLY_QUALIFIED_TEST_CLASS_NAME)
           one(editorApi).getPsiClass(FULLY_QUALIFIED_TEST_CLASS_NAME) will returnValue(null)
         }
 
-        config.setAutoApplyChangesToTests(true)
+        config.autoApplyChangesToTests = true
         interceptor.beforeFileDeletion(createFileDeletedEvent())
       }
     }
@@ -217,16 +217,16 @@ object DeletionInterceptorSpec extends SpecificationWithJUnit with JMocker with 
 
       expect {
         one(editorApi).getPsiJavaFile(any[VirtualFile]) will returnValue(javaFile)
-        one(javaFile).getPackageName() will returnValue(PACKAGE_NAME)
-        one(javaFile).getClasses() will returnValue(Array(javaClass))
-        one(javaClass).getName() will returnValue(CLASS_NAME)
+        one(javaFile).getPackageName will returnValue(PACKAGE_NAME)
+        one(javaFile).getClasses will returnValue(Array(javaClass))
+        one(javaClass).getName will returnValue(CLASS_NAME)
         one(nameResolver).isRealClass(FULLY_QUALIFIED_CLASS_NAME) will returnValue(true)
         one(nameResolver).getTestClassName(FULLY_QUALIFIED_CLASS_NAME) will returnValue(FULLY_QUALIFIED_TEST_CLASS_NAME)
         one(editorApi).getPsiClass(FULLY_QUALIFIED_TEST_CLASS_NAME) will returnValue(javaClass)
         one(editorApi).deleteAsynchronously(any[PsiClass])
       }
 
-      config.setAutoApplyChangesToTests(true)
+      config.autoApplyChangesToTests = true
       interceptor.beforeFileDeletion(createFileDeletedEvent())
     }
   }
