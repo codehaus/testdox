@@ -25,7 +25,7 @@ object ConfigurationPanelSpec extends SpecificationWithJUnit {
       panel.table.changeSelection(0, 1, false, false)
       panel.deleteRow()
 
-      panel.table.getRowCount() must be equalTo 0
+      panel.table.getRowCount must be equalTo 0
     }
 
     "not remove the current row if the mapping column is clicked" in {
@@ -35,7 +35,7 @@ object ConfigurationPanelSpec extends SpecificationWithJUnit {
       panel.table.changeSelection(0, 0, false, false)
       panel.deleteRow()
 
-      panel.table.getRowCount() must be equalTo 1
+      panel.table.getRowCount must be equalTo 1
     }
   }
 

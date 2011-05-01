@@ -13,8 +13,8 @@ object PackageTableModelSpec extends SpecificationWithJUnit {
   "PackageTableModel" should {
 
     "define that the first column contain strings and the second column contain icons" in {
-      model.getColumnClass(0).getName() must be equalTo classOf[String].getName()
-      model.getColumnClass(1).getName() must be equalTo classOf[Icon].getName()
+      model.getColumnClass(0).getName must be equalTo classOf[String].getName
+      model.getColumnClass(1).getName must be equalTo classOf[Icon].getName
     }
 
     "allow only the mapping column to be editable" in {

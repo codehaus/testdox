@@ -34,12 +34,12 @@ class TestDoxProject(info: ProjectInfo) extends DefaultProject(info) with EditSo
   lazy val createTestReports = task { None } dependsOn test
   lazy val checkCoverage     = task { None } dependsOn test
 
-  lazy val projectTitle             = property()[String]
-  lazy val projectDescription       = property()[String]
-  lazy val projectReleaseNotes      = property()[String]
-  lazy val projectUrl               = property()[String]
-  lazy val projectOrganizationEmail = property()[String]
-  lazy val projectOrganizationUrl   = property()[String]
+  lazy val projectTitle             = property[String]
+  lazy val projectDescription       = property[String]
+  lazy val projectReleaseNotes      = property[String]
+  lazy val projectUrl               = property[String]
+  lazy val projectOrganizationEmail = property[String]
+  lazy val projectOrganizationUrl   = property[String]
 
   val now = new Date
   val tokens = Map(

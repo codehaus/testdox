@@ -28,35 +28,35 @@ object RenameDialogSpec extends SpecificationWithJUnit with JMocker {
       preferredFocusedComponent must haveSuperClass[JTextField]
 
       val sentenceField = preferredFocusedComponent.asInstanceOf[JTextField]
-      sentenceField.getText() must be equalTo expectedSentence
+      sentenceField.getText must be equalTo expectedSentence
     }
 
     "enable the OK button if the initial sentence is valid" in {
       dialog.setSentence("foo bar baz")
-      dialog.isOKActionEnabled() must be equalTo true
+      dialog.isOKActionEnabled must be equalTo true
     }
 
     "disable the OK button if the first character of the sentence cannot be used at the start of a Java identifier" in {
-      dialog.isOKActionEnabled() must be equalTo true
+      dialog.isOKActionEnabled must be equalTo true
       dialog.setSentence("-foo")
-      dialog.isOKActionEnabled() must be equalTo false
+      dialog.isOKActionEnabled must be equalTo false
     }
 
     "disable the OK button if the remaining of the sentence contains a character that cannot be used in a Java identifier" in {
-      dialog.isOKActionEnabled() must be equalTo true
+      dialog.isOKActionEnabled must be equalTo true
       dialog.handleRename("mo&o")
-      dialog.isOKActionEnabled() must be equalTo false
+      dialog.isOKActionEnabled must be equalTo false
     }
 
     "re-enable the OK button when an invalid character is removed from the sentence" in {
-      dialog.isOKActionEnabled() must be equalTo true
+      dialog.isOKActionEnabled must be equalTo true
 
       val sentenceField = dialog.getPreferredFocusedComponent().asInstanceOf[JTextField]
-      sentenceField.getDocument().insertString(0, "mo&o", null)
-      dialog.isOKActionEnabled() must be equalTo false
+      sentenceField.getDocument.insertString(0, "mo&o", null)
+      dialog.isOKActionEnabled must be equalTo false
 
-      sentenceField.getDocument().remove(2, 1)
-      dialog.isOKActionEnabled() must be equalTo true
+      sentenceField.getDocument.remove(2, 1)
+      dialog.isOKActionEnabled must be equalTo true
     }
 
     "dispose and return the initial sentence when cancelled" in {
@@ -88,7 +88,7 @@ object RenameDialogSpec extends SpecificationWithJUnit with JMocker {
       def create() = new RenameDialog(project, "")
     }
     EventQueue.invokeAndWait(dialogCreator)
-    val dialog = dialogCreator.getDialog()
+    val dialog = dialogCreator.getDialog
     dialog.createCenterPanel()
     dialog
   }
