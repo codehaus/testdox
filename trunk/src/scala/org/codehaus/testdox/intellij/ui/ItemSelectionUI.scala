@@ -4,9 +4,9 @@ trait ItemSelectionUI {
 
   def getSelectedItem: Any
 
-  def setSelectedIndex(index: Int): Unit
+  def setSelectedIndex(index: Int)
 
-  def show(): Unit
+  def show()
 
   def isOK: Boolean
 
