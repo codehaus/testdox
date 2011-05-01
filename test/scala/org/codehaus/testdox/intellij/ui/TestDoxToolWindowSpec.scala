@@ -24,13 +24,13 @@ object TestDoxToolWindowSpec extends SpecificationWithJUnit with JMocker with Cl
     val controller = mock[TestDoxController]
     
     doBefore {
-      configuration.setUnderscoreMode(true)
+      configuration.underscoreMode = true
       table.setModel(model)
 
       context.setThreadingPolicy(new Synchroniser())
       expect {
-        allowing(controller).getConfiguration() will returnValue(configuration)
-        allowing(controller).getModel() will returnValue(model)
+        allowing(controller).getConfiguration will returnValue(configuration)
+        allowing(controller).getModel will returnValue(model)
       }
 
       window = new TestDoxToolWindow(controller, table, actionToolbarComponent) {
@@ -46,8 +46,8 @@ object TestDoxToolWindowSpec extends SpecificationWithJUnit with JMocker with Cl
 
     "show no dox message and disable the list of dox when setting Java file which has no dox" in {
       updateTestDoxModelUsingTestDoxFile(new TestDoxClass(null, "foo", true, Mocks.createTestClass(), null, TestMethod.EMPTY_ARRAY))
-      table.isEnabled() must be equalTo false
-      table.getModel().getRowCount() must be equalTo 2
+      table.isEnabled must be equalTo false
+      table.getModel.getRowCount must be equalTo 2
     }
 
     "clears previous dox list when setting new dox" in {
@@ -112,7 +112,7 @@ object TestDoxToolWindowSpec extends SpecificationWithJUnit with JMocker with Cl
       val editorApi = mock[EditorApi]
 
       expect {
-        one(psiMethod).getName() will returnValue("testSomething")
+        one(psiMethod).getName will returnValue("testSomething")
         one(editorApi).delete(psiMethod)
       }
 
@@ -126,26 +126,26 @@ object TestDoxToolWindowSpec extends SpecificationWithJUnit with JMocker with Cl
     table.changeSelection(1, -1, false, false)
   }
 
-  private def updateTestDoxModelUsingTestDoxFile(file: TestDoxFile) = file.updateModel(model)
+  private def updateTestDoxModelUsingTestDoxFile(file: TestDoxFile) { file.updateModel(model) }
 
-  private def createKeyEvent(code: Int, modifiers: Int) = new KeyEvent(table, 0, System.currentTimeMillis(), modifiers, code, code.toChar())
+  private def createKeyEvent(code: Int, modifiers: Int) = new KeyEvent(table, 0, System.currentTimeMillis(), modifiers, code, code.toChar)
 
-  private def assertDox(table: JTable, dox: Array[TestMethod]) = {
-    table.isEnabled() must be equalTo true
+  private def assertDox(table: JTable, dox: Array[TestMethod]) {
+    table.isEnabled must be equalTo true
 
-    val tableModel = table.getModel()
-    tableModel.getRowCount() must be equalTo(dox.length + 1)
+    val tableModel = table.getModel
+    tableModel.getRowCount must be equalTo(dox.length + 1)
 
-    for (i <- 1 until tableModel.getRowCount()) {
+    for (i <- 1 until tableModel.getRowCount) {
       tableModel.getValueAt(i, 1).asInstanceOf[TestElement].displayString must be equalTo(dox(i - 1).displayString)
     }
   }
 
   private def assertNoDox(table: JTable, noDoxElements: TestElement*) {
-    table.isEnabled() must be equalTo false
-    table.getModel().getRowCount() must be equalTo noDoxElements.length
+    table.isEnabled must be equalTo false
+    table.getModel.getRowCount must be equalTo noDoxElements.length
     for (i <- 0 until noDoxElements.length) {
-      table.getModel().getValueAt(i, 0) must be equalTo noDoxElements(i)
+      table.getModel.getValueAt(i, 0) must be equalTo noDoxElements(i)
     }
   }
 }

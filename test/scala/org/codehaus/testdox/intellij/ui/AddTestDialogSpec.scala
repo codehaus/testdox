@@ -11,7 +11,7 @@ object AddTestDialogSpec extends SpecificationWithJUnit with JMocker {
   "AddTestDialog" isSpecifiedBy(RenameDialogSpec)
   "and" should {
     "have a title different to that of RenameDialog" in {
-      createDialog().getTitle() must be equalTo "Add Test"
+      createDialog().getTitle must be equalTo "Add Test"
     }
   }
 
@@ -20,7 +20,7 @@ object AddTestDialogSpec extends SpecificationWithJUnit with JMocker {
       def create() = new AddTestDialog(mock[Project])
     }
     EventQueue.invokeAndWait(dialogCreator)
-    val dialog = dialogCreator.getDialog()
+    val dialog = dialogCreator.getDialog
     dialog.createCenterPanel()
     dialog
   }

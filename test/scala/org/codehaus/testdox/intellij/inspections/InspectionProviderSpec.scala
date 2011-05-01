@@ -20,7 +20,7 @@ object InspectionProviderSpec extends SpecificationWithJUnit {
     }
 
     "return an array of all known inspection classes" in {
-      inspectionProvider.getInspectionClasses().toSeq must be equalTo Seq(classOf[EmptyTestClassInspection], classOf[EmptyTestMethodInspection])
+      inspectionProvider.getInspectionClasses.toSeq must be equalTo Seq(classOf[EmptyTestClassInspection], classOf[EmptyTestMethodInspection])
     }
   }
 }
