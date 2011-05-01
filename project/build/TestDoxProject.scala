@@ -8,10 +8,7 @@ import org.clapper.sbtplugins.EditSourcePlugin
 
 class TestDoxProject(info: ProjectInfo) extends DefaultProject(info) with EditSourcePlugin {
 
-  // mapping Maven's project structure to TestDox's
-
   override def outputPath = "build"
-  override def mainJavaSourcePath  = "src" / "java"
 
   // loading all JAR's into the unmanaged classpath
 
