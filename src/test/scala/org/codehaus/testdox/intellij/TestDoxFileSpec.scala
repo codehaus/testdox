@@ -11,19 +11,19 @@ object TestDoxFileSpec extends SpecificationWithJUnit {
 
   "By default, a TestDox file" can {
     "not represent a test class" in {
-      testDoxFile.isTestedClass() must be equalTo false
+      testDoxFile.isTestedClass must be equalTo false
     }
 
     "not be unit tested by default" in {
-      testDoxFile.canBeUnitTested() must be equalTo false
+      testDoxFile.canBeUnitTested must be equalTo false
     }
 
     "not navigate to the test class" in {
-      testDoxFile.canNavigateToTestClass() must be equalTo false
+      testDoxFile.canNavigateToTestClass must be equalTo false
     }
 
     "not navigate to the tested class" in {
-      testDoxFile.canNavigateToTestedClass() must be equalTo false
+      testDoxFile.canNavigateToTestedClass must be equalTo false
     }
 
     "be represented as text" in {
