@@ -24,13 +24,13 @@ object QuickDoxDialogSpec extends SpecificationWithJUnit with JMocker with Class
 
       expect { exactly(2).of(editorApi).activateSelectedTextEditor() }
 
-      dialog.isVisible() must be (false)
+      dialog.isVisible must be (false)
 
       dialog.show()
-      dialog.isVisible() must be (true)
+      dialog.isVisible must be (true)
 
       dialog.hide()
-      dialog.isVisible() must be (false)
+      dialog.isVisible must be (false)
 
       configuration.removePropertyChangeListener(dialog)
     }

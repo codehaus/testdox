@@ -14,7 +14,7 @@ object ItemSelectionDialogSpec extends SpecificationWithJUnit with JMocker {
 
     "enable the OK button when the selection is made" in {
       val dialog = createDialog("hi", "bye")
-      dialog.getList().addSelectionInterval(0, 0)
+      dialog.getList.addSelectionInterval(0, 0)
       dialog.isOKActionEnabled must be equalTo true
     }
 
@@ -33,7 +33,7 @@ object ItemSelectionDialogSpec extends SpecificationWithJUnit with JMocker {
       val dialog = createDialog(item)
       show(dialog)
       dialog.isOK must be equalTo true
-      dialog.getSelectedItem() must be equalTo item
+      dialog.getSelectedItem must be equalTo item
     }
   }
 

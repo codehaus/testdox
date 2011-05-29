@@ -31,7 +31,7 @@ object TestDoxInterfaceSpec extends SpecificationWithJUnit with JMocker {
 
       testDoxInterface.updateModel(testDoxModel)
 
-      testDoxModel.hasDox() must be equalTo false // interfaces should not have TestDox data
+      testDoxModel.hasDox must be equalTo false // interfaces should not have TestDox data
       testDoxModel.getValueAt(0, 0) must be equalTo(testInterface)
       testDoxModel.getValueAt(1, 0) must be equalTo(TEST_ELEMENT)
     }
