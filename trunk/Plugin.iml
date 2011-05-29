@@ -103,13 +103,13 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library" scope="TEST">
-      <library name="specs_2.8.0-1.6.5.jar">
+      <library name="specs_2.8.1-1.6.7.jar">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/test/specs_2.8.0-1.6.5.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/test/specs_2.8.1-1.6.7.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$MODULE_DIR$/lib/test/specs_2.8.0-1.6.5-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/test/specs_2.8.1-1.6.7-sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -150,7 +150,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" scope="PROVIDED" name="JRuby SDK 1.5.1 facet library" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="[gem] rake (v0.8.7, /Users/fraz/.rvm/gems/jruby-1.5.1@global/gems/rake-0.8.7)" level="application" />
   </component>
   <component name="RModuleSettingsStorage">
     <RMODULE_SETTINGS_STORAGE_ID NAME="NUMBER" VALUE="0" />
