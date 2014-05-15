@@ -1,7 +1,6 @@
 package org.codehaus.testdox.intellij;
 
 import junit.framework.TestCase;
-
 import org.codehaus.testdox.intellij.config.ConfigurationBean;
 
 public class SentenceManagerTest extends TestCase {
@@ -106,6 +105,7 @@ public class SentenceManagerTest extends TestCase {
 
     public void testIgnoresAcronymsIfNotInUnderscoreMode() throws Exception {
         ConfigurationBean config = new ConfigurationBean();
+        config.setTestMethodPrefix("test");
         config.setUnderscoreMode(false);
         builder = new SentenceManager(config);
         assertEquals("testFooFKHKGHDSIOCFoo", builder.buildMethodName("foo FKHKGHDS IOC Foo"));

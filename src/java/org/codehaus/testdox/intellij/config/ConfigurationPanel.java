@@ -1,32 +1,16 @@
 package org.codehaus.testdox.intellij.config;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import org.codehaus.testdox.intellij.PackageManager;
+import org.codehaus.testdox.intellij.TemplateNameResolver;
+
+import javax.swing.*;
+import javax.swing.table.TableColumn;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.Icon;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
-import javax.swing.table.TableColumn;
-
-import org.codehaus.testdox.intellij.PackageManager;
-import org.codehaus.testdox.intellij.TemplateNameResolver;
 
 public class ConfigurationPanel extends JPanel implements ConfigurationUI {
 
@@ -104,7 +88,7 @@ public class ConfigurationPanel extends JPanel implements ConfigurationUI {
         JPanel namePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         namePanel.setBorder(BorderFactory.createTitledBorder("Test Method Naming"));
         methodNamePrefix = new JTextField(50);
-        namePanel.add(createInstructedTextEntryControl(methodNamePrefix, "Please specify your test method prefix or annotation (e.g. 'test' for JUnit, 'should' for JBehave or '@Test' for TestNG)"));
+        namePanel.add(createInstructedTextEntryControl(methodNamePrefix, "Please specify your test method annotation or prefix (e.g. '@Test' for JUnit 4 / TestNG and 'test' for JUnit 3)"));
         return namePanel;
     }
 
