@@ -2,6 +2,7 @@ package org.intellij.openapi.testing.maia;
 
 import com.intellij.ide.plugins.IdeaPluginDescriptor;
 import com.intellij.openapi.Disposable;
+import com.intellij.openapi.application.AccessToken;
 import com.intellij.openapi.application.ApplicationListener;
 import com.intellij.openapi.application.ModalityInvokator;
 import com.intellij.openapi.application.ModalityState;
@@ -12,7 +13,7 @@ import com.intellij.openapi.extensions.ExtensionPointName;
 import com.intellij.openapi.extensions.PluginId;
 import com.intellij.openapi.util.Computable;
 import com.intellij.openapi.util.Condition;
-import com.intellij.peer.PeerFactory;
+import com.intellij.openapi.util.ThrowableComputable;
 import com.intellij.psi.EmptySubstitutor;
 import com.intellij.psi.JavaDirectoryService;
 import com.intellij.psi.impl.file.JavaDirectoryServiceImpl;
@@ -22,6 +23,7 @@ import org.jetbrains.annotations.Nullable;
 import org.picocontainer.PicoContainer;
 
 import java.awt.*;
+import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
 
 public class MockApplication extends MockUserDataHolder implements org.intellij.openapi.testing.MockApplication {
@@ -30,7 +32,6 @@ public class MockApplication extends MockUserDataHolder implements org.intellij.
 
     private ComponentManagerImpl createComponentManager() {
         ComponentManagerImpl componentManager = new ComponentManagerImpl();
-        componentManager.registerComponent(PeerFactory.class, new MockPeerFactory());
         componentManager.registerComponent(JavaDirectoryService.class, new JavaDirectoryServiceImpl());
         componentManager.removeComponent(EmptySubstitutor.class);
         return componentManager;
@@ -53,12 +54,24 @@ public class MockApplication extends MockUserDataHolder implements org.intellij.
         return computation.compute();
     }
 
+    public <T, E extends Throwable> T runReadAction(@NotNull ThrowableComputable<T, E> teThrowableComputable) throws E {
+        return null;
+    }
+
     public void runWriteAction(Runnable runnable) {
         runnable.run();
     }
 
     public <T> T runWriteAction(Computable<T> computation) {
         return computation.compute();
+    }
+
+    public <T, E extends Throwable> T runWriteAction(@NotNull ThrowableComputable<T, E> teThrowableComputable) throws E {
+        return null;
+    }
+
+    public boolean hasWriteAction(@Nullable Class<?> aClass) {
+        return false;
     }
 
     public Object getCurrentWriteAction(Class aClass) {
@@ -153,19 +166,23 @@ public class MockApplication extends MockUserDataHolder implements org.intellij.
     }
 
     public ModalityState getCurrentModalityState() {
-        return null;
+        return ModalityState.current();
     }
 
     public ModalityState getModalityStateForComponent(Component component) {
-        return null;
+        return ModalityState.stateForComponent(component);
     }
 
     public ModalityState getDefaultModalityState() {
-        return null;
+        return ModalityState.defaultModalityState();
     }
 
     public ModalityState getNoneModalityState() {
-        return null;
+        return ModalityState.NON_MODAL;
+    }
+
+    public ModalityState getAnyModalityState() {
+        return ModalityState.any();
     }
 
     public long getStartTime() {
@@ -209,6 +226,11 @@ public class MockApplication extends MockUserDataHolder implements org.intellij.
         return null;
     }
 
+    @NotNull
+    public <T> Future<T> executeOnPooledThread(@NotNull Callable<T> tCallable) {
+        return null;
+    }
+
     public boolean isDisposeInProgress() {
         return false;
     }
@@ -224,6 +246,24 @@ public class MockApplication extends MockUserDataHolder implements org.intellij.
         return false;
     }
 
+    @NotNull
+    public AccessToken acquireReadActionLock() {
+        return null;
+    }
+
+    @NotNull
+    public AccessToken acquireWriteActionLock(@Nullable Class aClass) {
+        return null;
+    }
+
+    public boolean isInternal() {
+        return false;
+    }
+
+    public boolean isEAP() {
+        return false;
+    }
+
     @Nullable
     public Object getComponent(final ComponentConfig componentConfig) {
         return null;
@@ -231,6 +271,11 @@ public class MockApplication extends MockUserDataHolder implements org.intellij.
 
     public <T> T[] getExtensions(ExtensionPointName<T> extensionPointName) {
         return null;
+    }
+
+    @NotNull
+    public Condition getDisposed() {
+        return Condition.TRUE;
     }
 
     public ComponentConfig getConfig(Class componentImplementation) {

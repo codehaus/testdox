@@ -4,6 +4,7 @@ import com.intellij.openapi.components.BaseComponent;
 import com.intellij.openapi.components.ComponentConfig;
 import com.intellij.openapi.components.ComponentManager;
 import com.intellij.openapi.extensions.ExtensionPointName;
+import com.intellij.openapi.util.Condition;
 import com.intellij.openapi.util.Key;
 import com.intellij.util.messages.MessageBus;
 import org.jetbrains.annotations.NotNull;
@@ -62,6 +63,11 @@ public class ComponentManagerImpl implements ComponentManager {
 
     public <T> T[] getExtensions(ExtensionPointName<T> extensionPointName) {
         return null;
+    }
+
+    @NotNull
+    public Condition getDisposed() {
+        return Condition.TRUE;
     }
 
     public ComponentConfig getConfig(Class componentImplementation) {
