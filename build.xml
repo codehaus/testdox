@@ -3,7 +3,11 @@
   <target name="check.ant.version">
     <echo taskname="ant.version" message="${ant.version}"/>
     <condition property="ant.version.ok">
-      <contains string="${ant.version}" substring="1.7"/>
+      <or>
+        <contains string="${ant.version}" substring="1.7"/>
+        <contains string="${ant.version}" substring="1.8"/>
+        <contains string="${ant.version}" substring="1.9"/>
+      </or>
     </condition>
   </target>
 
