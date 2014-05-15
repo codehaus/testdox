@@ -128,9 +128,9 @@
     <copy todir="${classes}/maia" overwrite="true">
       <fileset dir="${java.src}" excludes="**/*.java, ${binary.extensions}"/>
       <filterset>
-        <filter token="IDEA.SINCE-BUILD" value="90.116"/>
-        <filter token="IDEA.UNTIL-BUILD" value="99.9999"/>
-        <filter token="PROJECT.VERSION" value="${project.version} (Maia)"/>
+        <filter token="IDEA.SINCE-BUILD" value="117.84"/>
+        <filter token="IDEA.UNTIL-BUILD" value=""/>
+        <filter token="PROJECT.VERSION" value="${project.version}"/>
       </filterset>
       <filterset refid="project.vars"/>
       <filterset refid="timestamp.vars"/>
