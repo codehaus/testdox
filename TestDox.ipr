@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AntConfiguration">
-    <defaultAnt bundledAnt="true" />
     <buildFile url="file://$PROJECT_DIR$/build.xml">
       <additionalClassPath>
         <entry path="file://$PROJECT_DIR$/tools/lib/bsf-2.3.0RC1.jar" />
         <entry path="file://$PROJECT_DIR$/tools/lib/junit-3.8.1.jar" />
-        <entry path="file://$PROJECT_DIR$/../../../.ant/lib/clover.jar" />
+        <entry path="file://$USER_HOME$/.ant/lib/clover.jar" />
         <entry path="file://$PROJECT_DIR$/tools/lib/rhino-js-1.5R3.jar" />
       </additionalClassPath>
-      <antReference projectDefault="true" />
-      <customJdkName value="" />
-      <maximumHeapSize value="128" />
       <maximumStackSize value="32" />
       <properties>
         <property name="idea.home" value="$APPLICATION_HOME_DIR$" />
@@ -45,11 +41,13 @@
       <entry name="?*.jpeg" />
       <entry name="?*.jpg" />
     </wildcardResourcePatterns>
-    <annotationProcessing enabled="false" useClasspath="true" />
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="false">
+        <processorPath useClasspath="true" />
+      </profile>
+    </annotationProcessing>
   </component>
-  <component name="CopyrightManager" default="">
-    <module2copyright />
-  </component>
+  <component name="CopyrightManager" default="" />
   <component name="DependenciesAnalyzeManager">
     <option name="myForwardDirection" value="false" />
   </component>
@@ -314,7 +312,7 @@
       <module fileurl="file://$PROJECT_DIR$/Plugin.iml" filepath="$PROJECT_DIR$/Plugin.iml" />
     </modules>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_5" assert-keyword="true" jdk-15="true" project-jdk-name="IDEA 9.0" project-jdk-type="IDEA JDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_5" assert-keyword="true" jdk-15="true" project-jdk-name="IntelliJ IDEA 13 SDK" project-jdk-type="IDEA JDK" />
   <component name="ResourceManagerContainer">
     <option name="myResourceBundles">
       <value>
@@ -323,8 +321,6 @@
     </option>
   </component>
   <component name="ScalacSettings">
-    <option name="DEPRECATION" value="false" />
-    <option name="UNCHECKED" value="false" />
     <option name="SCALAC_BEFORE" value="false" />
   </component>
   <component name="Scrappy">
@@ -337,26 +333,6 @@
         <entry key="$PROJECT_DIR$">
           <value>
             <SvnBranchConfiguration>
-              <option name="branchMap">
-                <map>
-                  <entry key="https://svn.codehaus.org/testdox/branches">
-                    <value>
-                      <list>
-                        <SvnBranchItem>
-                          <option name="creationDateMillis" value="1280352907572" />
-                          <option name="revision" value="98" />
-                          <option name="url" value="https://svn.codehaus.org/testdox/branches/pre-scala-migration" />
-                        </SvnBranchItem>
-                      </list>
-                    </value>
-                  </entry>
-                  <entry key="https://svn.codehaus.org/testdox/tags">
-                    <value>
-                      <list />
-                    </value>
-                  </entry>
-                </map>
-              </option>
               <option name="branchUrls">
                 <list>
                   <option value="https://svn.codehaus.org/testdox/branches" />
