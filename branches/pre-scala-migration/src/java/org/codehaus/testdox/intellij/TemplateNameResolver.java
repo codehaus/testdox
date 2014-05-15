@@ -1,15 +1,15 @@
 package org.codehaus.testdox.intellij;
 
+import org.codehaus.testdox.intellij.config.ConfigurationBean;
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-
-import org.codehaus.testdox.intellij.config.ConfigurationBean;
 
 public class TemplateNameResolver implements NameResolver, PropertyChangeListener {
 
     public static final String NAME_TOKEN = "<classname>";
     public static final String DEFAULT_TEMPLATE = NAME_TOKEN + "Test";
-    public static final String DEFAULT_PREFIX = "test";
+    public static final String DEFAULT_PREFIX = "@Test";
 
     private final ConfigurationBean configuration;
 
