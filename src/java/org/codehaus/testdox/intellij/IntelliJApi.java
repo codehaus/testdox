@@ -18,6 +18,7 @@ import com.intellij.openapi.vfs.VirtualFileListener;
 import com.intellij.openapi.vfs.VirtualFileManager;
 import com.intellij.openapi.wm.ToolWindowManager;
 import com.intellij.psi.*;
+import com.intellij.psi.codeStyle.CodeStyleManager;
 import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.refactoring.listeners.RefactoringElementListener;
@@ -521,7 +522,7 @@ public abstract class IntelliJApi implements EditorApi {
                             psiClass.getNavigationElement().add(newMethod);
                         }
 
-                        psiManager.getCodeStyleManager().reformat(newMethod);
+                        CodeStyleManager.getInstance(psiManager.getProject()).reformat(newMethod);
                         newMethod = psiClass.findMethodBySignature(newMethod, false);
                         jumpToPsiElement(newMethod);
 

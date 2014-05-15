@@ -2,12 +2,17 @@ package org.intellij.openapi.testing;
 
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.vfs.VirtualFileEvent;
-import com.intellij.openapi.vfs.newvfs.impl.NullVirtualFile;
+import com.intellij.openapi.vfs.newvfs.impl.StubVirtualFile;
 
 public class VirtualFileEventBuilder {
 
     private Object requestor;
-    private VirtualFile file = NullVirtualFile.INSTANCE;
+    private VirtualFile file = new StubVirtualFile() {
+        @Override
+        public boolean isDirectory() {
+            return false;
+        }
+    };
     private String fileName;
     private VirtualFile parent;
 

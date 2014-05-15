@@ -8,10 +8,11 @@ import com.intellij.psi.JavaDirectoryService;
 import com.intellij.psi.PsiDirectory;
 import com.intellij.psi.PsiManager;
 import com.intellij.psi.PsiPackage;
-import static jedi.functional.Coercions.array;
 import org.codehaus.testdox.intellij.config.ConfigurationBean;
 import org.intellij.openapi.testing.MockApplicationManager;
 import org.jmock.Mock;
+
+import static jedi.functional.Coercions.array;
 
 public class DeletionShadowingManagerTest extends TestDoxMockObjectTestCase {
 
@@ -269,6 +270,8 @@ public class DeletionShadowingManagerTest extends TestDoxMockObjectTestCase {
 
     private VirtualFileEvent createFileDeletedEvent() {
         return real().virtualFileEvent()
+                .withRequestor(mock(PsiManager.class).proxy())
+                .withFileName(PACKAGE_PATH)
                 .withFileDeleted()
                 .build();
     }

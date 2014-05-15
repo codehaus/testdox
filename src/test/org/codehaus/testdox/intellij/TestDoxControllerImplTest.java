@@ -8,11 +8,11 @@ import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiIdentifier;
 import com.intellij.psi.PsiMethod;
-import com.intellij.testFramework.LightVirtualFile;
 import org.codehaus.testdox.intellij.config.ConfigurationBean;
 import org.codehaus.testdox.intellij.panel.RenameUI;
 import org.codehaus.testdox.intellij.panel.TestDoxModel;
 import org.intellij.openapi.testing.MockApplicationManager;
+import org.intellij.openapi.testing.MockVirtualFile;
 import org.jmock.Mock;
 import org.jmock.cglib.MockObjectTestCase;
 
@@ -153,14 +153,14 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
     }
 
     public void testCanCurrentFileBeUnitTestedReturnsFalseWhenTheCurrentFileIsNotATestableProjectClass() {
-        TestDoxFile nonJavaFile = new TestDoxNonProjectClass(new LightVirtualFile(), null, null, null);
+        TestDoxFile nonJavaFile = new TestDoxNonProjectClass(dummyVirtualFile(), null, null, null);
         mockEditorApi.expects(once()).method("getCurrentFile").will(returnValue(nonJavaFile.getFile()));
         mockTestDoxFileFactory.expects(once()).method("getTestDoxFile").with(same(nonJavaFile.getFile())).will(returnValue(nonJavaFile));
         assertFalse(controller.canCurrentFileBeUnitTested());
     }
 
     public void testCanCurrentFileBeUnitTestedReturnsTrueWhenTheCurrentFileIsATestableProjectClass() {
-        TestDoxClass testableClass = new TestDoxClass(new LightVirtualFile(), null, true, null, null, TestMethod.EMPTY_ARRAY);
+        TestDoxClass testableClass = new TestDoxClass(dummyVirtualFile(), null, true, null, null, TestMethod.EMPTY_ARRAY);
         mockEditorApi.expects(once()).method("getCurrentFile").will(returnValue(testableClass.getFile()));
         mockTestDoxFileFactory.expects(once()).method("getTestDoxFile").with(same(testableClass.getFile())).will(returnValue(testableClass));
         assertTrue(controller.canCurrentFileBeUnitTested());
@@ -363,7 +363,11 @@ public class TestDoxControllerImplTest extends MockObjectTestCase {
     }
 
     public void testHasActiveEditorsReturnsTrueWhenThereIsAtLeastOneActiveEditor() {
-        mockEditorApi.expects(once()).method("getCurrentFile").will(returnValue(new LightVirtualFile()));
+        mockEditorApi.expects(once()).method("getCurrentFile").will(returnValue(dummyVirtualFile()));
         assertTrue(controller.hasActiveEditors());
+    }
+
+    private static MockVirtualFile dummyVirtualFile() {
+        return new MockVirtualFile("foo", false);
     }
 }
