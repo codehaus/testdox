@@ -9,23 +9,18 @@ public class IntelliJApiFactory implements EditorApiFactory {
 
     private final MutablePicoContainer picoContainer;
 
-    private String ideaName;
-    private String buildNumber;
     private Class editorApiClass;
+
+    ApplicationInfo applicationInfo;
 
     public IntelliJApiFactory(MutablePicoContainer picoContainer) {
         this.picoContainer = picoContainer;
-
-        ApplicationInfo applicationInfo = ApplicationInfo.getInstance();
-        ideaName = applicationInfo.getVersionName();
-        buildNumber = applicationInfo.getBuild().asStringWithoutProductCode();
+        applicationInfo = ApplicationInfo.getInstance();
 
         try {
-            editorApiClass = Class.forName(getClassForIDEA(ideaName, Double.parseDouble(buildNumber)));
-        } catch (NumberFormatException e) {
-            throw newFactoryRuntimeException(ideaName, buildNumber, e);
+            editorApiClass = Class.forName(MAIA_API_CLASS_NAME);
         } catch (ClassNotFoundException e) {
-            throw newFactoryRuntimeException(ideaName, buildNumber, e);
+            throw newFactoryRuntimeException(getIdeaName(), getBuildNumber(), e);
         }
     }
 
@@ -34,17 +29,10 @@ public class IntelliJApiFactory implements EditorApiFactory {
 
         EditorApi editorApi = (EditorApi) picoContainer.getComponentInstance(EditorApi.class);
         if (editorApi == null) {
-            throw newFactoryRuntimeException(ideaName, buildNumber);
+            throw newFactoryRuntimeException(getIdeaName(), getBuildNumber());
         }
 
         return editorApi;
-    }
-
-    private String getClassForIDEA(String ideaName, double buildNumber) {
-        if (ideaName.toLowerCase().matches(".*maia.*") || buildNumber >= 90.116D) {
-            return MAIA_API_CLASS_NAME;
-        }
-        throw newFactoryRuntimeException(ideaName, String.valueOf(buildNumber));
     }
 
     private RuntimeException newFactoryRuntimeException(String ideaName, String buildNumber) {
@@ -53,5 +41,13 @@ public class IntelliJApiFactory implements EditorApiFactory {
 
     private RuntimeException newFactoryRuntimeException(String ideaName, String buildNumber, Exception e) {
         return new RuntimeException("Could not load API connector for " + ideaName + " build #" + buildNumber, e);
+    }
+
+    public String getIdeaName() {
+        return applicationInfo.getVersionName();
+    }
+
+    public String getBuildNumber() {
+        return applicationInfo.getBuild().asString();
     }
 }
