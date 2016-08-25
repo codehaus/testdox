@@ -5,23 +5,26 @@ import com.intellij.openapi.components.ProjectComponent;
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
 import com.intellij.openapi.options.Configurable;
+import com.intellij.openapi.options.ConfigurableProvider;
 import com.intellij.openapi.options.ConfigurationException;
+import com.intellij.openapi.project.Project;
 import com.intellij.util.xmlb.XmlSerializerUtil;
 import org.codehaus.testdox.intellij.IconHelper;
 import org.codehaus.testdox.intellij.TemplateNameResolver;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.util.Collections;
 import java.util.List;
 
 @State(
-    name = ConfigurationController.COMPONENT_NAME,
-    storages = {
-    @Storage(
-        id = ConfigurationController.COMPONENT_NAME,
-        file = "$PROJECT_FILE$"
-    )}
+        name = ConfigurationController.COMPONENT_NAME,
+        storages = {
+                @Storage(
+                        id = ConfigurationController.COMPONENT_NAME,
+                        file = "$PROJECT_FILE$"
+                )}
 )
 
 public class ConfigurationController implements ProjectComponent, Configurable, PersistentStateComponent<ConfigurationBean> {
@@ -117,14 +120,14 @@ public class ConfigurationController implements ProjectComponent, Configurable, 
 
     public boolean isModified() {
         return bean.isAllowCustomPackages() != panel.getCustomMappingStatus()
-            || !equals(bean.getCustomPackages(), panel.getCustomPackageMappings())
-            || !bean.getTestNameTemplate().equals(panel.getTestNameTemplate())
-            || !bean.getTestMethodIndicator().equals(panel.getTestMethodPrefix())
-            || bean.isCreateTestIfMissing() != panel.getCreateTestIfMissing()
-            || bean.isUnderscoreMode() != panel.getUseUnderscore()
-            || bean.isShowFullyQualifiedClassName() != panel.getShowFullyQualifiedClassName()
-            || bean.isAutoApplyChangesToTest() != panel.getAutoApplyChangesToTest()
-            || bean.isDeletePackageOccurrences() != panel.getDeletePackageOccurrences();
+                || !equals(bean.getCustomPackages(), panel.getCustomPackageMappings())
+                || !bean.getTestNameTemplate().equals(panel.getTestNameTemplate())
+                || !bean.getTestMethodIndicator().equals(panel.getTestMethodPrefix())
+                || bean.isCreateTestIfMissing() != panel.getCreateTestIfMissing()
+                || bean.isUnderscoreMode() != panel.getUseUnderscore()
+                || bean.isShowFullyQualifiedClassName() != panel.getShowFullyQualifiedClassName()
+                || bean.isAutoApplyChangesToTest() != panel.getAutoApplyChangesToTest()
+                || bean.isDeletePackageOccurrences() != panel.getDeletePackageOccurrences();
     }
 
     private boolean equals(List strings1, List strings2) {
